@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Carla/OpeningScene.unity
+    path: Assets/Scenes/OpeningScene.unity
     guid: 9ff632716754b084dba968760f95c36f
   - enabled: 1
     path: Assets/Carla/TestScene.unity
     guid: 8a3da6942e5a8354e81540dfd9d2e38c
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: 3cf625ffd0ef8f043bb7030b4d98f615
   m_configObjects: {}
