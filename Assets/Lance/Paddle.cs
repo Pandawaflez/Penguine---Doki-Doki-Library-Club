@@ -18,4 +18,15 @@ public class Paddle : MonoBehaviour
     {
         
     }
+
+    public void ResetPaddle() {
+        Vector2 pos = Vector2.zero;
+        if (isPlayerPaddle == true) {
+            pos = new Vector2(-8, 0);            
+        } else {
+            pos = new Vector2(8, 0);
+        }
+
+        transform.position = pos;
+    }
 }
