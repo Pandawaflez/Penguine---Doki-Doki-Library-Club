@@ -11,8 +11,15 @@ public class Pong : MiniGameLevel
     // score for player and AI
     private int playerScore = 0; 
     private int aiScore = 0;
+    private int scoreToWin = 3;
     public static Vector2 bottomLeft;
     public static Vector2 topRight;
+    [SerializeField] TextMeshProUGUI playerScoreText;
+    [SerializeField] TextMeshProUGUI aiScoreText;
+    [SerializeField] TextMeshProUGUI winnerText;
+    [SerializeField] Ball ball;
+    [SerializeField] PlayerPaddle playerPaddle;
+    [SerializeField] AIPaddle aiPaddle;
 
     // Start is called before the first frame update
     void Start()
@@ -27,13 +34,56 @@ public class Pong : MiniGameLevel
         
     }
 
+    // update the score display in the pong game
+    private void UpdateScore() {
+        playerScoreText.text = playerScore.ToString();
+        aiScoreText.text = aiScore.ToString();
+    }
+
     // add one to the player score
     public void addPlayerScore() {
         playerScore += 1;
+        UpdateScore();
+        CheckWinCondition();
     }
 
     // add one to the ai score
     public void addAIScore() {
         aiScore += 1;
+        UpdateScore();
+        CheckWinCondition();
+    }
+
+    // dynamic binding to check win condition for pong game
+    public bool CheckWinCondition() {
+        if (playerScore >= scoreToWin) {
+            Debug.Log("Player Won!");
+            Time.timeScale = 0;
+            isGameOver = true;
+            // EndGame();
+        } else if (aiScore >= scoreToWin) {
+            Debug.Log("AI Won :(");
+            Time.timeScale = 0;
+            isGameOver = true;
+            // EndGame();
+        } else {
+            isGameOver = false;
+            ResetRound();
+        }
+
+        return isGameOver;
+    }
+
+    private void ResetRound() {
+        Debug.Log("Resetting Round...");
+        aiPaddle.ResetPaddle();
+        playerPaddle.ResetPaddle();
+        ball.ResetBall();
+
+        ball.gameObject.SetActive(true);
+        aiPaddle.gameObject.SetActive(true);
+        playerPaddle.gameObject.SetActive(true);
+
+        Time.timeScale = 1;
     }
 }

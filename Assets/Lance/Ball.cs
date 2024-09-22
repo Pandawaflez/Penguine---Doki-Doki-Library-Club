@@ -35,15 +35,15 @@ public class Ball : MonoBehaviour
         if (transform.position.x < Pong.bottomLeft.x + radius && direction.x < 0) {
             Time.timeScale = 0;
             transform.position = startPos;
-            Debug.Log("Player scores!");
-            gameManager.addPlayerScore();
+            Debug.Log("AI scores!");
+            gameManager.addAIScore();
         }
 
         if (transform.position.x > Pong.topRight.x - radius && direction.x > 0) {
             Time.timeScale = 0;
             transform.position = startPos;
-            Debug.Log("AI scores");
-            gameManager.addAIScore();
+            Debug.Log("Player scores");
+            gameManager.addPlayerScore();
         }
     }
 
@@ -69,5 +69,12 @@ public class Ball : MonoBehaviour
                 direction.y += Random.Range(-0.5f, 0.5f);
             }
         }
+    }
+
+    public void ResetBall() {
+        transform.position = Vector2.zero;
+        speed = 5f;
+        float randomX = Random.Range(0, 2f) * 2 - 1;
+        direction = new Vector2(randomX, 0).normalized;
     }
 }
