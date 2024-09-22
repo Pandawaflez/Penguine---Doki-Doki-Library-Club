@@ -99,9 +99,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 0.5
+  m_LinearDrag: 2
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -172,4 +172,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayerPaddle: 0
-  ball: {fileID: 5536582604820178545, guid: 5bc0c50a583d56c4caf8c0bcee4b5cc6, type: 3}
+  ball: {fileID: 0}

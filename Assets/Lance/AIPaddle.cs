@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AIPaddle : Paddle
 {
-    [SerializeField] Ball ball;
+    public GameObject ball;
     string input = "AIPaddle";
 
     void Start() {
@@ -13,16 +13,20 @@ public class AIPaddle : Paddle
     }
 
     // Update is called once per frame
-    private void Update() {
-        // get the balls y position
+    void Update() {
+        // get the ball's y position
         float ballY = ball.transform.position.y;
 
-        // calculate direction to move 
-        float move = ballY - transform.position.y;
+        // get the paddle's current y position
+        float paddleY = transform.position.y;
 
-        move = Mathf.Clamp(move, -speed * Time.deltaTime, speed * Time.deltaTime);
+        // move AI paddle towards the ball's y position
+        float moveDirection = ballY - paddleY;
 
-        // Restrict paddle movement so it doesn't go offscreen
+        // clamp the move direction to the AI paddle speed
+        float move = Mathf.Clamp(moveDirection, -speed * Time.deltaTime, speed * Time.deltaTime);
+
+        // restrict paddle movement so it doesn't go offscreen
         if (transform.position.y < Pong.bottomLeft.y + height / 2 && move < 0) {
             move = 0;
         } else if (transform.position.y > Pong.topRight.y - height / 2 && move > 0) {
