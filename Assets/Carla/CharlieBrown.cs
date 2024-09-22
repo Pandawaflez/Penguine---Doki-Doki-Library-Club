@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharlieBrown : Peanuts
 {
@@ -51,11 +52,34 @@ public class CharlieBrown : Peanuts
     public string dialogue7 = "I'm reading, sorry.";
 
 
-    public void displayDialogue(string dialogue){
+    public void displayDialogue(string dialogue, string r1, string r2){
         //display the dialogue, call sfx, wait a few sec, display response
-
+        dialogueText.SetText(dialogue);
+        response1Text.SetText(r1);
+        response2Text.SetText(r2);
+        //call sfx. should only play 3 sec
     }
 
+    public int getDialogueNum(){
+        return dialogueNum;
+    }
+
+    public Button r1;
+    public Button r2;
+    public int responseNum = 0;
+
+    public void hitResponse1(){
+        responseNum = 1;
+        Debug.Log("they hit it boss");
+        //unselect button for next screen
+        r1.Select();
+    }
+    public void hitResponse2(){
+        responseNum = 2;
+        r2.Select();
+    }
+
+    //public void initiateMiniGame(){}
    
     void Start(){
         dialogueNum = 0;
@@ -66,6 +90,50 @@ public class CharlieBrown : Peanuts
 
     }
     void Update(){
-
+        int d = getDialogueNum();
+        switch(d){
+            case 0:
+                displayDialogue(dialogue0, d0response1, d0response2);
+                //play sfx here or in above?
+                //if r1, dialogueNum=1, else 2
+                if (responseNum == 1){
+                    dialogueNum=1;
+                }
+                responseNum = 0;
+                //also update affection points
+                break;
+            case 1:
+                displayDialogue(dialogue1, d1response1, d1response2);
+                //if r1, dialogueNum=5, else 2
+                break;
+            case 2:
+                displayDialogue(dialogue2, d2response1, d2response2);
+                //if r1, dialogueNum=3, else 4
+                break;
+            case 3: 
+                displayDialogue(dialogue3, d3response1, d3response2);
+                //if r1, dialogueNum=5, else 6
+                break;
+            case 4:
+                displayDialogue(dialogue4, d4response1, d4response2);
+                //if r1, dialogueNum=5, else playMini()
+                break;
+            case 5:
+                displayDialogue(dialogue5, "", "");
+                //dialogueNum=7
+                break;
+            case 6:
+                displayDialogue(dialogue6, d6response1, d6response2);
+                //if r1, dialogueNum=5, else playMini()
+                break;
+            case 7:
+                displayDialogue(dialogue7, "","");
+                //stuck
+                break;
+            /*
+            default:
+                displayDialogue("Whoops i hit my head! who are you?", "bruh", "no worries my sweet prince!");
+            */
+        }
     }
 }
