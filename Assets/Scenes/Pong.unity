@@ -225,6 +225,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1633657734 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8646212757439873330, guid: 5bc0c50a583d56c4caf8c0bcee4b5cc6, type: 3}
+  m_PrefabInstance: {fileID: 5008291925477643505}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1881472201298903989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -290,25 +295,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -5040967310223711148, guid: 5bc0c50a583d56c4caf8c0bcee4b5cc6, type: 3}
-      propertyPath: m_Mass
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -5040967310223711148, guid: 5bc0c50a583d56c4caf8c0bcee4b5cc6, type: 3}
-      propertyPath: m_AngularDrag
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4386206780206210384, guid: 5bc0c50a583d56c4caf8c0bcee4b5cc6, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3917285570501480094, guid: 5bc0c50a583d56c4caf8c0bcee4b5cc6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.85699314
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3917285570501480094, guid: 5bc0c50a583d56c4caf8c0bcee4b5cc6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.1195236
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3917285570501480094, guid: 5bc0c50a583d56c4caf8c0bcee4b5cc6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -363,21 +356,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3919659974447550504, guid: b7f7fc724046ca247bc653a7195d9f40, type: 3}
+      propertyPath: ball
+      value: 
+      objectReference: {fileID: 1633657734}
     - target: {fileID: 247865325936706057, guid: b7f7fc724046ca247bc653a7195d9f40, type: 3}
       propertyPath: m_Name
       value: AI Paddle
-      objectReference: {fileID: 0}
-    - target: {fileID: 5520693318660761423, guid: b7f7fc724046ca247bc653a7195d9f40, type: 3}
-      propertyPath: m_Mass
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5520693318660761423, guid: b7f7fc724046ca247bc653a7195d9f40, type: 3}
-      propertyPath: m_LinearDrag
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5520693318660761423, guid: b7f7fc724046ca247bc653a7195d9f40, type: 3}
-      propertyPath: m_AngularDrag
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8641440900425528887, guid: b7f7fc724046ca247bc653a7195d9f40, type: 3}
       propertyPath: m_LocalPosition.x
@@ -432,18 +417,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1311656328654562082, guid: 08778f86bff7d4442b61a239d3660d4c, type: 3}
-      propertyPath: m_Mass
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1311656328654562082, guid: 08778f86bff7d4442b61a239d3660d4c, type: 3}
-      propertyPath: m_LinearDrag
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1311656328654562082, guid: 08778f86bff7d4442b61a239d3660d4c, type: 3}
-      propertyPath: m_AngularDrag
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2201946037134242791, guid: 08778f86bff7d4442b61a239d3660d4c, type: 3}
       propertyPath: m_Name
       value: Player Paddle
