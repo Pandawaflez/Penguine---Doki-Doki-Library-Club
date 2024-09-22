@@ -100,4 +100,9 @@ public class Pong : MiniGameLevel
 
         gameOverScreen.SetActive(true); 
     }
+
+    public void HandleContinueButtonClick() {
+        Debug.Log("Unloading Pong Scene");
+        SceneManager.UnloadSceneAsync("Pong");
+    }
 }

@@ -144,6 +144,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 520992a77dedb7944a2da7de4b4d627a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &684350401 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8465129107282998780, guid: 8d43ee8c46b95c643bf8440a7585450c, type: 3}
+  m_PrefabInstance: {fileID: 5065129665395368810}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &684350406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684350401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &684350407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684350401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
 --- !u!1 &893370428
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,6 +504,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6576108514430281139, guid: 8d43ee8c46b95c643bf8440a7585450c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6576108514430281139, guid: 8d43ee8c46b95c643bf8440a7585450c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6576108514430281139, guid: 8d43ee8c46b95c643bf8440a7585450c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 765218628814262495, guid: 4a4eccc2f3dfaa148bf5cce73da6418c, type: 3}
+    - target: {fileID: 6576108514430281139, guid: 8d43ee8c46b95c643bf8440a7585450c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6576108514430281139, guid: 8d43ee8c46b95c643bf8440a7585450c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HandleContinueButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 6576108514430281139, guid: 8d43ee8c46b95c643bf8440a7585450c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Pong, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6576108514430281139, guid: 8d43ee8c46b95c643bf8440a7585450c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7517743375616678500, guid: 8d43ee8c46b95c643bf8440a7585450c, type: 3}
       propertyPath: m_Name
       value: GameOver
@@ -551,7 +619,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8465129107282998780, guid: 8d43ee8c46b95c643bf8440a7585450c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 684350407}
+    - targetCorrespondingSourceObject: {fileID: 8465129107282998780, guid: 8d43ee8c46b95c643bf8440a7585450c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 684350406}
   m_SourcePrefab: {fileID: 100100000, guid: 8d43ee8c46b95c643bf8440a7585450c, type: 3}
 --- !u!1001 &6264336058398379304
 PrefabInstance:
