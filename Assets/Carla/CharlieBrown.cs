@@ -112,7 +112,7 @@ public class CharlieBrown : Peanuts
     }
 
     public void initiateMiniGame(){
-        SceneManager.LoadScene("Pong");
+        SceneManager.LoadScene("Pong", LoadSceneMode.Additive);
     }
 
     //a button being hit will trigger this. decides how to respond to response
