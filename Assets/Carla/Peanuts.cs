@@ -24,6 +24,10 @@ public abstract class Peanuts : MonoBehaviour
 
     //affection points
     public int affectionPoints;
+
+    public int getAffectionPoints(){
+        return affectionPoints;
+    }
     public void updateAffection(int newPoints){
         affectionPoints += newPoints;
     }
