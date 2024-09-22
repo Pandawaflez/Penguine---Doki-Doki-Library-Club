@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Peanuts : MonoBehaviour
+public abstract class Peanuts : MonoBehaviour
 {
     //graphics
     //sfx
@@ -21,7 +21,13 @@ public class Peanuts : MonoBehaviour
 
     //dialoguetracker
     protected int dialogueNum = 0;
-    
+
+    //affection points
+    public int affectionPoints;
+    public void updateAffection(int newPoints){
+        affectionPoints += newPoints;
+    }
+
     //minigame
 
     
