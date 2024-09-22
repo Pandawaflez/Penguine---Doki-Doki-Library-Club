@@ -12,13 +12,11 @@ public class PlayerPaddle : Paddle
         float move = Input.GetAxis(input) * Time.deltaTime * speed;
 
         // restrict paddle movement so it doesn't go offscreen
-        if (transform.position.y < bottomLeft.y + height / 2 && move < 0) {
+        if (transform.position.y < Pong.bottomLeft.y + height / 2 && move < 0) {
             move = 0;
-        } else if (transform.position.y > topRight.y - height / 2 && move > 0) {
+        } else if (transform.position.y > Pong.topRight.y - height / 2 && move > 0) {
             move = 0;
         }
-
-//        Debug.Log("Move Value: " + move + "\tMovement Speed: " + speed);
 
         transform.Translate(move * Vector2.up);
     }
