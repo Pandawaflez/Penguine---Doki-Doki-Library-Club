@@ -44,3 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 520992a77dedb7944a2da7de4b4d627a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerScoreText: {fileID: 0}
+  aiScoreText: {fileID: 0}
+  winnerText: {fileID: 0}
+  ball: {fileID: 0}
+  playerPaddle: {fileID: 0}
+  aiPaddle: {fileID: 0}
+  gameOverScreen: {fileID: 0}
+  middleLine: {fileID: 0}

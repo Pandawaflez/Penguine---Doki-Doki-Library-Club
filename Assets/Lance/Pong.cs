@@ -20,6 +20,8 @@ public class Pong : MiniGameLevel
     [SerializeField] Ball ball;
     [SerializeField] PlayerPaddle playerPaddle;
     [SerializeField] AIPaddle aiPaddle;
+    [SerializeField] GameObject gameOverScreen;
+    [SerializeField] GameObject middleLine;
 
     // Start is called before the first frame update
     void Start()
@@ -58,14 +60,12 @@ public class Pong : MiniGameLevel
     public bool CheckWinCondition() {
         if (playerScore >= scoreToWin) {
             Debug.Log("Player Won!");
-            Time.timeScale = 0;
-            isGameOver = true;
-            // EndGame();
+            winnerText.text = "You Won!";
+            EndGame();
         } else if (aiScore >= scoreToWin) {
             Debug.Log("AI Won :(");
-            Time.timeScale = 0;
-            isGameOver = true;
-            // EndGame();
+            winnerText.text = "You Lost!";
+            EndGame();
         } else {
             isGameOver = false;
             ResetRound();
@@ -85,5 +85,19 @@ public class Pong : MiniGameLevel
         playerPaddle.gameObject.SetActive(true);
 
         Time.timeScale = 1;
+    }
+
+    // dynamic binding to end the Pong game
+    public void EndGame() {
+        Debug.Log("Ending the Game...");
+        Time.timeScale = 0;
+        isGameOver = true;
+
+        ball.gameObject.SetActive(false);
+        aiPaddle.gameObject.SetActive(false);
+        playerPaddle.gameObject.SetActive(false);
+        middleLine.SetActive(false);
+
+        gameOverScreen.SetActive(true); 
     }
 }
