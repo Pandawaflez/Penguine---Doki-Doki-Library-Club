@@ -34,15 +34,40 @@ public class Ball : MonoBehaviour
 
         if (transform.position.x < Pong.bottomLeft.x + radius && direction.x < 0) {
             Time.timeScale = 0;
-            Debug.Log("Right player scores!");
+            transform.position = startPos;
+            Debug.Log("Player scores!");
             gameManager.addPlayerScore();
         }
 
         if (transform.position.x > Pong.topRight.x - radius && direction.x > 0) {
             Time.timeScale = 0;
             transform.position = startPos;
-            Debug.Log("Left player scores!");
+            Debug.Log("AI scores");
             gameManager.addAIScore();
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.tag == "Paddle") {
+            // collided with paddle
+            bool isPlayerPaddle = other.GetComponent<Paddle>().isPlayerPaddle;
+
+            Debug.Log("isPlayerPaddle = " + isPlayerPaddle + "\tDirection.x: " + direction.x);
+
+            // flip direction when ball hits paddle
+            if (isPlayerPaddle == true && direction.x < 0) {
+                if (speed < 15f) {
+                    speed += 1f;
+                }
+                direction.x = -direction.x;
+                direction.y += Random.Range(-0.5f, 0.5f);
+            } else if (isPlayerPaddle == false && direction.x > 0) {
+                if (speed < 15f) {
+                    speed += 1f;
+                }
+                direction.x = -direction.x;
+                direction.y += Random.Range(-0.5f, 0.5f);
+            }
         }
     }
 }

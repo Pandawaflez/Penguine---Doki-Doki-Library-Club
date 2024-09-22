@@ -6,11 +6,11 @@ public class Paddle : MonoBehaviour
 {
     protected float speed = 10;
     protected float height;
+    public bool isPlayerPaddle = false; // boolean to tell if it is players paddle or AI paddle. Defaults to AI paddle
     // Start is called before the first frame update
     void Start()
     {
         height = transform.localScale.y;
-        Debug.Log("Height: " + height);
     }
 
     // Update is called once per frame
