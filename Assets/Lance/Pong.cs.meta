@@ -3,7 +3,16 @@ guid: 520992a77dedb7944a2da7de4b4d627a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - playerScoreText: {instanceID: 0}
+  - aiScoreText: {instanceID: 0}
+  - winnerText: {instanceID: 0}
+  - ball: {instanceID: 0}
+  - playerPaddle: {instanceID: 0}
+  - aiPaddle: {instanceID: 0}
+  - gameOverScreen: {instanceID: 0}
+  - middleLine: {instanceID: 0}
+  - charlieBrown: {fileID: 1512864461895456293, guid: f0775826ae33faf46aaa8ce4766538a2, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

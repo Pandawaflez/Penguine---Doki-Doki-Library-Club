@@ -102,7 +102,11 @@ public class Pong : MiniGameLevel
     }
 
     public void HandleContinueButtonClick() {
-        Debug.Log("Unloading Pong Scene");
-        SceneManager.UnloadSceneAsync("Pong");
+        int whoWon = 0; // default to player winning
+        if (aiScore >= 3) {
+            whoWon = 1; // ai won instead
+        } 
+        Debug.Log("Loading Level1");
+        SceneManager.LoadScene("Level1");
     }
 }
