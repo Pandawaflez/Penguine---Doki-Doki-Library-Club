@@ -125,7 +125,7 @@ public class CharlieBrown : Peanuts
     public void reActivateCharlie(int win){
         canvas.SetActive(true);
         if (win == 0){
-            updateAffection(10);
+            //this.updateAffection(10);
         }
     }
     
