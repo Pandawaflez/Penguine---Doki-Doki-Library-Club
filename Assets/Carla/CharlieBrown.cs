@@ -112,11 +112,12 @@ public class CharlieBrown : Peanuts
     }
 
     public void initiateMiniGame(){
-        deActivateCharlie();
-        SceneManager.LoadScene("Pong", LoadSceneMode.Additive);
+        //deActivateCharlie();
+        //SceneManager.LoadScene("Pong", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Pong");
     }
 
-    
+    /*
     public GameObject canvas;
     public void deActivateCharlie(){
         canvas.SetActive(false);
@@ -128,6 +129,7 @@ public class CharlieBrown : Peanuts
             //this.updateAffection(10);
         }
     }
+    */
     
 
     //a button being hit will trigger this. decides how to respond to response
@@ -265,8 +267,10 @@ public class CharlieBrown : Peanuts
     
    
     void Start(){
-        dialogueNum = 0;
-        affectionPoints = 5;
+
+        dialogueNum = PeanutsDB.CharlieDialogue;
+        affectionPoints = PeanutsDB.CharlieAffectionPts;
+        Debug.Log(string.Format("starting with {0} affection points on dialoge {1}", affectionPoints, dialogueNum));
         onDialogue(dialogueNum);
         /*
         dialogueText.SetText(dialogue0);
@@ -276,6 +280,8 @@ public class CharlieBrown : Peanuts
 
     }
     void Update(){
+        PeanutsDB.CharlieAffectionPts = affectionPoints;
+        PeanutsDB.CharlieDialogue = dialogueNum;
         /*
         int d = getDialogueNum();
         switch(d){
