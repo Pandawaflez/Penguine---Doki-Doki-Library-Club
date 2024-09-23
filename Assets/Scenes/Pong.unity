@@ -487,6 +487,10 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 620308891}
+    - target: {fileID: 6503974201381840504, guid: 5bc0c50a583d56c4caf8c0bcee4b5cc6, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8646212757439873330, guid: 5bc0c50a583d56c4caf8c0bcee4b5cc6, type: 3}
       propertyPath: m_Name
       value: Ball
@@ -635,6 +639,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1156124303400183080, guid: bbc6091e6e000894395bef1d23b1fa42, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1914344506455439512, guid: bbc6091e6e000894395bef1d23b1fa42, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.57
@@ -675,9 +683,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4255847024499963196, guid: bbc6091e6e000894395bef1d23b1fa42, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5806132568023889783, guid: bbc6091e6e000894395bef1d23b1fa42, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489339362127608954, guid: bbc6091e6e000894395bef1d23b1fa42, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7532412161379499177, guid: bbc6091e6e000894395bef1d23b1fa42, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8144644819767001185, guid: bbc6091e6e000894395bef1d23b1fa42, type: 3}
       propertyPath: m_Name
       value: MiddleLine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9050578949238504979, guid: bbc6091e6e000894395bef1d23b1fa42, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -797,6 +825,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AI Paddle
       objectReference: {fileID: 0}
+    - target: {fileID: 8562355715098494385, guid: b7f7fc724046ca247bc653a7195d9f40, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8641440900425528887, guid: b7f7fc724046ca247bc653a7195d9f40, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8
@@ -853,6 +885,10 @@ PrefabInstance:
     - target: {fileID: 2201946037134242791, guid: 08778f86bff7d4442b61a239d3660d4c, type: 3}
       propertyPath: m_Name
       value: Player Paddle
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316758492585308283, guid: 08778f86bff7d4442b61a239d3660d4c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5398130448227608578, guid: 08778f86bff7d4442b61a239d3660d4c, type: 3}
       propertyPath: m_LocalPosition.x
