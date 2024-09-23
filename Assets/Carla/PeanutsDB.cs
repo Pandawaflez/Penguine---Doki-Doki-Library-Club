@@ -7,8 +7,8 @@ public static class PeanutsDB
     public static int CharlieDialogue{get; set;}
     public static int CharlieAffectionPts{get; set;}
 
-    public static int charlieDialoge=0;
-    public static int charlieAffectionPts=5;
+    private static int charlieDialoge=0;
+    private static int charlieAffectionPts=5;
     
    
 }
