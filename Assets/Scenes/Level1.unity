@@ -508,7 +508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -931,7 +931,6 @@ MonoBehaviour:
   r1: {fileID: 0}
   r2: {fileID: 0}
   responseNum: 0
-  canvas: {fileID: 0}
 --- !u!1001 &800867139
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1845,12 +1844,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8750947499655673442, guid: f0775826ae33faf46aaa8ce4766538a2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750947499655673442, guid: f0775826ae33faf46aaa8ce4766538a2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750947499655673442, guid: f0775826ae33faf46aaa8ce4766538a2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750947499655673442, guid: f0775826ae33faf46aaa8ce4766538a2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1285
+      value: -401.36
       objectReference: {fileID: 0}
     - target: {fileID: 8750947499655673442, guid: f0775826ae33faf46aaa8ce4766538a2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -720
+      value: -225.13
       objectReference: {fileID: 0}
     - target: {fileID: 8750947499655673442, guid: f0775826ae33faf46aaa8ce4766538a2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1883,6 +1894,10 @@ PrefabInstance:
     - target: {fileID: 8750947499655673442, guid: f0775826ae33faf46aaa8ce4766538a2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750947499655673442, guid: f0775826ae33faf46aaa8ce4766538a2, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8975199018459119010, guid: f0775826ae33faf46aaa8ce4766538a2, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2023,6 +2038,14 @@ PrefabInstance:
       propertyPath: m_text
       value: my sweet sweet charlie prince...
       objectReference: {fileID: 0}
+    - target: {fileID: 621557874522061785, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
+      propertyPath: m_fontSize
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 621557874522061785, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 32
+      objectReference: {fileID: 0}
     - target: {fileID: 964380685740169248, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -2077,11 +2100,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1797712798475806857, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 450.6338
+      value: 747.3463
       objectReference: {fileID: 0}
     - target: {fileID: 1797712798475806857, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1797712798475806857, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1797712798475806857, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1797712798475806857, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1797712798475806857, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2113,11 +2148,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1797712798475806857, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1087.1741
+      value: 1396
       objectReference: {fileID: 0}
     - target: {fileID: 1797712798475806857, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 751.20526
+      value: 885
       objectReference: {fileID: 0}
     - target: {fileID: 1797712798475806857, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2159,10 +2194,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 2215448515124808685, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
+      propertyPath: m_fontSize
+      value: 44
+      objectReference: {fileID: 0}
+    - target: {fileID: 2215448515124808685, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 44
+      objectReference: {fileID: 0}
     - target: {fileID: 2444360027127483003, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_text
       value: charlie charlie notice how i'm able to respond to you? pretty cool...
         i know. just marry me already.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2444360027127483003, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
+      propertyPath: m_fontSize
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 2444360027127483003, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 2964086983853557129, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_HorizontalFit
@@ -2258,7 +2309,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8976334231212032319, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 400.6338
+      value: 697.3463
       objectReference: {fileID: 0}
     - target: {fileID: 8976334231212032319, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_SizeDelta.y
@@ -2266,11 +2317,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8976334231212032319, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 225.3169
+      value: 373.67316
       objectReference: {fileID: 0}
     - target: {fileID: 8976334231212032319, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -125.175
+      value: -99.880005
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
