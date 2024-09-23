@@ -111,10 +111,14 @@ public class CharlieBrown : Peanuts
         toNextDialogue();
     }
 
+
     public void initiateMiniGame(){
         //deActivateCharlie();
         //SceneManager.LoadScene("Pong", LoadSceneMode.Additive);
+        SceneChanger.saveScene();
         SceneManager.LoadScene("Pong");
+
+        dialogueNum = 8;
     }
 
     /*
@@ -184,9 +188,9 @@ public class CharlieBrown : Peanuts
                     dialogueNum = 5;
                     updateAffection(0);
                 } else if (responseNum == 2){
-                    dialogueNum = 8;
                     updateAffection(5);
                     initiateMiniGame();
+                    //dialogueNum = 8;
                 }
                 responseNum = 0;
                 break;
@@ -200,7 +204,7 @@ public class CharlieBrown : Peanuts
                     dialogueNum = 5;
                     updateAffection(-2);
                 } else if (responseNum == 2){
-                    dialogueNum = 8;
+                    //dialogueNum = 8;
                     updateAffection(8);
                     initiateMiniGame();
                 }
