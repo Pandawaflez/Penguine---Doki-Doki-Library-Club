@@ -107,6 +107,6 @@ public class Pong : MiniGameLevel
             whoWon = 1; // ai won instead
         } 
         Debug.Log("Loading Level1");
-        SceneManager.LoadScene("Level1");
+        SceneChanger.Continue();
     }
 }
