@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class overworldDebugMenu : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class overworldDebugMenu : MonoBehaviour
         switch ( character ){
             case "Charlie":
                 Debug.Log("Talk to Chuck");
+                SceneManager.LoadScene("Level1");
                 break;
             case "Lucy":
                 Debug.Log("Talk to Lucy");
