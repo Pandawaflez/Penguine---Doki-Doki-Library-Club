@@ -17,6 +17,7 @@ public class sceneManager : MonoBehaviour
         Debug.Log("Loading Scene " + m_Scene);
         LoadScene(SavedScene);
     }
+    //return the saved scene, probably will be just used for testing shrug
     public string getSavedScene(){
         return SavedScene;
     }
