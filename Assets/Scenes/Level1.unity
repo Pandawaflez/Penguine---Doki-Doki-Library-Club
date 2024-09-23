@@ -925,33 +925,13 @@ MonoBehaviour:
   dialogueText: {fileID: 1348667169}
   response1Text: {fileID: 495541890}
   response2Text: {fileID: 411660686}
-  justText: {fileID: 0}
-  dialogue1: Don't you know the librarians can lock you up in the Ancient book room?!
-    I can't associate with you anymore.
-  d1response1: Don't be such a scaredy cat Charlie Brown
-  d1response2: Good Grief! Good thing you warned me!
-  dialogue2: So what brings you to my corner of the library?
-  d2response1: I'm hunting rats
-  d2response2: I'm just looking for something to do while I wait for my little sister
-    to pick out her comics.
-  dialogue3: Good Grief! Are there really rats in here?
-  d3response1: No smh that was clearly a joke
-  d3response2: Yeah but don't worry pookie, I'll keep you safe
-  dialogue4: Oh what a coincidence! I have a little sister roaming around too. Do
-    you want to play a game with me while we wait?
-  d4response1: No I just want to read a book
-  d4response2: Holy Smokes yeah
-  dialogue5: I'm just going to go back to reading then...
-  dialogue6: Oh umm. Thank you. Well since you're here, want to play a game?
-  d6response1: Unfortch there's no rest for the wicked. See ya!
-  d6response2: Yes, my sweet prince!
-  dialogue7: I'm reading, sorry.
   dialogue8: Thanks for playing with me!
   r1p: {fileID: 0}
   r2p: {fileID: 0}
   r1: {fileID: 0}
   r2: {fileID: 0}
   responseNum: 0
+  canvas: {fileID: 0}
 --- !u!1001 &800867139
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1570,6 +1550,10 @@ PrefabInstance:
       propertyPath: r2p
       value: 
       objectReference: {fileID: 598965238}
+    - target: {fileID: -646477192940616267, guid: f0775826ae33faf46aaa8ce4766538a2, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 410200522}
     - target: {fileID: -646477192940616267, guid: f0775826ae33faf46aaa8ce4766538a2, type: 3}
       propertyPath: dialogueText
       value: 

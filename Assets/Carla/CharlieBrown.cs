@@ -112,7 +112,20 @@ public class CharlieBrown : Peanuts
     }
 
     public void initiateMiniGame(){
+        deActivateCharlie();
         SceneManager.LoadScene("Pong", LoadSceneMode.Additive);
+    }
+
+    public GameObject canvas;
+    public void deActivateCharlie(){
+        canvas.SetActive(false);
+    }
+
+    public void reActivateCharlie(int win){
+        canvas.SetActive(true);
+        if (win == 0){
+            updateAffection(10);
+        }
     }
 
     //a button being hit will trigger this. decides how to respond to response
