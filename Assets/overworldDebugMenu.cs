@@ -1,5 +1,3 @@
-//Carson's Folder, no Carla allowed :P
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
