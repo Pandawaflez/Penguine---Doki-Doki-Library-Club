@@ -27,6 +27,7 @@ public class SonicLI : Hedgehog
         Hresponse1Text.SetText(Response1dialogueSonic0);
     }
 
+    public Text displayText;
     //JUST FOR MVP
     public void DisplayText(){
     displayText.text = "More text coming soon...";
