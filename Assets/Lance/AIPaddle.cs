@@ -5,7 +5,6 @@ using UnityEngine;
 public class AIPaddle : Paddle
 {
     public GameObject ball;
-    string input = "AIPaddle";
 
     void Start() {
         height = transform.localScale.y;
