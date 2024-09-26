@@ -249,7 +249,8 @@ public class CharlieBrown : Peanuts
     }
     */
     public void onDialogue(int d){
-        myDialogue.displayDialogue(d, Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
+        //myDialogue.displayDialogue(d, Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
+        myDialogue.displayDialogue(d);
     }
 
 
@@ -263,7 +264,7 @@ public class CharlieBrown : Peanuts
    
     void Start(){
         //genDialogue = new Dialogue();
-        myDialogue = new CharlieDialogue();
+        myDialogue = new CharlieDialogue(Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
         /*
         CdialogueText = myDialogue.dialogueText;
         Cresponse1Text = myDialogue.response1Text;

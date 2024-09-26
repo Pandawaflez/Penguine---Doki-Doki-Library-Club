@@ -6,17 +6,18 @@ using UnityEngine;
 
 public class Dialogue
 {
-    /*
+    
     public TextMeshProUGUI dialogueText, response1Text, response2Text;
     public GameObject r1p;
     public GameObject r2p;
-    */
+    
 
     private string genericDialogue = "Who am I?";
     private string genericResponse1 = "Bro";
     private string genericResponse2 = "ruh roh";
 
-    public virtual void displayDialogue(int d, GameObject cr1p, GameObject cr2p, TextMeshProUGUI cdt, TextMeshProUGUI cr1t, TextMeshProUGUI cr2t){
+    public virtual void displayDialogue(int d){
+    //public virtual void displayDialogue(int d, GameObject cr1p, GameObject cr2p, TextMeshProUGUI cdt, TextMeshProUGUI cr1t, TextMeshProUGUI cr2t){
         //display the dialogue, call sfx, wait a few sec, display response
         //dialogueText.SetText(genericDialogue);
         //response1Text.SetText(genericResponse1);
@@ -72,6 +73,7 @@ public class CharlieDialogue : Dialogue
     
 
     //was public
+    /*
     public override void displayDialogue(int d, GameObject r1p, GameObject r2p, TextMeshProUGUI dt, TextMeshProUGUI r1t, TextMeshProUGUI r2t){
         switch(d){
             case 0:
@@ -137,9 +139,73 @@ public class CharlieDialogue : Dialogue
         //r1.gameObject.SetActive(false); //these didn't work for no reason smh
         //r2.gameObject.SetActive(false);
     }
+    */
 
-    public CharlieDialogue(){
-        //this.dialouge70 = "this is dialoge 70.1";
+    public override void displayDialogue(int d){
+        switch(d){
+            case 0:
+            r2p.SetActive(true);
+            r1p.SetActive(true);
+            Debug.Log("first time here huh");
+                displayRealDialogue(dialogue0, d0response1, d0response2);
+                
+                break;
+            case 1:
+            Debug.Log("here i stand");
+                displayRealDialogue(dialogue1, d1response1, d1response2);
+                
+                break;
+            case 2:
+                displayRealDialogue(dialogue2, d2response1, d2response2);
+                
+                break;
+            case 3: 
+                displayRealDialogue(dialogue3, d3response1, d3response2);
+                
+                break;
+            case 4:
+                displayRealDialogue(dialogue4, d4response1, d4response2);
+                
+                break;
+            case 5:
+                displayJustText(dialogue5);
+                
+                break;
+            case 6:
+                displayRealDialogue(dialogue6, d6response1, d6response2);
+                
+                break;
+            case 7:
+                displayJustText(dialogue7);
+                //stuck
+                break;
+            case 8:
+                displayJustText(dialogue8);
+                break;
+        }
+    }
+
+    private void displayRealDialogue(string dialogue, string r1, string r2){
+        dialogueText.SetText(dialogue);
+        response1Text.SetText(r1);
+        response2Text.SetText(r2);
+    }
+
+    private void displayJustText(string dialogue){
+        dialogueText.SetText(dialogue);
+        //dt.SetText(dialogue);
+        r2p.SetActive(false);
+        r1p.SetActive(false);
+        //r1.gameObject.SetActive(false); //these didn't work for no reason smh
+        //r2.gameObject.SetActive(false);
+    }
+
+    public CharlieDialogue(GameObject Cr1p, GameObject Cr2p, TextMeshProUGUI dt, TextMeshProUGUI r1t, TextMeshProUGUI r2t){
+    dialogueText =  dt;
+    response1Text = r1t;
+    response2Text = r2t;
+    r1p = Cr1p;
+    r2p = Cr2p;
     }
 
 }
