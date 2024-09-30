@@ -8,10 +8,7 @@ using TMPro;
 // this should be the game manager for the pong level. lets hope
 public class Pong : MiniGameLevel
 {
-    // score for player and AI
-    private int playerScore = 0; 
-    private int aiScore = 0;
-    private int scoreToWin = 3;
+    private PongScoreManager scoreManager;
     public static Vector2 bottomLeft;
     public static Vector2 topRight;
     [SerializeField] TextMeshProUGUI playerScoreText;
@@ -28,6 +25,7 @@ public class Pong : MiniGameLevel
     {
         bottomLeft = Camera.main.ScreenToWorldPoint(new Vector2(0,0));
         topRight = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        scoreManager = new PongScoreManager(3);
     }
 
     // Update is called once per frame
@@ -38,31 +36,33 @@ public class Pong : MiniGameLevel
 
     // update the score display in the pong game
     private void UpdateScore() {
-        playerScoreText.text = playerScore.ToString();
-        aiScoreText.text = aiScore.ToString();
+        playerScoreText.text = scoreManager.GetPlayerScore().ToString();
+        aiScoreText.text = scoreManager.GetAIScore().ToString();
     }
 
     // add one to the player score
     public void addPlayerScore() {
-        playerScore += 1;
+        scoreManager.AddPlayerScore();
         UpdateScore();
-        CheckWinCondition();
+        CheckGameOver();
     }
 
     // add one to the ai score
     public void addAIScore() {
-        aiScore += 1;
+        scoreManager.AddAIScore();
         UpdateScore();
-        CheckWinCondition();
+        CheckGameOver();
     }
 
     // dynamic binding to check win condition for pong game
-    public bool CheckWinCondition() {
-        if (playerScore >= scoreToWin) {
+    public bool CheckGameOver() {
+        int checkWinner = scoreManager.CheckWinCondition();
+        Debug.Log("ScoreManager = "  +checkWinner);
+        if (checkWinner == ScoreManager.PLAYER_WON) {
             Debug.Log("Player Won!");
             winnerText.text = "You Won!";
             EndGame();
-        } else if (aiScore >= scoreToWin) {
+        } else if (checkWinner == PongScoreManager.AI_WON) {
             Debug.Log("AI Won :(");
             winnerText.text = "You Lost!";
             EndGame();
@@ -88,7 +88,7 @@ public class Pong : MiniGameLevel
     }
 
     // dynamic binding to end the Pong game
-    public void EndGame() {
+    public override void EndGame() {
         Debug.Log("Ending the Game...");
         Time.timeScale = 0;
         isGameOver = true;
@@ -102,10 +102,6 @@ public class Pong : MiniGameLevel
     }
 
     public void HandleContinueButtonClick() {
-        int whoWon = 0; // default to player winning
-        if (aiScore >= 3) {
-            whoWon = 1; // ai won instead
-        } 
         Debug.Log("Loading Level1");
         SceneChanger.Continue();
     }

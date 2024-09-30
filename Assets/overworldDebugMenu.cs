@@ -1,5 +1,3 @@
-//Carson's Folder, no Carla allowed :P
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +23,7 @@ public class overworldDebugMenu : MonoBehaviour
                 break;
             case "Shaggy":
                 Debug.Log("Talk to Norville");
+                SceneManager.LoadScene("Shaggy");
                 break;
             case "Daphne":
                 Debug.Log("Talk to Daphne");
@@ -34,6 +33,7 @@ public class overworldDebugMenu : MonoBehaviour
                 break;
             case "Sonic":
                 Debug.Log("Talk to Sanic");
+                SceneManager.LoadScene("Sonic");
                 break;
             case "Shadow":
                 Debug.Log("Talk to Shadow");

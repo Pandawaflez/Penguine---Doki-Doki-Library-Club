@@ -13,18 +13,19 @@ public class CharlieBrown : Peanuts
     //sfx
     //minigame
 
+    /*
     public TextMeshProUGUI dialogueText, response1Text, response2Text;
 
-    /*dialogue order: 
-    0->a1|b2
-    1->a5|b2
-    2->a3|b4
-    3->a5|b6
-    4->a5|b-game
-    5-> 7
-    6->a5|b-game
-    7-> 7
-    */
+    //dialogue order: 
+    //0->a1|b2
+    //1->a5|b2
+    //2->a3|b4
+    //3->a5|b6
+    //4->a5|b-game
+    //5-> 7
+    //6->a5|b-game
+    //7-> 7
+    
   
     private string dialogue0 = "Hello. I'm Charlie Brown. I'd love to keep talking to you, as long as you keep your voice down. Afterall, we're in the Miami-Dade Public Library.";
     private string d0response1 = "Live a little Charlie! What harm will come from speaking loudly?";
@@ -55,9 +56,10 @@ public class CharlieBrown : Peanuts
     private string dialogue7 = "I'm reading, sorry.";
 
     public string dialogue8 = "Thanks for playing with me!";
+    
 
-
-    public void displayDialogue(string dialogue, string r1, string r2){
+    //was public
+    private void displayDialogue(string dialogue, string r1, string r2){
         //display the dialogue, call sfx, wait a few sec, display response
         dialogueText.SetText(dialogue);
         response1Text.SetText(r1);
@@ -75,23 +77,15 @@ public class CharlieBrown : Peanuts
         //r1.gameObject.SetActive(false); //these didn't work for no reason smh
         //r2.gameObject.SetActive(false);
     }
-
-    public int getDialogueNum(){
+    */
+    private int getDialogueNum(){
         return dialogueNum;
-    }
-
-    private IEnumerator coroutine;
-
-    private IEnumerator holdUp(float waitTime){
-        Time.timeScale = 0;
-        yield return new WaitForSeconds(waitTime);
-        Time.timeScale = 1;
     }
 
     //buttons to reset the buttons ('unclick' them)
     public Button r1;
     public Button r2;
-    public int responseNum = 0;
+    //private int responseNum = 0;
 
     //button one calls onclick
     public void hitResponse1(){
@@ -112,32 +106,18 @@ public class CharlieBrown : Peanuts
     }
 
 
-    public void initiateMiniGame(){
-        //deActivateCharlie();
+/*
+    private void initiateMiniGame(){
         //SceneManager.LoadScene("Pong", LoadSceneMode.Additive);
         SceneChanger.saveScene();
         SceneManager.LoadScene("Pong");
 
         dialogueNum = 8;
     }
-
-    /*
-    public GameObject canvas;
-    public void deActivateCharlie(){
-        canvas.SetActive(false);
-    }
-
-    public void reActivateCharlie(int win){
-        canvas.SetActive(true);
-        if (win == 0){
-            //this.updateAffection(10);
-        }
-    }
-    */
-    
+*/
 
     //a button being hit will trigger this. decides how to respond to response
-    public void toNextDialogue(){
+    private void toNextDialogue(){
         int d = getDialogueNum();
         switch(d){
             case 0:
@@ -189,7 +169,7 @@ public class CharlieBrown : Peanuts
                     updateAffection(0);
                 } else if (responseNum == 2){
                     updateAffection(5);
-                    initiateMiniGame();
+                    initiateMiniGame("Pong");
                     //dialogueNum = 8;
                 }
                 responseNum = 0;
@@ -206,7 +186,7 @@ public class CharlieBrown : Peanuts
                 } else if (responseNum == 2){
                     //dialogueNum = 8;
                     updateAffection(8);
-                    initiateMiniGame();
+                    initiateMiniGame("Pong");
                 }
                 responseNum = 0;
                 break;
@@ -223,7 +203,8 @@ public class CharlieBrown : Peanuts
     }
 
     //prints the new dialogue
-    public void onDialogue(int d){
+    /*
+    private void onDialogue(int d){
         switch(d){
             case 0:
             r2p.SetActive(true);
@@ -250,7 +231,7 @@ public class CharlieBrown : Peanuts
                 
                 break;
             case 5:
-                displayJustText(dialogue5);
+                myDialogue.displayJustText(dialogue5);
                 
                 break;
             case 6:
@@ -258,34 +239,55 @@ public class CharlieBrown : Peanuts
                 
                 break;
             case 7:
-                displayJustText(dialogue7);
+                myDialogue.displayJustText(myDialogue.getDialogue70());
                 //stuck
                 break;
             case 8:
-                displayJustText(dialogue8);
+                CharlieDialogue.displayJustText(dialogue8);
                 break;
         }
     }
+    */
+    public void onDialogue(int d){
+        //myDialogue.displayDialogue(d, Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
+        myDialogue.displayDialogue(d);
+    }
 
 
+    private CharlieDialogue myDialogue;
+    public Dialogue genDialogue;
     
+    public TextMeshProUGUI CdialogueText, Cresponse1Text, Cresponse2Text;
+    public GameObject Cr1p;
+    public GameObject Cr2p;
+
+    //spriteRenderer
+
    
     void Start(){
-
-        dialogueNum = PeanutsDB.CharlieDialogue;
-        affectionPoints = PeanutsDB.CharlieAffectionPts;
-        Debug.Log(string.Format("starting with {0} affection points on dialoge {1}", affectionPoints, dialogueNum));
+        //genDialogue = new Dialogue();
+        myDialogue = new CharlieDialogue(Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
+        /*
+        CdialogueText = myDialogue.dialogueText;
+        Cresponse1Text = myDialogue.response1Text;
+        Cresponse2Text = myDialogue.response2Text;
+        Cr1p = myDialogue.r1p;
+        Cr2p = myDialogue.r2p;
+        */
+        dialogueNum = PeanutsDB.CharlieDialogueNum;
+        loadAffection(PeanutsDB.CharlieAffectionPts);
+        Debug.Log(string.Format("starting with {0} affection points on dialoge {1}", getAffectionPoints(), dialogueNum));
         onDialogue(dialogueNum);
         /*
         dialogueText.SetText(dialogue0);
         response1Text.SetText(d0response1);
         response2Text.SetText("my sweet sweet charlie prince...");
         */
-
     }
+    
     void Update(){
-        PeanutsDB.CharlieAffectionPts = affectionPoints;
-        PeanutsDB.CharlieDialogue = dialogueNum;
+        PeanutsDB.CharlieAffectionPts = getAffectionPoints();
+        PeanutsDB.CharlieDialogueNum = dialogueNum;
         /*
         int d = getDialogueNum();
         switch(d){

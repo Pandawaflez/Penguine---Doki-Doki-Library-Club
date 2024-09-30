@@ -11,18 +11,6 @@ public class MiniGameLevel : MonoBehaviour
     protected int affectionReward = 10; // default number of affection points given for mini game
     protected string previousScene; // previous scene to return back to after mini game ends
 
-    // // Start is called before the first frame update
-    // void Start()
-    // {
-        
-    // }
-
-    // // Update is called once per frame
-    // void Update()
-    // {
-        
-    // }
-
     // update the affection points reward for mini game
     public void ChangeAffectionPointReward(int reward) {
         affectionReward = reward;
@@ -50,7 +38,7 @@ public class MiniGameLevel : MonoBehaviour
     }
 
     // end the mini game
-    public void EndGame() {
+    public virtual void EndGame() {
         Debug.Log("Ending the Game");
         // Time.timeScale = 0f;
         // more to come? Maybe, idk. Carson will tell me. He tells me all truths of the universe.
