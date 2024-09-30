@@ -261,6 +261,8 @@ public class CharlieBrown : Peanuts
     public GameObject Cr1p;
     public GameObject Cr2p;
 
+    //spriteRenderer
+
    
     void Start(){
         //genDialogue = new Dialogue();

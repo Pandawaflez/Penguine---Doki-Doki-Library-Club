@@ -10,6 +10,15 @@ public static class PeanutsDB
     //initial values stored in db
     private static int charlieDialogueNum=0;
     private static int charlieAffectionPts=5;
+
+
+
+    public static int LucyDialogueNum{get; set;}
+    public static int LucyAffectionPts{get; set;}
+
+    //initial values stored in db
+    private static int lucyDialogueNum=0;
+    private static int lucyAffectionPts=0;
     
    
 }
