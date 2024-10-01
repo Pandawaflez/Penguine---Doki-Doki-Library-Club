@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Sonic.unity
     guid: ac4f29770a48fb94cae919b169ac3f8b
+  - enabled: 1
+    path: Assets/Scenes/Lucy.unity
+    guid: 90f80c862e203e543bc4eb2573c6c67d
   m_configObjects: {}
