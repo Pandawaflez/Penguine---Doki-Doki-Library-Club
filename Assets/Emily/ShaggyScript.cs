@@ -37,11 +37,7 @@ public class ShaggyScript : Scooby
     public GameObject Shag1p;
     public GameObject Shag2p;
 
-    void Start()
-    {
-        mvpShagDialogue = new ShagDialogue(Shag1p, Shag2p, ShagDialogueText, ShagResponse1Text, ShagResponse2Text);
-        Debug.Log("Shaggy dialogue");
-    }
+    
 
     void Update() { }
 
