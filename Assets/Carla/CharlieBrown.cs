@@ -248,7 +248,10 @@ public class CharlieBrown : Peanuts
         }
     }
     */
+
+    public AudioManager theAudio;
     public void onDialogue(int d){
+        theAudio.loadSounds();
         //myDialogue.displayDialogue(d, Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
         myDialogue.displayDialogue(d);
     }
@@ -267,6 +270,7 @@ public class CharlieBrown : Peanuts
     void Start(){
         //genDialogue = new Dialogue();
         myDialogue = new CharlieDialogue(Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
+        theAudio = new AudioManager();
         /*
         CdialogueText = myDialogue.dialogueText;
         Cresponse1Text = myDialogue.response1Text;

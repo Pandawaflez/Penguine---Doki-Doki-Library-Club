@@ -11,7 +11,7 @@ public class AudioManager : MonoBehaviour
     }
 
     // Reference the character database and get sounds for each character
-    private void loadSounds()
+    public void loadSounds()
     {
         Debug.Log("SOUND MANAGER TEST FOR MVP - OWEN");
     }

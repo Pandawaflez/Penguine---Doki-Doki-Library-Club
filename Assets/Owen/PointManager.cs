@@ -21,7 +21,7 @@ public class PointManager : MonoBehaviour
     }
 
     // Make reference to characters, and int for how many points to check if the points are 
-    private bool CheckPoints()
+    public bool CheckPoints()
     {
         Debug.Log("POINT MANAGER TEST FOR MVP - OWEN");
         return true;
