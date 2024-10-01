@@ -222,6 +222,7 @@ MonoBehaviour:
   HAP: 0
   SonicRB1: {fileID: 1224493415}
   SonicRB2: {fileID: 1224493412}
+  responseNumber: 0
   SonDialogueText: {fileID: 1224493416}
   SonResponse1Text: {fileID: 1224493413}
   SonResponse2Text: {fileID: 1224493410}
@@ -333,6 +334,7 @@ MonoBehaviour:
   HAP: 0
   SonicRB1: {fileID: 1224493415}
   SonicRB2: {fileID: 1224493412}
+  responseNumber: 0
   SonDialogueText: {fileID: 1224493416}
   SonResponse1Text: {fileID: 1224493413}
   SonResponse2Text: {fileID: 1224493410}
@@ -424,19 +426,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 214037390113882484, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 400.6338
+      value: 698.3463
       objectReference: {fileID: 0}
     - target: {fileID: 214037390113882484, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 200
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 214037390113882484, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 370
+      value: 374.17316
       objectReference: {fileID: 0}
     - target: {fileID: 214037390113882484, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -100
+      value: -237.23001
       objectReference: {fileID: 0}
     - target: {fileID: 424292997867200740, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_Name
@@ -482,6 +484,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SonicResponse2
       objectReference: {fileID: 0}
+    - target: {fileID: 826123209606320315, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 875168263628642893, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_Color.b
       value: 0.9245283
@@ -504,7 +510,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 964380685740169248, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 400.6338
+      value: 698.3463
       objectReference: {fileID: 0}
     - target: {fileID: 964380685740169248, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_SizeDelta.y
@@ -512,11 +518,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 964380685740169248, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 225.3169
+      value: 374.17316
       objectReference: {fileID: 0}
     - target: {fileID: 964380685740169248, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -370
+      value: -346.38498
       objectReference: {fileID: 0}
     - target: {fileID: 1043558579514636872, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_Name
@@ -742,6 +748,10 @@ PrefabInstance:
     - target: {fileID: 3159090379964103726, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_Name
       value: SonicResponse1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3159090379964103726, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3638006584249190305, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_CullTransparentMesh

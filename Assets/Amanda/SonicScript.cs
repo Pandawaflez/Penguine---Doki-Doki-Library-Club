@@ -59,7 +59,7 @@ public class SonicScript : Hedgehog
         SonicRB2.Select();
         //toNextDialogue();
     }
-
+     
     private SonicDialogue mySonicDialogue;
     //public Dialogue generalSonicDialogue;
 
@@ -75,3 +75,4 @@ public GameObject Son2p;
         
     }
 }
+
