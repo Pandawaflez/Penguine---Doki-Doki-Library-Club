@@ -206,9 +206,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5313981039129237487, guid: 3a69d74c79b0fe041bdaf022752fd042, type: 3}
+      propertyPath: m_text
+      value: 'i want a sandwich
+
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 5972532927430704358, guid: 3a69d74c79b0fe041bdaf022752fd042, type: 3}
       propertyPath: m_Name
-      value: CharlieDialogue
+      value: ShagDialogue
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

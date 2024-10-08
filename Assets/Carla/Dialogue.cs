@@ -149,12 +149,12 @@ public class CharlieDialogue : Dialogue
             case 0:
             r2p.SetActive(true);
             r1p.SetActive(true);
-            Debug.Log("first time here huh");
+            //Debug.Log("first time here huh");
                 displayRealDialogue(dialogue0, d0response1, d0response2);
         
                 break;
             case 1:
-            Debug.Log("here i stand");
+            //Debug.Log("here i stand");
                 displayRealDialogue(dialogue1, d1response1, d1response2);
                 
                 break;

@@ -200,7 +200,10 @@ public class Lucy : Peanuts
         Debug.Log(string.Format("current affection points: {0}", getAffectionPoints()));
     }
 
+    //public AudioManager theAudio;
+
     public void onDialogue(int d){
+        //theAudio.loadSounds();
         //myDialogue.displayDialogue(d, Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
         myDialogue.displayDialogue(d);
     }

@@ -175,6 +175,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Response2Text
       objectReference: {fileID: 0}
+    - target: {fileID: 8379018169735457988, guid: f400ef8ca8b1c4347ac2b7b9fb658fe0, type: 3}
+      propertyPath: m_text
+      value: 'hey hey hey
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 8916806052489517841, guid: f400ef8ca8b1c4347ac2b7b9fb658fe0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

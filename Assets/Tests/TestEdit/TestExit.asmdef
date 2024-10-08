@@ -1,0 +1,9 @@
+{
+    "name": "TestExit",
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ]
+}
