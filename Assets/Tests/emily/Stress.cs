@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-
+//loop over creating objects while game is running, record when object doesn't get rendered; identify it
+//relationship status overload ?
 public class Stress
 {
     // A Test behaves as an ordinary method
     [Test]
+    [OneTimeSetUp]
     public void StressSimplePasses()
     {
         // Use the Assert class to test conditions
+
     }
 
     // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
