@@ -6,7 +6,6 @@ using TMPro;
 
 public class Math : MiniGameLevel
 {
-    // TODO Add math score manager
     private MathScoreManager scoreManager;
     [SerializeField] TextMeshProUGUI leftNum;
     [SerializeField] TextMeshProUGUI rightNum;
@@ -23,7 +22,7 @@ public class Math : MiniGameLevel
     private const int SCORE_TO_WIN = 10;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         scoreManager = new MathScoreManager(SCORE_TO_WIN);
         timeLimit = 15;
@@ -110,9 +109,23 @@ public class Math : MiniGameLevel
 
     public override void EndGame() {
         Debug.Log("Ending the game...");
-        Time.timeScale = 0;
+        // Time.timeScale = 0;
         isGameOver = true;
         mathGameScreen.SetActive(false);
         gameOverScreen.SetActive(true);
+    }
+
+    // getter function for testing
+    public float GetTimeRemaining() {
+        return timeRemaining;
+    }
+
+    // setter function for testing
+    public void SetTimeRemaining(float time) {
+        timeRemaining = time;
+    }
+
+    public bool GetGameOverScreenShowing() {
+        return gameOverScreen.activeSelf;
     }
 }
