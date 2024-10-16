@@ -139,7 +139,7 @@ public class Lucy : Peanuts
                 } else if (responseNum == 2){
                     
                     updateAffection(8); 
-                    initiateMiniGame("Pong");
+                    initiateMiniGame("Math");
                     //dialogueNum = 8;
                 }
                 responseNum = 0;

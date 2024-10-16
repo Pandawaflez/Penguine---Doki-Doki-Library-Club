@@ -35,4 +35,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lucy.unity
     guid: 90f80c862e203e543bc4eb2573c6c67d
+  - enabled: 1
+    path: Assets/Scenes/Snoopy.unity
+    guid: 7d1c510141a10054aa03ca41a33d3d3e
+  - enabled: 1
+    path: Assets/Scenes/Math.unity
+    guid: 78ffc07d1f57dd940992664fc2b7160d
   m_configObjects: {}

@@ -6,6 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class Snoopy : Peanuts
 {
@@ -13,27 +14,37 @@ public class Snoopy : Peanuts
         return dialogueNum;
     }
 
-    //buttons to reset the buttons ('unclick' them)
-    public Button r1;
-    public Button r2;
-    //private int responseNum = 0;
+    //public Button r1;
+    //public Button r2;
 
-    //button one calls onclick
-    public void hitResponse1(){
+    // Button 1 OnClick
+    public void hitResponse1()
+    {
         responseNum = 1;
         Debug.Log("they hit it boss");
-        //StartCoroutine(holdUp(10));
-        //unselect button for next screen
-        r1.Select();
+
+        // Run logic, then clear selection to avoid sticking
         toNextDialogue();
+        StartCoroutine(DeselectButton());
     }
 
-    //button 2 calls onclick
-    public void hitResponse2(){
+    // Button 2 OnClick
+    public void hitResponse2()
+    {
         responseNum = 2;
-        //holdUp(1);
-        r2.Select();
+
+        // Run logic, then clear selection
         toNextDialogue();
+        StartCoroutine(DeselectButton());
+    }
+
+    // Coroutine to wait a frame and clear selection
+    private IEnumerator DeselectButton()
+    {
+        yield return null;  // Wait one frame to ensure UI updates
+
+        // Deselect the current selected UI element
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
 
