@@ -6,7 +6,8 @@
         "UnityEditor.TestRunner",
         "Assets",
         "Lance",
-        "Carla"
+        "Carla",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
