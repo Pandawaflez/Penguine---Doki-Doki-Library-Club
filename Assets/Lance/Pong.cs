@@ -100,9 +100,4 @@ public class Pong : MiniGameLevel
 
         gameOverScreen.SetActive(true); 
     }
-
-    public void HandleContinueButtonClick() {
-        Debug.Log("Loading Level1");
-        SceneChanger.Continue();
-    }
 }

@@ -37,6 +37,12 @@ public class MiniGameLevel : MonoBehaviour
 
     }
 
+    // handle the continue button click at the end of the game
+    public void HandleContinueButtonClick() {
+        Debug.Log("Loading Level1");
+        SceneChanger.Continue();
+    }
+
     // end the mini game
     public virtual void EndGame() {
         Debug.Log("Ending the Game");
