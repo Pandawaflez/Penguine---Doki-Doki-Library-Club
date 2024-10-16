@@ -1006,6 +1006,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1825093197408499625, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1825093197408499625, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_Colors.m_PressedColor.b
       value: 0.5176471
       objectReference: {fileID: 0}
@@ -1023,11 +1027,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1825093197408499625, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_Colors.m_SelectedColor.g
-      value: 0.20392157
+      value: 0.20392159
       objectReference: {fileID: 0}
     - target: {fileID: 1825093197408499625, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_Colors.m_SelectedColor.r
-      value: 0.9411765
+      value: 0.94117653
       objectReference: {fileID: 0}
     - target: {fileID: 1825093197408499625, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

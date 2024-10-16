@@ -221,6 +221,8 @@ public class Lucy : Peanuts
    
     void Start(){
         //genDialogue = new Dialogue();
+        Lr1p.SetActive(true);
+        Lr2p.SetActive(true);
         myDialogue = new LucyDialogue(Lr1p, Lr2p, LdialogueText, Lresponse1Text, Lresponse2Text);
     
         dialogueNum = PeanutsDB.LucyDialogueNum;

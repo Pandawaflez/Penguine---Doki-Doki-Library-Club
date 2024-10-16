@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class CharlieBrown : Peanuts
+public class Snoopy : Peanuts
 {
     private int getDialogueNum(){
         return dialogueNum;
