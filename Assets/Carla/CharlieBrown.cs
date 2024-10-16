@@ -6,9 +6,11 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+//using UnityEngine.EventSystem;
 
 public class CharlieBrown : Peanuts
 {
+    private string game = "Pong";
     private int getDialogueNum(){
         return dialogueNum;
     }
@@ -90,7 +92,7 @@ public class CharlieBrown : Peanuts
                     updateAffection(0);
                 } else if (responseNum == 2){
                     updateAffection(5);
-                    initiateMiniGame("Pong");
+                    initiateMiniGame(game);
                     //dialogueNum = 8;
                 }
                 responseNum = 0;
@@ -107,7 +109,7 @@ public class CharlieBrown : Peanuts
                 } else if (responseNum == 2){
                     //dialogueNum = 8;
                     updateAffection(8);
-                    initiateMiniGame("Pong");
+                    initiateMiniGame(game);
                 }
                 responseNum = 0;
                 break;

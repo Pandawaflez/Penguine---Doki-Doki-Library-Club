@@ -6,6 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class Lucy : Peanuts
 {
@@ -13,32 +14,38 @@ public class Lucy : Peanuts
     //sfx
     //minigame
 
+    private string game = "Math";
     private int getDialogueNum(){
         return dialogueNum;
     }
 
-    //buttons to reset the buttons ('unclick' them)
-    public Button r1;
-    public Button r2;
-    //private int responseNum = 0;
-
-    //button one calls onclick
-    public void hitResponse1(){
+    public void hitResponse1()
+    {
         responseNum = 1;
         Debug.Log("they hit it boss");
-        //unselect button for next screen
-        //bool tt = r1.IsActive();
-        //Debug.Log(tt);
-        r1.Select();
+
+        // Run logic, then clear selection to avoid sticking
         toNextDialogue();
+        StartCoroutine(DeselectButton());
     }
 
-    //button 2 calls onclick
-    public void hitResponse2(){
+    // Button 2 OnClick
+    public void hitResponse2()
+    {
         responseNum = 2;
-        Debug.Log("trying to unselect");
-        r2.Select();
+
+        // Run logic, then clear selection
         toNextDialogue();
+        StartCoroutine(DeselectButton());
+    }
+
+    // Coroutine to wait a frame and clear selection
+    private IEnumerator DeselectButton()
+    {
+        yield return null;  // Wait one frame to ensure UI updates
+
+        // Deselect the current selected UI element
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
 
@@ -139,7 +146,7 @@ public class Lucy : Peanuts
                 } else if (responseNum == 2){
                     
                     updateAffection(8); 
-                    initiateMiniGame("Math");
+                    initiateMiniGame(game);
                     //dialogueNum = 8;
                 }
                 responseNum = 0;
@@ -161,7 +168,7 @@ public class Lucy : Peanuts
                 } else if (responseNum == 2){
                     
                     updateAffection(8); 
-                    initiateMiniGame("Pong");
+                    initiateMiniGame(game);
                     //dialogueNum = 8;
                 }
                 responseNum = 0;
@@ -183,7 +190,7 @@ public class Lucy : Peanuts
                 } else if (responseNum == 2){
                     
                     updateAffection(8); 
-                    initiateMiniGame("Pong");
+                    initiateMiniGame(game);
                     //dialogueNum = 8;
                 }
                 responseNum = 0;
