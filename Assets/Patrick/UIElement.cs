@@ -20,4 +20,9 @@ public class UIElement
     {
         element.SetActive(false);
     }
+
+    public virtual void onClick()
+    {
+        Debug.Log("This is the superclass method.");
+    }
 }
