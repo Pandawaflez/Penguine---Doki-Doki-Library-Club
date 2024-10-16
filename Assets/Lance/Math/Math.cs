@@ -20,7 +20,7 @@ public class Math : MiniGameLevel
     [SerializeField] GameObject mathGameScreen;
     private float timeRemaining;
     private int correctAnswer;
-    private const int SCORE_TO_WIN = 20;
+    private const int SCORE_TO_WIN = 10;
 
     // Start is called before the first frame update
     void Start()
