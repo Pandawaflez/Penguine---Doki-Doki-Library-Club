@@ -25,7 +25,7 @@ public class UIElementHandler : MonoBehaviour
         UICheckInput();
     }
 
-    //Function to check for UI User input ***Put in update()***
+    //check for UI User input
     public void UICheckInput(){
         if(Input.GetKeyDown(KeyCode.Tab)){
             Debug.Log("*****Overlay Toggle*****");
