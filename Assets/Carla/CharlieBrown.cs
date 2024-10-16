@@ -125,9 +125,9 @@ public class CharlieBrown : Peanuts
         Debug.Log(string.Format("current affection points: {0}", getAffectionPoints()));
     }
 
-    public AudioManager theAudio;
+    //public AudioManager theAudio;
     public void onDialogue(int d){
-        theAudio.loadSounds();
+        //theAudio.loadSounds();
         //myDialogue.displayDialogue(d, Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
         myDialogue.displayDialogue(d);
     }
@@ -146,7 +146,7 @@ public class CharlieBrown : Peanuts
     void Start(){
         //genDialogue = new Dialogue();
         myDialogue = new CharlieDialogue(Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
-        theAudio = new AudioManager();
+        //theAudio = new AudioManager();
         /*
         CdialogueText = myDialogue.dialogueText;
         Cresponse1Text = myDialogue.response1Text;

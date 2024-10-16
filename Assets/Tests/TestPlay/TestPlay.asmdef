@@ -5,7 +5,8 @@
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "Assets",
-        "Lance"
+        "Lance",
+        "Carla"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
