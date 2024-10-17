@@ -38,21 +38,23 @@ public class ShadowDialogue : HedgehogDialogue
         }
         else if(choice == 2){
             //bad choice
-            affectionManager.changeAffectionPoints(-5);
+            affectionManager.changeAffectionPoints(-10);
         }
-        currentDialogueIndex++;
-        if(currentDialogueIndex < shadowLines.Count){
+
+        //check if there is a next dialogue before incrementing
+        if(currentDialogueIndex + 1 < shadowLines.Count){
+            currentDialogueIndex++;
             DialogueLine = shadowLines[currentDialogueIndex];
         } else {
             EndConversation();
             affectionManager.GameOver();
         }
+    
     }
 
     private void EndConversation(){
         DialogueLine = "Bye. See you never.";
-        
-       
+    
         //DialogueLine = "Hmph. You might be worth keeping around.";
         //initate the mini game date if player has enough affection points.
 
@@ -60,6 +62,9 @@ public class ShadowDialogue : HedgehogDialogue
     }
     
     public override string[] GetCurrentResponses(){
+        if(currentDialogueIndex < playerResponses.Count){
         return playerResponses[currentDialogueIndex];
+        }
+        return new string[0]; // return an empty array if out of bounds
     }
 }
