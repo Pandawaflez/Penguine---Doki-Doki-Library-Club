@@ -43,4 +43,9 @@ public class Audio
             Source.Stop();
         }
     }
+
+    public bool IsPlaying()
+    {
+        return Source != null && Source.isPlaying;
+    }
 }

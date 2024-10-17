@@ -8,7 +8,8 @@ public class AudioManager : MonoBehaviour
     private AudioLibrary audioLibrary;
 
     private AudioSource audioSource;
-
+    
+    // Singleton pattern - only one instance of AudioManager
     public static AudioManager Instance
     {
         get
