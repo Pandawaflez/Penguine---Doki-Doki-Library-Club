@@ -13,6 +13,7 @@ public class PointManager : MonoBehaviour
         
     }
 
+    //Add BC Mode, potentially just add 1000 affection points, but will still have a problem with dialogue.
 
     // Make reference to characters, and int for how much to increase points
     private void AddPoints()

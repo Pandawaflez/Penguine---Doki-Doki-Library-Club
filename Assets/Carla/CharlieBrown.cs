@@ -15,6 +15,9 @@ public class CharlieBrown : Peanuts
         return dialogueNum;
     }
 
+    // AUDIO - ADDED BY OWEN 
+    private DialogueSound dialogueSound;
+
     //buttons to reset the buttons ('unclick' them)
     public Button r1;
     public Button r2;
@@ -130,6 +133,15 @@ public class CharlieBrown : Peanuts
         //theAudio.loadSounds();
         //myDialogue.displayDialogue(d, Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
         myDialogue.displayDialogue(d);
+        // AUDIO - ADDED BY OWEN
+        if (dialogueSound != null)
+        {
+            // Play the sound for 3 seconds
+            AudioManager.Instance.PlayForDuration(dialogueSound, 2f);
+        } else {
+            Debug.Log(string.Format("No song found for funciton onDialogue"));
+        }
+        // END OF OWEN CODE
     }
 
 
@@ -154,6 +166,26 @@ public class CharlieBrown : Peanuts
         Cr1p = myDialogue.r1p;
         Cr2p = myDialogue.r2p;
         */
+
+        // AUDIO - ADDED BY OWEN:
+        // Load the audio clip from the Resources folder
+        AudioClip peanutsTeacherClip = Resources.Load<AudioClip>("Owen/Peanuts/peanuts_teacher");
+        if (peanutsTeacherClip != null)
+                {
+                    dialogueSound = new DialogueSound(
+                        "peanuts_teacher", 
+                        peanutsTeacherClip, 
+                        "CharlieBrown", 
+                        "Peanuts", 
+                        AudioManager.Instance.GetComponent<AudioSource>()
+                    );
+                }
+                else
+                {
+                    Debug.LogError("peanuts_teacher audio clip not found.");
+                }
+        // END OF OWEN'S AUDIO CODE
+
         dialogueNum = PeanutsDB.CharlieDialogueNum;
         loadAffection(PeanutsDB.CharlieAffectionPts);
         Debug.Log(string.Format("starting with {0} affection points on dialoge {1}", getAffectionPoints(), dialogueNum));
