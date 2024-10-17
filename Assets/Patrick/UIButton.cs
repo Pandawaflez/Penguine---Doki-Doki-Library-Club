@@ -10,7 +10,7 @@ public class UIButton : UIElement
 
     public void OnButtonClick()
     {
-        Debug.Log("Button clicked: " + element.name);
+        //Debug.Log("Button clicked: " + elementData.name);
         Show();  // look into overriding UIElement here
     }
 }
