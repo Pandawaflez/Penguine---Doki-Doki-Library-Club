@@ -4,7 +4,7 @@ using NUnit.Framework;
 using System.Collections;
 using TMPro;
 
-public class ValidNameInput
+public class PatrickValidNameInputBoundary
 {
     // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
     // `yield return null;` to skip a frame.

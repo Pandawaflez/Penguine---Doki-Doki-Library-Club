@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using TMPro;
 
-public class EmptyPlayerName
+public class PatrickEmptyPlayerNameBoundary
 {
     [UnityTest]
     public IEnumerator EmptyPlayerName_ShouldNotSetPlayerName()

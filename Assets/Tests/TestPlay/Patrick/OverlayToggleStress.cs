@@ -4,7 +4,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-public class OverlayToggleStress
+public class PatrickOverlayToggleStress
 {
     [UnityTest]
     public IEnumerator StressTest_UICheckInputHeavyLoad()
