@@ -18,9 +18,11 @@ public class overworldDebugMenu : MonoBehaviour
                 break;
             case "Schroeder":
                 Debug.Log("Talk to Schroeder (AKA Kevin)");
+                //SceneManager.LoadScene("Schroeder");
                 break;
             case "Snoopy":
                 Debug.Log("Talk to Snoopy");
+                SceneManager.LoadScene("Snoopy");
                 break;
             case "Shaggy":
                 Debug.Log("Talk to Norville");
@@ -28,6 +30,7 @@ public class overworldDebugMenu : MonoBehaviour
                 break;
             case "Daphne":
                 Debug.Log("Talk to Daphne");
+                SceneManager.LoadScene("Daphne");
                 break;
             case "Fred":
                 Debug.Log("Talk to Frederick");
@@ -38,10 +41,18 @@ public class overworldDebugMenu : MonoBehaviour
                 break;
             case "Shadow":
                 Debug.Log("Talk to Shadow");
+                SceneManager.LoadScene("Shadow");
                 break;
             default:
                 Debug.Log("Character " + character + " not found");
                 break;
         }
     }
+
+    /*[UnityTest] //tesst function:
+    public IEnumerator sceneChangeSucessTest(){
+        talkTo("Shaggy");
+        Assert.
+    }*/
+
 }
