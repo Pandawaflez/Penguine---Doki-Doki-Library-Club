@@ -6,9 +6,9 @@ using TMPro;
 
 public class AffectionUI : IAffectionObserver
 {
-   private Text affectionText;
-   public AffectionUI(Text affectionText){
-    this.affectionText = affectionText;
+   private TMP_Text affectionText;
+   public AffectionUI(TMP_Text textComponent){
+    affectionText = textComponent;
    }
 
    public void OnAffectionChanged(int newAffectionPoints){

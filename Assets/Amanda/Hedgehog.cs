@@ -5,15 +5,17 @@ using TMPro;
 
 public abstract class HedgehogDialogue
 {
-    public string CharacterName {get; private set;}
-    public string DialogueLine{ get; private set;}
+    public string CharacterName {get; set;}
+    public string DialogueLine{ get; set;}
 
-    protected HedgehogDialogue(string characterName, string dialogueLine){
+    protected HedgehogDialogue(string characterName, string initialDialogue){
         CharacterName = characterName;
-        DialogueLine = dialogueLine;
+        DialogueLine = initialDialogue;
     }
     
+    //marked as abstract to then implement it in a sub class
+    public abstract string[] GetCurrentResponses();
     //method that will be overridden in derived classes. 
-    //public abstract void ProcessPlayerChoice(int choice);
+    public abstract void ProcessChoice(int choice);
     
 }

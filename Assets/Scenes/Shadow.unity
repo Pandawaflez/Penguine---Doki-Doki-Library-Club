@@ -464,7 +464,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 621557874522061785, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_text
-      value: you seem kind of depressed... are you okay?
+      value: maybe you should go touch some grass dude
       objectReference: {fileID: 0}
     - target: {fileID: 621557874522061785, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_fontSize
@@ -644,15 +644,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1825093197408499625, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_Colors.m_NormalColor.b
-      value: 0.9811321
+      value: 0.09411766
       objectReference: {fileID: 0}
     - target: {fileID: 1825093197408499625, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_Colors.m_NormalColor.g
-      value: 0.42885956
+      value: 0.2392157
       objectReference: {fileID: 0}
     - target: {fileID: 1825093197408499625, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_Colors.m_NormalColor.r
-      value: 0.7453296
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1825093197408499625, guid: f00dfba08d6c252458700d87a5c7ebeb, type: 3}
       propertyPath: m_Colors.m_PressedColor.b
