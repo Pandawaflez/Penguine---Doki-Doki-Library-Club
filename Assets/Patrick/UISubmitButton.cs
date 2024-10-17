@@ -30,7 +30,7 @@ public class UISubmitButton : UIElement
             Debug.Log("Please enter a valid name.");
         }
 
-        // playerName = MainPlayer.getPlayerName();
-        // Debug.Log($"Player stored name: '{playerName}'");
+        //playerName = MainPlayer.getPlayerName();
+        //Debug.Log($"Player stored name: '{playerName}'");
     }
 }

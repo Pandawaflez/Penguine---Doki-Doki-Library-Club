@@ -4,6 +4,7 @@
     "references": [
         "UnityEngine.TestRunner",
         "Unity.TextMeshPro",
+        "UnityEditor.TestRunner",
         "Assets",
         "Lance",
         "Carla"
