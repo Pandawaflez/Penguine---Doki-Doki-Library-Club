@@ -3,25 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public abstract class Hedgehog : MonoBehaviour
+public abstract class HedgehogDialogue
 {
-    //graphics
-    //sfx
-    //diaglogues
-    /* private string sonicD1;
-    private string sonicD2;
-    private string sonicD3;
-    private string sonicD4;
-    protected string sonicD5 = "more coming soon"; 
-    */
+    public string CharacterName {get; private set;}
+    public string DialogueLine{ get; private set;}
+
+    protected HedgehogDialogue(string characterName, string dialogueLine){
+        CharacterName = characterName;
+        DialogueLine = dialogueLine;
+    }
     
-    //dialogue responses
-    //dialogue tracking
-
-    protected int HdialogueNum = 0;
-
-    //affection points
-    public int HAP;
-
+    //method that will be overridden in derived classes. 
+    //public abstract void ProcessPlayerChoice(int choice);
     
 }
