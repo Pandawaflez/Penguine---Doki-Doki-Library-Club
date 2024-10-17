@@ -3,11 +3,8 @@
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
-<<<<<<< Updated upstream
         "Unity.TextMeshPro",
-=======
         "UnityEditor.TestRunner",
->>>>>>> Stashed changes
         "Assets",
         "Lance",
         "Carla"
