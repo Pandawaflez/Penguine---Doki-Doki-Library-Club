@@ -147,6 +147,7 @@ public class MemoryLeakTest //: MonoBehaviour
         {
             // Step 1: Instantiate a character (simulates entering a scene with dialogue)
             //GameObject character = Instantiate(characterPrefab);
+            
             GameObject character = new GameObject();
 
 
