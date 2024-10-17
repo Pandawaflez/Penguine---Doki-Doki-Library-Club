@@ -25,4 +25,12 @@ public class AffectionManager
             observer.OnAffectionChanged(affectionPoints);
         }
     }
+
+    public void GameOver(){
+        if(affectionPoints < 0){
+            Debug.Log("Affection Points Below 0: Lock Shadow Out");
+        } else {
+            Debug.Log("You're okay for now");
+        }
+    }
 }

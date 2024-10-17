@@ -43,14 +43,20 @@ public class ShadowDialogue : HedgehogDialogue
         currentDialogueIndex++;
         if(currentDialogueIndex < shadowLines.Count){
             DialogueLine = shadowLines[currentDialogueIndex];
-        }
-        else {
+        } else {
             EndConversation();
+            affectionManager.GameOver();
         }
     }
 
     private void EndConversation(){
-        DialogueLine = "Hmph. You might be worth keeping around.";
+        DialogueLine = "Bye. See you never.";
+        
+       
+        //DialogueLine = "Hmph. You might be worth keeping around.";
+        //initate the mini game date if player has enough affection points.
+
+        
     }
     
     public override string[] GetCurrentResponses(){
