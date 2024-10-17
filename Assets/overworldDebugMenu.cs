@@ -5,12 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class overworldDebugMenu : MonoBehaviour
 {
+    public int numberOfAttemptedInteractions = 0;
+    
     public void talkTo( string character ){
         Debug.Log("Character:");
         switch ( character ){
             case "Charlie":
                 Debug.Log("Talk to Chuck");
-                SceneManager.LoadScene("Level1");
+                SceneManager.LoadScene("Level1"); //Charlie...
                 break;
             case "Lucy":
                 Debug.Log("Talk to Lucy");
@@ -34,6 +36,7 @@ public class overworldDebugMenu : MonoBehaviour
                 break;
             case "Fred":
                 Debug.Log("Talk to Frederick");
+                //SceneManager.LoadScene("Fred");
                 break;
             case "Sonic":
                 Debug.Log("Talk to Sanic");
@@ -47,6 +50,7 @@ public class overworldDebugMenu : MonoBehaviour
                 Debug.Log("Character " + character + " not found");
                 break;
         }
+        numberOfAttemptedInteractions++;
     }
 
     /*[UnityTest] //tesst function:
