@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using TMPro; 
 
-public class LanceMathMiniGameTests
+public class Lance_TestMathEndsAtZeroSeconds
 {
     private bool sceneLoaded;
     [OneTimeSetUp]
@@ -18,8 +18,9 @@ public class LanceMathMiniGameTests
         sceneLoaded = true;
     }
 
+    // Test that the game ends with 0 seconds left
     [UnityTest]
-    public IEnumerator TestGameEndsAtZeroSeconds()
+    public IEnumerator TestMathEndsAtZeroSeconds()
     {
         // Wait until the Math GameObject is available
         yield return new WaitUntil(() => GameObject.Find("Math") != null);
