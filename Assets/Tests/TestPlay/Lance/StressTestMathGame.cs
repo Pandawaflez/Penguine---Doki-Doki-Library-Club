@@ -3,7 +3,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-public class StressTestMathGame
+public class Lance_StressTestMathGame
 {
     public GameObject mathPrefab;
 
