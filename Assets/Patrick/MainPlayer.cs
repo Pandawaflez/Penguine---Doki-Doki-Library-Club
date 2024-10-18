@@ -6,11 +6,21 @@ public static class MainPlayer
 {
     private static string _playerName;      //encapsulate player name
 
-    public static string getPlayerName(){
+    private static bool _BCMode;    //holds BCMode bool
+
+    public static string GetPlayerName(){
         return _playerName;
     }
 
-    public static void setPlayerName(string pName){
+    public static void SetPlayerName(string pName){
         _playerName = pName;
+    }
+
+    public static void SetBCMode(bool BCMode){
+        _BCMode = BCMode;
+    }
+
+    public static bool IsBCMode(){
+        return _BCMode;
     }
 }

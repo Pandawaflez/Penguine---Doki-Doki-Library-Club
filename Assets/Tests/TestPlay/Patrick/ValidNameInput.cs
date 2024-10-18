@@ -30,6 +30,6 @@ public class PatrickValidNameInputBoundary
 
         //Assert
         yield return null; // Wait a frame
-        Assert.AreEqual("Alice", MainPlayer.getPlayerName());
+        Assert.AreEqual("Alice", MainPlayer.GetPlayerName());
     }
 }

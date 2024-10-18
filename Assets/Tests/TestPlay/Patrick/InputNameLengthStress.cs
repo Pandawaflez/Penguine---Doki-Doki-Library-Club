@@ -54,10 +54,10 @@ public class PatrickSubmitNameButtonStress
                 // Simulate clicking the submit button.
                 submitButton.onClick();
 
-                MainPlayer.setPlayerName(inputField.text);
+                MainPlayer.SetPlayerName(inputField.text);
 
                 // Verify the input was stored in MainPlayer.
-                string storedName = MainPlayer.getPlayerName();
+                string storedName = MainPlayer.GetPlayerName();
 
                 // Log the progress for tracking.
                 Debug.Log($"Iteration {iteration}: Stored name length = {storedName.Length}, {storedName}");

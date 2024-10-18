@@ -27,7 +27,7 @@ public class PatrickEmptyPlayerNameBoundary
         //Assert: Ensure the player name remains unset and the log message is correct.
         yield return null; // Wait a frame for Unity’s event loop.
 
-        Assert.AreNotEqual("", MainPlayer.getPlayerName()); // Assuming the default name is non-empty or unset.
+        Assert.AreNotEqual("", MainPlayer.GetPlayerName()); // Assuming the default name is non-empty or unset.
         LogAssert.Expect(LogType.Log, "Please enter a valid name.");
     }
 }

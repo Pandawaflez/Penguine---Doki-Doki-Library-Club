@@ -19,10 +19,12 @@ public class UISubmitButton : UIElement
 
         // Debug.Log($"Player Name Entered: '{playerName}'");  // Log the input value
 
+        Debug.Log($"BCMode: '{MainPlayer.IsBCMode()}");
+
 
         if (!string.IsNullOrEmpty(playerName))
         {
-            MainPlayer.setPlayerName(playerName);
+            MainPlayer.SetPlayerName(playerName);
             SceneManager.LoadScene("Overworld");
         }
         else
