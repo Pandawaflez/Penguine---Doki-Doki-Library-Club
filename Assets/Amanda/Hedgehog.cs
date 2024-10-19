@@ -14,7 +14,18 @@ public abstract class HedgehogDialogue
     }
     
     //marked as abstract to then implement it in a sub class
-    public abstract string[] GetCurrentResponses();
+    //virtual for get
+    //abstract
+
+    //add virtual 
+    
+
+    public virtual string[] GetCurrentResponses(){
+        // public string[] GetCurrentResponses(){
+        return (new string [] {"i am confused"});
+
+    }
+
     //method that will be overridden in derived classes. 
     public abstract void ProcessChoice(int choice);
     

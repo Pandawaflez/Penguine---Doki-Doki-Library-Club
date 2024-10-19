@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShadowDialogue : HedgehogDialogue
 {
     private AffectionManager affectionManager;
+    private HedgehogDialogue meprogramming;
 
     private List<string> shadowLines = new List<string>(){
         "Wassup, I'm Shadow. Did you want something?",
@@ -29,6 +30,7 @@ public class ShadowDialogue : HedgehogDialogue
         : base("Shadow the Hedgehog" , "Wassup I'm Shadow. Did you want something?")
     {
         this.affectionManager = affectionManager;
+        Debug.Log("This is shadowdialogue");
     }
 
     public override void ProcessChoice(int choice){
@@ -62,6 +64,7 @@ public class ShadowDialogue : HedgehogDialogue
     }
     
     public override string[] GetCurrentResponses(){
+        //public string[] GetCurrentResponses(){
         if(currentDialogueIndex < playerResponses.Count){
         return playerResponses[currentDialogueIndex];
         }
