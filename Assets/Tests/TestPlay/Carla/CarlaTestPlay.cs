@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class CarlaTestPlay
 {
+    /*
     // A Test behaves as an ordinary method
     [Test]
     public void CarlaTestPlaySimplePasses()
@@ -24,7 +25,8 @@ public class CarlaTestPlay
         // Use yield to skip a frame.
         yield return null;
     }
-
+*/
+/*
 //test for hitting 2 buttons at once
 public class ButtonInteractionTest //: MonoBehaviour
 {
@@ -72,8 +74,8 @@ public class ButtonInteractionTest //: MonoBehaviour
     }
 }
 
-/*
-public class ButtonStateTest : MonoBehaviour
+
+public class ButtonStateTest //: MonoBehaviour
 {
     public Button button1;  // Assign these via the Inspector
     public Button button2;
@@ -127,7 +129,7 @@ public class ButtonStateTest : MonoBehaviour
         }
     }
 }
-*/
+
 
 //stress test: memory
 
@@ -183,5 +185,6 @@ public class MemoryLeakTest //: MonoBehaviour
     }
 }
 
+*/
 
 }

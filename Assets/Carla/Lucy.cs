@@ -15,9 +15,6 @@ public class Lucy : Peanuts
     //minigame
 
     private string game = "Math";
-    private int getDialogueNum(){
-        return dialogueNum;
-    }
 
     public void hitResponse1()
     {
@@ -33,7 +30,7 @@ public class Lucy : Peanuts
     public void hitResponse2()
     {
         responseNum = 2;
-
+        Debug.Log("punch 2");
         // Run logic, then clear selection
         toNextDialogue();
         StartCoroutine(DeselectButton());
@@ -242,6 +239,7 @@ public class Lucy : Peanuts
     void Update(){
         PeanutsDB.LucyAffectionPts = getAffectionPoints();
         PeanutsDB.LucyDialogueNum = dialogueNum;
+        //Debug.Log(responseNum.ToString());
 
     }
     

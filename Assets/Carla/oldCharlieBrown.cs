@@ -79,9 +79,9 @@ public class OLDCharlieBrown : Peanuts
         //r2.gameObject.SetActive(false);
     }
     */
-    private int getDialogueNum(){
-        return dialogueNum;
-    }
+    //private int getDialogueNum(){
+    //    return dialogueNum;
+    //}
 
     //buttons to reset the buttons ('unclick' them)
     public Button r1;

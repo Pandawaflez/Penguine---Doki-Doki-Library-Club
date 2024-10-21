@@ -14,12 +14,18 @@ public class Peanuts : MonoBehaviour
     //dialoguetracker
     protected int dialogueNum = 0;
     protected int responseNum = 0;
-     protected void initiateMiniGame(string game){
+    protected void initiateMiniGame(string game){
         //SceneManager.LoadScene("Pong", LoadSceneMode.Additive);
         SceneChanger.saveScene();
         SceneManager.LoadScene(game);
+        //dialogueNum = 8;
+    }
 
-        dialogueNum = 8;
+    public int getResponseNum(){
+        return responseNum;
+    }
+    public int getDialogueNum(){
+        return dialogueNum;
     }
 
     //affection points

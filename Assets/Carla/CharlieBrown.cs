@@ -11,9 +11,6 @@ using UnityEngine.SceneManagement;
 public class CharlieBrown : Peanuts
 {
     private string game = "Pong";
-    private int getDialogueNum(){
-        return dialogueNum;
-    }
 
     // AUDIO - ADDED BY OWEN 
     private DialogueSound dialogueSound;
@@ -96,7 +93,9 @@ public class CharlieBrown : Peanuts
                 } else if (responseNum == 2){
                     updateAffection(5);
                     initiateMiniGame(game);
-                    //dialogueNum = 8;
+                    //how to wait here?
+                    //yield return null;
+                    dialogueNum = 8;
                 }
                 responseNum = 0;
                 break;
@@ -113,6 +112,8 @@ public class CharlieBrown : Peanuts
                     //dialogueNum = 8;
                     updateAffection(8);
                     initiateMiniGame(game);
+                    dialogueNum=8;
+                    //yield return null;
                 }
                 responseNum = 0;
                 break;
@@ -128,7 +129,7 @@ public class CharlieBrown : Peanuts
         Debug.Log(string.Format("current affection points: {0}", getAffectionPoints()));
     }
 
-    //public AudioManager theAudio;
+    public AudioManager theAudio;
     public void onDialogue(int d){
         //theAudio.loadSounds();
         //myDialogue.displayDialogue(d, Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);

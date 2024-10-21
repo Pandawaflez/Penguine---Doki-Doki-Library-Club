@@ -10,9 +10,6 @@ using UnityEngine.EventSystems;
 
 public class Snoopy : Peanuts
 {
-    private int getDialogueNum(){
-        return dialogueNum;
-    }
 
     //public Button r1;
     //public Button r2;
