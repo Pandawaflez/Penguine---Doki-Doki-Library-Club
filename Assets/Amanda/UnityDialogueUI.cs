@@ -21,8 +21,10 @@ public class UnityDialogueUI : MonoBehaviour
         AffectionUI affectionUI = new AffectionUI(affectionText);
         affectionManager.RegisterObserver(affectionUI);
 
+
         //create Shadow's dialogue
         HedgehogDialogue shadowDialogue = new ShadowDialogue(affectionManager);
+        
         dialogueController = new DialogueController(shadowDialogue);
         //show base dialogue
         ShowDialogue();

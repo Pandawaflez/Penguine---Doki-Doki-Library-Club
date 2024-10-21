@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class AffectionManager 
 {
+    private const int MAX_AFFECTION = 100;
+    private const int MIN_AFFECTION = -10;
+    
     private int affectionPoints;
+    
     private List<IAffectionObserver> observers = new List<IAffectionObserver>();
 
     public void changeAffectionPoints(int points){
         affectionPoints += points;
+
+        //clamp affection points to the limits
+        affectionPoints = Mathf.Clamp(affectionPoints, MIN_AFFECTION, MAX_AFFECTION);
+        
         NotifyChangedAffection();
     }
 

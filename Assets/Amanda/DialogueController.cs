@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class DialogueController 
 {
-    private HedgehogDialogue currentDialogue;
-
+    public HedgehogDialogue currentDialogue;
     public DialogueController(HedgehogDialogue dialogue){
         currentDialogue = dialogue;
+        //Debug.Log("This is dialogue controller");
     }
 
     public string GetCurrentDialogueLine(){

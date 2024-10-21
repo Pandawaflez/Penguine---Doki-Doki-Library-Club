@@ -30,7 +30,6 @@ public class ShadowDialogue : HedgehogDialogue
         : base("Shadow the Hedgehog" , "Wassup I'm Shadow. Did you want something?")
     {
         this.affectionManager = affectionManager;
-        Debug.Log("This is shadowdialogue");
     }
 
     public override void ProcessChoice(int choice){
@@ -59,8 +58,6 @@ public class ShadowDialogue : HedgehogDialogue
     
         //DialogueLine = "Hmph. You might be worth keeping around.";
         //initate the mini game date if player has enough affection points.
-
-        
     }
     
     public override string[] GetCurrentResponses(){

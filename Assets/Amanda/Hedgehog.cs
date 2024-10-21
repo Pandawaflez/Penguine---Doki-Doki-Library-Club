@@ -13,16 +13,10 @@ public abstract class HedgehogDialogue
         DialogueLine = initialDialogue;
     }
     
-    //marked as abstract to then implement it in a sub class
-    //virtual for get
-    //abstract
-
-    //add virtual 
-    
-
-    public virtual string[] GetCurrentResponses(){
-        // public string[] GetCurrentResponses(){
-        return (new string [] {"i am confused"});
+   
+        public virtual string[] GetCurrentResponses(){
+         //public string[] GetCurrentResponses(){
+        return (new string [] {"wow! did you comment out virtual? this is exactly what you need for the oral exam!"});
 
     }
 
