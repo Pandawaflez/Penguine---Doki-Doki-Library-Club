@@ -12,7 +12,8 @@ public class UISubmitButton : UIElement
         this.inputField = inputField;
     }
 
-    public override void onClick()
+    // public override void onClick()
+    public void onClick()
     {
         // Get the player's name from the input field
         string playerName = inputField.GetInputText();

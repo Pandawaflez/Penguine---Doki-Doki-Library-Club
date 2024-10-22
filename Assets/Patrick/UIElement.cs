@@ -42,7 +42,9 @@ public class UIElement
         elementData.SetActive(false);
     }
 
-    public virtual void onClick()
+    // public virtual void onClick()
+    public void onClick()
+
     {
         Debug.Log("This is the superclass method.");
     }
