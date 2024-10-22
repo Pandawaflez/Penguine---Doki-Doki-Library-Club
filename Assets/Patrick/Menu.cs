@@ -8,14 +8,14 @@ public class Menu : MonoBehaviour
     public GameObject submitButton;  // Assign via Inspector
     public GameObject inputField;    // Assign via Inspector
 
-    private UISubmitButton submitButtonElement;
+    private UIElement submitButtonElement;  //submitButtonElement is of type superclass
     private InputName inputFieldElement;
 
     private void Start()
     {
         // Initialize the InputName and UISubmitButton instances
         inputFieldElement = new InputName(inputField);
-        submitButtonElement = new UISubmitButton(submitButton, inputFieldElement);
+        submitButtonElement = new UISubmitButton(submitButton, inputFieldElement);  //dynamic binding
     }
 
     public void OnSubmitButtonClicked()
