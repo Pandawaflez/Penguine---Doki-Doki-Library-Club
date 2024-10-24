@@ -59,7 +59,7 @@ public class Pong : MiniGameLevel
         int checkWinner = scoreManager.CheckWinCondition();
         
         // player wins no matter what in bc mode
-        if (MainPlayer.IsBCMode) {
+        if (MainPlayer.IsBCMode()) {
             checkWinner = ScoreManager.PLAYER_WON;
         }
 
