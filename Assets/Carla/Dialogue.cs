@@ -151,7 +151,6 @@ public class CharlieDialogue : Dialogue
             r1p.SetActive(true);
             //Debug.Log("first time here huh");
                 displayRealDialogue(dialogue0, d0response1, d0response2);
-        
                 break;
             case 1:
             //Debug.Log("here i stand");
@@ -233,10 +232,11 @@ public class LucyDialogue : Dialogue
     //11->a12|b-game
     //12->a14|b13
     //13->a14|b-game
-    //14-> 15 end
-    //15-> loop
-    //16-> after lose game
-    //17-> after win game
+    //14-> 15 bad end
+    //15-> loop bad end
+    //16-> a14|b18 (after win game)
+    //17-> after lose game (no options) -> go to good end?
+    //18-> good ->to good end?
     
   
     private string dialogue0 = "You look lost, little donut. I'll take pity on you and give you some advice, for a nickel. Welcome to Lucy's corner.";
@@ -275,7 +275,7 @@ public class LucyDialogue : Dialogue
 
     private string dialogue9 = "You're lucky I like flattery. So, do you want to play a game?";
     private string d9response1 = "Bro that was sarcasm";
-    private string d9response2 = "yethhhh";
+    private string d9response2 = "Lucy, of course";
 
     private string dialogue10 = "Oh so we've got a smarty pants on our hands, is that so?!";
     private string d10response1 = "Hardly much competition around here";
@@ -297,9 +297,15 @@ public class LucyDialogue : Dialogue
 
     public string dialogue15 = "You again? Don't bother!";
 
-    public string dialogue16 = "";
+    private string dialogue16 = "Beginner's luck of course.";
+    private string d16response1 = "Will you ever gain self-awareness";
+    private string d16response2 = "Ahh Lucy, it definitely was just your godliness rubbing off on me!";
 
     public string dialogue17 = "Hah! Well good game against me, the winner, of course.";
+
+    public string dialogue18 = "Flattery will get you everywhere, you dork.";
+
+    //good dialogue end loop? or kicks you out of library...?
 
     public override void displayDialogue(int d){
         switch(d){
@@ -368,7 +374,16 @@ public class LucyDialogue : Dialogue
                  displayJustText(dialogue15);
                  break;
             case 16:
-                displayJustText(dialogue16);
+                displayRealDialogue(dialogue16, d16response1, d16response2);
+                break;
+            case 17:
+                displayJustText(dialogue17);
+                break;
+            case 18:
+                displayJustText(dialogue18);
+                break;
+            default:
+                displayJustText("I'm at a small loss for conversation right now...");
                 break;
         }
     }
@@ -395,6 +410,52 @@ public class LucyDialogue : Dialogue
         r1p = Lr1p;
         r2p = Lr2p;
     }
+
+}
+
+public class SnoopyDialogue : Dialogue
+{
+    private string dialogue0 = "Yo it's me. the snoopdawg";
+    private string d0response1 = "Dog";
+    private string d0response2 = "Yo dog!";
+
+    public override void displayDialogue(int d){
+        switch(d){
+            case 0:
+            r2p.SetActive(true);
+            r1p.SetActive(true);
+            Debug.Log("first time here huh");
+                displayRealDialogue(dialogue0, d0response1, d0response2);
+                break;
+        }
+    }
+
+    private void displayRealDialogue(string dialogue, string r1, string r2){
+        dialogueText.SetText(dialogue);
+        response1Text.SetText(r1);
+        response2Text.SetText(r2);
+    }
+
+    private void displayJustText(string dialogue){
+        dialogueText.SetText(dialogue);
+        //dt.SetText(dialogue);
+        r2p.SetActive(false);
+        r1p.SetActive(false);
+        //r1.gameObject.SetActive(false); //these didn't work for no reason smh
+        //r2.gameObject.SetActive(false);
+    }
+
+    public SnoopyDialogue(GameObject Lr1p, GameObject Lr2p, TextMeshProUGUI dt, TextMeshProUGUI r1t, TextMeshProUGUI r2t){
+        dialogueText =  dt;
+        response1Text = r1t;
+        response2Text = r2t;
+        r1p = Lr1p;
+        r2p = Lr2p;
+    }
+}
+
+public class SchroederDialogue : Dialogue
+{
 
 }
 

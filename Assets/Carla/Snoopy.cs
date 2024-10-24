@@ -141,7 +141,7 @@ public class Snoopy : Peanuts
     }
     
 
-    private CharlieDialogue myDialogue;
+    private SnoopyDialogue myDialogue;
     public Dialogue genDialogue;
     
     public TextMeshProUGUI CdialogueText, Cresponse1Text, Cresponse2Text;
@@ -153,7 +153,7 @@ public class Snoopy : Peanuts
    
     void Start(){
         //genDialogue = new Dialogue();
-        myDialogue = new CharlieDialogue(Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
+        myDialogue = new SnoopyDialogue(Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
         //theAudio = new AudioManager();
         /*
         CdialogueText = myDialogue.dialogueText;
@@ -162,8 +162,8 @@ public class Snoopy : Peanuts
         Cr1p = myDialogue.r1p;
         Cr2p = myDialogue.r2p;
         */
-        dialogueNum = PeanutsDB.CharlieDialogueNum;
-        loadAffection(PeanutsDB.CharlieAffectionPts);
+        dialogueNum = PeanutsDB.SnoopyDialogueNum;
+        loadAffection(PeanutsDB.SnoopyAffectionPts);
         Debug.Log(string.Format("starting with {0} affection points on dialoge {1}", getAffectionPoints(), dialogueNum));
         onDialogue(dialogueNum);
         /*

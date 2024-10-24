@@ -144,7 +144,8 @@ public class Lucy : Peanuts
                     
                     updateAffection(8); 
                     initiateMiniGame(game);
-                    //dialogueNum = 8;
+                    //this should depend on winning (16) & losing (17).
+                    dialogueNum = 16;
                 }
                 responseNum = 0;
                 break;
@@ -166,7 +167,8 @@ public class Lucy : Peanuts
                     
                     updateAffection(8); 
                     initiateMiniGame(game);
-                    //dialogueNum = 8;
+                    //this should depend on winning (16) & losing (17).
+                    dialogueNum = 16;
                 }
                 responseNum = 0;
                 break;
@@ -188,7 +190,8 @@ public class Lucy : Peanuts
                     
                     updateAffection(8); 
                     initiateMiniGame(game);
-                    //dialogueNum = 8;
+                    //this should depend on winning (16) & losing (17). //update affection points there or here?
+                    dialogueNum = 16;
                 }
                 responseNum = 0;
                 break;
@@ -196,8 +199,25 @@ public class Lucy : Peanuts
                 dialogueNum = 15;
                 break;
             case 15:
-                //post game
-                //give user option to keep talking?
+                //froze out options
+                break;
+            case 16:
+                //user won
+                updateAffection(-10);
+                //post game ... give options to talk?
+                if (responseNum == 1){
+                    dialogueNum = 14;
+                    updateAffection(-5);
+                } else if (responseNum == 2){
+                    dialogueNum = 18;
+                    updateAffection(15); 
+                }
+                responseNum = 0;
+                break;
+            case 17:
+                //user lost
+                updateAffection(10);
+                //post game... no options to talk cause lucy likes them?
                 break;
         }
         onDialogue(dialogueNum);
