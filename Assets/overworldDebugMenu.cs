@@ -53,10 +53,9 @@ public class overworldDebugMenu : MonoBehaviour
         numberOfAttemptedInteractions++;
     }
 
-    /*[UnityTest] //tesst function:
-    public IEnumerator sceneChangeSucessTest(){
-        talkTo("Shaggy");
-        Assert.
-    }*/
+    // close the pannel:
+    public void close(){
+        gameObject.SetActive(false);
+    }
 
 }
