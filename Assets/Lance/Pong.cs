@@ -57,7 +57,12 @@ public class Pong : MiniGameLevel
     // dynamic binding to check win condition for pong game
     public bool CheckGameOver() {
         int checkWinner = scoreManager.CheckWinCondition();
-        Debug.Log("ScoreManager = "  +checkWinner);
+        
+        // player wins no matter what in bc mode
+        if (MainPlayer.IsBCMode) {
+            checkWinner = ScoreManager.PLAYER_WON;
+        }
+
         if (checkWinner == ScoreManager.PLAYER_WON) {
             Debug.Log("Player Won!");
             winnerText.text = "You Won!";
