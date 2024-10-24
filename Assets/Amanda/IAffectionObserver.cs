@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IAffectionObserver 
 {
-   void OnAffectionChanged(int newAffectionPoints);
+   void OnAffectionChanged(string characterName, int affectionPoints);
 }

@@ -1,46 +1,92 @@
-
-
 using System.Collections;
 using System.Collections.Generic;
-using System.Xml;
-using TMPro;
 using UnityEngine;
 
-public class sonicstuffDialogue
+public class SonicDialogue : HedgehogDialogue
 {
+    private AffectionManager affectionManager;
+
+    private List<string> sonicLines = new List<string>(){
+        "Hey I'm Sonic! Fastest hedgehog alive! Need anything?",
+        "What really? I am the best hedgehog around.",
+        "There's still a long way to go if you wanna match my speed!",
+        "How about a game? I love video games. I'll go easy on you, maybe.",
+        "Here we go! Let's keep the good times rollin'!"
+    };
+
+    private List<string[]> playerResponses = new List<string[]>(){
+        new string[] {"I think Shadow is faster than you.", "Sonic! I'm your #1 fan!"},
+        new string[] {"No, lol. Shadow is definitely cooler than you.", "You can say that again."},
+        new string[] {"I think I could outrun you...", "You're the best, Sonic!"},
+        new string[] {"You're so cocky, I thought shadow was the confident one", "Hit me with your best shot."},
+        new string[] {"Let's see what you got." , "omg I'm really about to play against sonic right now"}
+    };
+
+    private int sonicCurrentDialogueIndex = 0;
+    private int sonicResponseIndex = 0;
+
+    public SonicDialogue(AffectionManager affectionManager)
+        : base("Sonic the Hedgehog" , "Hey I'm Sonic. Did you need any help?")
+    {
+        this.affectionManager = affectionManager;
+
+        DialogueLine = sonicLines[StartGameData.sonicCurrentDialogueIndex];
     
-    public TextMeshProUGUI SonicDialogueText, SonicResponse1Text, SonicResponse2Text;
-    public GameObject Sonic1rp;
-    public GameObject Sonic2rp;
-    
-   
-
-    private string genericDialogue = "Who am I?";
-    private string genericResponse1 = "Bro";
-    private string genericResponse2 = "ruh roh";
-
-    //public virtual void displayDialogue(int d){
-    //public virtual void displayDialogue(int d, GameObject cr1p, GameObject cr2p, TextMeshProUGUI cdt, TextMeshProUGUI cr1t, TextMeshProUGUI cr2t){
-        //display the dialogue, call sfx, wait a few sec, display response
-        //dialogueText.SetText(genericDialogue);
-        //response1Text.SetText(genericResponse1);
-        //response2Text.SetText(genericResponse2);
-        //call sfx. should only play 3 sec
-    //}
-}
-
-public class SonicDialogue : sonicstuffDialogue
-{
-    //public TextMeshProUGUI dialogueText, response1Text, response2Text;
-
-    
-    public SonicDialogue(GameObject Sonr1p, GameObject Sonr2p, TextMeshProUGUI dt, TextMeshProUGUI r1t, TextMeshProUGUI r2t){
-        SonicDialogueText =  dt;
-        SonicResponse1Text = r1t;
-        SonicResponse2Text = r2t;
-        Sonic1rp = Sonr1p ;
-        Sonic2rp = Sonr2p;
+        //check sonic's current affection points and lock out if needed
+        if(affectionManager.GetSonicAffectionPoints() <= -10){
+            DialogueLine = "You're not as cool as I thought. I gotta go fast...";
+        } else if(affectionManager.GetSonicAffectionPoints() == 100){
+            DialogueLine = "Oh nice, you're back. I'm glad to see you!";
+        }
     }
 
-}
+    public override void ProcessChoice(int choice){
+        if(choice == 2){
+            //best choice +20
+            //swapped from shadow's options
+            //StartGameData.sonicAffectionPoints += 20;
+            affectionManager.ChangeSonicAffectionPoints(20);
+        }
+        else if(choice == 1){
+            //bad choice
+            //StartGameData.sonicAffectionPoints -= 10;
+            affectionManager.ChangeSonicAffectionPoints(-10);
+        }
 
+        sonicCurrentDialogueIndex++;
+        sonicResponseIndex++;
+        StartGameData.sonicCurrentDialogueIndex++;
+
+        //load library and leave conversation if -10 affection
+        if(affectionManager.GetSonicAffectionPoints() <= -10){
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Overworld");
+            return;
+        } else if(affectionManager.GetSonicAffectionPoints() == 100){
+            DialogueLine = "Wanna play a game with me? Let's really test your speed.";
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Math");
+            return;
+        }
+        
+        //check if there is a next dialogue before incrementing
+        if(sonicCurrentDialogueIndex + 1 < sonicLines.Count){
+            StartGameData.sonicResponseIndex++;
+            DialogueLine = sonicLines[sonicCurrentDialogueIndex];
+        } else {
+            EndConversation();
+        }
+    
+    }
+
+    private void EndConversation(){
+        DialogueLine = "Gotta go fast!";
+        //initate the mini game date if player has enough affection points.
+    }
+    
+    public override string[] GetCurrentResponses(){
+        //public string[] GetCurrentResponses(){
+        if(sonicCurrentDialogueIndex < playerResponses.Count){
+        return playerResponses[sonicResponseIndex];
+        }
+        return new string[0]; // return an empty array if out of bounds
+    }
+}

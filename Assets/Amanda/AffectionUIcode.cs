@@ -7,11 +7,12 @@ using TMPro;
 public class AffectionUI : IAffectionObserver
 {
    private TMP_Text affectionText;
-   public AffectionUI(TMP_Text textComponent){
-    affectionText = textComponent;
+   public AffectionUI(TMP_Text affectionText){
+    this.affectionText = affectionText;
    }
 
-   public void OnAffectionChanged(int newAffectionPoints){
-    affectionText.text = "Affection Points: " + newAffectionPoints;
+
+   public void OnAffectionChanged(string characterName, int affectionPoints){
+    affectionText.text = $"{characterName} Affection Points: {affectionPoints}";
    }
 }

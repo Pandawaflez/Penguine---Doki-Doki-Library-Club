@@ -5,7 +5,6 @@ using UnityEngine;
 public class ShadowDialogue : HedgehogDialogue
 {
     private AffectionManager affectionManager;
-    private HedgehogDialogue meprogramming;
 
     private List<string> shadowLines = new List<string>(){
         "Wassup, I'm Shadow. Did you want something?",
@@ -30,25 +29,47 @@ public class ShadowDialogue : HedgehogDialogue
         : base("Shadow the Hedgehog" , "Wassup I'm Shadow. Did you want something?")
     {
         this.affectionManager = affectionManager;
+        //check affection points upon entering
+        if (affectionManager.GetShadowAffectionPoints() <= -10)
+        {
+            DialogueLine = "I don't want to see you again.";
+        }
+        else if (affectionManager.GetShadowAffectionPoints() == 100)
+        {
+            DialogueLine = "You're back, huh? Looks like you can keep up.";
+        }
     }
 
     public override void ProcessChoice(int choice){
         if(choice == 1){
             //best choice +20
-            affectionManager.changeAffectionPoints(20);
+            affectionManager.ChangeShadowAffectionPoints(20);
         }
         else if(choice == 2){
             //bad choice
-            affectionManager.changeAffectionPoints(-10);
+            affectionManager.ChangeShadowAffectionPoints(-10);
         }
 
+        //check affection points / date
+        // If affection points are -10 or lower, load the main menu
+        if (affectionManager.GetShadowAffectionPoints() <= -10)
+        {
+            DialogueLine = "Wow. You are a real piece of work.";
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Overworld");
+            return;
+        } else if(affectionManager.GetShadowAffectionPoints() == 100){
+            DialogueLine = "Let's play. You're about to get cooked.";
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Pong");
+            return;
+        }
+        
         //check if there is a next dialogue before incrementing
         if(currentDialogueIndex + 1 < shadowLines.Count){
             currentDialogueIndex++;
             DialogueLine = shadowLines[currentDialogueIndex];
         } else {
             EndConversation();
-            affectionManager.GameOver();
+            //affectionManager.GameOver();
         }
     
     }

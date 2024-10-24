@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UnityDialogueUI : MonoBehaviour
 {
@@ -21,13 +22,29 @@ public class UnityDialogueUI : MonoBehaviour
         AffectionUI affectionUI = new AffectionUI(affectionText);
         affectionManager.RegisterObserver(affectionUI);
 
+        //get current scene name (used to check which dialogue to initiate)
+        string currentSceneName = SceneManager.GetActiveScene().name;
 
-        //create Shadow's dialogue
-        HedgehogDialogue shadowDialogue = new ShadowDialogue(affectionManager);
+        if(currentSceneName == "Sonic"){
+            //create Sonic's dialogue
+            HedgehogDialogue sonicDialogue = new SonicDialogue(affectionManager);
+            dialogueController = new DialogueController(sonicDialogue);
+        } else if(currentSceneName == "Shadow"){
+            //create Shadow's dialogue
+            HedgehogDialogue shadowDialogue = new ShadowDialogue(affectionManager);
+            dialogueController = new DialogueController(shadowDialogue);
+        }
         
-        dialogueController = new DialogueController(shadowDialogue);
         //show base dialogue
         ShowDialogue();
+
+        //set up affection points
+        affectionManager.SetSonicAffectionPoints(0);
+        affectionManager.SetShadowAffectionPoints(0);
+
+        // *** Update the Affection UI on scene start ***
+        affectionUI.OnAffectionChanged("Sonic", affectionManager.GetSonicAffectionPoints());
+        affectionUI.OnAffectionChanged("Shadow", affectionManager.GetShadowAffectionPoints());
 
         //set buttons up
         responseButton1.onClick.AddListener( () => OnResponse(1));

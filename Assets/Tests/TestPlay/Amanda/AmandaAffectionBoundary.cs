@@ -34,19 +34,19 @@ public class AffectionBoundaryTests : MonoBehaviour
         affectionManager = new AffectionManager();
          
          //Test 1: Max Affection Points
-        Debug.Log("Testing maximum affection points");
+        Debug.Log("Testing maximum sonic affection points");
         //add affection points up to 100.
         for(int i = 0; i < 6; i++){
-            affectionManager.changeAffectionPoints(20);
-            Debug.Log($"Affection points after addding: {affectionManager.GetAffectionPoints()}");
+            affectionManager.ChangeSonicAffectionPoints(20);
+            Debug.Log($"Affection points after addding: {affectionManager.GetSonicAffectionPoints()}");
         }
 
         //Test 2: Min Affection Points
-        Debug.Log("Tesing minimum affection points");
+        Debug.Log("Tesing minimum sonic affection points");
         //subtract 10, 5 times
         for(int i = 0; i < 6; i++){
-            affectionManager.changeAffectionPoints(-10);
-            Debug.Log($"Affection points after subtracting: {affectionManager.GetAffectionPoints()}");
+            affectionManager.ChangeSonicAffectionPoints(-10);
+            Debug.Log($"Affection points after subtracting: {affectionManager.GetSonicAffectionPoints()}");
         }
 
     }

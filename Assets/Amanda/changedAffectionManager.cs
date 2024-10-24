@@ -6,39 +6,95 @@ public class AffectionManager
 {
     private const int MAX_AFFECTION = 100;
     private const int MIN_AFFECTION = -10;
-    
-    private int affectionPoints;
+
+    private static int sonicAffectionPoints = 0;
+    private static int shadowAffectionPoints = 0;
     
     private List<IAffectionObserver> observers = new List<IAffectionObserver>();
 
-    public void changeAffectionPoints(int points){
-        affectionPoints += points;
-
-        //clamp affection points to the limits
-        affectionPoints = Mathf.Clamp(affectionPoints, MIN_AFFECTION, MAX_AFFECTION);
+    public AffectionManager(){
+        //Load affection points from PlayerPrefs for sonic and shadow
+        sonicAffectionPoints = PlayerPrefs.GetInt("SonicAffectionPoints", sonicAffectionPoints); 
+        shadowAffectionPoints = PlayerPrefs.GetInt("ShadowAffectionPoints", shadowAffectionPoints); 
         
-        NotifyChangedAffection();
+    }
+    public void ChangeSonicAffectionPoints(int points){
+        sonicAffectionPoints += points;
+        //clamp affection points to the limits
+        sonicAffectionPoints = Mathf.Clamp(sonicAffectionPoints, MIN_AFFECTION, MAX_AFFECTION);
+        
+        //save new value in playerprefs
+        PlayerPrefs.SetInt("SonicAffectionPoints", sonicAffectionPoints);
+        PlayerPrefs.Save();
+        
+        //notify observer
+        NotifyChangedAffection("Sonic", sonicAffectionPoints);
     }
 
-    public int GetAffectionPoints(){
-        return affectionPoints;
+    public void ChangeShadowAffectionPoints(int points){
+        shadowAffectionPoints += points;
+        //clamp affection points to the limits
+        shadowAffectionPoints = Mathf.Clamp(shadowAffectionPoints, MIN_AFFECTION, MAX_AFFECTION);
+        
+        //save new value in playerprefs
+        PlayerPrefs.SetInt("ShadowAffectionPoints", shadowAffectionPoints);
+        PlayerPrefs.Save();
+        
+        //notify observer
+        NotifyChangedAffection("Shadow", shadowAffectionPoints);
+    }
+
+    public int GetSonicAffectionPoints(){
+        return sonicAffectionPoints;
+    }
+
+    public int GetShadowAffectionPoints(){
+        return shadowAffectionPoints;
+    }
+
+    // Setters for reloading affection points (useful when resetting)
+    public void SetSonicAffectionPoints(int points)
+    {
+        sonicAffectionPoints = points;
+        PlayerPrefs.SetInt("SonicAffectionPoints", sonicAffectionPoints);
+        PlayerPrefs.Save();
+    }
+
+    public void SetShadowAffectionPoints(int points)
+    {
+        shadowAffectionPoints = points;
+        PlayerPrefs.SetInt("ShadowAffectionPoints", shadowAffectionPoints);
+        PlayerPrefs.Save();
     }
     
     public void RegisterObserver(IAffectionObserver observer){
         observers.Add(observer);
     }
 
-    private void NotifyChangedAffection(){
+    private void NotifyChangedAffection(string characterName, int affectionPoints){
         foreach (IAffectionObserver observer in observers){
-            observer.OnAffectionChanged(affectionPoints);
+            observer.OnAffectionChanged(characterName, affectionPoints);
         }
     }
 
-    public void GameOver(){
-        if(affectionPoints < 0){
-            Debug.Log("Affection Points Below 0: Lock Shadow Out");
-        } else {
-            Debug.Log("You're okay for now");
-        }
+    //reset affection points
+    public void ResetSonicAffectionPoints()
+    {
+        // Reset values to 0 or any starting value you want
+        sonicAffectionPoints = 0;
+
+        // Save the reset values to PlayerPrefs
+        PlayerPrefs.SetInt("SonicAffectionPoints", 0);
+        PlayerPrefs.Save();
+    }
+
+    public void ResetShadowAffectionPoints()
+    {
+        // Reset values to 0 or any starting value you want
+        shadowAffectionPoints = 0;
+
+        // Save the reset values to PlayerPrefs
+        PlayerPrefs.SetInt("ShadowAffectionPoints", 0);
+        PlayerPrefs.Save();
     }
 }
