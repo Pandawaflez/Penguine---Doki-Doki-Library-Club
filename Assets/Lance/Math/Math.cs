@@ -24,7 +24,8 @@ public class Math : MiniGameLevel
     // Start is called before the first frame update
     public void Start()
     {
-        scoreManager = new MathScoreManager(SCORE_TO_WIN);
+        // BC Mode score is -1000
+        scoreManager = new MathScoreManager((MainPlayer.IsBCMode()) ? -1000 : SCORE_TO_WIN);
         timeLimit = 15;
         timeRemaining = timeLimit;
         leftAnswer.onClick.AddListener(() => CheckAnswer(leftAnswer));
@@ -98,6 +99,11 @@ public class Math : MiniGameLevel
 
     private void CheckAnswer(Button selectedButton) {
         int selectedAnswer = int.Parse(selectedButton.GetComponentInChildren<TextMeshProUGUI>().text);
+        
+        // BC Mode always gets correct answer
+        if (MainPlayer.IsBCMode()) {
+            selectedAnswer = correctAnswer;
+        }
         if (selectedAnswer == correctAnswer) {
             scoreManager.AddPlayerScore(1);
         } else {
