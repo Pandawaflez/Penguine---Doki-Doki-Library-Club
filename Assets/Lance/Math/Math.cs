@@ -20,13 +20,14 @@ public class Math : MiniGameLevel
     private float timeRemaining;
     private int correctAnswer;
     private const int SCORE_TO_WIN = 10;
+    private const int TIME_LIMIT = 25;
 
     // Start is called before the first frame update
     public void Start()
     {
-        // BC Mode score is -1000
+        // BC Mode score to win is -1000
         scoreManager = new MathScoreManager((MainPlayer.IsBCMode()) ? -1000 : SCORE_TO_WIN);
-        timeLimit = 15;
+        timeLimit = TIME_LIMIT;
         timeRemaining = timeLimit;
         leftAnswer.onClick.AddListener(() => CheckAnswer(leftAnswer));
         rightAnswer.onClick.AddListener(() => CheckAnswer(rightAnswer));
