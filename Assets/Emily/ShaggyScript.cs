@@ -7,6 +7,7 @@ using UnityEditor;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Security.Cryptography;
+//using System.Data.SqlClient;
 
 public class ShaggyScript : Scooby
 {
@@ -37,8 +38,25 @@ public class ShaggyScript : Scooby
     public GameObject Shag1p;
     public GameObject Shag2p;
 
-    
-
+    /*public string ShagSpeak;
+    public void FetchDialoguePrompt(string dialoguePrompt){
+        using (SqlConnection connection = new SqlConnection("Data Source=(local);Initial Catalog=ShaggyDialogue;Integrated Security=SSPI")) 
+        using (SqlCommand cmd = new SqlCommand("SELECT Prompts FROM ShaggyDialogue.Prompts WHERE Prompts = @Prompts", connection))
+        {
+            cmd.Parameters.AddWithValue("Promps", dialoguePrompt);
+            connection.Open();
+            using (var reader = cmd.ExecuteReader()){
+                if (reader.Read()){ 
+                    string dialogue1 = reader.GetString(reader.GetOrdinal("Prompts"));
+                    Console.WriteLine(dialogue1);
+                }
+                else {
+                    Debug.Log("No more prompts");
+                    //Console.WriteLine("No more prompts");
+                }
+            }
+        }   
+    }*/
     void Update() { }
 
 }
