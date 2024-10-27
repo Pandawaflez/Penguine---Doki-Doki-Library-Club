@@ -8,12 +8,20 @@ public class UIElement
     private class UIElementData{
         public GameObject Element { get; private set; }
 
+        public bool Visible { get; private set; }   //mainly implemented for the overlay feature
+
         public UIElementData(GameObject element){
             Element = element;
+            Visible = true;
         }
 
         public void SetActive(bool isActive){
             Element.SetActive(isActive);
+            Visible = isActive;
+        }
+
+        public bool IsVisible(){
+            return Visible;
         }
 
         // Generic accessor for retrieving components
@@ -40,6 +48,10 @@ public class UIElement
     public void Hide()
     {
         elementData.SetActive(false);
+    }
+
+    public bool Visible(){
+        return elementData.IsVisible();
     }
 
     public virtual void onClick()

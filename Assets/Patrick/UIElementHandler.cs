@@ -7,11 +7,11 @@ using UnityEngine.UI;
 public class UIElementHandler : MonoBehaviour
 {
     private static readonly Lazy<UIElementHandler> _instance =
-        new Lazy<UIElementHandler>(() => FindObjectOfType<UIElementHandler>());
+        new Lazy<UIElementHandler>(() => FindObjectOfType<UIElementHandler>()); //lazy initialization, thread safety 
 
     public static UIElementHandler UIGod => _instance.Value;
 
-        public Button quitButton; //Reference to the Quit button
+    public Button quitButton; //Reference to the Quit button
 
 
     private void Awake()
