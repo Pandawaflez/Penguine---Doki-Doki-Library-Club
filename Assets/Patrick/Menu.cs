@@ -23,7 +23,4 @@ public class Menu : MonoBehaviour
         // Call the OnSubmitButtonClick method on UISubmitButton instance
         submitButtonElement.onClick();
     }
-    public void onQuitButton(){
-        Application.Quit();
-    }
 }
