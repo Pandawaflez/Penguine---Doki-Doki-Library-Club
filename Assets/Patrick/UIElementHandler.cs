@@ -57,7 +57,7 @@ public class UIElementHandler : MonoBehaviour
         Application.Quit(); // Quit the application
     }
 
-    // Function to handle end of game scenario
+    //handle end of game scenario (global access point)
     public void EndGame(bool isWin)
     {
         endGamePanel.SetActive(true); //Show the end game panel
