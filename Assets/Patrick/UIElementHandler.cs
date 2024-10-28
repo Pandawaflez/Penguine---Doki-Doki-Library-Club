@@ -7,11 +7,12 @@ using UnityEngine.UI;
 public class UIElementHandler : MonoBehaviour
 {
     private static readonly Lazy<UIElementHandler> _instance =
-        new Lazy<UIElementHandler>(() => FindObjectOfType<UIElementHandler>()); //lazy initialization, thread safety 
+        new Lazy<UIElementHandler>(() => FindObjectOfType<UIElementHandler>()); //lazy initialization, thread safety
 
     public static UIElementHandler UIGod => _instance.Value;
 
     public Button quitButton; //Reference to the Quit button
+    public GameObject endGamePanel; //Reference to the end game panel (UI)
 
 
     private void Awake()
@@ -32,6 +33,7 @@ public class UIElementHandler : MonoBehaviour
         // Set up the quit button
         quitButton.onClick.AddListener(QuitGame);
         quitButton.gameObject.SetActive(true); //button stays active on screen till game start
+        endGamePanel.SetActive(false); //ensure the end game panel is hidden initially
     }
 
     private void Update()
@@ -53,5 +55,20 @@ public class UIElementHandler : MonoBehaviour
     {
         Debug.Log("Game is quitting...");
         Application.Quit(); // Quit the application
+    }
+
+    // Function to handle end of game scenario
+    public void EndGame(bool isWin)
+    {
+        endGamePanel.SetActive(true); //Show the end game panel
+
+        // // Update panel text based on win/loss
+        // Text panelText = endGamePanel.GetComponentInChildren<Text>();
+        // if (panelText != null)
+        // {
+        //     panelText.text = isWin ? "You Win!" : "You Lose!";
+        // }
+
+        Debug.Log(isWin ? "Game Over: You Win!" : "Game Over: You Lose!");
     }
 }

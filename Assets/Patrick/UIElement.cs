@@ -6,18 +6,27 @@ public class UIElement
 {
     //private data class pattern:
     private class UIElementData{
-        public GameObject Element { get; private set; }
-
-        public bool Visible { get; private set; }   //mainly implemented for the overlay feature
+        private GameObject Element;
+        private bool Visible;   //mainly implemented for the overlay feature
+        private bool State;     //will use for enabled/disabled button opacity
 
         public UIElementData(GameObject element){
             Element = element;
             Visible = true;
+            State = true;
         }
 
         public void SetActive(bool isActive){
             Element.SetActive(isActive);
             Visible = isActive;
+        }
+
+        public void SetState(bool state){
+            State = state;
+        }
+
+        public bool GetState(){
+            return State;
         }
 
         public bool IsVisible(){
@@ -48,6 +57,10 @@ public class UIElement
     public void Hide()
     {
         elementData.SetActive(false);
+    }
+
+    public void setState(bool state){
+        elementData.SetState(state);
     }
 
     public bool Visible(){
