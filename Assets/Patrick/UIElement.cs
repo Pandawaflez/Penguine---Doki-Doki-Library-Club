@@ -43,7 +43,7 @@ public class UIElement
     //composition: UIElement contains instance of UIElementData
     private UIElementData elementData;
 
-    //constructor initializes data object
+    //constructor initializes data object from the private class
     public UIElement(GameObject element)
     {
         elementData = new UIElementData(element);
