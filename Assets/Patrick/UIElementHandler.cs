@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +16,7 @@ public class UIElementHandler : MonoBehaviour
     public GameObject endGamePanel; //Reference to the end game panel (UI)
     public GameObject overlayPanel; //panel for overlay
     public Sprite[] characterImages;    //inspector?
-    private string[] characterNames = { "Snoopy", "Charlie", "Sonic", "Shadow", "Daphne", "Scooby", "Shaggy"};
+    private string[] characterNames = { "Charlie" };
 
     private UIOverlay overlayUI;
 
@@ -39,6 +40,9 @@ public class UIElementHandler : MonoBehaviour
         // Set up the quit button
         quitButton.onClick.AddListener(QuitGame);
         quitButton.gameObject.SetActive(true); //button stays active on screen till game start
+
+        overlayUI.Hide();   //hide overlay on start
+
         endGamePanel.SetActive(false); //ensure the end game panel is hidden initially
     }
 
@@ -46,7 +50,14 @@ public class UIElementHandler : MonoBehaviour
     {
         UICheckInput();
 
-        overlayUI.UpdateCharacterUI("Charlie", PeanutsDB.CharlieAffectionPts);
+        if(Input.GetKeyDown(KeyCode.DownArrow)){
+            overlayUI.UpdateCharacterUI("Charlie", 10);
+        }
+
+        
+        if(Input.GetKeyDown(KeyCode.Space)){
+            overlayUI.UpdateCharacterUI("Charlie", 80);
+        }
     }
 
 
@@ -55,14 +66,13 @@ public class UIElementHandler : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            if(overlayUI.Visible()){
+            Debug.Log("tab pressed");
+            if(!overlayUI.Visible()){
                 overlayUI.Show();
-                overlayPanel.SetActive(true);
                 quitButton.gameObject.SetActive(false);
             }
             else{
                 overlayUI.Hide();
-                overlayPanel.SetActive(false);
                 quitButton.gameObject.SetActive(true);
             }
         }
