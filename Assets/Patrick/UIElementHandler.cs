@@ -13,6 +13,11 @@ public class UIElementHandler : MonoBehaviour
 
     public Button quitButton; //Reference to the Quit button
     public GameObject endGamePanel; //Reference to the end game panel (UI)
+    public GameObject overlayPanel; //panel for overlay
+    public Sprite[] characterImages;    //inspector?
+    private string[] characterNames = { "Snoopy", "Charlie", "Sonic", "Shadow", "Daphne", "Scooby", "Shaggy"};
+
+    private UIOverlay overlayUI;
 
 
     private void Awake()
@@ -25,6 +30,7 @@ public class UIElementHandler : MonoBehaviour
         else
         {
             DontDestroyOnLoad(gameObject);  // Make this instance persistent across scenes
+            overlayUI = new UIOverlay(overlayPanel, characterImages, characterNames);
         }
     }
 
@@ -39,14 +45,26 @@ public class UIElementHandler : MonoBehaviour
     private void Update()
     {
         UICheckInput();
+
+        overlayUI.UpdateCharacterUI("Charlie", PeanutsDB.CharlieAffectionPts);
     }
+
 
     // Check for UI User input
     public void UICheckInput()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            Debug.Log("*****Overlay Toggle*****");
+            if(overlayUI.Visible()){
+                overlayUI.Show();
+                overlayPanel.SetActive(true);
+                quitButton.gameObject.SetActive(false);
+            }
+            else{
+                overlayUI.Hide();
+                overlayPanel.SetActive(false);
+                quitButton.gameObject.SetActive(true);
+            }
         }
     }
 
