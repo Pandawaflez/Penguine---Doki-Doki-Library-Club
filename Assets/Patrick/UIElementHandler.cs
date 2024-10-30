@@ -16,7 +16,7 @@ public class UIElementHandler : MonoBehaviour
     public GameObject endGamePanel; //Reference to the end game panel (UI)
     public GameObject overlayPanel; //panel for overlay
     public Sprite[] characterImages;    //inspector?
-    private string[] characterNames = { "Charlie" };
+    private string[] characterNames = { "Charlie", "Shaggy" };
 
     private UIOverlay overlayUI;
 
@@ -51,7 +51,8 @@ public class UIElementHandler : MonoBehaviour
         UICheckInput();
 
         if(Input.GetKeyDown(KeyCode.DownArrow)){
-            overlayUI.UpdateCharacterUI("Charlie", 10);
+            overlayUI.UpdateCharacterUI("Charlie", PeanutsDB.CharlieAffectionPts);
+            
         }
 
         

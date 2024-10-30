@@ -73,12 +73,12 @@ public class UIOverlay : UIElement
         // Configure the Slider component
         Slider slider = sliderObject.GetComponent<Slider>();
         slider.minValue = 0;
-        slider.maxValue = 100;
+        slider.maxValue = 100;      //max points
         slider.value = 0;
 
         // Set up the RectTransform for proper alignment
         RectTransform rect = slider.GetComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(200, 20);  // Set the desired size
+        rect.sizeDelta = new Vector2(250, 20);  // Set the desired size
         rect.anchorMin = new Vector2(0, 0.5f);  // Anchor to the middle-left
         rect.anchorMax = new Vector2(0, 0.5f);  // Same for both min and max for left alignment
         rect.pivot = new Vector2(0, 0.5f);      // Set pivot to the left-center
@@ -88,7 +88,7 @@ public class UIOverlay : UIElement
         GameObject background = new GameObject("Background", typeof(Image));
         background.transform.SetParent(sliderObject.transform, false);
         Image bgImage = background.GetComponent<Image>();
-        bgImage.color = new Color(0.5f, 0.5f, 0.5f, 1);  // Light gray background
+        bgImage.color = new Color(0.5f, 0, 0.5f, 0.7f);  // Light gray background
 
         RectTransform bgRect = background.GetComponent<RectTransform>();
         bgRect.anchorMin = Vector2.zero;
