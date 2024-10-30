@@ -35,4 +35,9 @@ public class MiniGameLevel : MonoBehaviour
         Debug.Log("Ending the Game");
         // Time.timeScale = 0f;
     }
+
+    // return isGameOver boolean
+    public bool GetIsGameOver() {
+        return isGameOver;
+    }
 }
