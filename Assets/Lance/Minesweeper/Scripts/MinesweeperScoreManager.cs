@@ -11,7 +11,7 @@ public class MinesweeperScoreManager : ScoreManager
 
     public MinesweeperScoreManager(int numTiles, int numMines): base(numTiles - numMines) {
         didPlayerHitMine = false;
-        Debug.Log("scoreToWin = " + scoreToWin);
+        Debug.Log("MinesweeperScoreManager::scoreToWin = " + scoreToWin);
     }
 
     public override void AddPlayerScore(int val = 1) {
