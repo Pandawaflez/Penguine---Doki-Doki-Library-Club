@@ -15,6 +15,7 @@ public class AIPaddle : Paddle
         if (MainPlayer.IsBCMode()) {
             // If in BC mode, make the AI paddle purposely lose
             LoseOnPurpose();
+            speed = 1;
         } else {
             // Normal AI paddle behavior
             NormalAIMovement();

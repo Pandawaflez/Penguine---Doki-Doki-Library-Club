@@ -80,7 +80,7 @@ public class Pong : MiniGameLevel
         return isGameOver;
     }
 
-    private void ResetRound() {
+    public void ResetRound() {
         Debug.Log("Resetting Round...");
         aiPaddle.ResetPaddle();
         playerPaddle.ResetPaddle();

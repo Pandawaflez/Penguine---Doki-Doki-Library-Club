@@ -29,4 +29,8 @@ public class Paddle : MonoBehaviour
 
         transform.position = pos;
     }
+
+    public float GetSpeed() {
+        return speed;
+    }
 }

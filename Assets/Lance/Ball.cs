@@ -77,4 +77,8 @@ public class Ball : MonoBehaviour
         float randomX = Random.Range(0, 2f) * 2 - 1;
         direction = new Vector2(randomX, 0).normalized;
     }
+
+    public Vector3 GetPosition() {
+        return transform.position;
+    }
 }
