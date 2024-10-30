@@ -80,17 +80,17 @@ public class OLDCharlieBrown : Peanuts
     }
     */
     //private int getDialogueNum(){
-    //    return dialogueNum;
+    //    return p_dialogueNum;
     //}
 
     //buttons to reset the buttons ('unclick' them)
     public Button r1;
     public Button r2;
-    //private int responseNum = 0;
+    //private int p_responseNum = 0;
 
     //button one calls onclick
     public void hitResponse1(){
-        responseNum = 1;
+        p_responseNum = 1;
         Debug.Log("they hit it boss");
         //StartCoroutine(holdUp(10));
         //unselect button for next screen
@@ -100,7 +100,7 @@ public class OLDCharlieBrown : Peanuts
 
     //button 2 calls onclick
     public void hitResponse2(){
-        responseNum = 2;
+        p_responseNum = 2;
         //holdUp(1);
         r2.Select();
         toNextDialogue();
@@ -113,7 +113,7 @@ public class OLDCharlieBrown : Peanuts
         SceneChanger.saveScene();
         SceneManager.LoadScene("Pong");
 
-        dialogueNum = 8;
+        p_dialogueNum = 8;
     }
 */
 
@@ -122,74 +122,74 @@ public class OLDCharlieBrown : Peanuts
         int d = getDialogueNum();
         switch(d){
             case 0:
-                if (responseNum == 1){
-                    dialogueNum=1;
+                if (p_responseNum == 1){
+                    p_dialogueNum=1;
                     updateAffection(-1);
-                } else if (responseNum == 2){
-                    dialogueNum = 2;
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 2;
                     updateAffection(5);
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 break;
             case 1:
-                if (responseNum == 1){
-                    dialogueNum = 5;
+                if (p_responseNum == 1){
+                    p_dialogueNum = 5;
                     updateAffection(-2);
-                } else if (responseNum == 2){
-                    dialogueNum = 2;
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 2;
                     updateAffection(15);
                 }
-                responseNum = 0;
+                p_responseNum = 0;
 
                 break;
             case 2:
-                //if r1, dialogueNum=3, else 4
-                if (responseNum == 1){
-                    dialogueNum = 3;
+                //if r1, p_dialogueNum=3, else 4
+                if (p_responseNum == 1){
+                    p_dialogueNum = 3;
                     updateAffection(0);
-                } else if (responseNum == 2){
-                    dialogueNum = 4;
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 4;
                     updateAffection(15);
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 break;
             case 3: 
-                //if r1, dialogueNum=5, else 6
-                if (responseNum == 1){
-                    dialogueNum = 5;
+                //if r1, p_dialogueNum=5, else 6
+                if (p_responseNum == 1){
+                    p_dialogueNum = 5;
                     updateAffection(-10);
-                } else if (responseNum == 2){
-                    dialogueNum = 6;
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 6;
                     updateAffection(3);
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 break;
             case 4:
-                if (responseNum == 1){
-                    dialogueNum = 5;
+                if (p_responseNum == 1){
+                    p_dialogueNum = 5;
                     updateAffection(0);
-                } else if (responseNum == 2){
+                } else if (p_responseNum == 2){
                     updateAffection(5);
                     initiateMiniGame("Pong");
-                    //dialogueNum = 8;
+                    //p_dialogueNum = 8;
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 break;
             case 5:
                 //player stops talking to charlie...
                 //holdUp(5); //useless?
-                dialogueNum=7;
+                p_dialogueNum=7;
                 break;
             case 6:
-                if (responseNum == 1){
-                    dialogueNum = 5;
+                if (p_responseNum == 1){
+                    p_dialogueNum = 5;
                     updateAffection(-2);
-                } else if (responseNum == 2){
-                    //dialogueNum = 8;
+                } else if (p_responseNum == 2){
+                    //p_dialogueNum = 8;
                     updateAffection(8);
                     initiateMiniGame("Pong");
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 break;
             case 7:
                 //stuck
@@ -199,7 +199,7 @@ public class OLDCharlieBrown : Peanuts
                 //give user option to keep talking?
                 break;
         }
-        onDialogue(dialogueNum);
+        onDialogue(p_dialogueNum);
         Debug.Log(string.Format("current affection points: {0}", getAffectionPoints()));
     }
 
@@ -254,7 +254,7 @@ public class OLDCharlieBrown : Peanuts
     public void onDialogue(int d){
         //theAudio.loadSounds();
         //myDialogue.displayDialogue(d, Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
-        myDialogue.displayDialogue(d);
+        myDialogue.v_displayDialogue(d);
     }
 
 
@@ -279,10 +279,10 @@ public class OLDCharlieBrown : Peanuts
         Cr1p = myDialogue.r1p;
         Cr2p = myDialogue.r2p;
         */
-        dialogueNum = PeanutsDB.CharlieDialogueNum;
+        p_dialogueNum = PeanutsDB.CharlieDialogueNum;
         loadAffection(PeanutsDB.CharlieAffectionPts);
-        Debug.Log(string.Format("starting with {0} affection points on dialoge {1}", getAffectionPoints(), dialogueNum));
-        onDialogue(dialogueNum);
+        Debug.Log(string.Format("starting with {0} affection points on dialoge {1}", getAffectionPoints(), p_dialogueNum));
+        onDialogue(p_dialogueNum);
         /*
         dialogueText.SetText(dialogue0);
         response1Text.SetText(d0response1);
@@ -292,7 +292,7 @@ public class OLDCharlieBrown : Peanuts
     
     void Update(){
         PeanutsDB.CharlieAffectionPts = getAffectionPoints();
-        PeanutsDB.CharlieDialogueNum = dialogueNum;
+        PeanutsDB.CharlieDialogueNum = p_dialogueNum;
         /*
         int d = getDialogueNum();
         switch(d){
@@ -300,85 +300,85 @@ public class OLDCharlieBrown : Peanuts
                 displayDialogue(dialogue0, d0response1, d0response2);
                 displayJustText("umm");
                 //play sfx here or in above?
-                //if r1, dialogueNum=1, else 2
-                if (responseNum == 1){
-                    dialogueNum=1;
+                //if r1, p_dialogueNum=1, else 2
+                if (p_responseNum == 1){
+                    p_dialogueNum=1;
                     updateAffection(-1);
-                } else if (responseNum == 2){
-                    dialogueNum = 2;
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 2;
                     updateAffection(5);
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 
                 break;
             case 1:
                 displayDialogue(dialogue1, d1response1, d1response2);
-                //if r1, dialogueNum=5, else 2
-                if (responseNum == 1){
-                    dialogueNum = 5;
+                //if r1, p_dialogueNum=5, else 2
+                if (p_responseNum == 1){
+                    p_dialogueNum = 5;
                     updateAffection(-2);
-                } else if (responseNum == 2){
-                    dialogueNum = 2;
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 2;
                     updateAffection(15);
                 }
-                responseNum = 0;
+                p_responseNum = 0;
 
                 break;
             case 2:
                 displayDialogue(dialogue2, d2response1, d2response2);
-                //if r1, dialogueNum=3, else 4
-                if (responseNum == 1){
-                    dialogueNum = 3;
+                //if r1, p_dialogueNum=3, else 4
+                if (p_responseNum == 1){
+                    p_dialogueNum = 3;
                     updateAffection(0);
-                } else if (responseNum == 2){
-                    dialogueNum = 4;
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 4;
                     updateAffection(15);
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 break;
             case 3: 
                 displayDialogue(dialogue3, d3response1, d3response2);
-                //if r1, dialogueNum=5, else 6
-                if (responseNum == 1){
-                    dialogueNum = 5;
+                //if r1, p_dialogueNum=5, else 6
+                if (p_responseNum == 1){
+                    p_dialogueNum = 5;
                     updateAffection(-10);
-                } else if (responseNum == 2){
-                    dialogueNum = 6;
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 6;
                     updateAffection(3);
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 break;
             case 4:
                 displayDialogue(dialogue4, d4response1, d4response2);
-                //if r1, dialogueNum=5, else playMini()
-                if (responseNum == 1){
-                    dialogueNum = 5;
+                //if r1, p_dialogueNum=5, else playMini()
+                if (p_responseNum == 1){
+                    p_dialogueNum = 5;
                     updateAffection(0);
-                } else if (responseNum == 2){
-                    dialogueNum = 8;
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 8;
                     updateAffection(5);
                     initiateMiniGame();
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 break;
             case 5:
                 displayDialogue(dialogue5, "", "");
                 //player stops talking to charlie...
                 holdUp(5);
-                dialogueNum=7;
+                p_dialogueNum=7;
                 break;
             case 6:
                 displayDialogue(dialogue6, d6response1, d6response2);
-                //if r1, dialogueNum=5, else playMini()
-                if (responseNum == 1){
-                    dialogueNum = 5;
+                //if r1, p_dialogueNum=5, else playMini()
+                if (p_responseNum == 1){
+                    p_dialogueNum = 5;
                     updateAffection(-2);
-                } else if (responseNum == 2){
-                    dialogueNum = 8;
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 8;
                     updateAffection(8);
                     initiateMiniGame();
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 break;
             case 7:
                 displayJustText(dialogue7);

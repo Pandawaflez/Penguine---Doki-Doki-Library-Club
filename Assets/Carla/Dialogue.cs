@@ -12,24 +12,34 @@ public class Dialogue
     public GameObject r2p;
     
 
-    private string genericDialogue = "Who am I?";
-    private string genericResponse1 = "Bro";
-    private string genericResponse2 = "ruh roh";
+    private string _genericDialogue = "Who am I?";
+    private string _genericResponse1 = "Bro";
+    private string _genericResponse2 = "ruh roh";
 
-    public virtual void displayDialogue(int d){
+    //pubic void v_displayDialogue(int d)
+    public virtual void v_displayDialogue(int d)
+    {
     //public virtual void displayDialogue(int d, GameObject cr1p, GameObject cr2p, TextMeshProUGUI cdt, TextMeshProUGUI cr1t, TextMeshProUGUI cr2t){
         //display the dialogue, call sfx, wait a few sec, display response
-        //dialogueText.SetText(genericDialogue);
-        //response1Text.SetText(genericResponse1);
-        //response2Text.SetText(genericResponse2);
+        dialogueText.SetText(_genericDialogue);
+        response1Text.SetText(_genericResponse1);
+        response2Text.SetText(_genericResponse2);
         //call sfx. should only play 3 sec
+    }
+    public Schroeder st;
+    public void reg(Schroeder s, int d) //ig ref is the same thing as pointer????
+    {
+        st = s;
+        Debug.Log(st.getDialogueNum().ToString());
+    }
+    public void up(){
+        Debug.Log("calling up");
+        Debug.Log(st.getDialogueNum().ToString());
     }
 }
 
 public class CharlieDialogue : Dialogue
 {
-    //public TextMeshProUGUI dialogueText, response1Text, response2Text;
-
     //dialogue order: 
     //0->a1|b2
     //1->a5|b2
@@ -73,79 +83,12 @@ public class CharlieDialogue : Dialogue
     public string dialogue8 = "Well, thanks for playing!";
 
     //what's that got to do with anything
-    
-
-    //was public
-    /*
-    public override void displayDialogue(int d, GameObject r1p, GameObject r2p, TextMeshProUGUI dt, TextMeshProUGUI r1t, TextMeshProUGUI r2t){
-        switch(d){
-            case 0:
-            r2p.SetActive(true);
-            r1p.SetActive(true);
-            Debug.Log("first time here huh");
-                displayRealDialogue(dialogue0, d0response1, d0response2, dt, r1t, r2t);
-                
-                break;
-            case 1:
-            Debug.Log("here i stand");
-                displayRealDialogue(dialogue1, d1response1, d1response2, dt, r1t, r2t);
-                
-                break;
-            case 2:
-                displayRealDialogue(dialogue2, d2response1, d2response2, dt, r1t, r2t);
-                
-                break;
-            case 3: 
-                displayRealDialogue(dialogue3, d3response1, d3response2, dt, r1t, r2t);
-                
-                break;
-            case 4:
-                displayRealDialogue(dialogue4, d4response1, d4response2, dt, r1t, r2t);
-                
-                break;
-            case 5:
-                displayJustText(dialogue5, r1p, r2p, dt);
-                
-                break;
-            case 6:
-                displayRealDialogue(dialogue6, d6response1, d6response2, dt, r1t, r2t);
-                
-                break;
-            case 7:
-                displayJustText(dialogue7, r1p, r2p, dt);
-                //stuck
-                break;
-            case 8:
-                displayJustText(dialogue8, r1p, r2p, dt);
-                break;
-        }
-    }
-
-    private void displayRealDialogue(string dialogue, string r1, string r2, TextMeshProUGUI dt, TextMeshProUGUI r1t, TextMeshProUGUI r2t){
-        //dialogueText.SetText(dialogue);
-        //response1Text.SetText(r1);
-        //response2Text.SetText(r2);
-        dt.SetText(dialogue);
-        r1t.SetText(r1);
-        r2t.SetText(r2);
-    }
-    private string dialouge70 = "this is dialogue 70";
-    public string getDialogue70(){
-        return dialouge70;
-    }
-    
-    private void displayJustText(string dialogue, GameObject r1p, GameObject r2p, TextMeshProUGUI dt){
-        //dialogueText.SetText(dialogue);
-        dt.SetText(dialogue);
-        r2p.SetActive(false);
-        r1p.SetActive(false);
-        //r1.gameObject.SetActive(false); //these didn't work for no reason smh
-        //r2.gameObject.SetActive(false);
-    }
-    */
-
-    public override void displayDialogue(int d){
-        switch(d){
+ 
+    //public void v_displayDialogue(int d)
+    public override void v_displayDialogue(int d)
+    {
+        switch(d)
+        {
             case 0:
             r2p.SetActive(true);
             r1p.SetActive(true);
@@ -184,16 +127,21 @@ public class CharlieDialogue : Dialogue
             case 8:
                 displayJustText(dialogue8);
                 break;
+            default:
+                Debug.Log("no dialogue in d class");
+                break;
         }
     }
 
-    private void displayRealDialogue(string dialogue, string r1, string r2){
+    private void displayRealDialogue(string dialogue, string r1, string r2)
+    {
         dialogueText.SetText(dialogue);
         response1Text.SetText(r1);
         response2Text.SetText(r2);
     }
 
-    private void displayJustText(string dialogue){
+    private void displayJustText(string dialogue)
+    {
         dialogueText.SetText(dialogue);
         //dt.SetText(dialogue);
         r2p.SetActive(false);
@@ -202,7 +150,8 @@ public class CharlieDialogue : Dialogue
         //r2.gameObject.SetActive(false);
     }
 
-    public CharlieDialogue(GameObject Cr1p, GameObject Cr2p, TextMeshProUGUI dt, TextMeshProUGUI r1t, TextMeshProUGUI r2t){
+    public CharlieDialogue(GameObject Cr1p, GameObject Cr2p, TextMeshProUGUI dt, TextMeshProUGUI r1t, TextMeshProUGUI r2t)
+    {
         dialogueText =  dt;
         response1Text = r1t;
         response2Text = r2t;
@@ -215,8 +164,6 @@ public class CharlieDialogue : Dialogue
 
 public class LucyDialogue : Dialogue
 {
-    //public TextMeshProUGUI dialogueText, response1Text, response2Text;
-
     //dialogue order: 
     //0-> a1|b2
     //1-> a4|b3
@@ -307,8 +254,10 @@ public class LucyDialogue : Dialogue
 
     //good dialogue end loop? or kicks you out of library...?
 
-    public override void displayDialogue(int d){
-        switch(d){
+    public override void v_displayDialogue(int d)
+    {
+        switch(d)
+        {
             case 0:
             r2p.SetActive(true);
             r1p.SetActive(true);
@@ -388,13 +337,15 @@ public class LucyDialogue : Dialogue
         }
     }
 
-    private void displayRealDialogue(string dialogue, string r1, string r2){
+    private void displayRealDialogue(string dialogue, string r1, string r2)
+    {
         dialogueText.SetText(dialogue);
         response1Text.SetText(r1);
         response2Text.SetText(r2);
     }
 
-    private void displayJustText(string dialogue){
+    private void displayJustText(string dialogue)
+    {
         dialogueText.SetText(dialogue);
         //dt.SetText(dialogue);
         r2p.SetActive(false);
@@ -403,7 +354,8 @@ public class LucyDialogue : Dialogue
         //r2.gameObject.SetActive(false);
     }
 
-    public LucyDialogue(GameObject Lr1p, GameObject Lr2p, TextMeshProUGUI dt, TextMeshProUGUI r1t, TextMeshProUGUI r2t){
+    public LucyDialogue(GameObject Lr1p, GameObject Lr2p, TextMeshProUGUI dt, TextMeshProUGUI r1t, TextMeshProUGUI r2t)
+    {
         dialogueText =  dt;
         response1Text = r1t;
         response2Text = r2t;
@@ -419,33 +371,38 @@ public class SnoopyDialogue : Dialogue
     private string d0response1 = "Dog";
     private string d0response2 = "Yo dog!";
 
-    public override void displayDialogue(int d){
-        switch(d){
+    public override void v_displayDialogue(int d)
+    {
+        switch(d)
+        {
             case 0:
             r2p.SetActive(true);
             r1p.SetActive(true);
             Debug.Log("first time here huh");
-                displayRealDialogue(dialogue0, d0response1, d0response2);
+            displayRealDialogue(dialogue0, d0response1, d0response2);
+            break;
+            default:
+                Debug.Log("no dialogue in d class");
                 break;
         }
     }
 
-    private void displayRealDialogue(string dialogue, string r1, string r2){
+    private void displayRealDialogue(string dialogue, string r1, string r2)
+    {
         dialogueText.SetText(dialogue);
         response1Text.SetText(r1);
         response2Text.SetText(r2);
     }
 
-    private void displayJustText(string dialogue){
+    private void displayJustText(string dialogue)
+    {
         dialogueText.SetText(dialogue);
-        //dt.SetText(dialogue);
         r2p.SetActive(false);
         r1p.SetActive(false);
-        //r1.gameObject.SetActive(false); //these didn't work for no reason smh
-        //r2.gameObject.SetActive(false);
     }
 
-    public SnoopyDialogue(GameObject Lr1p, GameObject Lr2p, TextMeshProUGUI dt, TextMeshProUGUI r1t, TextMeshProUGUI r2t){
+    public SnoopyDialogue(GameObject Lr1p, GameObject Lr2p, TextMeshProUGUI dt, TextMeshProUGUI r1t, TextMeshProUGUI r2t)
+    {
         dialogueText =  dt;
         response1Text = r1t;
         response2Text = r2t;

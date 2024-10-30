@@ -10,15 +10,41 @@ using UnityEngine.EventSystems;
 
 public class Lucy : Peanuts
 {
-    //graphics
-    //sfx
-    //minigame
-
+    //the following need to be public so we can attach them to sprites
+    public AudioManager theAudio;
+    public TextMeshProUGUI LdialogueText, Lresponse1Text, Lresponse2Text;
+    public GameObject Lr1p;
+    public GameObject Lr2p;
+    
+    //no buttons because i'm using weird techniques
+    public Dialogue genDialogue;
+    private LucyDialogue myDialogue;
     private string game = "Math";
+
+    void Start()
+    {
+        //genDialogue = new Dialogue();
+        Lr1p.SetActive(true);
+        Lr2p.SetActive(true);
+        myDialogue = new LucyDialogue(Lr1p, Lr2p, LdialogueText, Lresponse1Text, Lresponse2Text);
+    
+        p_dialogueNum = PeanutsDB.LucyDialogueNum;
+        loadAffection(PeanutsDB.LucyAffectionPts);
+        Debug.Log(string.Format("starting with {0} affection points on dialoge {1}", getAffectionPoints(), p_dialogueNum));
+        onDialogue(p_dialogueNum);
+
+    }
+    
+    void Update()
+    {
+        PeanutsDB.LucyAffectionPts = getAffectionPoints();
+        PeanutsDB.LucyDialogueNum = p_dialogueNum;
+        //Debug.Log(p_responseNum.ToString());
+    }
 
     public void hitResponse1()
     {
-        responseNum = 1;
+        p_responseNum = 1;
         Debug.Log("they hit it boss");
 
         // Run logic, then clear selection to avoid sticking
@@ -29,7 +55,7 @@ public class Lucy : Peanuts
     // Button 2 OnClick
     public void hitResponse2()
     {
-        responseNum = 2;
+        p_responseNum = 2;
         Debug.Log("punch 2");
         // Run logic, then clear selection
         toNextDialogue();
@@ -47,156 +73,157 @@ public class Lucy : Peanuts
 
 
     //a button being hit will trigger this. decides how to respond to response
-    private void toNextDialogue(){
+    private void toNextDialogue()
+    {
         int d = getDialogueNum();
         switch(d){
             case 0:
-                if (responseNum == 1){
-                    dialogueNum=1;
+                if (p_responseNum == 1){
+                    p_dialogueNum=1;
                     updateAffection(-1);
-                } else if (responseNum == 2){
-                    dialogueNum = 2;
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 2;
                     updateAffection(5);
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 break;
             case 1:
-                if (responseNum == 1){
-                    dialogueNum = 4;
+                if (p_responseNum == 1){
+                    p_dialogueNum = 4;
                     updateAffection(-2);
-                } else if (responseNum == 2){
-                    dialogueNum = 3;
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 3;
                     updateAffection(15);
                 }
-                responseNum = 0;
+                p_responseNum = 0;
 
                 break;
             case 2:
-                //if r1, dialogueNum=3, else 4
-                if (responseNum == 1){
-                    dialogueNum = 5;
+                //if r1, p_dialogueNum=3, else 4
+                if (p_responseNum == 1){
+                    p_dialogueNum = 5;
                     updateAffection(0);
-                } else if (responseNum == 2){
-                    dialogueNum = 6;
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 6;
                     updateAffection(15);
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 break;
             case 3: 
-                //if r1, dialogueNum=5, else 6
-                if (responseNum == 1){
-                    dialogueNum = 7;
+                //if r1, p_dialogueNum=5, else 6
+                if (p_responseNum == 1){
+                    p_dialogueNum = 7;
                     updateAffection(-10);
-                } else if (responseNum == 2){
-                    dialogueNum = 2;
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 2;
                     updateAffection(3);
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 break;
             case 4:
-                if (responseNum == 1){
-                    dialogueNum = 7;
+                if (p_responseNum == 1){
+                    p_dialogueNum = 7;
                     updateAffection(0);
-                } else if (responseNum == 2){
+                } else if (p_responseNum == 2){
                     updateAffection(5);
-                    dialogueNum = 8;
+                    p_dialogueNum = 8;
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 break;
             case 5:
-                if (responseNum == 1){
-                    dialogueNum = 10;
+                if (p_responseNum == 1){
+                    p_dialogueNum = 10;
                     updateAffection(0);
-                } else if (responseNum == 2){
+                } else if (p_responseNum == 2){
                     updateAffection(5);
-                    dialogueNum = 9;
+                    p_dialogueNum = 9;
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 break;
             case 6:
-                if (responseNum == 1){
-                    dialogueNum = 10;
+                if (p_responseNum == 1){
+                    p_dialogueNum = 10;
                     updateAffection(-2);
-                } else if (responseNum == 2){
-                    dialogueNum = 9;
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 9;
                     updateAffection(8); 
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 break;
             case 7:
-                dialogueNum = 15;
+                p_dialogueNum = 15;
                 break;
             case 8:
-                if (responseNum == 1){
-                    dialogueNum = 7;
+                if (p_responseNum == 1){
+                    p_dialogueNum = 7;
                     updateAffection(-2);
-                } else if (responseNum == 2){
-                    dialogueNum = 6;
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 6;
                     updateAffection(8); 
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 break;
             case 9:
-                if (responseNum == 1){
-                    dialogueNum = 10;
+                if (p_responseNum == 1){
+                    p_dialogueNum = 10;
                     updateAffection(-2);
-                } else if (responseNum == 2){
+                } else if (p_responseNum == 2){
                     
                     updateAffection(8); 
                     initiateMiniGame(game);
                     //this should depend on winning (16) & losing (17).
-                    dialogueNum = 16;
+                    p_dialogueNum = 16;
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 break;
             case 10:
-                if (responseNum == 1){
-                    dialogueNum = 7;
+                if (p_responseNum == 1){
+                    p_dialogueNum = 7;
                     updateAffection(-2);
-                } else if (responseNum == 2){
-                    dialogueNum = 11;
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 11;
                     updateAffection(8); 
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 break;
             case 11:
-                if (responseNum == 1){
-                    dialogueNum = 12;
+                if (p_responseNum == 1){
+                    p_dialogueNum = 12;
                     updateAffection(-2);
-                } else if (responseNum == 2){
+                } else if (p_responseNum == 2){
                     
                     updateAffection(8); 
                     initiateMiniGame(game);
                     //this should depend on winning (16) & losing (17).
-                    dialogueNum = 16;
+                    p_dialogueNum = 16;
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 break;
             case 12:
-                if (responseNum == 1){
-                    dialogueNum = 14;
+                if (p_responseNum == 1){
+                    p_dialogueNum = 14;
                     updateAffection(-2);
-                } else if (responseNum == 2){
-                    dialogueNum = 13;
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 13;
                     updateAffection(8); 
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 break;
             case 13:
-                if (responseNum == 1){
-                    dialogueNum = 14;
+                if (p_responseNum == 1){
+                    p_dialogueNum = 14;
                     updateAffection(-2);
-                } else if (responseNum == 2){
+                } else if (p_responseNum == 2){
                     
                     updateAffection(8); 
                     initiateMiniGame(game);
                     //this should depend on winning (16) & losing (17). //update affection points there or here?
-                    dialogueNum = 16;
+                    p_dialogueNum = 16;
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 break;
             case 14:
-                dialogueNum = 15;
+                p_dialogueNum = 15;
                 break;
             case 15:
                 //froze out options
@@ -205,62 +232,33 @@ public class Lucy : Peanuts
                 //user won
                 updateAffection(-10);
                 //post game ... give options to talk?
-                if (responseNum == 1){
-                    dialogueNum = 14;
+                if (p_responseNum == 1){
+                    p_dialogueNum = 14;
                     updateAffection(-5);
-                } else if (responseNum == 2){
-                    dialogueNum = 18;
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 18;
                     updateAffection(15); 
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 break;
             case 17:
                 //user lost
                 updateAffection(10);
                 //post game... no options to talk cause lucy likes them?
                 break;
+            default:
+                Debug.Log("uh oh - no dialogue match");
+                break;
         }
-        onDialogue(dialogueNum);
+        onDialogue(p_dialogueNum);
         Debug.Log(string.Format("current affection points: {0}", getAffectionPoints()));
     }
 
-    //public AudioManager theAudio;
-
-    public void onDialogue(int d){
+    public void onDialogue(int d)
+    {
         //theAudio.loadSounds();
         //myDialogue.displayDialogue(d, Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
-        myDialogue.displayDialogue(d);
-    }
-
-
-    private LucyDialogue myDialogue;
-    public Dialogue genDialogue;
-    
-    public TextMeshProUGUI LdialogueText, Lresponse1Text, Lresponse2Text;
-    public GameObject Lr1p;
-    public GameObject Lr2p;
-
-    //spriteRenderer
-
-   
-    void Start(){
-        //genDialogue = new Dialogue();
-        Lr1p.SetActive(true);
-        Lr2p.SetActive(true);
-        myDialogue = new LucyDialogue(Lr1p, Lr2p, LdialogueText, Lresponse1Text, Lresponse2Text);
-    
-        dialogueNum = PeanutsDB.LucyDialogueNum;
-        loadAffection(PeanutsDB.LucyAffectionPts);
-        Debug.Log(string.Format("starting with {0} affection points on dialoge {1}", getAffectionPoints(), dialogueNum));
-        onDialogue(dialogueNum);
-
-    }
-    
-    void Update(){
-        PeanutsDB.LucyAffectionPts = getAffectionPoints();
-        PeanutsDB.LucyDialogueNum = dialogueNum;
-        //Debug.Log(responseNum.ToString());
-
+        myDialogue.v_displayDialogue(d);
     }
     
 }

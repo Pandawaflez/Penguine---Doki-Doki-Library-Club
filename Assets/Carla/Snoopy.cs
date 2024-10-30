@@ -10,14 +10,38 @@ using UnityEngine.EventSystems;
 
 public class Snoopy : Peanuts
 {
+    public AudioManager theAudio;
+    
+    public TextMeshProUGUI CdialogueText, Cresponse1Text, Cresponse2Text;
+    public GameObject Cr1p;
+    public GameObject Cr2p;
 
-    //public Button r1;
-    //public Button r2;
+    public Dialogue genDialogue;
+    private SnoopyDialogue myDialogue;
+
+    private string game = "Minesweeper";
+
+   
+    void Start()
+    {
+        myDialogue = new SnoopyDialogue(Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
+        //theAudio = new AudioManager();
+        p_dialogueNum = PeanutsDB.SnoopyDialogueNum;
+        loadAffection(PeanutsDB.SnoopyAffectionPts);
+        Debug.Log(string.Format("starting with {0} affection points on dialoge {1}", getAffectionPoints(), p_dialogueNum));
+        onDialogue(p_dialogueNum);
+    }
+    
+    void Update()
+    {
+        PeanutsDB.CharlieAffectionPts = getAffectionPoints();
+        PeanutsDB.CharlieDialogueNum = p_dialogueNum;
+    }
 
     // Button 1 OnClick
     public void hitResponse1()
     {
-        responseNum = 1;
+        p_responseNum = 1;
         Debug.Log("they hit it boss");
 
         // Run logic, then clear selection to avoid sticking
@@ -28,7 +52,7 @@ public class Snoopy : Peanuts
     // Button 2 OnClick
     public void hitResponse2()
     {
-        responseNum = 2;
+        p_responseNum = 2;
 
         // Run logic, then clear selection
         toNextDialogue();
@@ -50,74 +74,74 @@ public class Snoopy : Peanuts
         int d = getDialogueNum();
         switch(d){
             case 0:
-                if (responseNum == 1){
-                    dialogueNum=1;
+                if (p_responseNum == 1){
+                    p_dialogueNum=1;
                     updateAffection(-1);
-                } else if (responseNum == 2){
-                    dialogueNum = 2;
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 2;
                     updateAffection(5);
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 break;
             case 1:
-                if (responseNum == 1){
-                    dialogueNum = 5;
+                if (p_responseNum == 1){
+                    p_dialogueNum = 5;
                     updateAffection(-2);
-                } else if (responseNum == 2){
-                    dialogueNum = 2;
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 2;
                     updateAffection(15);
                 }
-                responseNum = 0;
+                p_responseNum = 0;
 
                 break;
             case 2:
-                //if r1, dialogueNum=3, else 4
-                if (responseNum == 1){
-                    dialogueNum = 3;
+                //if r1, p_dialogueNum=3, else 4
+                if (p_responseNum == 1){
+                    p_dialogueNum = 3;
                     updateAffection(0);
-                } else if (responseNum == 2){
-                    dialogueNum = 4;
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 4;
                     updateAffection(15);
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 break;
             case 3: 
-                //if r1, dialogueNum=5, else 6
-                if (responseNum == 1){
-                    dialogueNum = 5;
+                //if r1, p_dialogueNum=5, else 6
+                if (p_responseNum == 1){
+                    p_dialogueNum = 5;
                     updateAffection(-10);
-                } else if (responseNum == 2){
-                    dialogueNum = 6;
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 6;
                     updateAffection(3);
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 break;
             case 4:
-                if (responseNum == 1){
-                    dialogueNum = 5;
+                if (p_responseNum == 1){
+                    p_dialogueNum = 5;
                     updateAffection(0);
-                } else if (responseNum == 2){
+                } else if (p_responseNum == 2){
                     updateAffection(5);
                     initiateMiniGame("Pong");
-                    //dialogueNum = 8;
+                    //p_dialogueNum = 8;
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 break;
             case 5:
                 //player stops talking to charlie...
                 //holdUp(5); //useless?
-                dialogueNum=7;
+                p_dialogueNum=7;
                 break;
             case 6:
-                if (responseNum == 1){
-                    dialogueNum = 5;
+                if (p_responseNum == 1){
+                    p_dialogueNum = 5;
                     updateAffection(-2);
-                } else if (responseNum == 2){
-                    //dialogueNum = 8;
+                } else if (p_responseNum == 2){
+                    //p_dialogueNum = 8;
                     updateAffection(8);
                     initiateMiniGame("Pong");
                 }
-                responseNum = 0;
+                p_responseNum = 0;
                 break;
             case 7:
                 //stuck
@@ -126,56 +150,18 @@ public class Snoopy : Peanuts
                 //post game
                 //give user option to keep talking?
                 break;
+            default:
+                Debug.Log("uh oh - no dialogue match");
+                break;
         }
-        onDialogue(dialogueNum);
+        onDialogue(p_dialogueNum);
         Debug.Log(string.Format("current affection points: {0}", getAffectionPoints()));
     }
-
-    
-    //public AudioManager theAudio;
 
     public void onDialogue(int d){
         //theAudio.loadSounds();
         //myDialogue.displayDialogue(d, Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
-        myDialogue.displayDialogue(d);
-    }
-    
-
-    private SnoopyDialogue myDialogue;
-    public Dialogue genDialogue;
-    
-    public TextMeshProUGUI CdialogueText, Cresponse1Text, Cresponse2Text;
-    public GameObject Cr1p;
-    public GameObject Cr2p;
-
-    //spriteRenderer
-
-   
-    void Start(){
-        //genDialogue = new Dialogue();
-        myDialogue = new SnoopyDialogue(Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
-        //theAudio = new AudioManager();
-        /*
-        CdialogueText = myDialogue.dialogueText;
-        Cresponse1Text = myDialogue.response1Text;
-        Cresponse2Text = myDialogue.response2Text;
-        Cr1p = myDialogue.r1p;
-        Cr2p = myDialogue.r2p;
-        */
-        dialogueNum = PeanutsDB.SnoopyDialogueNum;
-        loadAffection(PeanutsDB.SnoopyAffectionPts);
-        Debug.Log(string.Format("starting with {0} affection points on dialoge {1}", getAffectionPoints(), dialogueNum));
-        onDialogue(dialogueNum);
-        /*
-        dialogueText.SetText(dialogue0);
-        response1Text.SetText(d0response1);
-        response2Text.SetText("my sweet sweet charlie prince...");
-        */
-    }
-    
-    void Update(){
-        PeanutsDB.CharlieAffectionPts = getAffectionPoints();
-        PeanutsDB.CharlieDialogueNum = dialogueNum;
+        myDialogue.v_displayDialogue(d);
     }
     
 }

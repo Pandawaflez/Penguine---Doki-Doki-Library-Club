@@ -12,8 +12,8 @@ public class Peanuts : MonoBehaviour
     //sfx
 
     //dialoguetracker
-    protected int dialogueNum = 0;
-    protected int responseNum = 0;
+    protected int p_dialogueNum = 0;
+    protected int p_responseNum = 0;
     protected void initiateMiniGame(string game){
         //SceneManager.LoadScene("Pong", LoadSceneMode.Additive);
         SceneChanger.saveScene();
@@ -22,27 +22,30 @@ public class Peanuts : MonoBehaviour
     }
 
     public int getResponseNum(){
-        return responseNum;
+        return p_responseNum;
     }
     public int getDialogueNum(){
-        return dialogueNum;
+        return p_dialogueNum;
     }
 
     //affection points
-    private int affectionPoints;
+    private int _affectionPoints;
 
     public int getAffectionPoints(){
-        return affectionPoints;
+        return _affectionPoints;
     }
     public void updateAffection(int newPoints){
-        affectionPoints += newPoints;
+        _affectionPoints += newPoints;
     }
 
     protected void loadAffection(int totalPoints){
-        affectionPoints = totalPoints;
+        _affectionPoints = totalPoints;
     }
 
     //minigame
+
+    //can have start & update in parent class??
+    //then just update all 4 char affection&dialogue every time?
 
     
 }
