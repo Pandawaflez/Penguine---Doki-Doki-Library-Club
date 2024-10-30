@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShadowDialogue : HedgehogDialogue
 {
-    private AffectionManager affectionManager;
+    public AffectionManager affectionManager;
 
     private List<string> shadowLines = new List<string>(){
         "Wassup, I'm Shadow. Did you want something?",
@@ -59,7 +59,8 @@ public class ShadowDialogue : HedgehogDialogue
             return;
         } else if(affectionManager.GetShadowAffectionPoints() == 100){
             DialogueLine = "Let's play. You're about to get cooked.";
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Pong");
+            // add carson's function
+            //UnityEngine.SceneManagement.SceneManager.LoadScene("Pong");
             return;
         }
         

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SonicDialogue : HedgehogDialogue
 {
-    private AffectionManager affectionManager;
+    public AffectionManager affectionManager;
 
     private List<string> sonicLines = new List<string>(){
         "Hey I'm Sonic! Fastest hedgehog alive! Need anything?",
