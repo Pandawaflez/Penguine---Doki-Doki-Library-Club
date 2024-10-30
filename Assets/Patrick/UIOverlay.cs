@@ -100,7 +100,7 @@ public class UIOverlay : UIElement
         GameObject fillArea = new GameObject("FillArea", typeof(Image));
         fillArea.transform.SetParent(sliderObject.transform, false);
         Image fillImage = fillArea.GetComponent<Image>();
-        fillImage.color = Color.green;  // Green fill for the progress
+        fillImage.color = Color.red;  // Green fill for the progress
 
         RectTransform fillRect = fillArea.GetComponent<RectTransform>();
         fillRect.anchorMin = Vector2.zero;  // Anchor the fill to the left
