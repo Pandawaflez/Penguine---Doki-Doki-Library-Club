@@ -8,16 +8,20 @@ public class PongScoreManager : ScoreManager
     public const int AI_WON = 2;
 
     public PongScoreManager(int winScore) : base(winScore) {
-        Debug.Log("scoreToWin = " + scoreToWin);
+        Debug.Log("PongScoreManager::scoreToWin = " + scoreToWin);
     }
 
     public override void AddPlayerScore(int val = 0) {
-        playerScore++;
+        if (playerScore < scoreToWin) {
+            playerScore++;
+        }
         Debug.Log("PongScoreManager::AddPlayerScore\tplayerScore = " + playerScore);
     }
 
     public void AddAIScore() {
-        aiScore++;
+        if (aiScore < scoreToWin) {
+            aiScore++;
+        }
         Debug.Log("PongScoreManager::AddAIScore\tAIScore = " + aiScore);
     }
 
