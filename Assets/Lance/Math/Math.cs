@@ -6,7 +6,7 @@ using TMPro;
 
 public class Math : MiniGameLevel
 {
-    private MathScoreManager scoreManager;
+    private ScoreManager scoreManager;
     [SerializeField] TextMeshProUGUI leftNum;
     [SerializeField] TextMeshProUGUI rightNum;
     [SerializeField] TextMeshProUGUI op;
@@ -26,7 +26,8 @@ public class Math : MiniGameLevel
     public void Start()
     {
         // BC Mode score to win is -1000
-        scoreManager = new MathScoreManager((MainPlayer.IsBCMode()) ? -1000 : SCORE_TO_WIN);
+        // scoreManager = new MathScoreManager((MainPlayer.IsBCMode()) ? -1000 : SCORE_TO_WIN);
+        scoreManager = ScoreManagerFactory.CreateScoreManager( "Math", (MainPlayer.IsBCMode()) ? -1000 : SCORE_TO_WIN);
         timeLimit = TIME_LIMIT;
         timeRemaining = timeLimit;
         leftAnswer.onClick.AddListener(() => CheckAnswer(leftAnswer));

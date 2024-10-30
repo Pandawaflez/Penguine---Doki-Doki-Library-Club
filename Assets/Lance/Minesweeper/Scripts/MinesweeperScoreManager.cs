@@ -34,7 +34,7 @@ public class MinesweeperScoreManager : ScoreManager
         return didPlayerHitMine;
     }
 
-    public void SetPlayerHitMine(bool hitMine = true) {
+    public override void SetPlayerHitMine(bool hitMine = true) {
         didPlayerHitMine = true;
     }
 }

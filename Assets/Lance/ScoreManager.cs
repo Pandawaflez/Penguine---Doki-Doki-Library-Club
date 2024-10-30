@@ -31,4 +31,9 @@ public class ScoreManager
     public int GetPlayerScore() {
         return playerScore;
     }
+
+    // static
+    public virtual void SetPlayerHitMine(bool hitMine = true) {
+        // empty function for Minesweeper
+    }
 }

@@ -12,7 +12,7 @@ public class Minesweeper : MiniGameLevel {
     [SerializeField] private TextMeshProUGUI winnerText;
 
     private List<Tile> tiles = new();
-    private MinesweeperScoreManager scoreManager;
+    private ScoreManager scoreManager;
 
     private float timeRemaining;
     private int width;
@@ -28,7 +28,8 @@ public class Minesweeper : MiniGameLevel {
         timeLimit = TIME_LIMIT;
         timeRemaining = timeLimit;
         CreateGameBoard(9, 9, 10); // Easy
-        scoreManager = new MinesweeperScoreManager(width*height, numMines);
+        // scoreManager = new MinesweeperScoreManager(width*height, numMines);
+        scoreManager = ScoreManagerFactory.CreateScoreManager("Minesweeper", width*height, numMines);
         ResetGameState();
     }
 

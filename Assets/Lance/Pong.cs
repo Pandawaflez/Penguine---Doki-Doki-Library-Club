@@ -8,7 +8,7 @@ using TMPro;
 // this should be the game manager for the pong level. lets hope
 public class Pong : MiniGameLevel
 {
-    private PongScoreManager scoreManager;
+    private ScoreManager scoreManager;
     public static Vector2 bottomLeft;
     public static Vector2 topRight;
     [SerializeField] TextMeshProUGUI playerScoreText;
@@ -25,7 +25,8 @@ public class Pong : MiniGameLevel
     {
         bottomLeft = Camera.main.ScreenToWorldPoint(new Vector2(0,0));
         topRight = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-        scoreManager = new PongScoreManager(3);
+        // scoreManager = new PongScoreManager(3);
+        scoreManager = ScoreManagerFactory.CreateScoreManager("Pong", 3);
     }
 
     // Update is called once per frame
@@ -37,7 +38,7 @@ public class Pong : MiniGameLevel
     // update the score display in the pong game
     private void UpdateScore() {
         playerScoreText.text = scoreManager.GetPlayerScore().ToString();
-        aiScoreText.text = scoreManager.GetAIScore().ToString();
+        aiScoreText.text = (scoreManager as PongScoreManager)?.GetAIScore().ToString();
     }
 
     // add one to the player score
@@ -49,7 +50,7 @@ public class Pong : MiniGameLevel
 
     // add one to the ai score
     public void addAIScore() {
-        scoreManager.AddAIScore();
+        (scoreManager as PongScoreManager)?.AddAIScore();
         UpdateScore();
         CheckGameOver();
     }
