@@ -20,7 +20,12 @@ public class PongScoreManager : ScoreManager
 
     public void AddAIScore() {
         if (aiScore < scoreToWin) {
-            aiScore++;
+            if (MainPlayer.IsBCMode()) {
+                // add to BC's score instead of AI's score
+                AddPlayerScore();
+            } else {
+                aiScore++;
+            }
         }
         Debug.Log("PongScoreManager::AddAIScore\tAIScore = " + aiScore);
     }
@@ -33,7 +38,10 @@ public class PongScoreManager : ScoreManager
             Debug.Log("Player Won!");
             return PLAYER_WON;
         } else if (aiScore >= scoreToWin) {
-            Debug.Log("AI Won :(");
+            if (MainPlayer.IsBCMode()) {
+                // BC Can never lose
+                return PLAYER_WON;
+            }
             return AI_WON;
         }
         return WIN_CONDITION_NOT_MET;
