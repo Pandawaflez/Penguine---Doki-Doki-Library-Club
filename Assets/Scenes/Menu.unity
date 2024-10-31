@@ -894,9 +894,9 @@ RectTransform:
   - {fileID: 826748898}
   - {fileID: 649249109}
   - {fileID: 194295800}
+  - {fileID: 806838709}
   - {fileID: 15657473}
   - {fileID: 1234091629}
-  - {fileID: 806838709}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
