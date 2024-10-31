@@ -19,6 +19,8 @@ public class UIOverlay : UIElement
     // Create the UI elements for all characters
     private void CreateCharacterUI(Sprite[] images, string[] names)
     {
+        Sprite heartImageSprite = Resources.Load<Sprite>("Patrick/heart"); //heart sprite for progress bars
+
         for (int i = 0; i < names.Length; i++)
         {
             GameObject container = new GameObject(names[i], typeof(RectTransform));
@@ -32,7 +34,7 @@ public class UIOverlay : UIElement
             Image profileImage = CreateProfileImage(images[i], container);
 
             // Create the progress meter (Slider)
-            Slider progressMeter = CreateProgressMeter(container);
+            Slider progressMeter = CreateProgressMeter(container, heartImageSprite);
 
             // Create the points text field
             Text pointsText = CreatePointsText(container);
@@ -60,7 +62,7 @@ public class UIOverlay : UIElement
     }
 
     // Helper: Create the progress meter (Slider)
-    private Slider CreateProgressMeter(GameObject parent)
+    private Slider CreateProgressMeter(GameObject parent, Sprite heartImage)
     {
             // Debug.Log("Creating progress meter");
 
@@ -105,8 +107,8 @@ public class UIOverlay : UIElement
         RectTransform fillRect = fillArea.GetComponent<RectTransform>();
         fillRect.anchorMin = Vector2.zero;  // Anchor the fill to the left
         fillRect.anchorMax = Vector2.one;   // Stretch the fill horizontally
-        fillRect.offsetMin = new Vector2(0, 2);  // Optional: Add slight padding inside
-        fillRect.offsetMax = new Vector2(0, -2); // Optional: Adjust for better alignment
+        fillRect.offsetMin = new Vector2(0, 2);  //Add slight padding inside
+        fillRect.offsetMax = new Vector2(0, -2); //Adjust for better alignment
 
         //Assign the fill area to the slider's fillRect property
         slider.fillRect = fillRect;
@@ -115,11 +117,12 @@ public class UIOverlay : UIElement
         GameObject handle = new GameObject("Handle", typeof(Image));
         handle.transform.SetParent(sliderObject.transform, false);
         Image handleImage = handle.GetComponent<Image>();
-        handleImage.color = Color.white;  // White handle for visibility
+        handleImage.sprite = heartImage; //set the heart image as the handle
+        // handleImage.color = Color.white;  // White handle for visibility
 
         RectTransform handleRect = handle.GetComponent<RectTransform>();
-        handleRect.sizeDelta = new Vector2(10, 20);  // Adjust the size of the handle
-        slider.handleRect = handleRect;  // Assign the handle to the slider
+        handleRect.sizeDelta = new Vector2(15, 15);  //Adjust the size of the handle
+        slider.handleRect = handleRect;  //Assign the handle to the slider
 
         return slider;
     }

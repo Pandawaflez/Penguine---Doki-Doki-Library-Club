@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    public GameObject submitButton;  // Assign via Inspector
-    public GameObject inputField;    // Assign via Inspector
+    public GameObject submitButton;  //assign inspector
+    public GameObject inputField;      //assign inspector
 
     private UIElement submitButtonElement;  //submitButtonElement is of type superclass
     private InputName inputFieldElement;
@@ -22,5 +22,12 @@ public class Menu : MonoBehaviour
     {
         // Call the OnSubmitButtonClick method on UISubmitButton instance
         submitButtonElement.onClick();
+    }
+
+    // Function to quit the game
+    public void QuitGame()
+    {
+        Debug.Log("Game is quitting...");
+        Application.Quit(); // Quit the application
     }
 }
