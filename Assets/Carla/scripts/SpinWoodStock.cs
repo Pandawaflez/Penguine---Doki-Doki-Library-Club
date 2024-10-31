@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpinWoodStock : MonoBehaviour
+public class SpinWoodStock : WoodStock
 {
     // Start is called before the first frame update
 
@@ -16,5 +16,15 @@ public class SpinWoodStock : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public override void Refresh()
+    {
+        //PATTERN 6. 'pull' information of interest
+        Debug.Log("refreshing spin");
+        float pts = (float)getSnoopy().getAffectionPoints();
+        pts = (float)(pts/500 +.8);
+        sprite.color = new Color(pts, 1, 1, 1);
+        Debug.Log(pts.ToString());
     }
 }

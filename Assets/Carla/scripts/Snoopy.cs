@@ -7,8 +7,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using UnityEditor.Experimental.GraphView;
 
 public class Snoopy : Peanuts
+//PATTERN 1. 'independent' functionality
 {
     public AudioManager theAudio;
     
@@ -21,9 +23,10 @@ public class Snoopy : Peanuts
 
     private string game = "Minesweeper";
 
-   
+    private List<WoodStock> birds;  //PATTERN 3. coupled only to 'interface'
     void Start()
     {
+        birds = new List<WoodStock>();
         myDialogue = new SnoopyDialogue(Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
         //theAudio = new AudioManager();
         p_dialogueNum = PeanutsDB.SnoopyDialogueNum;
@@ -37,6 +40,24 @@ public class Snoopy : Peanuts
         PeanutsDB.CharlieAffectionPts = getAffectionPoints();
         PeanutsDB.CharlieDialogueNum = p_dialogueNum;
     }
+
+    //PATTERN attach method
+    public void Attach(WoodStock birdie)
+    {
+        this.birds.Add(birdie);
+        Debug.Log("added to birdlist");
+    }
+
+    public void Notify()    //PATTERN 5. publisher broadcasts
+    {
+        Debug.Log("going to notify");
+        for (int i=0; i< birds.Count; i++)
+        {
+            birds[i].Refresh();
+            Debug.Log("notified a bird");
+        }
+    }
+
 
     // Button 1 OnClick
     public void hitResponse1()
@@ -154,6 +175,7 @@ public class Snoopy : Peanuts
                 Debug.Log("uh oh - no dialogue match");
                 break;
         }
+        Notify(); //PATTERN updates all birdies
         onDialogue(p_dialogueNum);
         Debug.Log(string.Format("current affection points: {0}", getAffectionPoints()));
     }

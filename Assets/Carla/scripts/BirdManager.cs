@@ -6,11 +6,16 @@ using TMPro;
 
 public class BirdManager : MonoBehaviour
 {
+    public Snoopy snoopy;
     public WoodStock woodStock;
-    // Start is called before the first frame update
+
+    public FlyWoodStock flywood;
+    public SpinWoodStock spinwood;
+
     void Start()
     {
-        
+        flywood.Begin(snoopy);
+        spinwood.Begin(snoopy);
     }
 
     // Update is called once per frame
