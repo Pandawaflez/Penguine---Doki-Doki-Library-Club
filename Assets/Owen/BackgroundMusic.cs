@@ -20,7 +20,7 @@ public class BackgroundMusic : Audio
         Play();
     }
     // Use of dynamic binding to fade out background music over 1 second.
-    public override BackgroundMusic Stop()
+    public override void Stop()
     {
         AudioManager.Instance.StartCoroutine(FadeOutCoroutine(1f));
     }
