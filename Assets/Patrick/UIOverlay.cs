@@ -121,7 +121,7 @@ public class UIOverlay : UIElement
         // handleImage.color = Color.white;  // White handle for visibility
 
         RectTransform handleRect = handle.GetComponent<RectTransform>();
-        handleRect.sizeDelta = new Vector2(15, 15);  //Adjust the size of the handle
+        handleRect.sizeDelta = new Vector2(20, 15);  //Adjust the size of the handle
         slider.handleRect = handleRect;  //Assign the handle to the slider
 
         return slider;

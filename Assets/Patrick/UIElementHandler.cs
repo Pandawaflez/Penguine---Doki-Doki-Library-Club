@@ -57,12 +57,6 @@ public class UIElementHandler : MonoBehaviour
         // overlayUI.UpdateCharacterUI("Sonic", affectionManager.GetShadowAffectionPoints());
         // overlayUI.UpdateCharacterUI("Shadow", affectionManager.GetSonicAffectionPoints());
 
-
-
-        
-        if(Input.GetKeyDown(KeyCode.Space)){
-            overlayUI.UpdateCharacterUI("Charlie", 80);
-        }
     }
 
 
