@@ -39,7 +39,7 @@ public class OwenTestAudioVolumeAboveOne
         // Set a negative volume and verify the behavior
         audioSource.volume = 2f;
 
-        // Create a DialogueSound and set it with a negative volume
+        // Create a DialogueSound and set it with a volume of 2
         DialogueSound dialogueSound = new DialogueSound("Peanuts_Teacher", peanutsClip, "CharlieBrown", "Classroom", audioSource);
 
         // Play the sound

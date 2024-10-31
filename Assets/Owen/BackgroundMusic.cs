@@ -19,6 +19,11 @@ public class BackgroundMusic : Audio
         IsLooping = true;
         Play();
     }
+    // Use of dynamic binding to fade out background music over 1 second.
+    public override BackgroundMusic Stop()
+    {
+        AudioManager.Instance.StartCoroutine(FadeOutCoroutine(1f));
+    }
 
     // Handle fading out in this class
     public void FadeOut(float duration)
@@ -36,7 +41,7 @@ public class BackgroundMusic : Audio
             yield return null;
         }
 
-        Stop();
+        Source.Stop();
         Source.volume = startVolume; // Reset volume for future playbacks
     }
 }
