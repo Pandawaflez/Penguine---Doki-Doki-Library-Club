@@ -15,15 +15,13 @@ public class Dialogue
     private string _genericResponse1 = "Bro";
     private string _genericResponse2 = "ruh roh";
 
-    //pubic void v_displayDialogue(int d)
+    //public void v_displayDialogue(int d)
     public virtual void v_displayDialogue(int d)
     {
     //public virtual void displayDialogue(int d, GameObject cr1p, GameObject cr2p, TextMeshProUGUI cdt, TextMeshProUGUI cr1t, TextMeshProUGUI cr2t){
-        //display the dialogue, call sfx, wait a few sec, display response
         dialogueText.SetText(_genericDialogue);
         response1Text.SetText(_genericResponse1);
         response2Text.SetText(_genericResponse2);
-        //call sfx. should only play 3 sec
     }
     public Schroeder st;
     public void reg(Schroeder s, int d) //ig ref is the same thing as pointer????
@@ -91,11 +89,11 @@ public class CharlieDialogue : Dialogue
             case 0:
             r2p.SetActive(true);
             r1p.SetActive(true);
-            //Debug.Log("first time here huh");
+            Debug.Log("first time here huh");
                 displayRealDialogue(dialogue0, d0response1, d0response2);
                 break;
             case 1:
-            //Debug.Log("here i stand");
+            Debug.Log("here i stand");
                 displayRealDialogue(dialogue1, d1response1, d1response2);
                 
                 break;
@@ -253,6 +251,7 @@ public class LucyDialogue : Dialogue
 
     //good dialogue end loop? or kicks you out of library...?
 
+    //public void v_displayDialogue(int d)
     public override void v_displayDialogue(int d)
     {
         switch(d)
@@ -370,6 +369,7 @@ public class SnoopyDialogue : Dialogue
     private string d0response1 = "Dog";
     private string d0response2 = "Yo dog!";
 
+    //public void v_displayDialogue(int d)
     public override void v_displayDialogue(int d)
     {
         switch(d)
