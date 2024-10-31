@@ -96,21 +96,21 @@ public class Snoopy : Peanuts
         switch(d){
             case 0:
                 if (p_responseNum == 1){
-                    p_dialogueNum=1;
-                    updateAffection(-1);
+                    p_dialogueNum = 1;
+                    updateAffection(+5);
                 } else if (p_responseNum == 2){
                     p_dialogueNum = 2;
-                    updateAffection(5);
+                    updateAffection(-1);
                 }
                 p_responseNum = 0;
                 break;
             case 1:
                 if (p_responseNum == 1){
-                    p_dialogueNum = 5;
-                    updateAffection(-2);
+                    p_dialogueNum = 3;
+                    updateAffection(-1);
                 } else if (p_responseNum == 2){
-                    p_dialogueNum = 2;
-                    updateAffection(15);
+                    p_dialogueNum = 4;
+                    updateAffection(25);
                 }
                 p_responseNum = 0;
 
@@ -118,10 +118,10 @@ public class Snoopy : Peanuts
             case 2:
                 //if r1, p_dialogueNum=3, else 4
                 if (p_responseNum == 1){
-                    p_dialogueNum = 3;
-                    updateAffection(0);
+                    p_dialogueNum = 5;
+                    updateAffection(5);
                 } else if (p_responseNum == 2){
-                    p_dialogueNum = 4;
+                    p_dialogueNum = 6;
                     updateAffection(15);
                 }
                 p_responseNum = 0;
@@ -129,47 +129,106 @@ public class Snoopy : Peanuts
             case 3: 
                 //if r1, p_dialogueNum=5, else 6
                 if (p_responseNum == 1){
-                    p_dialogueNum = 5;
-                    updateAffection(-10);
+                    p_dialogueNum = 4;
+                    updateAffection(+20);
                 } else if (p_responseNum == 2){
-                    p_dialogueNum = 6;
-                    updateAffection(3);
+                    p_dialogueNum = 7;
+                    updateAffection(-10);
                 }
                 p_responseNum = 0;
                 break;
             case 4:
                 if (p_responseNum == 1){
                     p_dialogueNum = 5;
-                    updateAffection(0);
+                    updateAffection(-5);
                 } else if (p_responseNum == 2){
-                    updateAffection(5);
-                    initiateMiniGame("Pong");
+                    updateAffection(15);
+                    initiateMiniGame(game);
                     //p_dialogueNum = 8;
+                    //should depend on win 13 or loss 14
                 }
                 p_responseNum = 0;
                 break;
             case 5:
-                //player stops talking to charlie...
-                //holdUp(5); //useless?
-                p_dialogueNum=7;
+                if (p_responseNum == 1){
+                    p_dialogueNum = 8;
+                    updateAffection(+5);
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 9;
+                    updateAffection(-5);
+                }
+                p_responseNum = 0;
                 break;
             case 6:
                 if (p_responseNum == 1){
-                    p_dialogueNum = 5;
-                    updateAffection(-2);
+                    p_dialogueNum = 9;
+                    updateAffection(-5);
                 } else if (p_responseNum == 2){
-                    //p_dialogueNum = 8;
-                    updateAffection(8);
-                    initiateMiniGame("Pong");
+                    p_dialogueNum = 10;
+                    updateAffection(10);
                 }
                 p_responseNum = 0;
                 break;
             case 7:
-                //stuck
+                if (p_responseNum == 1){
+                    p_dialogueNum = 10;
+                    updateAffection(10);
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 8;
+                    updateAffection(5);
+                }
+                p_responseNum = 0;
                 break;
             case 8:
-                //post game
-                //give user option to keep talking?
+                if (p_responseNum == 1){
+                    updateAffection(5);
+                    initiateMiniGame(game);
+                    //update after game 13w 14l
+                    p_dialogueNum = 10;
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 11;
+                    updateAffection(-5);
+                }
+                p_responseNum = 0;
+                break;
+            case 9:
+                if (p_responseNum == 1){
+                    p_dialogueNum = 11;
+                    updateAffection(0);
+                } else if (p_responseNum == 2){
+                    updateAffection(5);
+                    initiateMiniGame(game);
+                    //update after game 13w 14l
+                    p_dialogueNum = 10;
+                }
+                p_responseNum = 0;
+                break;
+            case 10:
+                if (p_responseNum == 1){
+                    p_dialogueNum = 10;
+                    updateAffection(-5);
+                } else if (p_responseNum == 2){
+                    updateAffection(+15);
+                    initiateMiniGame(game);
+                    //dialogue depends... 13 won or 14 lost
+                    p_dialogueNum = 10;
+                }
+                p_responseNum = 0;
+                break;
+            case 11:
+                //do nothung
+                p_dialogueNum = 12;
+                break;
+            case 12:
+                //stuckk in loop
+                break;
+            case 13:
+                //do nothung unlesss won potins?
+                p_dialogueNum = 12;
+                break;
+            case 14:
+                //do nothung unless won poitns?
+                p_dialogueNum = 12;
                 break;
             default:
                 Debug.Log("uh oh - no dialogue match");

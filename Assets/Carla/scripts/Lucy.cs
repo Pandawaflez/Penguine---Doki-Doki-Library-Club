@@ -83,7 +83,7 @@ public class Lucy : Peanuts
                     updateAffection(-1);
                 } else if (p_responseNum == 2){
                     p_dialogueNum = 2;
-                    updateAffection(5);
+                    updateAffection(10);
                 }
                 p_responseNum = 0;
                 break;
@@ -93,24 +93,22 @@ public class Lucy : Peanuts
                     updateAffection(-2);
                 } else if (p_responseNum == 2){
                     p_dialogueNum = 3;
-                    updateAffection(15);
+                    updateAffection(5);
                 }
                 p_responseNum = 0;
 
                 break;
             case 2:
-                //if r1, p_dialogueNum=3, else 4
                 if (p_responseNum == 1){
+                    p_dialogueNum = 6;
+                    updateAffection(10);
+                } else if (p_responseNum == 2){
                     p_dialogueNum = 5;
                     updateAffection(0);
-                } else if (p_responseNum == 2){
-                    p_dialogueNum = 6;
-                    updateAffection(15);
                 }
                 p_responseNum = 0;
                 break;
             case 3: 
-                //if r1, p_dialogueNum=5, else 6
                 if (p_responseNum == 1){
                     p_dialogueNum = 7;
                     updateAffection(-10);
@@ -122,31 +120,31 @@ public class Lucy : Peanuts
                 break;
             case 4:
                 if (p_responseNum == 1){
-                    p_dialogueNum = 7;
-                    updateAffection(0);
-                } else if (p_responseNum == 2){
-                    updateAffection(5);
                     p_dialogueNum = 8;
+                    updateAffection(2);
+                } else if (p_responseNum == 2){
+                    updateAffection(-2);
+                    p_dialogueNum = 7;
                 }
                 p_responseNum = 0;
                 break;
             case 5:
                 if (p_responseNum == 1){
                     p_dialogueNum = 10;
-                    updateAffection(0);
+                    updateAffection(-15);
                 } else if (p_responseNum == 2){
-                    updateAffection(5);
+                    updateAffection(10);
                     p_dialogueNum = 9;
                 }
                 p_responseNum = 0;
                 break;
             case 6:
                 if (p_responseNum == 1){
-                    p_dialogueNum = 10;
-                    updateAffection(-2);
-                } else if (p_responseNum == 2){
                     p_dialogueNum = 9;
-                    updateAffection(8); 
+                    updateAffection(8);
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 10;
+                    updateAffection(-5); 
                 }
                 p_responseNum = 0;
                 break;
@@ -156,43 +154,42 @@ public class Lucy : Peanuts
             case 8:
                 if (p_responseNum == 1){
                     p_dialogueNum = 7;
-                    updateAffection(-2);
+                    updateAffection(-5);
                 } else if (p_responseNum == 2){
                     p_dialogueNum = 6;
-                    updateAffection(8); 
+                    updateAffection(5); 
                 }
                 p_responseNum = 0;
                 break;
             case 9:
                 if (p_responseNum == 1){
-                    p_dialogueNum = 10;
-                    updateAffection(-2);
-                } else if (p_responseNum == 2){
-                    
-                    updateAffection(8); 
+                    updateAffection(3);
                     initiateMiniGame(game);
                     //this should depend on winning (16) & losing (17).
                     p_dialogueNum = 16;
+                } else if (p_responseNum == 2){
+                    updateAffection(-10); 
+                    p_dialogueNum = 10;
                 }
                 p_responseNum = 0;
                 break;
             case 10:
                 if (p_responseNum == 1){
                     p_dialogueNum = 7;
-                    updateAffection(-2);
+                    updateAffection(-5);
                 } else if (p_responseNum == 2){
                     p_dialogueNum = 11;
-                    updateAffection(8); 
+                    updateAffection(5); 
                 }
                 p_responseNum = 0;
                 break;
             case 11:
                 if (p_responseNum == 1){
                     p_dialogueNum = 12;
-                    updateAffection(-2);
+                    updateAffection(-5);
                 } else if (p_responseNum == 2){
                     
-                    updateAffection(8); 
+                    updateAffection(5); 
                     initiateMiniGame(game);
                     //this should depend on winning (16) & losing (17).
                     p_dialogueNum = 16;
@@ -202,20 +199,20 @@ public class Lucy : Peanuts
             case 12:
                 if (p_responseNum == 1){
                     p_dialogueNum = 14;
-                    updateAffection(-2);
+                    updateAffection(-15);
                 } else if (p_responseNum == 2){
                     p_dialogueNum = 13;
-                    updateAffection(8); 
+                    updateAffection(10); 
                 }
                 p_responseNum = 0;
                 break;
             case 13:
                 if (p_responseNum == 1){
                     p_dialogueNum = 14;
-                    updateAffection(-2);
+                    updateAffection(-5);
                 } else if (p_responseNum == 2){
                     
-                    updateAffection(8); 
+                    updateAffection(2); 
                     initiateMiniGame(game);
                     //this should depend on winning (16) & losing (17). //update affection points there or here?
                     p_dialogueNum = 16;

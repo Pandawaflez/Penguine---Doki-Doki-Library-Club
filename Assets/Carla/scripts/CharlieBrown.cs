@@ -118,11 +118,11 @@ public class CharlieBrown : Peanuts
             case 2:
                 //if r1, p_dialogueNum=3, else 4
                 if (p_responseNum == 1){
-                    p_dialogueNum = 3;
-                    updateAffection(0);
-                } else if (p_responseNum == 2){
                     p_dialogueNum = 4;
                     updateAffection(15);
+                } else if (p_responseNum == 2){
+                    p_dialogueNum = 3;
+                    updateAffection(0);
                 }
                 p_responseNum = 0;
                 break;
