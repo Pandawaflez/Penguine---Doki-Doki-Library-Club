@@ -2,61 +2,85 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using System.Security.Cryptography;
-//using System.Data.SqlClient;
 
 public class ShaggyScript : Scooby
 {
     //buttons for dialogue
     public Button ShagR1;
     public Button ShagR2;
-
+    public TextMeshProUGUI ShagDialogueText, ShagResponse1Text, ShagResponse2Text;
+    public GameObject Shag1p;
+    public GameObject Shag2p;
     public int responseNum = 0;
-
+    public int ShagAffection = 0;
+    void Start()
+    {
+        DisplayDialogue(ShagDialogueText, ShagResponse1Text, ShagResponse2Text);
+    }
     //selection of dialogues
     public void hitShagResponse1()
     {
-        responseNum = 1;
-        Debug.Log("Response 1 chosen");
-        ShagR1.Select();
+        HandlePlayerResponse(1);
+        DisplayDialogue(ShagDialogueText, ShagResponse1Text, ShagResponse2Text);
     }
 
     public void hitShagResponse2()
     {
-        responseNum = 2;
-        Debug.Log("Response 2 chosen");
-        ShagR2.Select();
+        HandlePlayerResponse(2);
+        DisplayDialogue(ShagDialogueText, ShagResponse1Text, ShagResponse2Text);
     }
 
-    private ShagDialogue mvpShagDialogue;
-
-    public TextMeshProUGUI ShagDialogueText, ShagResponse1Text, ShagResponse2Text;
-    public GameObject Shag1p;
-    public GameObject Shag2p;
-
-    /*public string ShagSpeak;
-    public void FetchDialoguePrompt(string dialoguePrompt){
-        using (SqlConnection connection = new SqlConnection("Data Source=(local);Initial Catalog=ShaggyDialogue;Integrated Security=SSPI")) 
-        using (SqlCommand cmd = new SqlCommand("SELECT Prompts FROM ShaggyDialogue.Prompts WHERE Prompts = @Prompts", connection))
+    public override void HandlePlayerResponse(int resopnseNum)
+    {
+        if ((SCdialogueNum == 1 || SCdialogueNum == 2) && responseNum == 1)
         {
-            cmd.Parameters.AddWithValue("Promps", dialoguePrompt);
-            connection.Open();
-            using (var reader = cmd.ExecuteReader()){
-                if (reader.Read()){ 
-                    string dialogue1 = reader.GetString(reader.GetOrdinal("Prompts"));
-                    Console.WriteLine(dialogue1);
-                }
-                else {
-                    Debug.Log("No more prompts");
-                    //Console.WriteLine("No more prompts");
-                }
-            }
-        }   
-    }*/
-    void Update() { }
+            SCAP += 10;
+            Debug.Log("Affection Points increased: " + SCAP);
+            ShagAffection = SCAP;
+        }
+        else if ((SCdialogueNum == 3 || SCdialogueNum == 4 || SCdialogueNum == 5) && responseNum == 1)
+        {
+            SCAP -= 10;
+            Debug.Log("Affection Points decreased: " + SCAP);
+            ShagAffection = SCAP;
+        }
+        else if ((SCdialogueNum == 1 || SCdialogueNum == 2) && responseNum == 2)
+        {
+            SCAP -= 10;
+            Debug.Log("Affection Points decreased: " + SCAP);
+            ShagAffection = SCAP;
+        }
+        else if ((SCdialogueNum == 3 || SCdialogueNum == 4 || SCdialogueNum == 5) && responseNum == 1)
+        {
+            SCAP += 10;
+            Debug.Log("Affection Points increased: " + SCAP);
+            ShagAffection = SCAP;
+        }
+        base.HandlePlayerResponse(responseNum);
+    }
+    public void PlayOrNot(int SCAP)
+    {
+        if (SCAP >= 40)
+        {
+            //        "Would you wanna keep this good thing going?"
+
+            //going to transition to minigame
+        }
+        else 
+        {
+            ShagDialogueText.text = "I don't think we have much in common. Sorry pal, I'll see you around";
+            ShagResponse1Text.text = "";
+            ShagResponse2Text.text = "";
+            DisplayDialogue(ShagDialogueText, ShagResponse1Text, ShagResponse2Text);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Overworld");
+            return;
+        }
+    }
+
+    
+
+
+   // void Update() { }
 
 }
