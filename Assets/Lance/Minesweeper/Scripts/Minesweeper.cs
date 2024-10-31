@@ -41,7 +41,7 @@ public class Minesweeper : MiniGameLevel {
     }
 
     // update time and check if time has run out for game
-    private void UpdateTimer() {
+    public void UpdateTimer() {
         timerText.text = Mathf.Ceil(timeRemaining).ToString();
 
         if (timeRemaining <= 0f) {
@@ -56,6 +56,20 @@ public class Minesweeper : MiniGameLevel {
     }
 
     public void CreateGameBoard(int width, int height, int numMines) {
+        if (tilePrefab == null || gameHolder == null)
+        {
+            Debug.LogError("Tile prefab or game holder is not set.");
+            return;
+        }
+        if (width < 1) width = 1;
+        if (width > 10) width = 10;
+        if (height < 1) height = 1;
+        if (height > 10) height = 10;
+
+        if (numMines > (width*height)) numMines = width*height;
+
+        ClearExistingBoard();
+
         // Save the game parameters we're using.
         this.width = width;
         this.height = height;
@@ -64,7 +78,7 @@ public class Minesweeper : MiniGameLevel {
         // Create the array of tiles.
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
-                // Position the tile in the correct place (centred).
+                // Position the tile in the correct place (centered).
                 Transform tileTransform = Instantiate(tilePrefab);
                 tileTransform.parent = gameHolder;
                 float xIndex = col - ((width - 1) / 2.0f);
@@ -78,7 +92,23 @@ public class Minesweeper : MiniGameLevel {
         }
     }
 
-    private void ResetGameState() {
+    // Helper function to clear existing tiles from the board
+    private void ClearExistingBoard()
+    {
+        // Destroy all tile GameObjects in the list
+        foreach (Tile tile in tiles)
+        {
+            if (tile != null)
+            {
+                Destroy(tile.gameObject);
+            }
+        }
+
+        // Clear the tiles list
+        tiles.Clear();
+    }
+
+    public void ResetGameState() {
         // Randomly shuffle the tile positions to get indices for mine positions.
         int[] minePositions = Enumerable.Range(0, tiles.Count).OrderBy(x => Random.Range(0.0f, 1.0f)).ToArray();
 
@@ -94,6 +124,19 @@ public class Minesweeper : MiniGameLevel {
         }
     }
 
+    // count the total number of mines on the board
+    public int TotalMinesOnBoard() {
+        int count = 0;
+
+        foreach (Tile tile in tiles) {
+            if (tile.isMine) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
     // Given a location work out how many mines are surrounding it.
     private int HowManyMines(int location) {
         int count = 0;
@@ -106,7 +149,7 @@ public class Minesweeper : MiniGameLevel {
     }
 
     // Given a position, return the positions of all neighbors.
-    private List<int> GetNeighbors(int pos) {
+    public List<int> GetNeighbors(int pos) {
         List<int> neighbors = new();
         int row = pos / width;
         int col = pos % width;
@@ -223,4 +266,48 @@ public class Minesweeper : MiniGameLevel {
             ClickNeighbors(tile);
         }
     }
+
+    // setter methods for Minesweeper tests
+    public void SetTilePrefab(Transform prefab) {
+        tilePrefab = prefab;
+    }
+
+    public void SetGameHolder(Transform temp) {
+        gameHolder = temp;
+    }
+
+    public int GetTileCount() {
+        return tiles.Count;
+    }
+
+    public bool IsGameOverShowing() {
+        return gameOverScreen.activeSelf;
+    }
+
+    public void SetTimerText(TextMeshProUGUI text)
+    {
+        timerText = text;
+    }
+
+    public void SetTimerScreen(GameObject screen)
+    {
+        timerScreen = screen;
+    }
+
+    public void SetGameOverScreen(GameObject screen)
+    {
+        gameOverScreen = screen;
+    }
+
+    public void SetWinnerText(TextMeshProUGUI text)
+    {
+        winnerText = text;
+    }
+
+    // For unit testing
+    public float GetTimeRemaining() => timeRemaining;
+    public void SetTimeRemaining(float time) => timeRemaining = time;
+    public int GetTilesCount() => tiles.Count;
+    public string GetTimeText() => timerText.text;
+
 }
