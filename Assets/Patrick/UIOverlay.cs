@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 public class UIOverlay : UIElement
 {
-    private Dictionary<string, Slider> characterMeters; // Store sliders for each character
-    private Dictionary<string, Text> characterTexts;    // Store text fields for each character
+    private Dictionary<string, Slider> _characterMeters; // Store sliders for each character
+    private Dictionary<string, Text> _characterTexts;    // Store text fields for each character
 
     public UIOverlay(GameObject overlayPanel, Sprite[] characterImages, string[] characterNames)
         : base(overlayPanel) // Initialize the base class with the overlay panel
     {
-        characterMeters = new Dictionary<string, Slider>();
-        characterTexts = new Dictionary<string, Text>();
+        _characterMeters = new Dictionary<string, Slider>();
+        _characterTexts = new Dictionary<string, Text>();
 
         CreateCharacterUI(characterImages, characterNames);
     }
@@ -41,8 +41,8 @@ public class UIOverlay : UIElement
             Text pointsText = CreatePointsText(container);
 
             // Store the slider and text for later updates
-            characterMeters[names[i]] = progressMeter;
-            characterTexts[names[i]] = pointsText;
+            _characterMeters[names[i]] = progressMeter;
+            _characterTexts[names[i]] = pointsText;
         }
     }
 
@@ -152,10 +152,10 @@ public class UIOverlay : UIElement
     //Update the character's meter and points display
     public void UpdateCharacterUI(string name, int points)
     {
-        if (characterMeters.ContainsKey(name))
+        if (_characterMeters.ContainsKey(name))
         {
-            characterMeters[name].value = points;
-            characterTexts[name].text = $"{points} points";
+            _characterMeters[name].value = points;
+            _characterTexts[name].text = $"{points} points";
         }
     }
 }

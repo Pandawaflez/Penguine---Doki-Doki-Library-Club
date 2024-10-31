@@ -5,18 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class UISubmitButton : UIElement
 {
-    private readonly InputName inputField;  // Reference to the input field
+    private readonly InputName _inputField;  // Reference to the input field
 
     public UISubmitButton(GameObject element, InputName inputField) : base(element)     //Pass the GameObject to the base classd
     {
-        this.inputField = inputField;
+        this._inputField = inputField;
     }
 
     public override void onClick()
     // public void onClick()
     {
         // Get the player's name from the input field
-        string playerName = inputField.GetInputText();
+        string playerName = _inputField.GetInputText();
 
         // Debug.Log($"Player Name Entered: '{playerName}'");  // Log the input value
 

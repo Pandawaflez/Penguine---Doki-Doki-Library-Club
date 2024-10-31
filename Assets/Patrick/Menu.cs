@@ -8,20 +8,20 @@ public class Menu : MonoBehaviour
     public GameObject submitButton;  //assign inspector
     public GameObject inputField;      //assign inspector
 
-    private UIElement submitButtonElement;  //submitButtonElement is of type superclass
-    private InputName inputFieldElement;
+    private UIElement _submitButtonElement;  //submitButtonElement is of type superclass
+    private InputName _inputFieldElement;
 
     private void Start()
     {
         // Initialize the InputName and UISubmitButton instances
-        inputFieldElement = new InputName(inputField);
-        submitButtonElement = new UISubmitButton(submitButton, inputFieldElement);  //dynamic binding
+        _inputFieldElement = new InputName(inputField);
+        _submitButtonElement = new UISubmitButton(submitButton, _inputFieldElement);  //dynamic binding
     }
 
     public void OnSubmitButtonClicked()
     {
         // Call the OnSubmitButtonClick method on UISubmitButton instance
-        submitButtonElement.onClick();
+        _submitButtonElement.onClick();
     }
 
     // Function to quit the game

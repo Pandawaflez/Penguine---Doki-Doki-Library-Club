@@ -16,9 +16,9 @@ public class UIElementHandler : MonoBehaviour
     public GameObject endGamePanel; //Reference to the end game panel (UI)
     public GameObject overlayPanel; //panel for overlay
     public Sprite[] characterImages;    //inspector?
-    private string[] characterNames = { "Charlie", "Lucy", "Snoopy", "Schroeder" };
+    private string[] _characterNames = { "Charlie", "Lucy", "Snoopy", "Schroeder" };
 
-    private UIOverlay overlayUI;
+    private UIOverlay _overlayUI;
 
 
     private void Awake()
@@ -31,7 +31,7 @@ public class UIElementHandler : MonoBehaviour
         else
         {
             DontDestroyOnLoad(gameObject);  // Make this instance persistent across scenes
-            overlayUI = new UIOverlay(overlayPanel, characterImages, characterNames);
+            _overlayUI = new UIOverlay(overlayPanel, characterImages, _characterNames);
         }
     }
 
@@ -41,7 +41,7 @@ public class UIElementHandler : MonoBehaviour
         quitButton.onClick.AddListener(QuitGame);
         quitButton.gameObject.SetActive(false); //button stays deactivated until user presses tab
 
-        overlayUI.Hide();   //hide overlay on start
+        _overlayUI.Hide();   //hide overlay on start
 
         endGamePanel.SetActive(false); //ensure the end game panel is hidden initially
     }
@@ -50,12 +50,12 @@ public class UIElementHandler : MonoBehaviour
     {
         UICheckInput();
 
-        overlayUI.UpdateCharacterUI("Charlie", PeanutsDB.CharlieAffectionPts);
+        _overlayUI.UpdateCharacterUI("Charlie", PeanutsDB.CharlieAffectionPts);
         // overlayUI.UpdateCharacterUI("Charlie", 100);
 
-        overlayUI.UpdateCharacterUI("Lucy", PeanutsDB.LucyAffectionPts);
-        overlayUI.UpdateCharacterUI("Snoopy", PeanutsDB.SnoopyAffectionPts);
-        overlayUI.UpdateCharacterUI("Schroeder", PeanutsDB.SchroederAffectionPts);
+        _overlayUI.UpdateCharacterUI("Lucy", PeanutsDB.LucyAffectionPts);
+        _overlayUI.UpdateCharacterUI("Snoopy", PeanutsDB.SnoopyAffectionPts);
+        _overlayUI.UpdateCharacterUI("Schroeder", PeanutsDB.SchroederAffectionPts);
         // overlayUI.UpdateCharacterUI("Sonic", affectionManager.GetShadowAffectionPoints());
         // overlayUI.UpdateCharacterUI("Shadow", affectionManager.GetSonicAffectionPoints());
 
@@ -68,12 +68,12 @@ public class UIElementHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             Debug.Log("tab pressed");
-            if(!overlayUI.Visible()){
-                overlayUI.Show();
+            if(!_overlayUI.Visible()){
+                _overlayUI.Show();
                 quitButton.gameObject.SetActive(true);
             }
             else{
-                overlayUI.Hide();
+                _overlayUI.Hide();
                 quitButton.gameObject.SetActive(false);
             }
         }
