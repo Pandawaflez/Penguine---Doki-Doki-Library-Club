@@ -25,8 +25,9 @@ public class PongScoreManager : ScoreManager
         Debug.Log("PongScoreManager::AddAIScore\tAIScore = " + aiScore);
     }
 
-    // Dynamic binding - check if win condition is met for pong game
+    // Dynamic binding - check if win condition is met for pong game. Without Dynamic binding, AI can never win
     public override int CheckWinCondition() {
+    // public int CheckWinCondition() {
         Debug.Log("playerScore");
         if (playerScore >= scoreToWin) {
             Debug.Log("Player Won!");

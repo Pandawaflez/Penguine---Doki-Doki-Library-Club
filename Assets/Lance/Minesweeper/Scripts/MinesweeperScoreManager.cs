@@ -20,6 +20,7 @@ public class MinesweeperScoreManager : ScoreManager
     }
 
     public override int CheckWinCondition() {
+    // public int CheckWinCondition() {
         if (didPlayerHitMine) {
             return PLAYER_HIT_MINE;
         } else if (playerScore == scoreToWin) {

@@ -12,14 +12,15 @@ public class ScoreManager
 
     public ScoreManager(int winScore) {
         scoreToWin = winScore;
+        Debug.Log("ScoreManager::scoreToWin = " + scoreToWin);
     }
 
     public virtual void AddPlayerScore(int val = 1) {
         playerScore += val;
     }
 
-    // Check if the win condition is met
     public virtual int CheckWinCondition() {
+    // public int CheckWinCondition() {
         if (playerScore >= scoreToWin) {
             isGameOver = true;
             return PLAYER_WON;
