@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class ShadowDialogue : HedgehogDialogue
 {
     public AffectionManager affectionManager;
+    //game
+            private string game = "Minesweeper";
 
     private List<string> shadowLines = new List<string>(){
         "Wassup, I'm Shadow. Did you want something?",
@@ -60,8 +62,9 @@ public class ShadowDialogue : HedgehogDialogue
         } else if(affectionManager.GetShadowAffectionPoints() == 100){
             DialogueLine = "Let's play. You're about to get cooked.";
             // add carson's function
-            SceneChanger.saveScene();
-            SceneManager.LoadScene(Minesweeper);
+            //SceneChanger.saveScene();
+            //initiateMiniGame(game);
+            //SceneManager.LoadScene(Math);
             return;
         }
         
