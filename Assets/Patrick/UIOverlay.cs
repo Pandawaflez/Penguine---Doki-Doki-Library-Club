@@ -19,6 +19,8 @@ public class UIOverlay : UIElement
     // Create the UI elements for all characters
     private void CreateCharacterUI(Sprite[] images, string[] names)
     {
+        Sprite heartImageSprite = Resources.Load<Sprite>("Patrick/heart"); //heart sprite for progress bars
+
         for (int i = 0; i < names.Length; i++)
         {
             GameObject container = new GameObject(names[i], typeof(RectTransform));
@@ -32,7 +34,7 @@ public class UIOverlay : UIElement
             Image profileImage = CreateProfileImage(images[i], container);
 
             // Create the progress meter (Slider)
-            Slider progressMeter = CreateProgressMeter(container);
+            Slider progressMeter = CreateProgressMeter(container, heartImageSprite);
 
             // Create the points text field
             Text pointsText = CreatePointsText(container);
@@ -60,7 +62,7 @@ public class UIOverlay : UIElement
     }
 
     // Helper: Create the progress meter (Slider)
-    private Slider CreateProgressMeter(GameObject parent)
+    private Slider CreateProgressMeter(GameObject parent, Sprite heartImage)
     {
             // Debug.Log("Creating progress meter");
 
@@ -73,12 +75,12 @@ public class UIOverlay : UIElement
         // Configure the Slider component
         Slider slider = sliderObject.GetComponent<Slider>();
         slider.minValue = 0;
-        slider.maxValue = 100;
+        slider.maxValue = 100;      //max points
         slider.value = 0;
 
         // Set up the RectTransform for proper alignment
         RectTransform rect = slider.GetComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(200, 20);  // Set the desired size
+        rect.sizeDelta = new Vector2(250, 20);  // Set the desired size
         rect.anchorMin = new Vector2(0, 0.5f);  // Anchor to the middle-left
         rect.anchorMax = new Vector2(0, 0.5f);  // Same for both min and max for left alignment
         rect.pivot = new Vector2(0, 0.5f);      // Set pivot to the left-center
@@ -88,38 +90,39 @@ public class UIOverlay : UIElement
         GameObject background = new GameObject("Background", typeof(Image));
         background.transform.SetParent(sliderObject.transform, false);
         Image bgImage = background.GetComponent<Image>();
-        bgImage.color = new Color(0.5f, 0.5f, 0.5f, 1);  // Light gray background
+        bgImage.color = new Color(0.5f, 0, 0.5f, 0.7f);  //background color for slider
 
         RectTransform bgRect = background.GetComponent<RectTransform>();
         bgRect.anchorMin = Vector2.zero;
         bgRect.anchorMax = Vector2.one;
-        bgRect.offsetMin = Vector2.zero;  // No padding inside the background
-        bgRect.offsetMax = Vector2.zero;  // No padding inside the background
+        bgRect.offsetMin = Vector2.zero;  //No padding inside the background
+        bgRect.offsetMax = Vector2.zero;  //No padding inside the background
 
         // Create the fill area for the slider
         GameObject fillArea = new GameObject("FillArea", typeof(Image));
         fillArea.transform.SetParent(sliderObject.transform, false);
         Image fillImage = fillArea.GetComponent<Image>();
-        fillImage.color = Color.green;  // Green fill for the progress
+        fillImage.color = new Color(0.8f, 0, 0.9f, 0.9f);  // Green fill for the progress
 
         RectTransform fillRect = fillArea.GetComponent<RectTransform>();
         fillRect.anchorMin = Vector2.zero;  // Anchor the fill to the left
         fillRect.anchorMax = Vector2.one;   // Stretch the fill horizontally
-        fillRect.offsetMin = new Vector2(0, 2);  // Optional: Add slight padding inside
-        fillRect.offsetMax = new Vector2(0, -2); // Optional: Adjust for better alignment
+        fillRect.offsetMin = new Vector2(0, 2);  //Add slight padding inside
+        fillRect.offsetMax = new Vector2(0, -2); //Adjust for better alignment
 
-        // Assign the fill area to the slider's fillRect property
+        //Assign the fill area to the slider's fillRect property
         slider.fillRect = fillRect;
 
-        // Optional: Create a handle for better visualization
+        //Create a handle for better visualization
         GameObject handle = new GameObject("Handle", typeof(Image));
         handle.transform.SetParent(sliderObject.transform, false);
         Image handleImage = handle.GetComponent<Image>();
-        handleImage.color = Color.white;  // White handle for visibility
+        handleImage.sprite = heartImage; //set the heart image as the handle
+        // handleImage.color = Color.white;  // White handle for visibility
 
         RectTransform handleRect = handle.GetComponent<RectTransform>();
-        handleRect.sizeDelta = new Vector2(10, 20);  // Adjust the size of the handle
-        slider.handleRect = handleRect;  // Assign the handle to the slider
+        handleRect.sizeDelta = new Vector2(20, 15);  //Adjust the size of the handle
+        slider.handleRect = handleRect;  //Assign the handle to the slider
 
         return slider;
     }
@@ -143,7 +146,7 @@ public class UIOverlay : UIElement
         return pointsText;
     }
 
-    // Update the character's meter and points display
+    //Update the character's meter and points display
     public void UpdateCharacterUI(string name, int points)
     {
         if (characterMeters.ContainsKey(name))
@@ -151,22 +154,5 @@ public class UIOverlay : UIElement
             characterMeters[name].value = points;
             characterTexts[name].text = $"{points} points";
         }
-    }
-
-    // Helper: Create the fill area for the Slider
-    private GameObject CreateFillArea(GameObject sliderObject)
-    {
-        GameObject fillArea = new GameObject("FillArea", typeof(RectTransform), typeof(Image));
-        fillArea.transform.SetParent(sliderObject.transform);
-
-        RectTransform fillRect = fillArea.GetComponent<RectTransform>();
-        fillRect.anchorMin = Vector2.zero;
-        fillRect.anchorMax = Vector2.one;
-        fillRect.sizeDelta = Vector2.zero;  // Fill should fit the slider size
-
-        Image fillImage = fillArea.GetComponent<Image>();
-        fillImage.color = Color.green;  // Example fill color for visualization
-
-        return fillArea;
     }
 }

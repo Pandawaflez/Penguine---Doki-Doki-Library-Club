@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class Dialogue
 {
-    
     public TextMeshProUGUI dialogueText, response1Text, response2Text;
     public GameObject r1p;
     public GameObject r2p;
