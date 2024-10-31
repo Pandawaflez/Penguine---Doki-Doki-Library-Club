@@ -21,17 +21,13 @@ public class MinesweeperScoreManager : ScoreManager
 
     public override int CheckWinCondition() {
     // public int CheckWinCondition() {
-        if (didPlayerHitMine) {
-            if (MainPlayer.IsBCMode()) {
-                // BC mode can never lose
-                return PLAYER_WON;
-            } else {
-                return PLAYER_HIT_MINE;
-            }
-        } else if (playerScore == scoreToWin) {
-            Debug.Log("Player won!");
+        if ((playerScore == scoreToWin) || MainPlayer.IsBCMode()) {
             return PLAYER_WON;
-        } else {
+        }
+        else if (didPlayerHitMine) {
+            return PLAYER_HIT_MINE;
+        } 
+        else {
             return WIN_CONDITION_NOT_MET;
         }
     }

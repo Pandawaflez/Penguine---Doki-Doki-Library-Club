@@ -27,7 +27,11 @@ public class Minesweeper : MiniGameLevel {
     void Start() {
         timeLimit = TIME_LIMIT;
         timeRemaining = timeLimit;
-        CreateGameBoard(9, 9, 10); // Easy
+        if (MainPlayer.IsBCMode()) {
+            CreateGameBoard(9,9,0); // no mines
+        } else {
+            CreateGameBoard(9, 9, 10);
+        }
         // scoreManager = new MinesweeperScoreManager(width*height, numMines);
         scoreManager = ScoreManagerFactory.CreateScoreManager("Minesweeper", width*height, numMines);
         ResetGameState();
@@ -196,9 +200,12 @@ public class Minesweeper : MiniGameLevel {
 
         isGameOver = true;
 
-        if (playerWon) {
+        if (playerWon || MainPlayer.IsBCMode()) {
             Debug.Log("EndGame::Player Won!");
+            winnerText.text = "You Won!";
+            SetFlagOnAllMines();
         } else {
+            winnerText.text = "You Lost!";
             Debug.Log("EndGame::Player Lost");
         }
 
@@ -232,14 +239,14 @@ public class Minesweeper : MiniGameLevel {
             // Flag and disable everything, we're done.
             isGameOver = true;
             playerWon = true;
-            winnerText.text = "You Won!";
+            // winnerText.text = "You Won!";
             Debug.Log("Player Won Minesweeper!");
             SetFlagOnAllMines();
             EndGame();
         } else if (count == MinesweeperScoreManager.PLAYER_HIT_MINE) {
             isGameOver = true;
             playerWon = false;
-            winnerText.text = "You Lost!";
+            // winnerText.text = "You Lost!";
             Debug.Log("Player Lost Minesweeper!");
             EndGame();
         }
