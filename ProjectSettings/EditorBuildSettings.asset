@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: b95a45d7fc797ed40a676361bbdbaf3b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Carla/TestScene.unity
     guid: 8a3da6942e5a8354e81540dfd9d2e38c
   - enabled: 1
@@ -47,4 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Daphne.unity
     guid: 1cf6229842cd53143a54bde7f59d864d
+  - enabled: 1
+    path: Assets/Scenes/Minesweeper.unity
+    guid: 53f3ea37395fd33498c3d1079afed477
   m_configObjects: {}
