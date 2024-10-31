@@ -88,19 +88,19 @@ public class UIOverlay : UIElement
         GameObject background = new GameObject("Background", typeof(Image));
         background.transform.SetParent(sliderObject.transform, false);
         Image bgImage = background.GetComponent<Image>();
-        bgImage.color = new Color(0.5f, 0, 0.5f, 0.7f);  // Light gray background
+        bgImage.color = new Color(0.5f, 0, 0.5f, 0.7f);  //background color for slider
 
         RectTransform bgRect = background.GetComponent<RectTransform>();
         bgRect.anchorMin = Vector2.zero;
         bgRect.anchorMax = Vector2.one;
-        bgRect.offsetMin = Vector2.zero;  // No padding inside the background
-        bgRect.offsetMax = Vector2.zero;  // No padding inside the background
+        bgRect.offsetMin = Vector2.zero;  //No padding inside the background
+        bgRect.offsetMax = Vector2.zero;  //No padding inside the background
 
         // Create the fill area for the slider
         GameObject fillArea = new GameObject("FillArea", typeof(Image));
         fillArea.transform.SetParent(sliderObject.transform, false);
         Image fillImage = fillArea.GetComponent<Image>();
-        fillImage.color = Color.red;  // Green fill for the progress
+        fillImage.color = new Color(0.8f, 0, 0.9f, 0.9f);  // Green fill for the progress
 
         RectTransform fillRect = fillArea.GetComponent<RectTransform>();
         fillRect.anchorMin = Vector2.zero;  // Anchor the fill to the left
@@ -108,10 +108,10 @@ public class UIOverlay : UIElement
         fillRect.offsetMin = new Vector2(0, 2);  // Optional: Add slight padding inside
         fillRect.offsetMax = new Vector2(0, -2); // Optional: Adjust for better alignment
 
-        // Assign the fill area to the slider's fillRect property
+        //Assign the fill area to the slider's fillRect property
         slider.fillRect = fillRect;
 
-        // Optional: Create a handle for better visualization
+        //Create a handle for better visualization
         GameObject handle = new GameObject("Handle", typeof(Image));
         handle.transform.SetParent(sliderObject.transform, false);
         Image handleImage = handle.GetComponent<Image>();
@@ -143,7 +143,7 @@ public class UIOverlay : UIElement
         return pointsText;
     }
 
-    // Update the character's meter and points display
+    //Update the character's meter and points display
     public void UpdateCharacterUI(string name, int points)
     {
         if (characterMeters.ContainsKey(name))
@@ -151,22 +151,5 @@ public class UIOverlay : UIElement
             characterMeters[name].value = points;
             characterTexts[name].text = $"{points} points";
         }
-    }
-
-    // Helper: Create the fill area for the Slider
-    private GameObject CreateFillArea(GameObject sliderObject)
-    {
-        GameObject fillArea = new GameObject("FillArea", typeof(RectTransform), typeof(Image));
-        fillArea.transform.SetParent(sliderObject.transform);
-
-        RectTransform fillRect = fillArea.GetComponent<RectTransform>();
-        fillRect.anchorMin = Vector2.zero;
-        fillRect.anchorMax = Vector2.one;
-        fillRect.sizeDelta = Vector2.zero;  // Fill should fit the slider size
-
-        Image fillImage = fillArea.GetComponent<Image>();
-        fillImage.color = Color.green;  // Example fill color for visualization
-
-        return fillArea;
     }
 }

@@ -16,7 +16,7 @@ public class UIElementHandler : MonoBehaviour
     public GameObject endGamePanel; //Reference to the end game panel (UI)
     public GameObject overlayPanel; //panel for overlay
     public Sprite[] characterImages;    //inspector?
-    private string[] characterNames = { "Charlie", "Shaggy" };
+    private string[] characterNames = { "Charlie", "Lucy", "Snoopy", "Schroeder" };
 
     private UIOverlay overlayUI;
 
@@ -39,7 +39,7 @@ public class UIElementHandler : MonoBehaviour
     {
         // Set up the quit button
         quitButton.onClick.AddListener(QuitGame);
-        quitButton.gameObject.SetActive(true); //button stays active on screen till game start
+        quitButton.gameObject.SetActive(false); //button stays deactivated until user presses tab
 
         overlayUI.Hide();   //hide overlay on start
 
@@ -50,10 +50,14 @@ public class UIElementHandler : MonoBehaviour
     {
         UICheckInput();
 
-        if(Input.GetKeyDown(KeyCode.DownArrow)){
-            overlayUI.UpdateCharacterUI("Charlie", PeanutsDB.CharlieAffectionPts);
-            
-        }
+        overlayUI.UpdateCharacterUI("Charlie", PeanutsDB.CharlieAffectionPts);
+        overlayUI.UpdateCharacterUI("Lucy", PeanutsDB.LucyAffectionPts);
+        overlayUI.UpdateCharacterUI("Snoopy", PeanutsDB.SnoopyAffectionPts);
+        overlayUI.UpdateCharacterUI("Schroeder", PeanutsDB.SchroederAffectionPts);
+        // overlayUI.UpdateCharacterUI("Sonic", affectionManager.GetShadowAffectionPoints());
+        // overlayUI.UpdateCharacterUI("Shadow", affectionManager.GetSonicAffectionPoints());
+
+
 
         
         if(Input.GetKeyDown(KeyCode.Space)){
@@ -70,11 +74,11 @@ public class UIElementHandler : MonoBehaviour
             Debug.Log("tab pressed");
             if(!overlayUI.Visible()){
                 overlayUI.Show();
-                quitButton.gameObject.SetActive(false);
+                quitButton.gameObject.SetActive(true);
             }
             else{
                 overlayUI.Hide();
-                quitButton.gameObject.SetActive(true);
+                quitButton.gameObject.SetActive(false);
             }
         }
     }
