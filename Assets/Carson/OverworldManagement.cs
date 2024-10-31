@@ -45,9 +45,6 @@ public class OverworldManagement : MonoBehaviour
     };
 
     public void initializeRooms() {
-        //if ( init ){
-            //Debug.Log("Already Initialized");
-        //} else {
         rooms[0].name = "FrontDesk";
         rooms[1].name = "Bathroom";
         rooms[2].name = "FictionSection";
@@ -100,7 +97,7 @@ public class OverworldManagement : MonoBehaviour
         testPanel.SetActive(true);
     }
 
-    public void awake(){
+    public void Awake(){
         /*frontDeskImage = Resources.Load<Sprite>("Carson/RoomBackgrounds/FrontDesk");
         bathroomImage = Resources.Load<Sprite>("Carson/RoomBackgrounds/bathroom");
         fictionImage = Resources.Load<Sprite>("Carson/RoomBackgrounds/fictionSection");
