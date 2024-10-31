@@ -37,8 +37,8 @@ public class Snoopy : Peanuts
     
     void Update()
     {
-        PeanutsDB.CharlieAffectionPts = getAffectionPoints();
-        PeanutsDB.CharlieDialogueNum = p_dialogueNum;
+        PeanutsDB.SnoopyAffectionPts = getAffectionPoints();
+        PeanutsDB.SnoopyDialogueNum = p_dialogueNum;
     }
 
     //PATTERN attach method
@@ -146,6 +146,7 @@ public class Snoopy : Peanuts
                     initiateMiniGame(game);
                     //p_dialogueNum = 8;
                     //should depend on win 13 or loss 14
+                    p_dialogueNum = 14;
                 }
                 p_responseNum = 0;
                 break;
@@ -184,7 +185,7 @@ public class Snoopy : Peanuts
                     updateAffection(5);
                     initiateMiniGame(game);
                     //update after game 13w 14l
-                    p_dialogueNum = 10;
+                    p_dialogueNum = 14;
                 } else if (p_responseNum == 2){
                     p_dialogueNum = 11;
                     updateAffection(-5);
@@ -199,19 +200,19 @@ public class Snoopy : Peanuts
                     updateAffection(5);
                     initiateMiniGame(game);
                     //update after game 13w 14l
-                    p_dialogueNum = 10;
+                    p_dialogueNum = 14;
                 }
                 p_responseNum = 0;
                 break;
             case 10:
                 if (p_responseNum == 1){
-                    p_dialogueNum = 10;
+                    p_dialogueNum = 11;
                     updateAffection(-5);
                 } else if (p_responseNum == 2){
                     updateAffection(+15);
                     initiateMiniGame(game);
                     //dialogue depends... 13 won or 14 lost
-                    p_dialogueNum = 10;
+                    p_dialogueNum = 14;
                 }
                 p_responseNum = 0;
                 break;

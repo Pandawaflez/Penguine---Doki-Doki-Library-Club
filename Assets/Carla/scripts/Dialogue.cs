@@ -424,11 +424,13 @@ public class SnoopyDialogue : Dialogue
     //public void v_displayDialogue(int d)
     public override void v_displayDialogue(int d)
     {
+        r2p.SetActive(true);
+        r1p.SetActive(true);
         switch(d)
         {
             case 0:
-                r2p.SetActive(true);
-                r1p.SetActive(true);
+                //r2p.SetActive(true);
+                //r1p.SetActive(true);
                 Debug.Log("first time here huh");
                 displayRealDialogue(dialogue0, d0response1, d0response2);
                 break;
