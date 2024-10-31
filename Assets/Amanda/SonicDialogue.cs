@@ -63,8 +63,12 @@ public class SonicDialogue : HedgehogDialogue
             return;
         } else if(affectionManager.GetSonicAffectionPoints() == 100){
             DialogueLine = "Wanna play a game with me? Let's really test your speed.";
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Math");
+            SceneChanger.saveScene();
+            SceneManager.LoadScene(Math);
             return;
+            
+            //UnityEngine.SceneManagement.SceneManager.LoadScene("Math");
+            //return;
         }
         
         //check if there is a next dialogue before incrementing

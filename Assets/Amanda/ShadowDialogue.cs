@@ -60,7 +60,8 @@ public class ShadowDialogue : HedgehogDialogue
         } else if(affectionManager.GetShadowAffectionPoints() == 100){
             DialogueLine = "Let's play. You're about to get cooked.";
             // add carson's function
-            //UnityEngine.SceneManagement.SceneManager.LoadScene("Pong");
+            SceneChanger.saveScene();
+            SceneManager.LoadScene(Minesweeper);
             return;
         }
         
