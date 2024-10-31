@@ -45,25 +45,24 @@ public class OverworldManagement : MonoBehaviour
     };
 
     public void initializeRooms() {
-        if ( init ){
-            Debug.Log("Already Initialized");
-        } else {
-            rooms[0].name = "FrontDesk";
-            rooms[1].name = "Bathroom";
-            rooms[2].name = "FictionSection";
-            rooms[3].name = "NonfictionSection";
-            rooms[4].name = "ComputerLab";
-            rooms[5].name = "StudyRoom";
-            rooms[6].name = "Classroom"; 
-            rooms[0].roomImage = frontDeskImage;
-            rooms[1].roomImage = bathroomImage;
-            rooms[2].roomImage = fictionImage;
-            rooms[3].roomImage = nonfictionImage;
-            rooms[4].roomImage = computerImage;
-            rooms[5].roomImage = studyImage;
-            rooms[6].roomImage = classImage; 
-            init = true;
-        }
+        //if ( init ){
+            //Debug.Log("Already Initialized");
+        //} else {
+        rooms[0].name = "FrontDesk";
+        rooms[1].name = "Bathroom";
+        rooms[2].name = "FictionSection";
+        rooms[3].name = "NonfictionSection";
+        rooms[4].name = "ComputerLab";
+        rooms[5].name = "StudyRoom";
+        rooms[6].name = "Classroom"; 
+        rooms[0].roomImage = frontDeskImage;
+        rooms[1].roomImage = bathroomImage;
+        rooms[2].roomImage = fictionImage;
+        rooms[3].roomImage = nonfictionImage;
+        rooms[4].roomImage = computerImage;
+        rooms[5].roomImage = studyImage;
+        rooms[6].roomImage = classImage; 
+        init = true;
     }
 
     //placeholder/test function:
@@ -101,7 +100,7 @@ public class OverworldManagement : MonoBehaviour
         testPanel.SetActive(true);
     }
 
-    public void start(){
+    public void awake(){
         /*frontDeskImage = Resources.Load<Sprite>("Carson/RoomBackgrounds/FrontDesk");
         bathroomImage = Resources.Load<Sprite>("Carson/RoomBackgrounds/bathroom");
         fictionImage = Resources.Load<Sprite>("Carson/RoomBackgrounds/fictionSection");
