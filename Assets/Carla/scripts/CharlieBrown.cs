@@ -18,8 +18,8 @@ public class CharlieBrown : Peanuts
     public Button r1;
     public Button r2;
 
-    public Dialogue genDialogue;
-    private CharlieDialogue myDialogue;
+    public Dialogue myDialogue;
+    private CharlieDialogue omyDialogue;
     private string game = "Pong";
 
     // AUDIO - ADDED BY OWEN 
