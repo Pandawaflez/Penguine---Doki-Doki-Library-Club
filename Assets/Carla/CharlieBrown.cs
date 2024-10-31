@@ -25,8 +25,9 @@ public class CharlieBrown : Peanuts
     // AUDIO - ADDED BY OWEN 
     private DialogueSound dialogueSound;
 
-        void Start()
+    void Start()
     {
+   
         //genDialogue = new Dialogue();
         myDialogue = new CharlieDialogue(Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
         //theAudio = new AudioManager();
