@@ -50,8 +50,8 @@ public class UIElementHandler : MonoBehaviour
     {
         UICheckInput();
 
-        // overlayUI.UpdateCharacterUI("Charlie", PeanutsDB.CharlieAffectionPts);
-        overlayUI.UpdateCharacterUI("Charlie", 100);
+        overlayUI.UpdateCharacterUI("Charlie", PeanutsDB.CharlieAffectionPts);
+        // overlayUI.UpdateCharacterUI("Charlie", 100);
 
         overlayUI.UpdateCharacterUI("Lucy", PeanutsDB.LucyAffectionPts);
         overlayUI.UpdateCharacterUI("Snoopy", PeanutsDB.SnoopyAffectionPts);
