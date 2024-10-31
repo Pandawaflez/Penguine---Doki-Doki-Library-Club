@@ -35,13 +35,13 @@ public class OverworldManagement : MonoBehaviour
 
     private Room[] rooms = new Room[]
     {
-        new Room(), //0
-        new Room(), //1
-        new Room(), //2
-        new Room(), //3
-        new ComputerRoom(), //4
-        new Room(), //5
-        new Room()  //6
+        new Room(), //0 - Front Desk
+        new Room(), //1 - Bathroom
+        new Room(), //2 - Fiction Section
+        new Room(), //3 - Nonfiction Section
+        new ComputerRoom(), //4 - Computer Lab
+        new Room(), //5 - Study Room
+        new Room()  //6 - Classroom
     };
 
     public void initializeRooms() {

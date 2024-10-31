@@ -8,7 +8,7 @@ public class Room
     public Sprite roomImage{get; set;}
 
     virtual public void loadRoom (){
-        Debug.Log("Loading Room...");
+        Debug.Log("Loading Room..." + name );
     }
 
 }
