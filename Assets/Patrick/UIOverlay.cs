@@ -20,6 +20,7 @@ public class UIOverlay : UIElement
     private void CreateCharacterUI(Sprite[] images, string[] names)
     {
         Sprite heartImageSprite = Resources.Load<Sprite>("Patrick/heart"); //heart sprite for progress bars
+        Sprite meterSprite = Resources.Load<Sprite>("Patrick/meter"); //sprite for progress meter
 
         for (int i = 0; i < names.Length; i++)
         {
@@ -34,7 +35,7 @@ public class UIOverlay : UIElement
             Image profileImage = CreateProfileImage(images[i], container);
 
             // Create the progress meter (Slider)
-            Slider progressMeter = CreateProgressMeter(container, heartImageSprite);
+            Slider progressMeter = CreateProgressMeter(container, heartImageSprite, meterSprite);
 
             // Create the points text field
             Text pointsText = CreatePointsText(container);
@@ -61,8 +62,8 @@ public class UIOverlay : UIElement
         return img;
     }
 
-    // Helper: Create the progress meter (Slider)
-    private Slider CreateProgressMeter(GameObject parent, Sprite heartImage)
+    //Create the progress meter (Slider)
+    private Slider CreateProgressMeter(GameObject parent, Sprite heartImage, Sprite meterImage)
     {
             // Debug.Log("Creating progress meter");
 
@@ -90,7 +91,8 @@ public class UIOverlay : UIElement
         GameObject background = new GameObject("Background", typeof(Image));
         background.transform.SetParent(sliderObject.transform, false);
         Image bgImage = background.GetComponent<Image>();
-        bgImage.color = new Color(0.5f, 0, 0.5f, 0.7f);  //background color for slider
+        bgImage.sprite = meterImage;    //set sprite as background
+        bgImage.color = new Color(0, 1, 0.6f, 0.7f);  //background color for slider
 
         RectTransform bgRect = background.GetComponent<RectTransform>();
         bgRect.anchorMin = Vector2.zero;
@@ -102,12 +104,13 @@ public class UIOverlay : UIElement
         GameObject fillArea = new GameObject("FillArea", typeof(Image));
         fillArea.transform.SetParent(sliderObject.transform, false);
         Image fillImage = fillArea.GetComponent<Image>();
-        fillImage.color = new Color(0.8f, 0, 0.9f, 0.9f);  // Green fill for the progress
+        fillImage.sprite = meterImage;      //same sprite as background
+        fillImage.color = new Color(0.8f, 0, 0.7f, 0.5f);  //redish fill for the progress
 
         RectTransform fillRect = fillArea.GetComponent<RectTransform>();
         fillRect.anchorMin = Vector2.zero;  // Anchor the fill to the left
         fillRect.anchorMax = Vector2.one;   // Stretch the fill horizontally
-        fillRect.offsetMin = new Vector2(0, 2);  //Add slight padding inside
+        fillRect.offsetMin = new Vector2(1, 2);  //Add slight padding inside
         fillRect.offsetMax = new Vector2(0, -2); //Adjust for better alignment
 
         //Assign the fill area to the slider's fillRect property
@@ -121,13 +124,13 @@ public class UIOverlay : UIElement
         // handleImage.color = Color.white;  // White handle for visibility
 
         RectTransform handleRect = handle.GetComponent<RectTransform>();
-        handleRect.sizeDelta = new Vector2(20, 15);  //Adjust the size of the handle
+        handleRect.sizeDelta = new Vector2(23, 12);  //Adjust the size of the handle
         slider.handleRect = handleRect;  //Assign the handle to the slider
 
         return slider;
     }
 
-    // Helper: Create the points text field
+    //Create the points text field
     private Text CreatePointsText(GameObject parent)
     {
         GameObject textObject = new GameObject("PointsText", typeof(Text));
