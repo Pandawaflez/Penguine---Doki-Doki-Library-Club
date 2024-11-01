@@ -19,7 +19,7 @@ public class CharlieBrown : Peanuts
     public Button r2;
 
     public Dialogue myDialogue;
-    private CharlieDialogue omyDialogue;
+    private CharlieDialogue omyDialogue;    //not used
     private string game = "Pong";
 
     // AUDIO - ADDED BY OWEN 
@@ -27,17 +27,9 @@ public class CharlieBrown : Peanuts
 
     void Start()
     {
-   
-        //genDialogue = new Dialogue();
+        //create new dialogue bubble & send it the game object to attach
         myDialogue = new CharlieDialogue(Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
         //theAudio = new AudioManager();
-        /*
-        CdialogueText = myDialogue.dialogueText;
-        Cresponse1Text = myDialogue.response1Text;
-        Cresponse2Text = myDialogue.response2Text;
-        Cr1p = myDialogue.r1p;
-        Cr2p = myDialogue.r2p;
-        */
 
         // AUDIO - ADDED BY OWEN:
         // Load the audio clip from the Resources folder
@@ -89,7 +81,11 @@ public class CharlieBrown : Peanuts
         toNextDialogue();
     }
 
-    //a button being hit will trigger this. decides how to respond to response
+    /*
+        this function is called when a button is hit
+        decides what to do (update affection pts, next dialogue number and/or to initiate minigame) based off response
+        calls onDialogue() at end
+    */
     private void toNextDialogue()
     {
         int d = getDialogueNum();
@@ -146,7 +142,7 @@ public class CharlieBrown : Peanuts
                     initiateMiniGame(game);
                     //how to wait here?
                     //yield return null;
-                    p_dialogueNum = 8;
+                    p_dialogueNum = -1;
                 }
                 p_responseNum = 0;
                 break;
@@ -163,7 +159,7 @@ public class CharlieBrown : Peanuts
                     //p_dialogueNum = 8;
                     updateAffection(8);
                     initiateMiniGame(game);
-                    p_dialogueNum=8;
+                    p_dialogueNum=-1;
                     //yield return null;
                 }
                 p_responseNum = 0;
@@ -175,6 +171,9 @@ public class CharlieBrown : Peanuts
                 //post game
                 //give user option to keep talking?
                 break;
+            case -1:
+                p_responseNum = 8;
+                break;
             default:
                 Debug.Log("uh oh - no dialogue match");
                 break;
@@ -183,11 +182,17 @@ public class CharlieBrown : Peanuts
         Debug.Log(string.Format("current affection points: {0}", getAffectionPoints()));
     }
 
+    //calls myDialogue with the updated dialogue number, and triggers audio
     public void onDialogue(int d)
     {
+        //if user was just in a game, send them to post game convo
+        if (p_dialogueNum == -1){
+            updateAffection(10);
+            p_dialogueNum=8;
+        }
         //theAudio.loadSounds();
-        //myDialogue.displayDialogue(d, Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
         myDialogue.v_displayDialogue(d);
+
         // AUDIO - ADDED BY OWEN
         if (dialogueSound != null)
         {

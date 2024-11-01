@@ -22,6 +22,24 @@ public class Dialogue
         response1Text.SetText(_genericResponse1);
         response2Text.SetText(_genericResponse2);
     }
+
+    //sets the text in dialogue and response panels
+    protected void displayRealDialogue(string dialogue, string r1, string r2)
+    {
+        dialogueText.SetText(dialogue);
+        response1Text.SetText(r1);
+        response2Text.SetText(r2);
+    }
+
+    //sets the text in dialogue panel and removes response panels
+    protected void displayJustText(string dialogue)
+    {
+        dialogueText.SetText(dialogue);
+        r2p.SetActive(false);
+        r1p.SetActive(false);
+    }
+
+/*
     public Schroeder st;
     public void reg(Schroeder s, int d) //ig ref is the same thing as pointer????
     {
@@ -32,6 +50,7 @@ public class Dialogue
         Debug.Log("calling up");
         Debug.Log(st.getDialogueNum().ToString());
     }
+*/
 }
 
 public class CharlieDialogue : Dialogue
@@ -45,7 +64,8 @@ public class CharlieDialogue : Dialogue
     //5-> 7 (end)
     //6->a5|b-game -2 +8
     //7-> loop
-    //8-> after game
+    //8-> after game +10?
+    //9 game msg
     
   
     private string dialogue0 = "Hello. I'm Charlie Brown.\nI'd love to keep talking to you, as long as you keep your voice down. Afterall, we're in the Miami-Dade Public Library.";
@@ -77,9 +97,22 @@ public class CharlieDialogue : Dialogue
 
     private string dialogue7 = "I'm reading, sorry.";
 
-    public string dialogue8 = "Well, thanks for playing " + MainPlayer.GetPlayerName() + "!";
+    private string dialogue8 = "Well, thanks for playing " + MainPlayer.GetPlayerName() + "!";
+
+    private string dialogueG = "Good luck!";
 
     //what's that got to do with anything
+
+
+    //constructor
+    public CharlieDialogue(GameObject Cr1p, GameObject Cr2p, TextMeshProUGUI dt, TextMeshProUGUI r1t, TextMeshProUGUI r2t)
+    {
+        dialogueText =  dt;
+        response1Text = r1t;
+        response2Text = r2t;
+        r1p = Cr1p;
+        r2p = Cr2p;
+    }
  
     //public void v_displayDialogue(int d)
     public override void v_displayDialogue(int d)
@@ -126,12 +159,16 @@ public class CharlieDialogue : Dialogue
             case 8:
                 displayJustText(dialogue8);
                 break;
+            case -1:
+                displayJustText(dialogueG);
+                break;
             default:
                 Debug.Log("no dialogue in d class");
                 break;
         }
     }
 
+/*
     private void displayRealDialogue(string dialogue, string r1, string r2)
     {
         dialogueText.SetText(dialogue);
@@ -148,15 +185,7 @@ public class CharlieDialogue : Dialogue
         //r1.gameObject.SetActive(false); //these didn't work for no reason smh
         //r2.gameObject.SetActive(false);
     }
-
-    public CharlieDialogue(GameObject Cr1p, GameObject Cr2p, TextMeshProUGUI dt, TextMeshProUGUI r1t, TextMeshProUGUI r2t)
-    {
-        dialogueText =  dt;
-        response1Text = r1t;
-        response2Text = r2t;
-        r1p = Cr1p;
-        r2p = Cr2p;
-    }
+*/
 
 }
 
@@ -183,6 +212,7 @@ public class LucyDialogue : Dialogue
     //16-> a14|b18 (after win game) -5 +15
     //17-> after lose game (no options) -> go to good end?
     //18-> good ->to good end?
+    //p lose +15 p win -5
     
   
     private string dialogue0 = "You look lost, little donut. I'll take pity on you and give you some advice, for a nickel. Welcome to Lucy's corner.";
@@ -247,11 +277,23 @@ public class LucyDialogue : Dialogue
     private string d16response1 = "Will you ever gain self-awareness?";
     private string d16response2 = "Ahh Lucy, it definitely was just your godliness rubbing off on me!";
 
-    public string dialogue17 = "Hah! Well good game against me, the winner, of course.";
+    private string dialogue17 = "Hah! Well good game against me, the winner, of course.";
 
-    public string dialogue18 = "Flattery will get you everywhere, you dork.";
+    private string dialogue18 = "Flattery will get you everywhere, you dork.";
+
+    private string dialogueG = "Good luck... you'll need it";
 
     //good dialogue end loop? or kicks you out of library...?
+
+    //constructor
+    public LucyDialogue(GameObject Lr1p, GameObject Lr2p, TextMeshProUGUI dt, TextMeshProUGUI r1t, TextMeshProUGUI r2t)
+    {
+        dialogueText =  dt;
+        response1Text = r1t;
+        response2Text = r2t;
+        r1p = Lr1p;
+        r2p = Lr2p;
+    }
 
     //public void v_displayDialogue(int d)
     public override void v_displayDialogue(int d)
@@ -324,7 +366,7 @@ public class LucyDialogue : Dialogue
                 break;
         }
     }
-
+/*
     private void displayRealDialogue(string dialogue, string r1, string r2)
     {
         dialogueText.SetText(dialogue);
@@ -338,15 +380,7 @@ public class LucyDialogue : Dialogue
         r2p.SetActive(false);
         r1p.SetActive(false);
     }
-
-    public LucyDialogue(GameObject Lr1p, GameObject Lr2p, TextMeshProUGUI dt, TextMeshProUGUI r1t, TextMeshProUGUI r2t)
-    {
-        dialogueText =  dt;
-        response1Text = r1t;
-        response2Text = r2t;
-        r1p = Lr1p;
-        r2p = Lr2p;
-    }
+*/
 
 }
 
@@ -421,6 +455,17 @@ public class SnoopyDialogue : Dialogue
 
     private string dialogue14 = "Hah! Another victory for K9s! Good game puppy!";
 
+    private string dialogueG = "Good luck!";
+
+    //constructor
+    public SnoopyDialogue(GameObject Lr1p, GameObject Lr2p, TextMeshProUGUI dt, TextMeshProUGUI r1t, TextMeshProUGUI r2t)
+    {
+        dialogueText =  dt;
+        response1Text = r1t;
+        response2Text = r2t;
+        r1p = Lr1p;
+        r2p = Lr2p;
+    }
 
     //public void v_displayDialogue(int d)
     public override void v_displayDialogue(int d)
@@ -484,7 +529,7 @@ public class SnoopyDialogue : Dialogue
                 break;
         }
     }
-
+/*
     private void displayRealDialogue(string dialogue, string r1, string r2)
     {
         dialogueText.SetText(dialogue);
@@ -498,15 +543,7 @@ public class SnoopyDialogue : Dialogue
         r2p.SetActive(false);
         r1p.SetActive(false);
     }
-
-    public SnoopyDialogue(GameObject Lr1p, GameObject Lr2p, TextMeshProUGUI dt, TextMeshProUGUI r1t, TextMeshProUGUI r2t)
-    {
-        dialogueText =  dt;
-        response1Text = r1t;
-        response2Text = r2t;
-        r1p = Lr1p;
-        r2p = Lr2p;
-    }
+*/
 }
 
 public class SchroederDialogue : Dialogue
@@ -525,8 +562,8 @@ public class SchroederDialogue : Dialogue
     //10-> a14|b-game -10 +5
     //11-> a10|b9 +5 -20        //fly me to the moon
     //12 end stuck              //default GPW
-    //13 won                    //default GPW
-    //14 lost                   //default GPW
+    //13 won +15                   //default GPW
+    //14 lost -5                  //default GPW
 
 
     private string dialogue0 = "shhh... I'm playing piano.";
@@ -581,7 +618,19 @@ public class SchroederDialogue : Dialogue
 
     private string dialogue14 = "Hmm. Quiet up then, you haven't demonsrated enough intellect to continue conversing.";
 
+    private string dialogueG = "Good luck.";
 
+    //constructor
+    public SchroederDialogue(GameObject Lr1p, GameObject Lr2p, TextMeshProUGUI dt, TextMeshProUGUI r1t, TextMeshProUGUI r2t)
+    {
+        dialogueText =  dt;
+        response1Text = r1t;
+        response2Text = r2t;
+        r1p = Lr1p;
+        r2p = Lr2p;
+    }
+
+    //public void v_displayDialogue(int d)
     public override void v_displayDialogue(int d)
     {
         r2p.SetActive(true);
@@ -642,7 +691,7 @@ public class SchroederDialogue : Dialogue
                 break;
         }
     }
-
+/*
     private void displayRealDialogue(string dialogue, string r1, string r2)
     {
         dialogueText.SetText(dialogue);
@@ -656,14 +705,6 @@ public class SchroederDialogue : Dialogue
         r2p.SetActive(false);
         r1p.SetActive(false);
     }
-
-    public SchroederDialogue(GameObject Lr1p, GameObject Lr2p, TextMeshProUGUI dt, TextMeshProUGUI r1t, TextMeshProUGUI r2t)
-    {
-        dialogueText =  dt;
-        response1Text = r1t;
-        response2Text = r2t;
-        r1p = Lr1p;
-        r2p = Lr2p;
-    }
+*/
 }
 

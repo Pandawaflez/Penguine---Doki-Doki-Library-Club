@@ -175,7 +175,7 @@ public class Schroeder : Peanuts
                     updateAffection(5);
                     initiateMiniGame(game);
                     //dialogue depends... 13 won or 14 lost
-                    p_dialogueNum = 14;
+                    p_dialogueNum = -1;
                 }
                 p_responseNum = 0;
                 break;
@@ -209,6 +209,19 @@ public class Schroeder : Peanuts
     }
 
     public void onDialogue(int d){
+        //if they just played a game
+        if (p_dialogueNum == -1){
+            //if they won
+            if (MainPlayer.IsBCMode()){
+                updateAffection(15);
+                p_dialogueNum=16;
+            }
+            //or lost
+            else {
+                updateAffection(-5);
+                p_dialogueNum=17;
+            }
+        }
         //theAudio.loadSounds();
         //myDialogue.displayDialogue(d, Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
         myDialogue.v_displayDialogue(d);

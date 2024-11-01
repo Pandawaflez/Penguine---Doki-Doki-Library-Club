@@ -166,7 +166,7 @@ public class Lucy : Peanuts
                     updateAffection(3);
                     initiateMiniGame(game);
                     //this should depend on winning (16) & losing (17).
-                    p_dialogueNum = 16;
+                    p_dialogueNum = -1;
                 } else if (p_responseNum == 2){
                     updateAffection(-10); 
                     p_dialogueNum = 10;
@@ -192,7 +192,7 @@ public class Lucy : Peanuts
                     updateAffection(5); 
                     initiateMiniGame(game);
                     //this should depend on winning (16) & losing (17).
-                    p_dialogueNum = 16;
+                    p_dialogueNum = -1;
                 }
                 p_responseNum = 0;
                 break;
@@ -215,7 +215,7 @@ public class Lucy : Peanuts
                     updateAffection(2); 
                     initiateMiniGame(game);
                     //this should depend on winning (16) & losing (17). //update affection points there or here?
-                    p_dialogueNum = 16;
+                    p_dialogueNum = -1;
                 }
                 p_responseNum = 0;
                 break;
@@ -253,6 +253,19 @@ public class Lucy : Peanuts
 
     public void onDialogue(int d)
     {
+        //if they just played a game
+        if (p_dialogueNum == -1){
+            //if they won
+            if (MainPlayer.IsBCMode()){
+                updateAffection(-10);
+                p_dialogueNum=16;
+            }
+            //or lost
+            else {
+                updateAffection(15);
+                p_dialogueNum=17;
+            }
+        }
         //theAudio.loadSounds();
         //myDialogue.displayDialogue(d, Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
         myDialogue.v_displayDialogue(d);

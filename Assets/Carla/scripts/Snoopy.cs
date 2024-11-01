@@ -144,9 +144,8 @@ public class Snoopy : Peanuts
                 } else if (p_responseNum == 2){
                     updateAffection(15);
                     initiateMiniGame(game);
-                    //p_dialogueNum = 8;
                     //should depend on win 13 or loss 14
-                    p_dialogueNum = 14;
+                    p_dialogueNum = -1;
                 }
                 p_responseNum = 0;
                 break;
@@ -185,7 +184,7 @@ public class Snoopy : Peanuts
                     updateAffection(5);
                     initiateMiniGame(game);
                     //update after game 13w 14l
-                    p_dialogueNum = 14;
+                    p_dialogueNum = -1;
                 } else if (p_responseNum == 2){
                     p_dialogueNum = 11;
                     updateAffection(-5);
@@ -200,7 +199,7 @@ public class Snoopy : Peanuts
                     updateAffection(5);
                     initiateMiniGame(game);
                     //update after game 13w 14l
-                    p_dialogueNum = 14;
+                    p_dialogueNum = -1;
                 }
                 p_responseNum = 0;
                 break;
@@ -212,7 +211,7 @@ public class Snoopy : Peanuts
                     updateAffection(+15);
                     initiateMiniGame(game);
                     //dialogue depends... 13 won or 14 lost
-                    p_dialogueNum = 14;
+                    p_dialogueNum = -1;
                 }
                 p_responseNum = 0;
                 break;
@@ -241,6 +240,20 @@ public class Snoopy : Peanuts
     }
 
     public void onDialogue(int d){
+        //if they just played a game
+        if (p_dialogueNum == -1){
+            //if they won
+            if (MainPlayer.IsBCMode()){
+                updateAffection(5);
+                p_dialogueNum=13;
+            }
+            //or lost
+            else {
+                updateAffection(15);
+                p_dialogueNum=14;
+            }
+        }
+
         //theAudio.loadSounds();
         //myDialogue.displayDialogue(d, Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
         myDialogue.v_displayDialogue(d);

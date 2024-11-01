@@ -19,6 +19,7 @@ public class Peanuts : MonoBehaviour
         SceneChanger.saveScene();
         SceneManager.LoadScene(game);
         //dialogueNum = 8;
+        
     }
 
     public int getResponseNum(){
