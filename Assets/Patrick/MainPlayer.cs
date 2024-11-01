@@ -8,6 +8,16 @@ public static class MainPlayer
 
     private static bool _BCMode;    //holds BCMode bool
 
+    private static int _minigameStatus = 0;
+
+    public static int GetMiniGameStatus(){
+        return _minigameStatus;
+    }
+
+    public static void SetMiniGameStatus(int x){
+        _minigameStatus = x;
+    }
+
     public static string GetPlayerName(){
         return _playerName;
     }
