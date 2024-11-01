@@ -10,7 +10,6 @@ public class Dialogue
     public GameObject r1p;
     public GameObject r2p;
     
-
     private string _genericDialogue = "Who am I?";
     private string _genericResponse1 = "Bro";
     private string _genericResponse2 = "ruh roh";
@@ -51,34 +50,34 @@ public class CharlieDialogue : Dialogue
   
     private string dialogue0 = "Hello. I'm Charlie Brown.\nI'd love to keep talking to you, as long as you keep your voice down. Afterall, we're in the Miami-Dade Public Library.";
     private string d0response1 = "Live a little Charlie! What harm will come from speaking loudly?";
-    private string d0response2 = "Oh, of course! So nice to meet you Charlie";
+    private string d0response2 = "Oh, of course! So nice to meet you Charlie. I'm " + MainPlayer.GetPlayerName() + ".";
 
     private string dialogue1 = "Don't you know the librarians can lock you up in the Ancient book room?! I can't associate with you anymore.";
-    private string d1response1 = "Don't be such a scaredy cat Charlie Brown";
+    private string d1response1 = "Don't be such a scaredy cat Charlie Brown.";
     private string d1response2 = "Good Grief! Good thing you warned me!";
 
-    private string dialogue2 = "So what brings you to my corner of the library?";
+    private string dialogue2 = "So what brings you to my corner of the library, " + MainPlayer.GetPlayerName() + "?";
     private string d2response1 = "I'm just looking for something to do while I wait for my little sister to pick out her comics.";
-    private string d2response2 = "I'm hunting rats";
+    private string d2response2 = "I'm hunting rats.";
 
 
     private string dialogue3 = "Good Grief! Are there really rats in here?";
-    private string d3response1 = "Umm no Charlie Brown. That was a joke";
-    private string d3response2 = "Yeah but don't worry pookie, I'll keep you safe";
+    private string d3response1 = "Umm no Charlie Brown. That was a joke.";
+    private string d3response2 = "Yeah but don't worry pookie, I'll keep you safe.";
 
-    private string dialogue4 = "Oh what a coincidence! I have a little sister roaming around too. Do you want to play a game with me while we wait?";
-    private string d4response1 = "No I just want to read a book";
-    private string d4response2 = "Holy Smokes yeah";
+    private string dialogue4 = "Oh what a coincidence! I have a little sister roaming around too. \nDo you want to play a game with me while we wait?";
+    private string d4response1 = "No I just want to get out of here.";
+    private string d4response2 = "Holy Smokes yeah!";
 
     private string dialogue5 = "I'm just going to go back to reading then...";
 
-    private string dialogue6 = "Oh umm. Thank you. Well since you're here, want to play a game?";
+    private string dialogue6 = "Oh umm. Thank you. \nWell since you're here, want to play a game?";
     private string d6response1 = "Unfortch there's no rest for the wicked. See ya!";
     private string d6response2 = "Yes, my sweet prince!";
 
     private string dialogue7 = "I'm reading, sorry.";
 
-    public string dialogue8 = "Well, thanks for playing!";
+    public string dialogue8 = "Well, thanks for playing " + MainPlayer.GetPlayerName() + "!";
 
     //what's that got to do with anything
  
@@ -194,7 +193,7 @@ public class LucyDialogue : Dialogue
     private string d1response1 = "What's this advice huh";
     private string d1response2 = "Oh, well thanks I suppose... I'll try it out";
 
-    private string dialogue2 = "I guess you're a pretty smart one afterall!\nWell, I was going to tell you that you'd better start walking around a little more mindfully. Those librarians are always watching.";
+    private string dialogue2 = "I guess you're a pretty smart one afterall, "+MainPlayer.GetPlayerName()+"!\nWell, I was going to tell you that you'd better start walking around a little more mindfully. Those librarians are always watching.";
     private string d2response1 = "Good Grief! Are they watching us right now?";
     private string d2response2 = "... Really?";
 
@@ -207,8 +206,8 @@ public class LucyDialogue : Dialogue
     private string d4response2 = "Bro! I'm not nickel-less, I just don't want to give them to you!";
 
     private string dialogue5 = "Of course! I've never made a mistake in my life. I thought I did once, but I was wrong.";
-    private string d5response1 = "So... that's a mistake";
-    private string d5response2 = "You are my idol, Lucy Van Pelt";
+    private string d5response1 = "So... that's a mistake.";
+    private string d5response2 = "You are my idol, Lucy Van Pelt.";
 
     private string dialogue6 = "They know not to bother me. Nobody tells me what to do! Nobody!!";
     private string d6response1 = "You are a legend among characters, Lucy";
@@ -216,23 +215,23 @@ public class LucyDialogue : Dialogue
 
     private string dialogue7 = "Well you don't deserve any advice! Bug off, cretin!!";
 
-    private string dialogue8 = "Harrumph!\nWell, that's why you've got to carry yourself with a little more respect! Then people won't bother you";
+    private string dialogue8 = "Harrumph!\nWell, that's why you've got to carry yourself with a little more respect, "+MainPlayer.GetPlayerName()+"! Then people won't bother you";
     private string d8response1 = "Respect?! You carry yourself like a dictator!";
     private string d8response2 = "Oh, does that really work?";
 
     private string dialogue9 = "You're lucky I like flattery. So, do you want to play a game?";
-    private string d9response1 = "Lucy, of course";
+    private string d9response1 = "Lucy, of course I would.";
     private string d9response2 = "Dude. That was sarcasm.";
 
     private string dialogue10 = "Oh so we've got a smarty pants on our hands, is that so?!";
-    private string d10response1 = "Hardly much competition around here";
+    private string d10response1 = "Hardly much competition around here.";
     private string d10response2 = "I'm sorry Lucy, I was just trying to keep up with your unbeatable witiness! Let me repent.";
 
     private string dialogue11 = "You should obviously know that no one can keep up with me. So let's see your talent in a game!";
     private string d11response1 = "I've seen your wiles with Charlie, so there's no way.";
     private string d11response2 = "It would be my honor to lose to you!";
 
-    private string dialogue12 = "Hanging around Charlie Brown, huh? What's that downer been up to. Downering? Gah! Don't bring him up again.";
+    private string dialogue12 = "Hanging around Charlie Brown, huh? What's that downer been up to. Downering? Ugh! \nDon't bring him up again.";
     private string d12response1 = "You're the downerer! Of others!";
     private string d12response2 = "Well that's why I'm over here talking to you instead of him.";
 
@@ -371,22 +370,22 @@ public class SnoopyDialogue : Dialogue
     //14 user lost game +15 -> go to 12 if not won?
 
     private string dialogue0 = "Another person? I hope you're not going to ask for me to cook dinner... although I would understand why.";
-    private string d0response1 = "No, although I do admire you, chef-extraordinaire";
-    private string d0response2 = "Snoopy you made colored beans and popcorn for Thanksgiving.";
+    private string d0response1 = "No, although I, "+MainPlayer.GetPlayerName()+", do admire you, chef-extraordinaire";
+    private string d0response2 = "Snoopy, you made colored beans and popcorn for Thanksgiving.";
 
     private string dialogue1 = "Well it's good to be appreciated! Do you have more than just words for me though?";
     private string d1response1 = "I can give pets and love?";
     private string d1response2 = "I have some very fine ham and steak, and some worms for your little friends!";
 
     private string dialogue2 = "And it was good, you blockhead. You'll find a better companion than me before you find the Great Pumpkin!";
-    private string d2response1 = "You're right Snoopy, that's my bad! Everyone apologized to Charlie for taking him for granted, but what about you?";
+    private string d2response1 = "You're right Snoopy, that's my bad! \nEveryone apologized to Charlie for taking him for granted, but what about you?";
     private string d2response2 = "No, it was good! That's what I meant. Nothing like magic beans!";
 
     private string dialogue3 = "Hmmm. Well I'll keep that in mind. But can you give me some music?";
     private string d3response1 = "Oh, like a smooth jazz solo?";
     private string d3response2 = "I've got SnoopDog queued up!";
 
-    private string dialogue4 = "A human of taste! Say, what do you think about a little war game?";
+    private string dialogue4 = "A human of taste! Say, what do you think about a little war game, "+MainPlayer.GetPlayerName()+"?";
     private string d4response1 = "War? Or fetch?";
     private string d4response2 = "Boy I can't wait! I hope this is a reference to the Red Baron...";
 
@@ -402,19 +401,19 @@ public class SnoopyDialogue : Dialogue
     private string d7response1 = "Shoot! I mean... some shooting taste? Do you?";
     private string d7response2 = "Erm... I mean I do like Schroeder?";
 
-    private string dialogue8 = "Well, nothing can beat Schroeder, other than Beethoven himself! Somewhat like beating me in Minesweeper...";
+    private string dialogue8 = "Well, nothing can beat Schroeder, other than Beethoven himself! \nSomewhat like beating me in Minesweeper...";
     private string d8response1 = "Well said. I'll take you on!";
-    private string d8response2 = "Wait, but I could beat you so... this is wrong?";
+    private string d8response2 = "Wait, but I could beat you so... isn't this is wrong?";
 
-    private string dialogue9 = "Hey now. Don't disrespect Charlie like that. You're walking on thin... mines";
+    private string dialogue9 = "Hey now. Don't disrespect Charlie like that. You're walking on thin... mines.";
     private string d9response1 = "Was that a threat?";
     private string d9response2 = "Was that a minesweeper reference?";
 
-    private string dialogue10 = "Now I've got some skill in the old trade of shooting that wily Red Baron out of the sky!\n In fact, I think I got him to hit the ground a while back... Should we go in search?";
+    private string dialogue10 = "Now I've got some skill in the old trade of shooting that wily Red Baron out of the sky! \nIn fact, I think I got him to hit the ground a while back... Should we go in search?";
     private string d10response1 = "Wow Snoopy that sounds a little dangerous though...";
     private string d10response2 = "Oh some minesweeper activities? Sign me up!";
 
-    private string dialogue11 = "Gah! I'm taking a break from humans and going back to my birdies";
+    private string dialogue11 = "Gah! I'm taking a break from humans and going back to my birdies.";
 
     private string dialogue12 = "You're disrupting a great Red Baron dogfight daydream! Shoo!";
 
@@ -530,7 +529,7 @@ public class SchroederDialogue : Dialogue
     //14 lost                   //default GPW
 
 
-    private string dialogue0 = "shhh... I'm playing piano";
+    private string dialogue0 = "shhh... I'm playing piano.";
     private string d0response1 = "It's what drew me to this corner actually! So beautiful.";
     private string d0response2 = "Is this Mozart? It's very nice.";
 
@@ -544,7 +543,7 @@ public class SchroederDialogue : Dialogue
 
     private string dialogue3 = "Of course. I have many.";
     private string d3response1 = "Not another Beethoven!";
-    private string d3response2 = "This is a joy, Schroeder";
+    private string d3response2 = "This is a joy, Schroeder.";
 
     private string dialogue4 = "The pianist need only piano.";
     private string d4response1 = "Well said, sire. I can see you are a man of refinement.";
