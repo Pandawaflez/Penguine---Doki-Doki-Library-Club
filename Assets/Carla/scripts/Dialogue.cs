@@ -85,11 +85,13 @@ public class CharlieDialogue : Dialogue
     //public void v_displayDialogue(int d)
     public override void v_displayDialogue(int d)
     {
+        r2p.SetActive(true);
+        r1p.SetActive(true);
         switch(d)
         {
             case 0:
-            r2p.SetActive(true);
-            r1p.SetActive(true);
+            //r2p.SetActive(true);
+            //r1p.SetActive(true);
             Debug.Log("first time here huh");
                 displayRealDialogue(dialogue0, d0response1, d0response2);
                 break;
@@ -510,6 +512,159 @@ public class SnoopyDialogue : Dialogue
 
 public class SchroederDialogue : Dialogue
 {
+    //dialogue order:
+    //0-> a1|b2 +5 -5           //START: & default: great pumpkin waltz
+    //1-> a3|b4 +5 -0
+    //2-> a5|b3 +15 +5
+    //3-> a6|b7 -15 +20         //fur elise
+    //4-> a7|b6 +15 -20
+    //5-> a8|b9 +5 -5           //linus and lucy
+    //6-> a11|b7 -10 +10
+    //7-> a11|b10 +5 +15
+    //8-> a7|b9 +15 -10
+    //9 -> 12                   //fly me to the moon
+    //10-> a14|b-game -10 +5
+    //11-> a10|b9 +5 -20        //fly me to the moon
+    //12 end stuck              //default GPW
+    //13 won                    //default GPW
+    //14 lost                   //default GPW
 
+
+    private string dialogue0 = "shhh... I'm playing piano";
+    private string d0response1 = "It's what drew me to this corner actually! So beautiful.";
+    private string d0response2 = "Is this Mozart? It's very nice.";
+
+    private string dialogue1 = "Yes...";
+    private string d1response1 = "Do you have any other tunes?";
+    private string d1response2 = "Makes me want to dance... pity you can't join while you play!";
+
+    private string dialogue2 = "Of course not.";
+    private string d2response1 = "Oh! I meant Vince Guaraldi?";
+    private string d2response2 = "Shoot! I'll confess I'm not very well versed... can you play some more?";
+
+    private string dialogue3 = "Of course. I have many.";
+    private string d3response1 = "Not another Beethoven!";
+    private string d3response2 = "This is a joy, Schroeder";
+
+    private string dialogue4 = "The pianist need only piano.";
+    private string d4response1 = "Well said, sire. I can see you are a man of refinement.";
+    private string d4response2 = "Isn't that a bit intense? You're only a boy.";
+
+    private string dialogue5 = "I beg your pardon?";
+    private string d5response1 = "Ahh, nevermind nevermind. Say, what do you know of the Peanuts Waltz?";
+    private string d5response2 = "Your true composer, you know? The trio?";
+
+    private string dialogue6 = "Beethoven was only 10 when he started composing. What were YOU doing at 10?";
+    private string d6response1 = "Enjoying life?";
+    private string d6response2 = "Uhh, good point, good point. I admire your drive.";
+
+    private string dialogue7 = "Yes, well. Thank you";
+    private string d7response1 = "Schroeder, you charmer!";
+    private string d7response2 = "Thank you, Schroeder!";
+
+    private string dialogue8 = "Let's say I did know what you were talking about... I think it would go something like this";
+    private string d8response1 = "That's perfect!";
+    private string d8response2 = "Aha! Caught you in the 4th wall Schroeder.";
+
+    private string dialogue9 = "I don't know what ever you mean. I've got to get back to practicing.";
+
+    private string dialogue10 = "You are awful chatty. Why don't you play a math game over there while I practice?";
+    private string d10response1 = "But Schroeder! I just want to spend some time with you!";
+    private string d10response2 = "Ok, I'll come back with a high score for you.";
+
+    private string dialogue11 = "You sound just like Lucy Van Pelt. If you'll excuse me, I've got to get back to practicing";
+    private string d11response1 = "Wait, no I'm sorry! Let me hang out, I'll keep it down.";
+    private string d11response2 = "You are one cold dude, Schroeder.";
+
+    private string dialogue12 = "You can listen but I'm busy playing.";
+
+    private string dialogue13 = "Nice job. Now sit and listen.";
+
+    private string dialogue14 = "Hmm. Quiet up then, you haven't demonsrated enough intellect to continue conversing.";
+
+
+    public override void v_displayDialogue(int d)
+    {
+        r2p.SetActive(true);
+        r1p.SetActive(true);
+        switch(d)
+        {
+            case 0:
+                //r2p.SetActive(true);
+                //r1p.SetActive(true);
+                Debug.Log("first time here huh");
+                displayRealDialogue(dialogue0, d0response1, d0response2);
+                break;
+            case 1:
+                Debug.Log("here i stand");
+                displayRealDialogue(dialogue1, d1response1, d1response2);
+                break;
+            case 2:
+                displayRealDialogue(dialogue2, d2response1, d2response2);
+                break;
+            case 3: 
+                displayRealDialogue(dialogue3, d3response1, d3response2);
+                break;
+            case 4:
+                displayRealDialogue(dialogue4, d4response1, d4response2);
+                break;
+            case 5:
+                displayRealDialogue(dialogue5, d5response1, d5response2);
+                break;
+            case 6:
+                displayRealDialogue(dialogue6, d6response1, d6response2);
+                break;
+            case 7:
+                displayRealDialogue(dialogue7, d7response1, d7response2);
+                break;
+            case 8:
+                displayRealDialogue(dialogue8, d8response1, d8response2);
+                break;
+            case 9:
+                displayJustText(dialogue9);
+                break;
+            case 10: 
+                displayRealDialogue(dialogue10, d10response1, d10response2);
+                break;
+            case 11:
+                displayRealDialogue(dialogue11, d11response1, d11response2);
+                break;
+            case 12:
+                displayJustText(dialogue12);
+                break;
+            case 13:
+                displayJustText(dialogue13);
+                break;
+            case 14:
+                displayJustText(dialogue14);
+                break;
+            default:
+                Debug.Log("no dialogue in d class");
+                break;
+        }
+    }
+
+    private void displayRealDialogue(string dialogue, string r1, string r2)
+    {
+        dialogueText.SetText(dialogue);
+        response1Text.SetText(r1);
+        response2Text.SetText(r2);
+    }
+
+    private void displayJustText(string dialogue)
+    {
+        dialogueText.SetText(dialogue);
+        r2p.SetActive(false);
+        r1p.SetActive(false);
+    }
+
+    public SchroederDialogue(GameObject Lr1p, GameObject Lr2p, TextMeshProUGUI dt, TextMeshProUGUI r1t, TextMeshProUGUI r2t)
+    {
+        dialogueText =  dt;
+        response1Text = r1t;
+        response2Text = r2t;
+        r1p = Lr1p;
+        r2p = Lr2p;
+    }
 }
 
