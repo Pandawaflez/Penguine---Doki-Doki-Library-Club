@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIElementHandler : MonoBehaviour
 {
@@ -59,6 +60,10 @@ public class UIElementHandler : MonoBehaviour
         // overlayUI.UpdateCharacterUI("Sonic", affectionManager.GetShadowAffectionPoints());
         // overlayUI.UpdateCharacterUI("Shadow", affectionManager.GetSonicAffectionPoints());
 
+        if(Input.GetKeyDown(KeyCode.DownArrow)){
+            UIGod.EndGame(true, "Charlie");
+        }
+
     }
 
 
@@ -87,17 +92,25 @@ public class UIElementHandler : MonoBehaviour
     }
 
     //handle end of game scenario (global access point)
-    public void EndGame(bool isWin)
+    public void EndGame(bool isWin, string character)
     {
-        endGamePanel.SetActive(true); //Show the end game panel
+        endGamePanel.SetActive(true); // Show the end game panel
 
-        // // Update panel text based on win/loss
-        // Text panelText = endGamePanel.GetComponentInChildren<Text>();
-        // if (panelText != null)
-        // {
-        //     panelText.text = isWin ? "You Win!" : "You Lose!";
-        // }
+        // Get the Text component from the end game panel
+        TextMeshProUGUI panelText = endGamePanel.GetComponentInChildren<TextMeshProUGUI>();
+        if (panelText != null)
+        {
+            // Display different messages for win and loss scenarios
+            if (isWin)
+            {
+                panelText.text = $"Congratulations! You and {character} are now dating!";
+            }
+            else
+            {
+                panelText.text = "You lost! Nobody wants to date you :(";
+            }
+        }
 
-        Debug.Log(isWin ? "Game Over: You Win!" : "Game Over: You Lose!");
+        Debug.Log(isWin ? $"Game Over: You Win with {character}!" : "Game Over: You Lose!");
     }
 }
