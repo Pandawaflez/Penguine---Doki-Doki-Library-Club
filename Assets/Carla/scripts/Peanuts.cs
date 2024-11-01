@@ -36,7 +36,13 @@ public class Peanuts : MonoBehaviour
         return _affectionPoints;
     }
     public void updateAffection(int newPoints){
-        _affectionPoints += newPoints;
+        if (MainPlayer.IsBCMode()){
+            if (newPoints <0) newPoints *= -1;
+            _affectionPoints += 2*newPoints;
+        }
+        else{
+            _affectionPoints += newPoints;
+        }
     }
 
     protected void loadAffection(int totalPoints){
