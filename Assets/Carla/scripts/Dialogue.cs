@@ -391,7 +391,7 @@ public class SnoopyDialogue : Dialogue
 
     private string dialogue5 = "Hah! Well that's nice to hear.";
     private string d5response1 = "As nice as Schroeder's crooning?";
-    private string d5response2 = "Yeah man, sorry Charlie Brown didn't thank you.";
+    private string d5response2 = "Yeah, sorry Charlie Brown didn't thank you.";
 
     private string dialogue6 = "Hah! I thought so too, though of course I know how to make fancier food than that.";
     private string d6response1 = "A far better cook than Charlie Brown, I'll say!";
@@ -557,11 +557,11 @@ public class SchroederDialogue : Dialogue
     private string d6response1 = "Enjoying life?";
     private string d6response2 = "Uhh, good point, good point. I admire your drive.";
 
-    private string dialogue7 = "Yes, well. Thank you";
+    private string dialogue7 = "Yes, well. Thank you.";
     private string d7response1 = "Schroeder, you charmer!";
     private string d7response2 = "Thank you, Schroeder!";
 
-    private string dialogue8 = "Let's say I did know what you were talking about... I think it would go something like this";
+    private string dialogue8 = "Let's say I did know what you were talking about... I think it would go something like this.";
     private string d8response1 = "That's perfect!";
     private string d8response2 = "Aha! Caught you in the 4th wall Schroeder.";
 
@@ -571,7 +571,7 @@ public class SchroederDialogue : Dialogue
     private string d10response1 = "But Schroeder! I just want to spend some time with you!";
     private string d10response2 = "Ok, I'll come back with a high score for you.";
 
-    private string dialogue11 = "You sound just like Lucy Van Pelt. If you'll excuse me, I've got to get back to practicing";
+    private string dialogue11 = "You sound just like Lucy Van Pelt. If you'll excuse me, I've got to get back to practicing.";
     private string d11response1 = "Wait, no I'm sorry! Let me hang out, I'll keep it down.";
     private string d11response2 = "You are one cold dude, Schroeder.";
 
