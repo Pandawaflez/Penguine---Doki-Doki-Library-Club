@@ -97,20 +97,20 @@ public class Snoopy : Peanuts
             case 0:
                 if (p_responseNum == 1){
                     p_dialogueNum = 1;
-                    updateAffection(+5);
+                    updateAffection(20);
                 } else if (p_responseNum == 2){
                     p_dialogueNum = 2;
-                    updateAffection(-1);
+                    updateAffection(-5);
                 }
                 p_responseNum = 0;
                 break;
             case 1:
                 if (p_responseNum == 1){
                     p_dialogueNum = 3;
-                    updateAffection(-1);
+                    updateAffection(10);
                 } else if (p_responseNum == 2){
                     p_dialogueNum = 4;
-                    updateAffection(25);
+                    updateAffection(45);
                 }
                 p_responseNum = 0;
 
@@ -119,10 +119,10 @@ public class Snoopy : Peanuts
                 //if r1, p_dialogueNum=3, else 4
                 if (p_responseNum == 1){
                     p_dialogueNum = 5;
-                    updateAffection(5);
+                    updateAffection(25);
                 } else if (p_responseNum == 2){
                     p_dialogueNum = 6;
-                    updateAffection(15);
+                    updateAffection(40);
                 }
                 p_responseNum = 0;
                 break;
@@ -130,7 +130,7 @@ public class Snoopy : Peanuts
                 //if r1, p_dialogueNum=5, else 6
                 if (p_responseNum == 1){
                     p_dialogueNum = 4;
-                    updateAffection(+20);
+                    updateAffection(30);
                 } else if (p_responseNum == 2){
                     p_dialogueNum = 7;
                     updateAffection(-10);
@@ -142,7 +142,7 @@ public class Snoopy : Peanuts
                     p_dialogueNum = 5;
                     updateAffection(-5);
                 } else if (p_responseNum == 2){
-                    updateAffection(15);
+                    updateAffection(20);
                     initiateMiniGame(game);
                     //should depend on win 13 or loss 14
                     p_dialogueNum = -1;
@@ -152,51 +152,51 @@ public class Snoopy : Peanuts
             case 5:
                 if (p_responseNum == 1){
                     p_dialogueNum = 8;
-                    updateAffection(+5);
+                    updateAffection(30);
                 } else if (p_responseNum == 2){
                     p_dialogueNum = 9;
-                    updateAffection(-5);
+                    updateAffection(-20);
                 }
                 p_responseNum = 0;
                 break;
             case 6:
                 if (p_responseNum == 1){
                     p_dialogueNum = 9;
-                    updateAffection(-5);
+                    updateAffection(-10);
                 } else if (p_responseNum == 2){
                     p_dialogueNum = 10;
-                    updateAffection(10);
+                    updateAffection(20);
                 }
                 p_responseNum = 0;
                 break;
             case 7:
                 if (p_responseNum == 1){
                     p_dialogueNum = 10;
-                    updateAffection(10);
+                    updateAffection(20);
                 } else if (p_responseNum == 2){
                     p_dialogueNum = 8;
-                    updateAffection(5);
+                    updateAffection(10);
                 }
                 p_responseNum = 0;
                 break;
             case 8:
                 if (p_responseNum == 1){
-                    updateAffection(5);
+                    updateAffection(20);
                     initiateMiniGame(game);
                     //update after game 13w 14l
                     p_dialogueNum = -1;
                 } else if (p_responseNum == 2){
                     p_dialogueNum = 11;
-                    updateAffection(-5);
+                    updateAffection(-10);
                 }
                 p_responseNum = 0;
                 break;
             case 9:
                 if (p_responseNum == 1){
                     p_dialogueNum = 11;
-                    updateAffection(0);
+                    updateAffection(-5);
                 } else if (p_responseNum == 2){
-                    updateAffection(5);
+                    updateAffection(25);
                     initiateMiniGame(game);
                     //update after game 13w 14l
                     p_dialogueNum = -1;
@@ -208,7 +208,7 @@ public class Snoopy : Peanuts
                     p_dialogueNum = 11;
                     updateAffection(-5);
                 } else if (p_responseNum == 2){
-                    updateAffection(+15);
+                    updateAffection(20);
                     initiateMiniGame(game);
                     //dialogue depends... 13 won or 14 lost
                     p_dialogueNum = -1;
@@ -243,15 +243,20 @@ public class Snoopy : Peanuts
         //if they just played a game
         if (p_dialogueNum == -1){
             //if they won
-            if (MainPlayer.IsBCMode()){
-                updateAffection(5);
+            if (MainPlayer.GetMiniGameStatus()==1){
+                updateAffection(15);
                 p_dialogueNum=13;
             }
             //or lost
             else {
-                updateAffection(15);
+                updateAffection(30);
                 p_dialogueNum=14;
             }
+            MainPlayer.SetMiniGameStatus(-1);   //reset game status
+        }
+        else if (p_dialogueNum == 11){
+            PeanutsDB.SnoopyLocked = 1;
+            p_dialogueNum = 12;
         }
 
         //theAudio.loadSounds();

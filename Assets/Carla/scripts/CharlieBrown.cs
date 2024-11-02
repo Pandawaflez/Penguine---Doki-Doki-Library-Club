@@ -93,32 +93,31 @@ public class CharlieBrown : Peanuts
             case 0:
                 if (p_responseNum == 1){
                     p_dialogueNum=1;
-                    updateAffection(-1);
+                    updateAffection(-5);
                 } else if (p_responseNum == 2){
                     p_dialogueNum = 2;
-                    updateAffection(5);
+                    updateAffection(20);
                 }
                 p_responseNum = 0;
                 break;
             case 1:
                 if (p_responseNum == 1){
                     p_dialogueNum = 5;
-                    updateAffection(-2);
+                    updateAffection(-10);
                 } else if (p_responseNum == 2){
                     p_dialogueNum = 2;
-                    updateAffection(15);
+                    updateAffection(30);
                 }
                 p_responseNum = 0;
-
                 break;
             case 2:
                 //if r1, p_dialogueNum=3, else 4
                 if (p_responseNum == 1){
                     p_dialogueNum = 4;
-                    updateAffection(15);
+                    updateAffection(20);
                 } else if (p_responseNum == 2){
                     p_dialogueNum = 3;
-                    updateAffection(0);
+                    updateAffection(-5);
                 }
                 p_responseNum = 0;
                 break;
@@ -129,26 +128,27 @@ public class CharlieBrown : Peanuts
                     updateAffection(-10);
                 } else if (p_responseNum == 2){
                     p_dialogueNum = 6;
-                    updateAffection(3);
+                    updateAffection(45);
                 }
                 p_responseNum = 0;
                 break;
             case 4:
                 if (p_responseNum == 1){
                     p_dialogueNum = 5;
-                    updateAffection(0);
+                    updateAffection(-5);
                 } else if (p_responseNum == 2){
-                    updateAffection(5);
+                    updateAffection(30);
                     initiateMiniGame(game);
                     //how to wait here?
-                    //yield return null;
+                    //yield return null; //doesn't work
                     p_dialogueNum = -1;
                 }
                 p_responseNum = 0;
                 break;
             case 5:
                 //player stops talking to charlie...
-                //holdUp(5); //useless?
+                PeanutsDB.CharlieLocked = 1;
+                Debug.Log("charlie locked");
                 p_dialogueNum=7;
                 break;
             case 6:
@@ -157,7 +157,7 @@ public class CharlieBrown : Peanuts
                     updateAffection(-2);
                 } else if (p_responseNum == 2){
                     //p_dialogueNum = 8;
-                    updateAffection(8);
+                    updateAffection(15);
                     initiateMiniGame(game);
                     p_dialogueNum=-1;
                     //yield return null;
@@ -186,10 +186,17 @@ public class CharlieBrown : Peanuts
     public void onDialogue(int d)
     {
         //if user was just in a game, send them to post game convo
-        if (p_dialogueNum == -1){
-            updateAffection(10);
+        if (p_dialogueNum == -1 && MainPlayer.GetMiniGameStatus() != -1){
+            updateAffection(30);
             p_dialogueNum=8;
+            MainPlayer.SetMiniGameStatus(-1);   //reset game status
         }
+        else if (p_dialogueNum == 5){
+            PeanutsDB.CharlieLocked = 1;
+            p_dialogueNum = 7;
+            Debug.Log("Charlie is locked");
+        }        
+        
         //theAudio.loadSounds();
         myDialogue.v_displayDialogue(d);
 

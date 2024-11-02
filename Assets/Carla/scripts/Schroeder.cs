@@ -75,7 +75,7 @@ public class Schroeder : Peanuts
             case 0:
                 if (p_responseNum == 1){
                     p_dialogueNum = 1;
-                    updateAffection(5);
+                    updateAffection(20);
                 } else if (p_responseNum == 2){
                     p_dialogueNum = 2;
                     updateAffection(-5);
@@ -85,10 +85,10 @@ public class Schroeder : Peanuts
             case 1:
                 if (p_responseNum == 1){
                     p_dialogueNum = 3;
-                    updateAffection(5);
+                    updateAffection(20);
                 } else if (p_responseNum == 2){
                     p_dialogueNum = 4;
-                    updateAffection(0);
+                    updateAffection(5);
                 }
                 p_responseNum = 0;
 
@@ -109,14 +109,14 @@ public class Schroeder : Peanuts
                     updateAffection(-15);
                 } else if (p_responseNum == 2){
                     p_dialogueNum = 7;
-                    updateAffection(20);
+                    updateAffection(25);
                 }
                 p_responseNum = 0;
                 break;
             case 4:
                 if (p_responseNum == 1){
                     p_dialogueNum = 7;
-                    updateAffection(15);
+                    updateAffection(20);
                 } else if (p_responseNum == 2){
                     p_dialogueNum = 6;
                     updateAffection(-20);
@@ -170,9 +170,9 @@ public class Schroeder : Peanuts
             case 10:
                 if (p_responseNum == 1){
                     p_dialogueNum = 14;
-                    updateAffection(-10);
+                    updateAffection(-5);
                 } else if (p_responseNum == 2){
-                    updateAffection(5);
+                    updateAffection(20);
                     initiateMiniGame(game);
                     //dialogue depends... 13 won or 14 lost
                     p_dialogueNum = -1;
@@ -212,16 +212,23 @@ public class Schroeder : Peanuts
         //if they just played a game
         if (p_dialogueNum == -1){
             //if they won
-            if (MainPlayer.IsBCMode()){
-                updateAffection(15);
-                p_dialogueNum=16;
+            if (MainPlayer.GetMiniGameStatus()==1){
+                updateAffection(25);
+                p_dialogueNum=13;
             }
             //or lost
             else {
                 updateAffection(-5);
-                p_dialogueNum=17;
+                p_dialogueNum=14;
             }
+            MainPlayer.SetMiniGameStatus(-1);   //reset game status
         }
+        else if (p_dialogueNum == 9){
+            PeanutsDB.SchroederLocked = 1;
+            p_dialogueNum = 12;
+        }
+        //count them as locked out if after game??
+
         //theAudio.loadSounds();
         //myDialogue.displayDialogue(d, Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
         myDialogue.v_displayDialogue(d);

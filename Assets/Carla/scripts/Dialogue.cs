@@ -56,16 +56,16 @@ public class Dialogue
 public class CharlieDialogue : Dialogue
 {
     //dialogue order: 
-    //0->a1|b2 -1 +5
-    //1->a5|b2 -2 +15
-    //2->a4|b3 +15 -0
-    //3->a5|b6 -10 +3
-    //4->a5|b-game -0 +5
+    //0->a1|b2 -5 +20
+    //1->a5|b2 -10 +30
+    //2->a4|b3 +20 -5
+    //3->a5|b6 -10 +45
+    //4->a5|b-game -5 +30
     //5-> 7 (end)
-    //6->a5|b-game -2 +8
+    //6->a5|b-game -2 +15
     //7-> loop
-    //8-> after game +10?
-    //9 game msg
+    //8-> after game +30?   //multiple ways to get to 100 pts
+    //-1 game msg
     
   
     private string dialogue0 = "Hello. I'm Charlie Brown.\nI'd love to keep talking to you, as long as you keep your voice down. Afterall, we're in the Miami-Dade Public Library.";
@@ -193,26 +193,26 @@ public class CharlieDialogue : Dialogue
 public class LucyDialogue : Dialogue
 {
     //dialogue order: 
-    //0-> a1|b2 -1 +10
-    //1-> a4|b3 -2 +5
-    //2-> a6|b5 +10 -0
-    //3-> a7|b2 -10 +3
-    //4-> a8|b7 +2 -2
-    //5-> a10|b9 -15 +10
-    //6-> a9|b10 +8 -5
+    //0-> a1|b2 -5 +20
+    //1-> a4|b3 -5 +15
+    //2-> a6|b5 +20 +10
+    //3-> a7|b2 -20 +15
+    //4-> a8|b7 +20 -15
+    //5-> a10|b9 -20 +20
+    //6-> a9|b10 +20 -5
     //7-> 15 end
-    //8-> a7|b6 -5 +5
-    //9-> a-game|b10 +3 -10
-    //10->a7|b11 -5 +5
-    //11->a12|b-game -5 +5
+    //8-> a7|b6 -15 +20
+    //9-> a-game|b10 +20 -20
+    //10->a7|b11 -30 +20
+    //11->a12|b-game -15 +25
     //12->a14|b13 -15 +10
-    //13->a14|b-game -5 +2
+    //13->a14|b-game -20 +20
     //14-> 15 bad end
     //15-> loop bad end
-    //16-> a14|b18 (after win game) -5 +15
-    //17-> after lose game (no options) -> go to good end?
-    //18-> good ->to good end?
-    //p lose +15 p win -5
+    //16-> a14|b18 (after win game -10) -20 +25
+    //17-> after lose game (no options) +25
+    //18-> good 
+    //p lose +25 p win -10
     
   
     private string dialogue0 = "You look lost, little donut. I'll take pity on you and give you some advice, for a nickel. Welcome to Lucy's corner.";
@@ -247,7 +247,7 @@ public class LucyDialogue : Dialogue
 
     private string dialogue8 = "Harrumph!\nWell, that's why you've got to carry yourself with a little more respect, "+MainPlayer.GetPlayerName()+"! Then people won't bother you";
     private string d8response1 = "Respect?! You carry yourself like a dictator!";
-    private string d8response2 = "Oh, does that really work?";
+    private string d8response2 = "Oh, does that really work? I guess you're pretty good at it...";
 
     private string dialogue9 = "You're lucky I like flattery. So, do you want to play a game?";
     private string d9response1 = "Lucy, of course I would.";
@@ -387,21 +387,21 @@ public class LucyDialogue : Dialogue
 public class SnoopyDialogue : Dialogue
 {
     //dialogue order:
-    //0-> a1|b2 +5 -1
-    //1-> a3|b4 -0 +25
-    //2-> a5|b6 +5 +15
-    //3-> a4|b7 +20 -10
-    //4-> a7|b-game -5 +15
-    //5-> a8|b9 +5 -5
-    //6-> a9|b10 -5 +10
-    //7-> a10|b8 +10 +5
-    //8-> a-game|b11 +5 -5
-    //9-> a11|b-game -0 +5
-    //10->a11|b-game -5 +15
+    //0-> a1|b2 +20 -5
+    //1-> a3|b4 +10 +45
+    //2-> a5|b6 +25 +40
+    //3-> a4|b7 +30 -10
+    //4-> a7|b-game -5 +20
+    //5-> a8|b9 +30 -20
+    //6-> a9|b10 -10 +20
+    //7-> a10|b8 +20 +10
+    //8-> a-game|b11 +20 -10
+    //9-> a11|b-game -5 +25
+    //10->a11|b-game -5 +20
     //11-> 12
     //12 stuck
-    //13 user won game +5 -> go to 12 if not won?
-    //14 user lost game +15 -> go to 12 if not won?
+    //13 user won game +15
+    //14 user lost game +30
 
     private string dialogue0 = "Another person? I hope you're not going to ask for me to cook dinner... although I would understand why.";
     private string d0response1 = "No, although I, "+MainPlayer.GetPlayerName()+", do admire you, chef-extraordinaire";
@@ -415,7 +415,7 @@ public class SnoopyDialogue : Dialogue
     private string d2response1 = "You're right Snoopy, that's my bad! \nEveryone apologized to Charlie for taking him for granted, but what about you?";
     private string d2response2 = "No, it was good! That's what I meant. Nothing like magic beans!";
 
-    private string dialogue3 = "Hmmm. Well I'll keep that in mind. But can you give me some music?";
+    private string dialogue3 = "Hmmm, I'll keep that in mind! But can you give me some music?";
     private string d3response1 = "Oh, like a smooth jazz solo?";
     private string d3response2 = "I've got SnoopDog queued up!";
 
@@ -453,7 +453,7 @@ public class SnoopyDialogue : Dialogue
 
     private string dialogue13 = "... Respectable.";
 
-    private string dialogue14 = "Hah! Another victory for K9s! Good game puppy!";
+    private string dialogue14 = "Hah! Another victory for K-9s! Good game puppy!";
 
     private string dialogueG = "Good luck!";
 
@@ -549,21 +549,21 @@ public class SnoopyDialogue : Dialogue
 public class SchroederDialogue : Dialogue
 {
     //dialogue order:
-    //0-> a1|b2 +5 -5           //START: & default: great pumpkin waltz
-    //1-> a3|b4 +5 -0
+    //0-> a1|b2 +20 -5           //START: & default: great pumpkin waltz
+    //1-> a3|b4 +20 +5
     //2-> a5|b3 +15 +5
-    //3-> a6|b7 -15 +20         //fur elise
-    //4-> a7|b6 +15 -20
+    //3-> a6|b7 -15 +25         //fur elise
+    //4-> a7|b6 +20 -20
     //5-> a8|b9 +5 -5           //linus and lucy
     //6-> a11|b7 -10 +10
     //7-> a11|b10 +5 +15
     //8-> a7|b9 +15 -10
     //9 -> 12                   //fly me to the moon
-    //10-> a14|b-game -10 +5
-    //11-> a10|b9 +5 -20        //fly me to the moon
+    //10-> a14|b-game -5 +20
+    //11-> a10|b9 +10 -20        //fly me to the moon
     //12 end stuck              //default GPW
-    //13 won +15                   //default GPW
-    //14 lost -5                  //default GPW
+    //13 won +25                //default GPW
+    //14 lost -5                //default GPW
 
 
     private string dialogue0 = "shhh... I'm playing piano.";
