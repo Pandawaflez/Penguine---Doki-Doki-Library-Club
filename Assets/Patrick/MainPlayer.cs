@@ -8,7 +8,7 @@ public static class MainPlayer
 
     private static bool _BCMode;    //holds BCMode bool
 
-    private static int _minigameStatus = 0;
+    private static int _minigameStatus = -1;    //used for minigame state
 
     public static int GetMiniGameStatus(){
         return _minigameStatus;
