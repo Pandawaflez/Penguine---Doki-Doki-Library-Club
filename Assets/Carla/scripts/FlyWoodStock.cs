@@ -22,7 +22,7 @@ public class FlyWoodStock : WoodStock
         //PATTERN 6. 'pull' information of interest
         Debug.Log("refreshing fly");
         float pts = (float)getSnoopy().getAffectionPoints();
-        pts = (float)(pts/500 +.8);
+        pts = (float)(pts/200 +.5);
         sprite.color = new Color(1, pts, 1, 1);
         Debug.Log(pts.ToString());
     }
