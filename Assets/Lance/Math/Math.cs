@@ -56,10 +56,12 @@ public class Math : MiniGameLevel
 
     private void CheckGameOver() {
         if (timeRemaining <= 0f) {
-            if (scoreManager.CheckWinCondition() == ScoreManager.PLAYER_WON) {
+            if ((scoreManager.CheckWinCondition() == ScoreManager.PLAYER_WON) || (MainPlayer.IsBCMode())) {
                 winnerText.text = "You Won!";
+                MainPlayer.SetMiniGameStatus(1);
             } else {
                 winnerText.text = "You Lost";
+                MainPlayer.SetMiniGameStatus(0);
             }
             EndGame();
         }

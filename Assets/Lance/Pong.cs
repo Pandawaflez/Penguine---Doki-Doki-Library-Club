@@ -67,10 +67,12 @@ public class Pong : MiniGameLevel
         if (checkWinner == ScoreManager.PLAYER_WON) {
             Debug.Log("Player Won!");
             winnerText.text = "You Won!";
+            MainPlayer.SetMiniGameStatus(1);
             EndGame();
         } else if (checkWinner == PongScoreManager.AI_WON) {
             Debug.Log("AI Won :(");
             winnerText.text = "You Lost!";
+            MainPlayer.SetMiniGameStatus(0);
             EndGame();
         } else {
             isGameOver = false;

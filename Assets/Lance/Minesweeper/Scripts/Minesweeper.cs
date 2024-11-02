@@ -203,9 +203,11 @@ public class Minesweeper : MiniGameLevel {
         if (playerWon || MainPlayer.IsBCMode()) {
             Debug.Log("EndGame::Player Won!");
             winnerText.text = "You Won!";
+            MainPlayer.SetMiniGameStatus(1);
             SetFlagOnAllMines();
         } else {
             winnerText.text = "You Lost!";
+            MainPlayer.SetMiniGameStatus(1);
             Debug.Log("EndGame::Player Lost");
         }
 
