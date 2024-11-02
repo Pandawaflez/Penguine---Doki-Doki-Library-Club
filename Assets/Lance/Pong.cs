@@ -19,20 +19,22 @@ public class Pong : MiniGameLevel
     [SerializeField] AIPaddle aiPaddle;
     [SerializeField] GameObject gameOverScreen;
     [SerializeField] GameObject middleLine;
+    [SerializeField] GameObject mobileMovement;
+
+    private bool _isMobile = false;
 
     // Start is called before the first frame update
     void Start()
     {
         bottomLeft = Camera.main.ScreenToWorldPoint(new Vector2(0,0));
         topRight = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-        // scoreManager = new PongScoreManager(3);
         scoreManager = ScoreManagerFactory.CreateScoreManager("Pong", 3);
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (Application.platform == RuntimePlatform.Android && Application.platform == RuntimePlatform.IPhonePlayer) {
+            _isMobile = true;
+
+            mobileMovement.SetActive(true);
+        }
     }
 
     // update the score display in the pong game
@@ -105,6 +107,10 @@ public class Pong : MiniGameLevel
         aiPaddle.gameObject.SetActive(false);
         playerPaddle.gameObject.SetActive(false);
         middleLine.SetActive(false);
+
+        if (_isMobile) {
+            mobileMovement.SetActive(false);
+        }
 
         gameOverScreen.SetActive(true); 
     }
