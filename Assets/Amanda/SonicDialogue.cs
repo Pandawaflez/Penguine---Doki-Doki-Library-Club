@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SonicDialogue : HedgehogDialogue
 {
     public AffectionManager affectionManager;
+    public string game = "Math";
 
     private List<string> sonicLines = new List<string>(){
         "Hey I'm Sonic! Fastest hedgehog alive! Need anything?",
@@ -67,9 +68,9 @@ public class SonicDialogue : HedgehogDialogue
             //SceneChanger.saveScene();
             //SceneManager.LoadScene(Math);
             //return;
-            
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Math");
-            return;
+            startMiniGameDate(game);
+            //UnityEngine.SceneManagement.SceneManager.LoadScene("Math");
+            //return;
         }
         
         //check if there is a next dialogue before incrementing

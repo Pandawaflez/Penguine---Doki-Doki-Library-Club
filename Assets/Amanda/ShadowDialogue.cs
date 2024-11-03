@@ -63,7 +63,7 @@ public class ShadowDialogue : HedgehogDialogue
             DialogueLine = "Let's play. You're about to get cooked.";
             // add carson's function
             //SceneChanger.saveScene();
-            //initiateMiniGame(game);
+            startMiniGameDate(game);
             //SceneManager.LoadScene(Math);
             return;
         }

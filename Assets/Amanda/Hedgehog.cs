@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public abstract class HedgehogDialogue
 {
     public string CharacterName {get; set;}
     public string DialogueLine{ get; set;}
+    private string game = "Minesweeper";
 
     protected HedgehogDialogue(string characterName, string initialDialogue){
         CharacterName = characterName;
@@ -22,5 +24,12 @@ public abstract class HedgehogDialogue
 
     //method that will be overridden in derived classes. 
     public abstract void ProcessChoice(int choice);
+
+    protected void startMiniGameDate(string game){
+        //SceneManager.LoadScene("Pong", LoadSceneMode.Additive);
+        SceneChanger.saveScene();
+        SceneManager.LoadScene(game);
+        //dialogueNum = 8;
+    }
     
 }
