@@ -1,37 +1,35 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class ShaggyScript : Scooby
+public class ShaggyScript : ShaggyDialogeData
 {
     //buttons for dialogue
-    public Button ShagR1;
-    public Button ShagR2;
+    
     public TextMeshProUGUI ShagDialogueText, ShagResponse1Text, ShagResponse2Text;
-    public GameObject Shag1p;
-    public GameObject Shag2p;
+    
     public int responseNum = 0;
     public int ShagAffection = 0;
     void Start()
     {
-        DisplayDialogue(ShagDialogueText, ShagResponse1Text, ShagResponse2Text);
+        DisplayDialogue(ShagPrompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, Player_Response_1, Player_Response_2);
     }
     //selection of dialogues
     public void hitShagResponse1()
     {
         HandlePlayerResponse(1);
-        DisplayDialogue(ShagDialogueText, ShagResponse1Text, ShagResponse2Text);
+        DisplayDialogue(ShagPrompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, Player_Response_1, Player_Response_2);
     }
 
     public void hitShagResponse2()
     {
         HandlePlayerResponse(2);
-        DisplayDialogue(ShagDialogueText, ShagResponse1Text, ShagResponse2Text);
+        DisplayDialogue(ShagPrompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, Player_Response_1, Player_Response_2);
     }
 
-    public override void HandlePlayerResponse(int resopnseNum)
+    public override void HandlePlayerResponse(int responseNum)
     {
         if ((SCdialogueNum == 1 || SCdialogueNum == 2) && responseNum == 1)
         {
@@ -72,7 +70,7 @@ public class ShaggyScript : Scooby
             ShagDialogueText.text = "I don't think we have much in common. Sorry pal, I'll see you around";
             ShagResponse1Text.text = "";
             ShagResponse2Text.text = "";
-            DisplayDialogue(ShagDialogueText, ShagResponse1Text, ShagResponse2Text);
+            DisplayDialogue(ShagPrompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, Player_Response_1, Player_Response_2);
             UnityEngine.SceneManagement.SceneManager.LoadScene("Overworld");
             return;
         }
@@ -84,3 +82,4 @@ public class ShaggyScript : Scooby
    // void Update() { }
 
 }
+ */
