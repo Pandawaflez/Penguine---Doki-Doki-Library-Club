@@ -225,6 +225,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 956db70841efed641bd46d6c2cfe107c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &314410764 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8346977595533208297, guid: 8d3c0e6926ae8f74f9770bb686554fba, type: 3}
+  m_PrefabInstance: {fileID: 1214620090}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &369484279 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4200547462257860830, guid: 8d3c0e6926ae8f74f9770bb686554fba, type: 3}
+  m_PrefabInstance: {fileID: 1214620090}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &466163183 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 22698658642750679, guid: d3a42cada42529040bf4b2dcdda4616b, type: 3}
@@ -450,6 +460,14 @@ PrefabInstance:
       propertyPath: nonfictionImage
       value: 
       objectReference: {fileID: 21300000, guid: 9630200233468774fb6e53194b0785fa, type: 3}
+    - target: {fileID: 5626818472445010581, guid: 8d3c0e6926ae8f74f9770bb686554fba, type: 3}
+      propertyPath: characterLeftButton
+      value: 
+      objectReference: {fileID: 314410764}
+    - target: {fileID: 5626818472445010581, guid: 8d3c0e6926ae8f74f9770bb686554fba, type: 3}
+      propertyPath: characterRightButton
+      value: 
+      objectReference: {fileID: 369484279}
     - target: {fileID: 6231429013845918482, guid: 8d3c0e6926ae8f74f9770bb686554fba, type: 3}
       propertyPath: m_Name
       value: Room

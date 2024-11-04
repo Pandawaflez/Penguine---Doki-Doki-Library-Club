@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class OverworldManagement : MonoBehaviour
 {
+    [SerializeField]
+    private overworldDebugMenu debugPanel;
     //sdggsdlkdjg
     [SerializeField]
     private string currentRoomName = "FrontDesk";
@@ -14,6 +16,15 @@ public class OverworldManagement : MonoBehaviour
     private Image background;
     [SerializeField]
     private GameObject testPanel;
+    //Character buttons:
+    [SerializeField]
+    private Image characterLeft;
+    [SerializeField]
+    private Image characterRight;
+    [SerializeField]
+    private GameObject characterLeftButton;
+    [SerializeField]
+    private GameObject characterRightButton;
 
     //room data:
     private static bool init = false;
@@ -33,6 +44,28 @@ public class OverworldManagement : MonoBehaviour
     [SerializeField]
     private Sprite classImage;
 
+    //characterImages:
+    [SerializeField]
+    private Sprite charlieImage;
+    [SerializeField]
+    private Sprite lucyImage;
+    [SerializeField]
+    private Sprite schroederImage;
+    [SerializeField]
+    private Sprite snoopyImage;
+    [SerializeField]
+    private Sprite shaggyImage;
+    [SerializeField]
+    private Sprite fredImage;
+    [SerializeField]
+    private Sprite daphneImage;
+    [SerializeField]
+    private Sprite sonicImage;
+    [SerializeField]
+    private Sprite shadowImage;
+
+
+    private const int numOfRooms = 7;
     private Room[] rooms = new Room[]
     {
         new Room(), //0 - Front Desk
@@ -43,6 +76,19 @@ public class OverworldManagement : MonoBehaviour
         new Room(), //5 - Study Room
         new Room()  //6 - Classroom
     };
+    private const int numOfCharacters = 9;
+    private string[] characterArray = {
+        "Charlie", //0
+        "Lucy", //1
+        "Schroeder", //2
+        "Snoopy", //3
+        "Shaggy", //4
+        "Fred", //5
+        "Daphne", //6
+        "Sonic", //7
+        "Shadow" //8
+    };
+    private string[] characterPlacement = new string[numOfRooms*2];
 
     public void initializeRooms() {
         rooms[0].name = "FrontDesk";
@@ -77,6 +123,18 @@ public class OverworldManagement : MonoBehaviour
         }
         background.sprite = rooms[currentRoom].roomImage;
         currentRoomName = rooms[currentRoom].name;
+        //disable characters:
+        characterLeftButton.SetActive(false);
+        characterRightButton.SetActive(false);
+        //enable characters if needed:
+        if ( characterPlacement[currentRoom*2] != "Empty" ) {
+            characterLeftButton.SetActive(true);
+            setCharacterImage( "left" , characterLeft );
+        }
+        if ( characterPlacement[(currentRoom*2)+1] != "Empty" ) {
+            characterRightButton.SetActive(true);
+            setCharacterImage( "right" , characterRight );
+        }
         rooms[currentRoom].loadRoom();
     }
 
@@ -88,6 +146,18 @@ public class OverworldManagement : MonoBehaviour
         }
         background.sprite = rooms[currentRoom].roomImage;
         currentRoomName = rooms[currentRoom].name;
+        //disable characters:
+        characterLeftButton.SetActive(false);
+        characterRightButton.SetActive(false);
+        //enable characters if needed:
+        if ( characterPlacement[currentRoom*2] != "Empty" ) {
+            characterLeftButton.SetActive(true);
+            setCharacterImage( "left" , characterLeft );
+        }
+        if ( characterPlacement[(currentRoom*2)+1] != "Empty" ) {
+            characterRightButton.SetActive(true);
+            setCharacterImage( "right" , characterRight );
+        }
         rooms[currentRoom].loadRoom();
     }
 
@@ -98,14 +168,82 @@ public class OverworldManagement : MonoBehaviour
     }
 
     public void Awake(){
-        /*frontDeskImage = Resources.Load<Sprite>("Carson/RoomBackgrounds/FrontDesk");
-        bathroomImage = Resources.Load<Sprite>("Carson/RoomBackgrounds/bathroom");
-        fictionImage = Resources.Load<Sprite>("Carson/RoomBackgrounds/fictionSection");
-        nonfictionImage = Resources.Load<Sprite>("Carson/RoomBackgrounds/nonfiction");
-        computerImage = Resources.Load<Sprite>("Carson/RoomBackgrounds/computerLab");
-        studyImage = Resources.Load<Sprite>("Carson/RoomBackgrounds/StudyTables");
-        Sprite classImage = Resources.Load<Sprite>("Carson/RoomBackgrounds/classroom");*/
         initializeRooms();
+        placeCharacters();
+        readCharacterPlacement();
+    }
+
+    private void placeCharacters(){
+        int j = 0;
+        for ( int i = 0; i < numOfRooms*2; i++ ){
+            characterPlacement[i] = "Empty";
+        }
+        for ( int i = 0; i < numOfCharacters; i++ ){
+            int temp = Random.Range(0, (numOfRooms*2)-1);
+            while ( characterPlacement[temp] != "Empty" ){
+                temp = Random.Range(0, (numOfRooms*2)-1);
+            }
+            characterPlacement[temp] = characterArray[j];
+            j++;
+        }
+    }
+
+    private void readCharacterPlacement () {
+        for( int i = 0; i < numOfRooms*2; i++){
+            Debug.Log("Character in slot " + i + ": " + characterPlacement[i] );
+        }
+    }
+
+    private void setCharacterImage( string leftOrRight , Image characterImage ){
+        string character;
+        if (leftOrRight == "left"){
+            character = characterPlacement[(currentRoom*2)];
+        } else {
+            character = characterPlacement[(currentRoom*2)+1];
+        }
+        Debug.Log("Changing image to character:" + character);
+        switch ( character ){
+            case "Charlie":
+                characterImage.sprite = charlieImage;
+                break;
+            case "Lucy":
+                characterImage.sprite = lucyImage;
+                break;
+            case "Schroeder":
+                characterImage.sprite = schroederImage;
+                break;
+            case "Snoopy":
+                characterImage.sprite = snoopyImage;
+                break;
+            case "Shaggy":
+                characterImage.sprite = shaggyImage;
+                break;
+            case "Daphne":
+                characterImage.sprite = daphneImage;
+                break;
+            case "Fred":
+                characterImage.sprite = fredImage;
+                break;
+            case "Sonic":
+                characterImage.sprite = sonicImage;
+                break;
+            case "Shadow":
+                characterImage.sprite = shadowImage;
+                break;
+            default:
+                Debug.Log("Character " + character + " not found");
+                break;
+        }
+    }
+
+    public void characterL () {
+        Debug.Log("Talk to Character L");
+        debugPanel.talkTo(characterPlacement[(currentRoom*2)]);
+    }
+
+    public void characterR () {
+        Debug.Log("Talk to Character R");
+        debugPanel.talkTo(characterPlacement[(currentRoom*2)+1]);
     }
 
 }
