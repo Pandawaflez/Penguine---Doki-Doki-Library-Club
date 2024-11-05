@@ -1,10 +1,11 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class ShaggyScript : MonoBehaviour// ShaggyDialogeData
+public class ShaggyScript : ShaggyDialogeData
 {
     //buttons for dialogue
     
@@ -12,6 +13,7 @@ public class ShaggyScript : MonoBehaviour// ShaggyDialogeData
     
     public int responseNum = 0;
     public int ShagAffection = 0;
+    private string game = "Minesweeper";
     void Start()
     {
         DisplayDialogue(ShagPrompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, Player_Response_1, Player_Response_2);
@@ -61,7 +63,17 @@ public class ShaggyScript : MonoBehaviour// ShaggyDialogeData
     {
         if (SCAP >= 40)
         {
-            //        "Would you wanna keep this good thing going?"
+
+            ShagDialogueText.text = "Would you wanna keep this good thing going?";
+            ShagResponse1Text.text = "Yes";
+            ShagResponse2Text.text = "No";
+            DisplayDialogue(ShagPrompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, Player_Response_1, Player_Response_2);
+            if (responseNum == 1){
+                startMiniGameDate(game);
+            }
+            else {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Overworld");
+            }
 
             //going to transition to minigame
         }
@@ -82,4 +94,4 @@ public class ShaggyScript : MonoBehaviour// ShaggyDialogeData
    // void Update() { }
 
 }
- */
+ 

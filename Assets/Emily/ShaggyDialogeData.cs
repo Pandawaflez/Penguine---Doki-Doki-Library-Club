@@ -6,8 +6,8 @@ using System.IO;
 using System;
 using System.Xml;
 using System.Xml.Serialization;
-/*
-public class ShaggyDialogeData : Scooby
+
+public abstract class ShaggyDialogeData : Scooby
 {
      public List<string> ShagPrompts = new List<string>{
         "Hey dude. Do you like sandwiches?",
@@ -35,4 +35,3 @@ public class ShaggyDialogeData : Scooby
     
    
 }
-*/

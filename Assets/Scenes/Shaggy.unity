@@ -710,7 +710,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2112662054236561838, guid: 2619d475204417d498ce614a7bf5bc1e, type: 3}
       propertyPath: m_Name
-      value: ShaggyResponse1Text
+      value: ShaggyResponse2Text
       objectReference: {fileID: 0}
     - target: {fileID: 2424534383882283460, guid: 2619d475204417d498ce614a7bf5bc1e, type: 3}
       propertyPath: m_AnchorMax.y
@@ -795,7 +795,7 @@ PrefabInstance:
     - target: {fileID: 5274196115847406613, guid: 2619d475204417d498ce614a7bf5bc1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1950819400}
+      objectReference: {fileID: 0}
     - target: {fileID: 5274196115847406613, guid: 2619d475204417d498ce614a7bf5bc1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -948,20 +948,26 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5953147536879669960, guid: 2619d475204417d498ce614a7bf5bc1e, type: 3}
   m_PrefabInstance: {fileID: 858029825}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &858029827 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8913443954314882962, guid: 2619d475204417d498ce614a7bf5bc1e, type: 3}
-  m_PrefabInstance: {fileID: 858029825}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &858029828 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5274196115847406613, guid: 2619d475204417d498ce614a7bf5bc1e, type: 3}
   m_PrefabInstance: {fileID: 858029825}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 858029827}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1033959693 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8181247794880616903, guid: 2619d475204417d498ce614a7bf5bc1e, type: 3}
+  m_PrefabInstance: {fileID: 1493412144}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1245913051
@@ -1407,7 +1413,7 @@ PrefabInstance:
     - target: {fileID: 5274196115847406613, guid: 2619d475204417d498ce614a7bf5bc1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1950819400}
+      objectReference: {fileID: 0}
     - target: {fileID: 5274196115847406613, guid: 2619d475204417d498ce614a7bf5bc1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1558,17 +1564,12 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5953147536879669960, guid: 2619d475204417d498ce614a7bf5bc1e, type: 3}
   m_PrefabInstance: {fileID: 1493412144}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1493412146 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8913443954314882962, guid: 2619d475204417d498ce614a7bf5bc1e, type: 3}
-  m_PrefabInstance: {fileID: 1493412144}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1493412147 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5274196115847406613, guid: 2619d475204417d498ce614a7bf5bc1e, type: 3}
   m_PrefabInstance: {fileID: 1493412144}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1493412146}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -2049,18 +2050,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1950819399}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34aed9ebaa785f54ea2c41f387cffe21, type: 3}
+  m_Script: {fileID: 11500000, guid: e971d37d4cb64f141891532e476ba657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SCAP: 0
   ShagR1: {fileID: 1493412147}
   ShagR2: {fileID: 858029828}
-  responseNum: 0
   ShagDialogueText: {fileID: 251524524}
-  ShagResponse1Text: {fileID: 251524524}
-  ShagResponse2Text: {fileID: 251524524}
-  Shag1p: {fileID: 1493412146}
-  Shag2p: {fileID: 858029827}
+  ShagResponse1Text: {fileID: 1033959693}
+  ShagResponse2Text: {fileID: 2024811867}
+--- !u!114 &2024811867 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8181247794880616903, guid: 2619d475204417d498ce614a7bf5bc1e, type: 3}
+  m_PrefabInstance: {fileID: 858029825}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2045545429
 GameObject:
   m_ObjectHideFlags: 0

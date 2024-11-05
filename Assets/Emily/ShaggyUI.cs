@@ -4,18 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
-/*
-/ublic class ShaggyUI : MonoBehaviour
+
+public class ShaggyUI : MonoBehaviour
 {
     public Button ShagR1;
     public Button ShagR2;
-    public GameObject Shag1p;
-    public GameObject Shag2p;
+    public TextMeshProUGUI ShagDialogueText, ShagResponse1Text, ShagResponse2Text;
+
     private ShaggyScript ShagScript;
     // Start is called before the first frame update
     void Start()
     {
-        ShagScript = new ShaggyScript;
+        ShagScript = new ShaggyScript();
         
     }
 
@@ -25,4 +25,3 @@ using UnityEngine.SceneManagement;
         
     }
 }
-*/
