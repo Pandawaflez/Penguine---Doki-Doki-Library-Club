@@ -9,6 +9,7 @@ public class AffectionManager
 
     private static int sonicAffectionPoints = 0;
     private static int shadowAffectionPoints = 0;
+
     
     private List<IAffectionObserver> observers = new List<IAffectionObserver>();
 
@@ -44,11 +45,11 @@ public class AffectionManager
         NotifyChangedAffection("Shadow", shadowAffectionPoints);
     }
 
-    public int GetSonicAffectionPoints(){
+    public static int GetSonicAffectionPoints(){
         return sonicAffectionPoints;
     }
 
-    public int GetShadowAffectionPoints(){
+    public static int GetShadowAffectionPoints(){
         return shadowAffectionPoints;
     }
 
@@ -84,8 +85,8 @@ public class AffectionManager
         sonicAffectionPoints = 0;
 
         // Save the reset values to PlayerPrefs
-        PlayerPrefs.SetInt("SonicAffectionPoints", 0);
-        PlayerPrefs.Save();
+        //PlayerPrefs.SetInt("SonicAffectionPoints", 0);
+        //PlayerPrefs.Save();
     }
 
     public void ResetShadowAffectionPoints()
@@ -94,7 +95,7 @@ public class AffectionManager
         shadowAffectionPoints = 0;
 
         // Save the reset values to PlayerPrefs
-        PlayerPrefs.SetInt("ShadowAffectionPoints", 0);
-        PlayerPrefs.Save();
+        //PlayerPrefs.SetInt("ShadowAffectionPoints", 0);
+        //PlayerPrefs.Save();
     }
 }

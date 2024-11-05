@@ -20,7 +20,7 @@ public class SonicDialogue : HedgehogDialogue
         new string[] {"I think Shadow is faster than you.", "Sonic! I'm your #1 fan!"},
         new string[] {"No, lol. Shadow is definitely cooler than you.", "You can say that again."},
         new string[] {"I think I could outrun you...", "You're the best, Sonic!"},
-        new string[] {"You're so cocky, I thought shadow was the confident one", "Hit me with your best shot."},
+        new string[] {"You're so cocky, I thought Shadow was the confident one", "Hit me with your best shot."},
         new string[] {"Let's see what you got." , "omg I'm really about to play against sonic right now"}
     };
 
@@ -61,6 +61,8 @@ public class SonicDialogue : HedgehogDialogue
 
         //load library and leave conversation if -10 affection
         if(affectionManager.GetSonicAffectionPoints() <= -10){
+            DialogueLine = "Please don't talk to me again.";
+            //lockout character here? 
             UnityEngine.SceneManagement.SceneManager.LoadScene("Overworld");
             return;
         } else if(affectionManager.GetSonicAffectionPoints() == 100){
