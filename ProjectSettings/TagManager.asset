@@ -11,6 +11,7 @@ TagManager:
   - BirdController
   - Response1
   - Response2
+  - example
   layers:
   - Default
   - TransparentFX

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AffectionManager 
+public class AffectionManager
 {
     private const int MAX_AFFECTION = 100;
     private const int MIN_AFFECTION = -10;
