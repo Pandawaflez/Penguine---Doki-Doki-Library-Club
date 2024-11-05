@@ -91,6 +91,7 @@ public class OverworldManagement : MonoBehaviour
     private string[] characterPlacement = new string[numOfRooms*2];
 
     public void initializeRooms() {
+        //fill rooms with data:
         rooms[0].name = "FrontDesk";
         rooms[1].name = "Bathroom";
         rooms[2].name = "FictionSection";
@@ -105,7 +106,8 @@ public class OverworldManagement : MonoBehaviour
         rooms[4].roomImage = computerImage;
         rooms[5].roomImage = studyImage;
         rooms[6].roomImage = classImage; 
-        init = true;
+        currentRoom = RoomsDB.currentRoom;
+        init = true; //make sure we know that everything is good to go
     }
 
     //placeholder/test function:
@@ -174,6 +176,7 @@ public class OverworldManagement : MonoBehaviour
     }
 
     private void placeCharacters(){
+        //place characters:
         int j = 0;
         for ( int i = 0; i < numOfRooms*2; i++ ){
             characterPlacement[i] = "Empty";
@@ -186,6 +189,19 @@ public class OverworldManagement : MonoBehaviour
             characterPlacement[temp] = characterArray[j];
             j++;
         }
+        //disable character images:
+        characterLeftButton.SetActive(false);
+        characterRightButton.SetActive(false);
+        //enable character images if needed:
+        if ( characterPlacement[currentRoom*2] != "Empty" ) {
+            characterLeftButton.SetActive(true);
+            setCharacterImage( "left" , characterLeft );
+        }
+        if ( characterPlacement[(currentRoom*2)+1] != "Empty" ) {
+            characterRightButton.SetActive(true);
+            setCharacterImage( "right" , characterRight );
+        }
+        rooms[currentRoom].loadRoom();
     }
 
     private void readCharacterPlacement () {

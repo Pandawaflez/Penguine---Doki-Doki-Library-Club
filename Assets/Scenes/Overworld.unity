@@ -240,6 +240,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 22698658642750679, guid: d3a42cada42529040bf4b2dcdda4616b, type: 3}
   m_PrefabInstance: {fileID: 287628585260862106}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &466163184 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4633242827413485767, guid: d3a42cada42529040bf4b2dcdda4616b, type: 3}
+  m_PrefabInstance: {fileID: 287628585260862106}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466163183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f18bb390df8bcc749a572781ab002ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &720229108
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,6 +451,10 @@ PrefabInstance:
       propertyPath: classImage
       value: 
       objectReference: {fileID: 21300000, guid: 973da5735fc93fd4c89994b1d14ff5d3, type: 3}
+    - target: {fileID: 5626818472445010581, guid: 8d3c0e6926ae8f74f9770bb686554fba, type: 3}
+      propertyPath: debugPanel
+      value: 
+      objectReference: {fileID: 466163184}
     - target: {fileID: 5626818472445010581, guid: 8d3c0e6926ae8f74f9770bb686554fba, type: 3}
       propertyPath: studyImage
       value: 

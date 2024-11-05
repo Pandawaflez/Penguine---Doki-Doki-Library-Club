@@ -4,5 +4,5 @@ using UnityEngine;
 
 public static class RoomsDB
 {
-    private static string currentRoom;
+    public static int currentRoom{get; set;}
 }

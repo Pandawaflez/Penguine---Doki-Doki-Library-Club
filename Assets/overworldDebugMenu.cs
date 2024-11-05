@@ -20,7 +20,7 @@ public class overworldDebugMenu : MonoBehaviour
                 break;
             case "Schroeder":
                 Debug.Log("Talk to Schroeder (AKA Kevin)");
-                //SceneManager.LoadScene("Schroeder");
+                SceneManager.LoadScene("Schroeder");
                 break;
             case "Snoopy":
                 Debug.Log("Talk to Snoopy");
