@@ -15,12 +15,20 @@ public class AffectionManager : MonoBehaviour
     
     private List<IAffectionObserver> observers = new List<IAffectionObserver>();
 
-    public AffectionManager(){
-        //Load affection points from PlayerPrefs for sonic and shadow
-        sonicAffectionPoints = PlayerPrefs.GetInt("SonicAffectionPoints", sonicAffectionPoints); 
-        shadowAffectionPoints = PlayerPrefs.GetInt("ShadowAffectionPoints", shadowAffectionPoints); 
-        
+    void Start(){
+        //set up affection points
+        SetSonicAffectionPoints(0);
+        SetShadowAffectionPoints(0);
     }
+
+    /*possibly not needed
+    //public AffectionManager(){
+        //Load affection points from PlayerPrefs for sonic and shadow
+        //sonicAffectionPoints = PlayerPrefs.GetInt("SonicAffectionPoints", sonicAffectionPoints); 
+        //shadowAffectionPoints = PlayerPrefs.GetInt("ShadowAffectionPoints", shadowAffectionPoints); 
+        
+    //}
+    */
     public void ChangeSonicAffectionPoints(int points){
         sonicAffectionPoints += points;
         //clamp affection points to the limits

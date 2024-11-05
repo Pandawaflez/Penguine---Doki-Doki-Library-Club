@@ -38,10 +38,6 @@ public class UnityDialogueUI : MonoBehaviour
         //show base dialogue
         ShowDialogue();
 
-        //set up affection points
-        //affectionManager.ResetSonicAffectionPoints(0);
-        //affectionManager.ResetShadowAffectionPoints(0);
-
         // *** Update the Affection UI on scene start ***
         affectionUI.OnAffectionChanged("Sonic", AffectionManager.GetSonicAffectionPoints());
         affectionUI.OnAffectionChanged("Shadow", AffectionManager.GetShadowAffectionPoints());
