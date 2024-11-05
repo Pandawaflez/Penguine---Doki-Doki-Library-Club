@@ -6,7 +6,7 @@ using System.IO;
 using System;
 using System.Xml;
 using System.Xml.Serialization;
-
+/*
 public class ShaggyDialogeData : Scooby
 {
      public List<string> ShagPrompts = new List<string>{
@@ -35,3 +35,4 @@ public class ShaggyDialogeData : Scooby
     
    
 }
+*/

@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class ScoobStressTest
 {
+    public GameObject testPrefab;
+    private const int testIterations = 39;
     // A Test behaves as an ordinary method
     [Test]
     public void ScoobStressTestSimplePasses()
@@ -20,24 +22,6 @@ public class ScoobStressTest
     [UnityTest]
     public IEnumerator ScoobStressTestWithEnumeratorPasses()
     {
-        // Use the Assert class to test conditions.
-        // Use yield to skip a frame.
-        yield return null;
-    }
-}
-
-//stress test
-public class MemoryLeakTest
-{
-    public GameObject testPrefab;
-    private const int testIterations = 39;
-    
-
-    [UnityTest]
-
-    public IEnumerator MemoryLeakDuringRepeatSelections()
-    {
-
         long initialMemory = GetTotalAllocatedMemory();
         Debug.Log($"Initial memeory: {initialMemory / 1024} KB");
 
@@ -84,5 +68,23 @@ public class MemoryLeakTest
     private long GetTotalAllocatedMemory(){
         return UnityEngine.Profiling.Profiler.GetTotalAllocatedMemoryLong();
     }
-
+        // Use the Assert class to test conditions.
+        // Use yield to skip a frame.
+        //yield return null;
 }
+
+
+//stress test
+/*public class MemoryLeakTest
+{
+    
+    
+
+    [UnityTest]
+
+    public IEnumerator MemoryLeakDuringRepeatSelections()
+    {
+
+        
+
+}*/
