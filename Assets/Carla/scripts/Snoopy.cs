@@ -7,7 +7,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
-using UnityEditor.Experimental.GraphView;
 
 public class Snoopy : Peanuts
 //PATTERN 1. 'independent' functionality

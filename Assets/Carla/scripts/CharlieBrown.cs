@@ -189,18 +189,27 @@ public class CharlieBrown : Peanuts
     public void onDialogue(int d)
     {
         //if user was just in a game, send them to post game convo
-        if (p_dialogueNum == -1 && MainPlayer.GetMiniGameStatus() != -1){
+        if (p_dialogueNum == -1 && MainPlayer.GetMiniGameStatus() != -1)
+        {
+            Debug.Log("after a game");
             updateAffection(30);
             p_dialogueNum=8;
+            d=8;
             MainPlayer.SetMiniGameStatus(-1);   //reset game status
         }
-        else if (p_dialogueNum == 5){
+        else if (p_dialogueNum == 5)
+        {
             PeanutsDB.CharlieLocked = 1;
             p_dialogueNum = 7;
             Debug.Log("Charlie is locked");
-        }        
+        }  
 
-        //theAudio.loadSounds();
+        if (getAffectionPoints() >= 100) //check if they won yet
+        {
+            UIElementHandler.UIGod.EndGame(true, "Charlie");
+        }      
+
+        //Actually display dialogue
         myDialogue.v_displayDialogue(d);
 
         // AUDIO - ADDED BY OWEN
