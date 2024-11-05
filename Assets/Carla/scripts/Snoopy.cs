@@ -259,6 +259,10 @@ public class Snoopy : Peanuts
             PeanutsDB.SnoopyLocked = 1;
             p_dialogueNum = 12;
         }
+        if (getAffectionPoints() >= 100) //check if they won yet
+        {
+            UIElementHandler.UIGod.EndGame(true, "Snoopy");
+        } 
 
         //theAudio.loadSounds();
         //myDialogue.displayDialogue(d, Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);

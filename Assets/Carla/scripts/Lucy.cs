@@ -270,6 +270,10 @@ public class Lucy : Peanuts
             PeanutsDB.LucyLocked = 1;
             p_dialogueNum=15;
         }
+        if (getAffectionPoints() >= 100) //check if they won yet
+        {
+            UIElementHandler.UIGod.EndGame(true, "Lucy");
+        } 
         //theAudio.loadSounds();
         //myDialogue.displayDialogue(d, Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
         myDialogue.v_displayDialogue(d);
