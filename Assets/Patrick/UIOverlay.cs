@@ -29,7 +29,7 @@ public class UIOverlay : UIElement
 
             RectTransform rect = container.GetComponent<RectTransform>();
             rect.sizeDelta = new Vector2(500, 60); // Adjust size of each character row
-            rect.anchoredPosition = new Vector2(0, 200 - (i * 45)); // Space out the rows
+            rect.anchoredPosition = new Vector2(0, 150 - (i * 40)); // Space out the rows
 
             // Create the profile image
             Image profileImage = CreateProfileImage(images[i], container);
@@ -56,7 +56,7 @@ public class UIOverlay : UIElement
         img.sprite = image;
 
         RectTransform rect = imageObject.GetComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(40, 40);
+        rect.sizeDelta = new Vector2(35, 35);
         rect.anchoredPosition = new Vector2(-200, 0); // Align on the left
 
         return img;
@@ -81,7 +81,7 @@ public class UIOverlay : UIElement
 
         // Set up the RectTransform for proper alignment
         RectTransform rect = slider.GetComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(250, 20);  // Set the desired size
+        rect.sizeDelta = new Vector2(250, 18);  // Set the desired size
         rect.anchorMin = new Vector2(0, 0.5f);  // Anchor to the middle-left
         rect.anchorMax = new Vector2(0, 0.5f);  // Same for both min and max for left alignment
         rect.pivot = new Vector2(0, 0.5f);      // Set pivot to the left-center
@@ -138,13 +138,13 @@ public class UIOverlay : UIElement
 
         Text pointsText = textObject.GetComponent<Text>();
         pointsText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-        pointsText.fontSize = 18;
+        pointsText.fontSize = 15;
         pointsText.color = Color.white;
         pointsText.text = "0 points"; // Initial value
 
         RectTransform rect = pointsText.GetComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(100, 30);
-        rect.anchoredPosition = new Vector2(180, -5); // Align to the right
+        rect.sizeDelta = new Vector2(100, 20);
+        rect.anchoredPosition = new Vector2(180, 0); // Align to the right
 
         return pointsText;
     }

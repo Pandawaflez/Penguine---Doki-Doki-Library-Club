@@ -1,4 +1,17 @@
 {
-	"name": "Assets",
-	"references": [ "Unity.TextMeshPro" ]
+    "name": "Assets",
+    "rootNamespace": "",
+    "references": [
+        "Unity.TextMeshPro",
+        "CandyCoded.HapticFeedback"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
