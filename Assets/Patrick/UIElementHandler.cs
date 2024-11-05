@@ -17,10 +17,9 @@ public class UIElementHandler : MonoBehaviour
     public GameObject endGamePanel; //Reference to the end game panel (UI)
     public GameObject overlayPanel; //panel for overlay
     public Sprite[] characterImages;    //inspector?
-    private string[] _characterNames = { "Charlie", "Lucy", "Snoopy", "Schroeder" };
+    private string[] _characterNames = { "Charlie", "Lucy", "Snoopy", "Schroeder", "Sonic", "Shadow", };
 
     private UIOverlay _overlayUI;
-
 
     private void Awake()
     {
@@ -57,8 +56,8 @@ public class UIElementHandler : MonoBehaviour
         _overlayUI.UpdateCharacterUI("Lucy", PeanutsDB.LucyAffectionPts);
         _overlayUI.UpdateCharacterUI("Snoopy", PeanutsDB.SnoopyAffectionPts);
         _overlayUI.UpdateCharacterUI("Schroeder", PeanutsDB.SchroederAffectionPts);
-        // overlayUI.UpdateCharacterUI("Sonic", affectionManager.GetShadowAffectionPoints());
-        // overlayUI.UpdateCharacterUI("Shadow", affectionManager.GetSonicAffectionPoints());
+        _overlayUI.UpdateCharacterUI("Sonic", AffectionManager.GetSonicAffectionPoints());
+        _overlayUI.UpdateCharacterUI("Shadow", AffectionManager.GetSonicAffectionPoints());
 
         if(Input.GetKeyDown(KeyCode.DownArrow)){
             UIGod.EndGame(true, "Charlie");
