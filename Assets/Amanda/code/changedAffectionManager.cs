@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class AffectionManager
+
+public class AffectionManager : MonoBehaviour
 {
     private const int MAX_AFFECTION = 100;
     private const int MIN_AFFECTION = -10;

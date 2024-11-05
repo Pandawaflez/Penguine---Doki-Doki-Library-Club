@@ -35,9 +35,9 @@ public class SonicDialogue : HedgehogDialogue
         DialogueLine = sonicLines[StartGameData.sonicCurrentDialogueIndex];
     
         //check sonic's current affection points and lock out if needed
-        if(affectionManager.GetSonicAffectionPoints() <= -10){
+        if(AffectionManager.GetSonicAffectionPoints() <= -10){
             DialogueLine = "You're not as cool as I thought. I gotta go fast...";
-        } else if(affectionManager.GetSonicAffectionPoints() == 100){
+        } else if(AffectionManager.GetSonicAffectionPoints() == 100){
             DialogueLine = "Oh nice, you're back. I'm glad to see you!";
         }
     }
@@ -60,12 +60,12 @@ public class SonicDialogue : HedgehogDialogue
         StartGameData.sonicCurrentDialogueIndex++;
 
         //load library and leave conversation if -10 affection
-        if(affectionManager.GetSonicAffectionPoints() <= -10){
+        if(AffectionManager.GetSonicAffectionPoints() <= -10){
             DialogueLine = "Please don't talk to me again.";
             //lockout character here? 
             UnityEngine.SceneManagement.SceneManager.LoadScene("Overworld");
             return;
-        } else if(affectionManager.GetSonicAffectionPoints() == 100){
+        } else if(AffectionManager.GetSonicAffectionPoints() == 100){
             DialogueLine = "Wanna play a game with me? Let's really test your speed.";
             //SceneChanger.saveScene();
             //SceneManager.LoadScene(Math);

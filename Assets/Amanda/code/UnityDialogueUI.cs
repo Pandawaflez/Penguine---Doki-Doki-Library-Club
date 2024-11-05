@@ -39,12 +39,12 @@ public class UnityDialogueUI : MonoBehaviour
         ShowDialogue();
 
         //set up affection points
-        affectionManager.ResetSonicAffectionPoints(0);
-        affectionManager.ResetShadowAffectionPoints(0);
+        //affectionManager.ResetSonicAffectionPoints(0);
+        //affectionManager.ResetShadowAffectionPoints(0);
 
         // *** Update the Affection UI on scene start ***
-        affectionUI.OnAffectionChanged("Sonic", affectionManager.GetSonicAffectionPoints());
-        affectionUI.OnAffectionChanged("Shadow", affectionManager.GetShadowAffectionPoints());
+        affectionUI.OnAffectionChanged("Sonic", AffectionManager.GetSonicAffectionPoints());
+        affectionUI.OnAffectionChanged("Shadow", AffectionManager.GetShadowAffectionPoints());
 
         //set buttons up
         responseButton1.onClick.AddListener( () => OnResponse(1));

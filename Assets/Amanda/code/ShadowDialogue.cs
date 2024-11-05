@@ -32,11 +32,11 @@ public class ShadowDialogue : HedgehogDialogue
     {
         this.affectionManager = affectionManager;
         //check affection points upon entering
-        if (affectionManager.GetShadowAffectionPoints() <= -10)
+        if (AffectionManager.GetShadowAffectionPoints() <= -10)
         {
             DialogueLine = "I don't want to see you again.";
         }
-        else if (affectionManager.GetShadowAffectionPoints() == 100)
+        else if (AffectionManager.GetShadowAffectionPoints() == 100)
         {
             DialogueLine = "You're back, huh? Looks like you can keep up.";
         }
@@ -54,17 +54,14 @@ public class ShadowDialogue : HedgehogDialogue
 
         //check affection points / date
         // If affection points are -10 or lower, load the main menu
-        if (affectionManager.GetShadowAffectionPoints() <= -10)
+        if (AffectionManager.GetShadowAffectionPoints() <= -10)
         {
             DialogueLine = "Wow. You are a real piece of work.";
             UnityEngine.SceneManagement.SceneManager.LoadScene("Overworld");
             return;
-        } else if(affectionManager.GetShadowAffectionPoints() == 100){
+        } else if(AffectionManager.GetShadowAffectionPoints() == 100){
             DialogueLine = "Let's play. You're about to get cooked.";
-            // add carson's function
-            //SceneChanger.saveScene();
             startMiniGameDate(game);
-            //SceneManager.LoadScene(Math);
             return;
         }
         
