@@ -57,7 +57,7 @@ public class UIElementHandler : MonoBehaviour
         _overlayUI.UpdateCharacterUI("Snoopy", PeanutsDB.SnoopyAffectionPts);
         _overlayUI.UpdateCharacterUI("Schroeder", PeanutsDB.SchroederAffectionPts);
         _overlayUI.UpdateCharacterUI("Sonic", AffectionManager.GetSonicAffectionPoints());
-        _overlayUI.UpdateCharacterUI("Shadow", AffectionManager.GetSonicAffectionPoints());
+        _overlayUI.UpdateCharacterUI("Shadow", AffectionManager.GetShadowAffectionPoints());
 
         if(Input.GetKeyDown(KeyCode.DownArrow)){
             UIGod.EndGame(true, "Charlie");

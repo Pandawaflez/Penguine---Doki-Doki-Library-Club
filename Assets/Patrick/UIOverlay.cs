@@ -29,7 +29,7 @@ public class UIOverlay : UIElement
 
             RectTransform rect = container.GetComponent<RectTransform>();
             rect.sizeDelta = new Vector2(500, 60); // Adjust size of each character row
-            rect.anchoredPosition = new Vector2(0, 200 - (i * 70)); // Space out the rows
+            rect.anchoredPosition = new Vector2(0, 200 - (i * 45)); // Space out the rows
 
             // Create the profile image
             Image profileImage = CreateProfileImage(images[i], container);
@@ -56,7 +56,7 @@ public class UIOverlay : UIElement
         img.sprite = image;
 
         RectTransform rect = imageObject.GetComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(50, 50);
+        rect.sizeDelta = new Vector2(40, 40);
         rect.anchoredPosition = new Vector2(-200, 0); // Align on the left
 
         return img;
@@ -144,7 +144,7 @@ public class UIOverlay : UIElement
 
         RectTransform rect = pointsText.GetComponent<RectTransform>();
         rect.sizeDelta = new Vector2(100, 30);
-        rect.anchoredPosition = new Vector2(180, 0); // Align to the right
+        rect.anchoredPosition = new Vector2(180, -5); // Align to the right
 
         return pointsText;
     }
