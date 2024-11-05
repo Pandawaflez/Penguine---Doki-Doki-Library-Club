@@ -12,6 +12,7 @@ TagManager:
   - Response1
   - Response2
   - example
+  - computerLabObject
   layers:
   - Default
   - TransparentFX
