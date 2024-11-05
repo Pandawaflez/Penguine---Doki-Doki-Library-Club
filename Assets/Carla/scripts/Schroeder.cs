@@ -37,6 +37,7 @@ public class Schroeder : Peanuts
         PeanutsDB.SchroederDialogueNum = p_dialogueNum;
     }
 
+/*
     // Button 1 OnClick
     public void hitResponse1()
     {
@@ -66,10 +67,12 @@ public class Schroeder : Peanuts
         // Deselect the current selected UI element
         EventSystem.current.SetSelectedGameObject(null);
     }
-
+*/
 
     //a button being hit will trigger this. decides how to respond to response
-    private void toNextDialogue(){
+    //private void toNextDialogue()
+    protected override void toNextDialogue()
+    {
         int d = getDialogueNum();
         switch(d){
             case 0:

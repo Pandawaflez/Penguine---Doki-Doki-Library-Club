@@ -9,6 +9,8 @@ TagManager:
   - MathGameController
   - Bird
   - BirdController
+  - Response1
+  - Response2
   layers:
   - Default
   - TransparentFX

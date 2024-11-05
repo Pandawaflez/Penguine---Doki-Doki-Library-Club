@@ -50,4 +50,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Minesweeper.unity
     guid: 53f3ea37395fd33498c3d1079afed477
+  - enabled: 1
+    path: Assets/Scenes/Schroeder.unity
+    guid: 86b3f14117e0f9344bc724607c5d13b8
   m_configObjects: {}

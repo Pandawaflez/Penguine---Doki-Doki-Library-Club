@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using UnityEditor.Build;
 
 public class Lucy : Peanuts
 {
@@ -42,6 +43,7 @@ public class Lucy : Peanuts
         //Debug.Log(p_responseNum.ToString());
     }
 
+/*
     public void hitResponse1()
     {
         p_responseNum = 1;
@@ -70,10 +72,10 @@ public class Lucy : Peanuts
         // Deselect the current selected UI element
         EventSystem.current.SetSelectedGameObject(null);
     }
-
+*/
 
     //a button being hit will trigger this. decides how to respond to response
-    private void toNextDialogue()
+    protected override void toNextDialogue()
     {
         int d = getDialogueNum();
         switch(d){

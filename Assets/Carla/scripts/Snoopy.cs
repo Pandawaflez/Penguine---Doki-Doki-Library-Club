@@ -58,7 +58,7 @@ public class Snoopy : Peanuts
         }
     }
 
-
+/*
     // Button 1 OnClick
     public void hitResponse1()
     {
@@ -88,10 +88,12 @@ public class Snoopy : Peanuts
         // Deselect the current selected UI element
         EventSystem.current.SetSelectedGameObject(null);
     }
-
+*/
 
     //a button being hit will trigger this. decides how to respond to response
-    private void toNextDialogue(){
+    protected override void toNextDialogue()    //PATTERN this is like the setState()
+    //private void toNextDialogue()
+    {
         int d = getDialogueNum();
         switch(d){
             case 0:

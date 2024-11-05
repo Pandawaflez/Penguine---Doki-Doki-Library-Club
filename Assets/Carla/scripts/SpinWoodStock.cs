@@ -11,13 +11,13 @@ public class SpinWoodStock : WoodStock
         Debug.Log("spin");
     }
 
-
+/*
     // Update is called once per frame
     void Update()
     {
         
     }
-
+*/
     public override void Refresh()
     {
         //PATTERN 6. 'pull' information of interest

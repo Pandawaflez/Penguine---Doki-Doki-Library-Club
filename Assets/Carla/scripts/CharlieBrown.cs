@@ -62,31 +62,34 @@ public class CharlieBrown : Peanuts
         PeanutsDB.CharlieDialogueNum = p_dialogueNum;
     }
 
-    //button one calls onclick
-    public void hitResponse1()
-    {
-        p_responseNum = 1;
-        Debug.Log("they hit it boss");
-        //StartCoroutine(holdUp(10));
-        //unselect button for next screen
-        r1.Select();
-        toNextDialogue();
-    }
+    /*
+        //button one calls onclick
+        public void hitResponse1()
+        {
+            p_responseNum = 1;
+            Debug.Log("they hit it boss");
+            //StartCoroutine(holdUp(10));
+            //unselect button for next screen
+            r1.Select();
+            toNextDialogue();
+        }
 
-    //button 2 calls onclick
-    public void hitResponse2()
-    {
-        p_responseNum = 2;
-        r2.Select();
-        toNextDialogue();
-    }
+        //button 2 calls onclick
+        public void hitResponse2()
+        {
+            p_responseNum = 2;
+            r2.Select();
+            toNextDialogue();
+        }
+        */
 
     /*
         this function is called when a button is hit
         decides what to do (update affection pts, next dialogue number and/or to initiate minigame) based off response
         calls onDialogue() at end
     */
-    private void toNextDialogue()
+    //private void toNextDialogue()
+    protected override void toNextDialogue()
     {
         int d = getDialogueNum();
         switch(d){
@@ -196,7 +199,7 @@ public class CharlieBrown : Peanuts
             p_dialogueNum = 7;
             Debug.Log("Charlie is locked");
         }        
-        
+
         //theAudio.loadSounds();
         myDialogue.v_displayDialogue(d);
 

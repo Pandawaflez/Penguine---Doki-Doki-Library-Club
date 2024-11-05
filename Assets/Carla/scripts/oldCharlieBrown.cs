@@ -118,7 +118,8 @@ public class OLDCharlieBrown : Peanuts
 */
 
     //a button being hit will trigger this. decides how to respond to response
-    private void toNextDialogue(){
+    //private void toNextDialogue(){
+    protected override void toNextDialogue(){  
         int d = getDialogueNum();
         switch(d){
             case 0:

@@ -4,17 +4,22 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 
-public class Peanuts : MonoBehaviour
+public abstract class Peanuts : MonoBehaviour
 {
     //graphics
     //sfx
+    //affection points
+    private int _affectionPoints;
 
     //dialoguetracker
     protected int p_dialogueNum = 0;
     protected int p_responseNum = 0;
-    protected void initiateMiniGame(string game){
+
+    protected void initiateMiniGame(string game)
+    {
         //SceneManager.LoadScene("Pong", LoadSceneMode.Additive);
         SceneChanger.saveScene();
         SceneManager.LoadScene(game);
@@ -22,22 +27,30 @@ public class Peanuts : MonoBehaviour
         
     }
 
-    public int getResponseNum(){
+    public int getResponseNum()
+    {
         return p_responseNum;
     }
-    public int getDialogueNum(){
+    public int getDialogueNum()
+    {
         return p_dialogueNum;
     }
+    //for testing
+    public void setDialogueNum(int pts)
+    {
+        p_dialogueNum = pts;
+    }
 
-    //affection points
-    private int _affectionPoints;
-
-    public int getAffectionPoints(){
+    public int getAffectionPoints()
+    {
         return _affectionPoints;
     }
-    public void updateAffection(int newPoints){
+    
+    public void updateAffection(int newPoints)
+    {
+        //in BC mode, affection points cannot go down and go up at 2x the rate
         if (MainPlayer.IsBCMode()){
-            if (newPoints <0) newPoints *= -1;
+            if (newPoints <0) newPoints = 0;  //ensure points will not get taken away
             _affectionPoints += 2*newPoints;
         }
         else{
@@ -45,14 +58,40 @@ public class Peanuts : MonoBehaviour
         }
     }
 
-    protected void loadAffection(int totalPoints){
+    protected void loadAffection(int totalPoints)
+    {
         _affectionPoints = totalPoints;
     }
 
-    //minigame
+    protected abstract void toNextDialogue();
 
-    //can have start & update in parent class??
-    //then just update all 4 char affection&dialogue every time?
+    public void hitResponse1()
+    {
+        p_responseNum = 1;
+        Debug.Log("they hit it boss");
 
+        // Run logic, then clear selection to avoid sticking
+        toNextDialogue();
+        StartCoroutine(DeselectButton());
+    }
+
+    // Button 2 OnClick
+    public void hitResponse2()
+    {
+        p_responseNum = 2;
+        Debug.Log("punch 2");
+        // Run logic, then clear selection
+        toNextDialogue();
+        StartCoroutine(DeselectButton());
+    }
+
+    // Coroutine to wait a frame and clear selection
+    private IEnumerator DeselectButton()
+    {
+        yield return null;  // Wait one frame to ensure UI updates
+
+        // Deselect the current selected UI element
+        EventSystem.current.SetSelectedGameObject(null);
+    }
     
 }

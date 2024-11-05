@@ -461,6 +461,10 @@ PrefabInstance:
       propertyPath: m_enableAutoSizing
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5714828674401901205, guid: 8df2a9344635dfd4d933fc3499f9d8c0, type: 3}
+      propertyPath: m_Name
+      value: Schroeder
+      objectReference: {fileID: 0}
     - target: {fileID: 5916196928998157853, guid: 8df2a9344635dfd4d933fc3499f9d8c0, type: 3}
       propertyPath: m_Name
       value: P1Canvas
