@@ -11,4 +11,8 @@ public class Room
         Debug.Log("Loading Room..." + name );
     }
 
+    virtual public void setComputer( GameObject x ){
+        Debug.Log("There is no computer" );
+    }
+
 }

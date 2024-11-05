@@ -7,6 +7,8 @@ public class OverworldManagement : MonoBehaviour
 {
     [SerializeField]
     private overworldDebugMenu debugPanel;
+    [SerializeField]
+    private GameObject computer;
     //sdggsdlkdjg
     [SerializeField]
     private string currentRoomName = "FrontDesk";
@@ -64,7 +66,6 @@ public class OverworldManagement : MonoBehaviour
     [SerializeField]
     private Sprite shadowImage;
 
-
     private const int numOfRooms = 7;
     private Room[] rooms = new Room[]
     {
@@ -106,6 +107,8 @@ public class OverworldManagement : MonoBehaviour
         rooms[4].roomImage = computerImage;
         rooms[5].roomImage = studyImage;
         rooms[6].roomImage = classImage; 
+        rooms[4].setComputer(computer);
+        computer.SetActive(false);
         currentRoom = RoomsDB.currentRoom;
         init = true; //make sure we know that everything is good to go
     }
@@ -128,6 +131,7 @@ public class OverworldManagement : MonoBehaviour
         //disable characters:
         characterLeftButton.SetActive(false);
         characterRightButton.SetActive(false);
+        computer.SetActive(false);
         //enable characters if needed:
         if ( characterPlacement[currentRoom*2] != "Empty" ) {
             characterLeftButton.SetActive(true);
@@ -151,6 +155,7 @@ public class OverworldManagement : MonoBehaviour
         //disable characters:
         characterLeftButton.SetActive(false);
         characterRightButton.SetActive(false);
+        computer.SetActive(false);
         //enable characters if needed:
         if ( characterPlacement[currentRoom*2] != "Empty" ) {
             characterLeftButton.SetActive(true);
