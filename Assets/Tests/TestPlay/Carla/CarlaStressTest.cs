@@ -40,7 +40,8 @@ public class CarlaStressTest
     //stress test: memory
 
     public GameObject characterPrefab;  // Assign a character prefab via the Inspector
-    private const int testIterations = 5;  // Number of interactions to simulate
+    private const int testIterations = 70;  // Number of interactions to simulate.
+    //memory difference usually in the 600s. breaks at 70
 
     [UnityTest]
     public IEnumerator TestMemoryLeakDuringRepeatedInteractions()
@@ -77,7 +78,8 @@ public class CarlaStressTest
         long memoryDifference = finalMemory - initialMemory;
         Debug.Log($"Memory Difference: {memoryDifference / 1024} KB");
 
-        Assert.LessOrEqual(memoryDifference, 1024 * 1000, 
+        //memory loss usually in the 600s, so i set to 700
+        Assert.LessOrEqual(memoryDifference, 1024 * 700, 
             "Memory leak detected! Memory increased significantly after interactions.");
     }
 
