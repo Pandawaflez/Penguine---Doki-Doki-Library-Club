@@ -3,7 +3,8 @@
     "rootNamespace": "",
     "references": [
         "Unity.TextMeshPro",
-        "CandyCoded.HapticFeedback"
+        "CandyCoded.HapticFeedback",
+        "Unity.VisualScripting.Core"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

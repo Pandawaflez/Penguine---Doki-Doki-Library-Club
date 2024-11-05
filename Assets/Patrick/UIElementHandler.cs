@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
-using UnityEngine.iOS;
 using CandyCoded.HapticFeedback;
 
 public class UIElementHandler : MonoBehaviour
