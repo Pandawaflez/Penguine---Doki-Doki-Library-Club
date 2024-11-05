@@ -7,6 +7,8 @@ public class InputName : UIElement
 {
     public InputName(GameObject element) : base(element) { }
 
+
+    //get string from input field in game
     public string GetInputText()
     {
         var inputField = GetComponent<TMP_InputField>();
