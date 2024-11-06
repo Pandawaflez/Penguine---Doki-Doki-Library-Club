@@ -8,84 +8,92 @@ using UnityEngine.SceneManagement;
 public class ShaggyScript : ShaggyDialogeData
 {
     //buttons for dialogue
-    
+    public List<string> GetShagPrompts => ShagPrompts;
+    public List<string> GetPlayer_Response_1 => Player_Response_1;
+    public List<string> GetPlayer_Response_2 => Player_Response_2;
     public TextMeshProUGUI ShagDialogueText, ShagResponse1Text, ShagResponse2Text;
-    
+    public bool t = true;
+    public bool f = false;
     public int responseNum = 0;
     public int ShagAffection = 0;
     private string game = "Minesweeper";
     void Start()
     {
-        DisplayDialogue(ShagPrompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, Player_Response_1, Player_Response_2);
+        DisplayDialogue(GetShagPrompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, GetPlayer_Response_1, GetPlayer_Response_2, f);
     }
     //selection of dialogues
     public void hitShagResponse1()
     {
         HandlePlayerResponse(1);
-        DisplayDialogue(ShagPrompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, Player_Response_1, Player_Response_2);
+        DisplayDialogue(GetShagPrompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, GetPlayer_Response_1, GetPlayer_Response_2, f);
     }
 
     public void hitShagResponse2()
     {
         HandlePlayerResponse(2);
-        DisplayDialogue(ShagPrompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, Player_Response_1, Player_Response_2);
+        DisplayDialogue(GetShagPrompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, GetPlayer_Response_1, GetPlayer_Response_2, f);
     }
 
     public override void HandlePlayerResponse(int responseNum)
     {
-        if ((SCdialogueNum == 1 || SCdialogueNum == 2) && responseNum == 1)
+        if ((SCdialogueNum == 0 || SCdialogueNum == 1) && responseNum == 1)
         {
-            SCAP += 10;
-            Debug.Log("Affection Points increased: " + SCAP);
-            ShagAffection = SCAP;
+            ShagAffection += 20;
+            Debug.Log("Affection Points increased: " + ShagAffection);
+            //ShagAffection = SCAP;
         }
-        else if ((SCdialogueNum == 3 || SCdialogueNum == 4 || SCdialogueNum == 5) && responseNum == 1)
+        else if ((SCdialogueNum == 2 || SCdialogueNum == 3 || SCdialogueNum == 4) && responseNum == 1)
         {
-            SCAP -= 10;
-            Debug.Log("Affection Points decreased: " + SCAP);
-            ShagAffection = SCAP;
+            ShagAffection -= 10;
+            Debug.Log("Affection Points decreased: " + ShagAffection);
+            //ShagAffection = SCAP;
         }
-        else if ((SCdialogueNum == 1 || SCdialogueNum == 2) && responseNum == 2)
+        else if ((SCdialogueNum == 0 || SCdialogueNum == 1) && responseNum == 2)
         {
-            SCAP -= 10;
-            Debug.Log("Affection Points decreased: " + SCAP);
-            ShagAffection = SCAP;
+            ShagAffection -= 10;
+            Debug.Log("Affection Points decreased: " + ShagAffection);
+            //ShagAffection = SCAP;
         }
-        else if ((SCdialogueNum == 3 || SCdialogueNum == 4 || SCdialogueNum == 5) && responseNum == 1)
+        else if ((SCdialogueNum == 2 || SCdialogueNum == 3 || SCdialogueNum == 4) && responseNum == 2)
         {
-            SCAP += 10;
-            Debug.Log("Affection Points increased: " + SCAP);
-            ShagAffection = SCAP;
+            ShagAffection += 20;
+            Debug.Log("Affection Points increased: " + ShagAffection);
+            //ShagAffection = SCAP;
+        }
+        if (SCdialogueNum == 5) {
+            PlayOrNot(ShagAffection);
         }
         base.HandlePlayerResponse(responseNum);
     }
     public void PlayOrNot(int SCAP)
     {
-        if (SCAP >= 40)
+       
+        if (ShagAffection >= 40)
         {
-
-            ShagDialogueText.text = "Would you wanna keep this good thing going?";
-            ShagResponse1Text.text = "Yes";
-            ShagResponse2Text.text = "No";
-            DisplayDialogue(ShagPrompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, Player_Response_1, Player_Response_2);
+            //SCdialogueNum += 1;
+            DisplayDialogue(GetShagPrompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, GetPlayer_Response_1, GetPlayer_Response_2, t);
             if (responseNum == 1){
                 startMiniGameDate(game);
             }
             else {
-                UnityEngine.SceneManagement.SceneManager.LoadScene("Overworld");
+                SCdialogueNum += 1;
             }
 
-            //going to transition to minigame
         }
-        else 
+        else {
+            DisplayDialogue(GetShagPrompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, GetPlayer_Response_1, GetPlayer_Response_2, f);
+            return;
+        }
+        
+                
+        /*else 
         {
             ShagDialogueText.text = "I don't think we have much in common. Sorry pal, I'll see you around";
             ShagResponse1Text.text = "";
             ShagResponse2Text.text = "";
             DisplayDialogue(ShagPrompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, Player_Response_1, Player_Response_2);
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Overworld");
             return;
-        }
+        }*/
     }
 
     
