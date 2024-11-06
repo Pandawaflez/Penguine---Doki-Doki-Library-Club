@@ -21,4 +21,9 @@ public class DialogueController
     public void HandlePlayerChoice(int choice){
         currentDialogue.ProcessChoice(choice);
     }
+
+    public bool IsConversationFinished(){
+        //return true if convo is done
+        return currentDialogue.IsConversationFinished();
+    }
 }

@@ -6,7 +6,11 @@ using UnityEngine.SceneManagement;
 public class SonicDialogue : HedgehogDialogue
 {
     public AffectionManager affectionManager;
+    public static bool lockoutSonic = false;
     public string game = "Math";
+    private bool isFinished = false;
+
+    public string playerName = MainPlayer.GetPlayerName();
 
     private List<string> sonicLines = new List<string>(){
         "Hey I'm Sonic! Fastest hedgehog alive! Need anything?",
@@ -21,7 +25,7 @@ public class SonicDialogue : HedgehogDialogue
         new string[] {"No, lol. Shadow is definitely cooler than you.", "You can say that again."},
         new string[] {"I think I could outrun you...", "You're the best, Sonic!"},
         new string[] {"You're so cocky, I thought Shadow was the confident one", "Hit me with your best shot."},
-        new string[] {"Let's see what you got." , "omg I'm really about to play against sonic right now"}
+        new string[] {"...I don't really want to play with you." , "omg I'm really about to play against sonic right now"}
     };
 
     private int sonicCurrentDialogueIndex = 0;
@@ -32,62 +36,60 @@ public class SonicDialogue : HedgehogDialogue
     {
         this.affectionManager = affectionManager;
 
-        DialogueLine = sonicLines[StartGameData.sonicCurrentDialogueIndex];
+        DialogueLine = sonicLines[sonicCurrentDialogueIndex];
     
         //check sonic's current affection points and lock out if needed
         if(AffectionManager.GetSonicAffectionPoints() <= -10){
             DialogueLine = "You're not as cool as I thought. I gotta go fast...";
-        } else if(AffectionManager.GetSonicAffectionPoints() == 100){
-            DialogueLine = "Oh nice, you're back. I'm glad to see you!";
+            EndConversation();
+            lockoutSonic = true;
+        //check sonic points and win case
+        } else if(AffectionManager.GetSonicAffectionPoints() == 100 ){
+            DialogueLine = $"Oh nice, you're back. I'm glad to see you, {playerName}!";
+            EndConversation();
+            UpdateDialogueAfterMinigame();
         }
     }
 
     public override void ProcessChoice(int choice){
         if(choice == 2){
             //best choice +20
-            //swapped from shadow's options
-            //StartGameData.sonicAffectionPoints += 20;
             affectionManager.ChangeSonicAffectionPoints(20);
         }
         else if(choice == 1){
             //bad choice
-            //StartGameData.sonicAffectionPoints -= 10;
             affectionManager.ChangeSonicAffectionPoints(-10);
         }
 
-        sonicCurrentDialogueIndex++;
-        sonicResponseIndex++;
-        StartGameData.sonicCurrentDialogueIndex++;
-
-        //load library and leave conversation if -10 affection
+        //check for neg affectoin points then end convo 
         if(AffectionManager.GetSonicAffectionPoints() <= -10){
-            DialogueLine = "Please don't talk to me again.";
-            //lockout character here? 
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Overworld");
+            DialogueLine = "You're not as cool as I thought... Leave me alone.";
+            EndConversation();
+            lockoutSonic = true;
             return;
-        } else if(AffectionManager.GetSonicAffectionPoints() == 100){
-            DialogueLine = "Wanna play a game with me? Let's really test your speed.";
-            //SceneChanger.saveScene();
-            //SceneManager.LoadScene(Math);
-            //return;
-            startMiniGameDate(game);
-            //UnityEngine.SceneManagement.SceneManager.LoadScene("Math");
-            //return;
         }
-        
+
+        //check max affection points
+        if(AffectionManager.GetSonicAffectionPoints() == 100){
+            DialogueLine = "Let's really test your speed. Hope you can keep up!.";
+            startMiniGameDate(game);
+            return;
+            UpdateDialogueAfterMinigame();
+        }
+
+        sonicCurrentDialogueIndex++;
         //check if there is a next dialogue before incrementing
-        if(sonicCurrentDialogueIndex + 1 < sonicLines.Count){
-            StartGameData.sonicResponseIndex++;
+        if(sonicCurrentDialogueIndex < sonicLines.Count){
+            sonicResponseIndex++;
             DialogueLine = sonicLines[sonicCurrentDialogueIndex];
         } else {
             EndConversation();
         }
-    
     }
 
+    //endconversation will lock out the response buttons by sending bool to UImanager
     private void EndConversation(){
-        DialogueLine = "Gotta go fast!";
-        //initate the mini game date if player has enough affection points.
+        isFinished = true; 
     }
     
     public override string[] GetCurrentResponses(){
@@ -96,5 +98,30 @@ public class SonicDialogue : HedgehogDialogue
         return playerResponses[sonicResponseIndex];
         }
         return new string[0]; // return an empty array if out of bounds
+    }
+
+    public override bool IsConversationFinished(){
+        return isFinished;
+    }
+
+    public static bool CheckSonicLockout(){
+        return lockoutSonic;
+    }
+
+    public void UpdateDialogueAfterMinigame(){
+        int miniGameStatus = MainPlayer.GetMiniGameStatus();
+        
+        //if player wins minigame
+        if (miniGameStatus == 1) 
+        {
+            DialogueLine = "Wow you're the fastest of them all! I think you're pretty cool.";
+            UIElementHandler.UIGod.EndGame(true, "Sonic");
+        }
+        //if player loses
+        else if (miniGameStatus == 0)
+        {
+            DialogueLine = $"At least you tried, good job {playerName}.";
+        }
+        EndConversation();
     }
 }

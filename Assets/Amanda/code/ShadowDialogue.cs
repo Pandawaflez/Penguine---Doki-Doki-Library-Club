@@ -34,7 +34,7 @@ public class ShadowDialogue : HedgehogDialogue
         //check affection points upon entering
         if (AffectionManager.GetShadowAffectionPoints() <= -10)
         {
-            DialogueLine = "I don't want to see you again.";
+            DialogueLine = "I don't want to see you again, get outta my face.";
         }
         else if (AffectionManager.GetShadowAffectionPoints() == 100)
         {
@@ -57,7 +57,7 @@ public class ShadowDialogue : HedgehogDialogue
         if (AffectionManager.GetShadowAffectionPoints() <= -10)
         {
             DialogueLine = "Wow. You are a real piece of work.";
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Overworld");
+            //UnityEngine.SceneManagement.SceneManager.LoadScene("Overworld");
             return;
         } else if(AffectionManager.GetShadowAffectionPoints() == 100){
             DialogueLine = "Let's play. You're about to get cooked.";
@@ -71,8 +71,8 @@ public class ShadowDialogue : HedgehogDialogue
             DialogueLine = shadowLines[currentDialogueIndex];
         } else {
             EndConversation();
-            //affectionManager.GameOver();
         }
+
     
     }
 

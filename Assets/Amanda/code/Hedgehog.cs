@@ -8,14 +8,14 @@ public abstract class HedgehogDialogue
 {
     public string CharacterName {get; set;}
     public string DialogueLine{ get; set;}
-    private string game = "Minesweeper";
+
+    protected bool isFinished;
 
     protected HedgehogDialogue(string characterName, string initialDialogue){
         CharacterName = characterName;
         DialogueLine = initialDialogue;
     }
     
-   
         public virtual string[] GetCurrentResponses(){
          //public string[] GetCurrentResponses(){
         return (new string [] {"wow! did you comment out virtual? this is exactly what you need for the oral exam!"});
@@ -26,10 +26,13 @@ public abstract class HedgehogDialogue
     public abstract void ProcessChoice(int choice);
 
     protected void startMiniGameDate(string game){
-        //SceneManager.LoadScene("Pong", LoadSceneMode.Additive);
         SceneChanger.saveScene();
         SceneManager.LoadScene(game);
-        //dialogueNum = 8;
     }
+
+    public virtual bool IsConversationFinished(){
+        return isFinished;
+    }
+    
     
 }

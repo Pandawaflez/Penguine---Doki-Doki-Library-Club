@@ -21,16 +21,17 @@ public class AffectionManager : MonoBehaviour
         SetShadowAffectionPoints(0);
     }
 
-    /*possibly not needed
-    //public AffectionManager(){
-        //Load affection points from PlayerPrefs for sonic and shadow
-        //sonicAffectionPoints = PlayerPrefs.GetInt("SonicAffectionPoints", sonicAffectionPoints); 
-        //shadowAffectionPoints = PlayerPrefs.GetInt("ShadowAffectionPoints", shadowAffectionPoints); 
-        
-    //}
-    */
     public void ChangeSonicAffectionPoints(int points){
-        sonicAffectionPoints += points;
+        //check BC mode
+        if(MainPlayer.IsBCMode()){
+            //cannot go negative
+            if(points <= 0) points = 20;
+            //double affection
+            sonicAffectionPoints += 2 * points;
+        } else {
+            // regular
+            sonicAffectionPoints += points;
+        }
         //clamp affection points to the limits
         sonicAffectionPoints = Mathf.Clamp(sonicAffectionPoints, MIN_AFFECTION, MAX_AFFECTION);
         
@@ -94,9 +95,7 @@ public class AffectionManager : MonoBehaviour
         // Reset values to 0 or any starting value you want
         sonicAffectionPoints = 0;
 
-        // Save the reset values to PlayerPrefs
-        //PlayerPrefs.SetInt("SonicAffectionPoints", 0);
-        //PlayerPrefs.Save();
+        
     }
 
     public void ResetShadowAffectionPoints()
