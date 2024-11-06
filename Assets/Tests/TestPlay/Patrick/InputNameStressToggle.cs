@@ -21,7 +21,7 @@ public class PatrickInputNameToggleStressTest
 
         int toggleCount = 100000;  // Number of show/hide cycles.
 
-        // Act: Rapidly show and hide the input field.
+        //Rapidly show and hide the input field.
         for (int i = 0; i < toggleCount; i++)
         {
             inputName.Show();  //Show the input field.

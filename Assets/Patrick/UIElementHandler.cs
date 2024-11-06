@@ -110,6 +110,16 @@ public class UIElementHandler : MonoBehaviour
         }
     }
 
+    //simulates the same menu scene checking as implemented for testing
+    public void ShowOverlayTest(){
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+
+        if(sceneName != "Menu"){
+            ShowOverlay();
+        }
+    }
+
     // Function to quit the game
     private void QuitGame()
     {
@@ -123,20 +133,15 @@ public class UIElementHandler : MonoBehaviour
         if(Application.isMobilePlatform){
             HapticFeedback.MediumFeedback();    //vibrate on end game
         }
-        endGamePanel.SetActive(true); // Show the end game panel
+        
+        endGamePanel.SetActive(isWin); // Show the end game panel
 
-        // Get the Text component from the end game panel
-        TextMeshProUGUI panelText = endGamePanel.GetComponentInChildren<TextMeshProUGUI>();
-        if (panelText != null)
-        {
-            // Display different messages for win and loss scenarios
-            if (isWin)
+        if(isWin){
+            // Get the Text component from the end game panel
+            TextMeshProUGUI panelText = endGamePanel.GetComponentInChildren<TextMeshProUGUI>();
+            if (panelText != null)
             {
-                panelText.text = $"Congratulations! You and {character} are now dating!";
-            }
-            else
-            {
-                panelText.text = "You lost! Nobody wants to date you :(";
+               panelText.text = $"Congratulations! You and {character} are now dating!";
             }
         }
 
