@@ -21,7 +21,7 @@ public class Menu : MonoBehaviour
     public void OnSubmitButtonClicked()
     {
         // Call the OnSubmitButtonClick method on UISubmitButton instance
-        _submitButtonElement.onClick();
+        _submitButtonElement.v_onClick();
     }
 
     // Function to quit the game

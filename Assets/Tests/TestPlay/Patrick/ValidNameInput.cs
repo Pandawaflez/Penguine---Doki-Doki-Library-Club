@@ -26,7 +26,7 @@ public class PatrickValidNameInputBoundary
         inputField.text = "Alice";
 
         //Act: ensure that valid names that are not empty and in range of input field are valid
-        submitButton.onClick();
+        submitButton.v_onClick();
 
         //Assert
         yield return null; // Wait a frame

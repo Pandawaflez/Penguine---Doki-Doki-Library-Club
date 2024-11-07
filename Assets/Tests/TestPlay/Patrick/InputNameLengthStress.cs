@@ -52,7 +52,7 @@ public class PatrickSubmitNameButtonStress
             try
             {
                 // Simulate clicking the submit button.
-                submitButton.onClick();
+                submitButton.v_onClick();
 
                 MainPlayer.SetPlayerName(inputField.text);
 

@@ -24,7 +24,8 @@ public class Patrick_OverlayCreationStressTest
     [UnityTest]
     public IEnumerator CreateNewOverlaysStress()
     {
-        for(int i = 0; i < 10000; i ++){
+        for(int i = 0; i < 10000; i ++)
+        {
             _UIOverlay = new UIOverlay(panel, characterImages, _characterNames);    //expected to break from making new instances of the overlay
         }
 

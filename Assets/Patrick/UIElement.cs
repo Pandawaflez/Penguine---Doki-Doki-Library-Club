@@ -5,31 +5,37 @@ using UnityEngine;
 public class UIElement
 {
     //private data class pattern:
-    private class UIElementData{
+    private class UIElementData
+    {
         private GameObject Element;
         private bool Visible;   //mainly implemented for the overlay feature
         private bool State;     //will use for enabled/disabled button opacity
 
-        public UIElementData(GameObject element){
+        public UIElementData(GameObject element)
+        {
             Element = element;
             Visible = true;
             State = true;
         }
 
-        public void SetActive(bool isActive){
+        public void SetActive(bool isActive)
+        {
             Element.SetActive(isActive);
             Visible = isActive;
         }
 
-        public void SetState(bool state){
+        public void SetState(bool state)
+        {
             State = state;
         }
 
-        public bool GetState(){
+        public bool GetState()
+        {
             return State;
         }
 
-        public bool IsVisible(){
+        public bool IsVisible()
+        {
             return Visible;
         }
 
@@ -59,15 +65,17 @@ public class UIElement
         elementData.SetActive(false);
     }
 
-    public void setState(bool state){
+    public void setState(bool state)
+    {
         elementData.SetState(state);
     }
 
-    public bool Visible(){
+    public bool Visible()
+    {
         return elementData.IsVisible();
     }
 
-    public virtual void onClick()
+    public virtual void v_onClick()
     // public void onClick()
     {
         Debug.Log("This is the superclass method.");

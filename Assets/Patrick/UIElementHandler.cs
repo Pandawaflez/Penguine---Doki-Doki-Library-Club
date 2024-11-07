@@ -58,9 +58,11 @@ public class UIElementHandler : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
 
-        if(sceneName != "Menu"){    //don't allow overlay to come up during menu scene.
+        if(sceneName != "Menu")
+        {    //don't allow overlay to come up during menu scene.
             UICheckInput();
-            if(Application.isMobilePlatform || UnityEngine.Device.Application.isMobilePlatform){               //if game is in mobile, show button for overlay
+            if(Application.isMobilePlatform || UnityEngine.Device.Application.isMobilePlatform)
+            {               //if game is in mobile, show button for overlay
                 overlayButton.gameObject.SetActive(true);
             }
         };
@@ -83,13 +85,16 @@ public class UIElementHandler : MonoBehaviour
     }
 
     //mobile overlay button function
-    public void ShowOverlay(){
-        if(!_overlayUI.Visible()){
+    public void ShowOverlay()
+    {
+        if(!_overlayUI.Visible())
+        {
             _overlayUI.Show();
             HapticFeedback.LightFeedback();         //some haptic feedback
             quitButton.gameObject.SetActive(true);
         }
-        else{
+        else
+        {
             _overlayUI.Hide();
             quitButton.gameObject.SetActive(false);
         }
@@ -101,11 +106,13 @@ public class UIElementHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             Debug.Log("tab pressed");
-            if(!_overlayUI.Visible()){
+            if(!_overlayUI.Visible())
+            {
                 _overlayUI.Show();
                 quitButton.gameObject.SetActive(true);
             }
-            else{
+            else
+            {
                 _overlayUI.Hide();
                 quitButton.gameObject.SetActive(false);
             }
@@ -113,11 +120,13 @@ public class UIElementHandler : MonoBehaviour
     }
 
     //simulates the same menu scene checking as implemented for testing
-    public void ShowOverlayTest(){
+    public void ShowOverlayTest()
+    {
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
 
-        if(sceneName != "Menu"){
+        if(sceneName != "Menu")
+        {
             ShowOverlay();
         }
     }
@@ -132,7 +141,8 @@ public class UIElementHandler : MonoBehaviour
     //handle end of game scenario (global access point)
     public void EndGame(bool state, string character)
     {
-        if(Application.isMobilePlatform){
+        if(Application.isMobilePlatform)
+        {
             HapticFeedback.MediumFeedback();    //vibrate on end game
         }
         
@@ -153,13 +163,15 @@ public class UIElementHandler : MonoBehaviour
     //lose game condition
     public void LoseGame(bool state)
     {
-        if(Application.isMobilePlatform){
+        if(Application.isMobilePlatform)
+        {
             HapticFeedback.MediumFeedback();    //vibrate on end game
         }
         
         endGamePanel.SetActive(state); // Show the end game panel
 
-        if(state){
+        if(state)
+        {
             TextMeshProUGUI panelText = endGamePanel.GetComponentInChildren<TextMeshProUGUI>();
             if (panelText != null)
             {

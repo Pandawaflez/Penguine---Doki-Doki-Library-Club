@@ -18,7 +18,8 @@ public class Patrick_OverlayScoringTests
         MainPlayer.SetPlayerName("playerName");
     }
 
-    private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg) {
+    private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg) 
+    {
         sceneLoaded = true;
     }
 
@@ -29,7 +30,8 @@ public class Patrick_OverlayScoringTests
         int i;
 
         //simulate many button presses while still in menu
-        for(i = 0; i < 5; i++){
+        for(i = 0; i < 5; i++)
+        {
             UIElementHandler.UIGod.ShowOverlayTest();
 
             //wait one second to see visually if overlay opens or not
@@ -50,7 +52,8 @@ public class Patrick_OverlayScoringTests
         SceneManager.LoadScene("Scenes/Overworld", LoadSceneMode.Single);
 
         //simulate showing overlay
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < 5; i++)
+        {
             UIElementHandler.UIGod.ShowOverlayTest();
 
             //wait one second to see visually if overlay opens or not
@@ -68,7 +71,8 @@ public class Patrick_OverlayScoringTests
         //open Overlay
         UIElementHandler.UIGod.ShowOverlay();
 
-        for(int i = 0; i <= 500; i++){
+        for(int i = 0; i <= 500; i++)
+        {
             PeanutsDB.CharlieAffectionPts = i;
             yield return null;
         }
@@ -87,7 +91,8 @@ public class Patrick_OverlayScoringTests
         //open Overlay
         UIElementHandler.UIGod.ShowOverlay();
 
-        for(int i = 0; i >= -500; i--){
+        for(int i = 0; i >= -500; i--)
+        {
             PeanutsDB.CharlieAffectionPts = i;
             yield return null;
         }
@@ -106,7 +111,8 @@ public class Patrick_OverlayScoringTests
         //open Overlay
         UIElementHandler.UIGod.ShowOverlay();
 
-        for(int i = 0; i <= 500; i++){
+        for(int i = 0; i <= 500; i++)
+        {
             PeanutsDB.CharlieAffectionPts = i;
             PeanutsDB.LucyAffectionPts = i;
             PeanutsDB.SchroederAffectionPts = i;

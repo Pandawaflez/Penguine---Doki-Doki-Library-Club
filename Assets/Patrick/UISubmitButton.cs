@@ -12,7 +12,7 @@ public class UISubmitButton : UIElement
         this._inputField = inputField;
     }
 
-    public override void onClick()
+    public override void v_onClick()
     // public void onClick()
     {
         // Get the player's name from the input field

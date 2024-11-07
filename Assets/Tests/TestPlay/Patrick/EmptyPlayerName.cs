@@ -22,7 +22,7 @@ public class PatrickEmptyPlayerNameBoundary
 
         //Act: Leave the input field empty and click the submit button.
         inputField.text = ""; 
-        submitButton.onClick();
+        submitButton.v_onClick();
 
         //Assert: Ensure the player name remains unset and the log message is correct.
         yield return null; // Wait a frame for Unity’s event loop.
