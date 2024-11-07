@@ -21,7 +21,7 @@ public class UIElementHandler : MonoBehaviour
     public GameObject endGamePanel; //Reference to the end game panel (UI)
     public GameObject overlayPanel; //panel for overlay
     public Sprite[] characterImages;    //inspector?
-    private string[] _characterNames = { "Charlie", "Lucy", "Snoopy", "Schroeder", "Sonic", "Shadow", };
+    private string[] _characterNames = { "Charlie", "Lucy", "Snoopy", "Schroeder", "Sonic", "Shadow", "Shaggy", "Daphne", "Fred" };
 
     private UIOverlay _overlayUI;
 
@@ -67,6 +67,8 @@ public class UIElementHandler : MonoBehaviour
             }
         };
 
+
+        //Get points for characters in Overlay
         _overlayUI.UpdateCharacterUI("Charlie", PeanutsDB.CharlieAffectionPts);
         // overlayUI.UpdateCharacterUI("Charlie", 100);
 
@@ -75,6 +77,10 @@ public class UIElementHandler : MonoBehaviour
         _overlayUI.UpdateCharacterUI("Schroeder", PeanutsDB.SchroederAffectionPts);
         _overlayUI.UpdateCharacterUI("Sonic", AffectionManager.GetSonicAffectionPoints());
         _overlayUI.UpdateCharacterUI("Shadow", AffectionManager.GetShadowAffectionPoints());
+        _overlayUI.UpdateCharacterUI("Shaggy", 20);
+        _overlayUI.UpdateCharacterUI("Daphne", 20);
+        _overlayUI.UpdateCharacterUI("Fred", 20);
+
 
 
         // //checking conditions for lose game:
