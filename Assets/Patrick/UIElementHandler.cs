@@ -76,11 +76,13 @@ public class UIElementHandler : MonoBehaviour
         _overlayUI.UpdateCharacterUI("Sonic", AffectionManager.GetSonicAffectionPoints());
         _overlayUI.UpdateCharacterUI("Shadow", AffectionManager.GetShadowAffectionPoints());
 
-        // //checking conditions for lose game:
-        // if(SonicDialogue.CheckSonicLockout())
-        // {
-        //     UIGod.LoseGame(true);
-        // }
+
+        //checking conditions for lose game:
+        if(SonicDialogue.CheckSonicLockout() && ShadowDialogue.CheckShadowLockout() && (PeanutsDB.CharlieLocked == 1) && 
+           (PeanutsDB.SchroederLocked == 1) && (PeanutsDB.SnoopyLocked == 1) && (PeanutsDB.LucyLocked == 1))
+        {
+            UIGod.LoseGame(true);
+        }
 
     }
 
