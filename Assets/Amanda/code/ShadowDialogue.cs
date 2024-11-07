@@ -64,7 +64,7 @@ public class ShadowDialogue : HedgehogDialogue
         else if(choice == 2)
         {
             //bad choice
-            affectionManager.ChangeShadowAffectionPoints(-4);
+            affectionManager.ChangeShadowAffectionPoints(-5);
         }
 
         //check affection points / date
@@ -138,6 +138,7 @@ public class ShadowDialogue : HedgehogDialogue
         if((miniGameStatus == 1) && !(MainPlayer.IsBCMode()))
         {
             DialogueLine = $"Okay way to show off. I guess nice job {playerName}.";
+            lockoutShadow = true;
         
         //if player loses shadow thinks ur cute
         } else if(miniGameStatus == 0)

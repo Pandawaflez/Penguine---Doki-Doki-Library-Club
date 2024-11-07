@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+//used for testing purposes mainly
 public class AffectionUI : IAffectionObserver
 {
    private TMP_Text affectionText;

@@ -16,18 +16,21 @@ public class SonicDialogue : HedgehogDialogue
     {
         "Hey I'm Sonic! Fastest hedgehog alive! Need anything?",
         "What really? I am the best hedgehog around.",
+        "Did you know speed is my middle name? Actually... it's Maurice, but don't tell anyone ok?",
         "There's still a long way to go if you wanna match my speed!",
         "How about a game? I love video games. I'll go easy on you, maybe.",
-        "Here we go! Let's keep the good times rollin'!"
+        "Here we go! Let's keep the good times rollin'!",
     };
 
     private List<string[]> playerResponses = new List<string[]>()
     {
         new string[] {"I think Shadow is faster than you.", "Sonic! I'm your #1 fan!"},
         new string[] {"No, lol. Shadow is definitely cooler than you.", "You can say that again."},
+        new string[] {"Did you just try to lie to me? I do not like you.", "Maurice huh? Sonic Maurice Hedgehog? SMH lol. I like that."},
         new string[] {"I think I could outrun you...", "You're the best, Sonic!"},
         new string[] {"You're so cocky, I thought Shadow was the confident one", "Hit me with your best shot."},
         new string[] {"...I don't really want to play with you." , "omg I'm really about to play against sonic right now"}
+        
     };
 
     private int sonicCurrentDialogueIndex = 0;
@@ -37,6 +40,7 @@ public class SonicDialogue : HedgehogDialogue
         : base("Sonic the Hedgehog" , "Hey I'm Sonic. Did you need any help?")
     {
         this.affectionManager = affectionManager;
+
         DialogueLine = sonicLines[sonicCurrentDialogueIndex];
     
         //check sonic's current affection points and lock out if needed
@@ -64,7 +68,7 @@ public class SonicDialogue : HedgehogDialogue
         else if(choice == 1)
         {
             //bad choice
-            affectionManager.ChangeSonicAffectionPoints(-4);
+            affectionManager.ChangeSonicAffectionPoints(-5);
         }
 
         //check for neg affection points then end convo 
@@ -125,6 +129,7 @@ public class SonicDialogue : HedgehogDialogue
         if (miniGameStatus == 1) 
         {
             DialogueLine = "Wow you're the fastest of them all! I think you're pretty cool.";
+            
             UIElementHandler.UIGod.EndGame(true, "Sonic");
         }
         
@@ -132,7 +137,10 @@ public class SonicDialogue : HedgehogDialogue
         else if (miniGameStatus == 0)
         {
             DialogueLine = $"At least you tried, good job {playerName}.";
+            lockoutSonic = true;
         }
+
         EndConversation();
     }
+
 }

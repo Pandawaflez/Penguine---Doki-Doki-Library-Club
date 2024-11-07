@@ -12,6 +12,16 @@ public class AffectionManager : MonoBehaviour
     private static int sonicAffectionPoints = 0;
     private static int shadowAffectionPoints = 0;
 
+    public static AffectionManager Instance;
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
     
     private List<IAffectionObserver> observers = new List<IAffectionObserver>();
 

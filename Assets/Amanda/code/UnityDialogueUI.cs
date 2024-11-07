@@ -29,7 +29,7 @@ public class UnityDialogueUI : MonoBehaviour
         string currentSceneName = SceneManager.GetActiveScene().name;
 
         if(currentSceneName == "Sonic"){
-            //create Sonic's dialogue
+            //create Sonic's dialogue using singleton instance of affection
             HedgehogDialogue sonicDialogue = new SonicDialogue(affectionManager);
             dialogueController = new DialogueController(sonicDialogue);
         } else if(currentSceneName == "Shadow"){
