@@ -113,11 +113,12 @@ public class ShadowDialogue : HedgehogDialogue
         return new string[0]; // return an empty array if out of bounds
     }
 
-    public override bool IsConversationFinished()
+    public bool IsConversationFinished()
     {
         return isFinished;
     }
 
+    //function for patrick 
     public static bool CheckShadowLockout()
     {
         return lockoutShadow;

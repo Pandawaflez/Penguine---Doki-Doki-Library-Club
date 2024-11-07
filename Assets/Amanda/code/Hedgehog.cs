@@ -8,7 +8,6 @@ public abstract class HedgehogDialogue
 {
     public string CharacterName {get; set;}
     public string DialogueLine{ get; set;}
-
     protected bool isFinished;
     public IState CurrentState{ get; private set;}
 

@@ -126,7 +126,7 @@ public class SonicDialogue : HedgehogDialogue
         //return new string[0]; // return an empty array if out of bounds
     }
 
-    public override bool IsConversationFinished(){
+    public bool IsConversationFinished(){
         return isFinished;
     }
 

@@ -12,6 +12,8 @@ public class UnityDialogueUI : MonoBehaviour
     public Button responseButton1;
     public Button responseButton2;
     private DialogueController dialogueController;
+
+    //static type
     private AffectionManager affectionManager;
 
     //bool used to check if conversation is over
@@ -28,12 +30,16 @@ public class UnityDialogueUI : MonoBehaviour
         //get current scene name (used to check which dialogue to initiate)
         string currentSceneName = SceneManager.GetActiveScene().name;
 
-        if(currentSceneName == "Sonic"){
-            //create Sonic's dialogue using singleton instance of affection
+        if(currentSceneName == "Sonic")
+        {
+            //create Sonic's dialogue 
             HedgehogDialogue sonicDialogue = new SonicDialogue(affectionManager);
             dialogueController = new DialogueController(sonicDialogue);
-        } else if(currentSceneName == "Shadow"){
+
+        } else if(currentSceneName == "Shadow")
+        {
             //create Shadow's dialogue
+            //dynamic type
             HedgehogDialogue shadowDialogue = new ShadowDialogue(affectionManager);
             dialogueController = new DialogueController(shadowDialogue);
         }
@@ -74,7 +80,7 @@ public class UnityDialogueUI : MonoBehaviour
     }
     void OnResponse(int choice){
         dialogueController.HandlePlayerChoice(choice);
-        ShowDialogue(); // update dialogue after player choice
+        // update dialogue after player choice
+        ShowDialogue(); 
     }
-
 }
