@@ -12,6 +12,8 @@ public abstract class Scooby
     public int SCdialogueNum = 0;
     //tracking affection points
     public int SCAP;
+    public static bool interactedWith = false;
+    public static int interactionPoints = 0; 
     public void startMiniGameDate(string game){
         SceneChanger.saveScene();
         SceneManager.LoadScene(game);
@@ -67,8 +69,25 @@ public abstract class Scooby
     {
         AffectionPoints += factor;
         Debug.Log("Affection Points: " + AffectionPoints);
+        interactionPoints = AffectionPoints;
         return AffectionPoints; 
     }
 
+    public bool InteractionMonitor(int interactionPoints)
+    {
+        Debug.Log("InteractionMonitor");
+        if (interactionPoints > 0)
+        {
+            interactedWith = true;
+            Debug.Log("interactedWith = " + interactedWith);
+            return interactedWith;
+        }
+        else 
+        {
+            interactedWith = false;
+            Debug.Log("interactedWith = " + interactedWith);
+            return interactedWith;
+        }
+    }
     
 }

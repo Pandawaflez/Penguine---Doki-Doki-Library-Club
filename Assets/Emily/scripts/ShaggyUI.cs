@@ -18,7 +18,6 @@ public class ShaggyUI : MonoBehaviour
     void Start()
     {
         ShagScript = new ShaggyScript();
-        
         ShowShagDialogue();
         ShagR1.onClick.AddListener(() => HandleResponse(1));
         ShagR2.onClick.AddListener(() => HandleResponse(2));
@@ -31,6 +30,8 @@ public class ShaggyUI : MonoBehaviour
         List<string> response_2 = ShagScript.GetPlayer_Response_2;
         int ShaggyLove = ShagScript.ShagAffection;
         ShagScript.DisplayDialogue(prompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, response_1, response_2, ShaggyLove);
+        ShagScript.InteractionMonitor(ShaggyLove);
+
 
     }
     

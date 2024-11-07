@@ -37,19 +37,19 @@ public class DaphneScript : DahpneDialogueData
 
     public override void HandlePlayerResponse(int responseNum)
     {
-        if ((SCdialogueNum == 0 || SCdialogueNum == 1) && responseNum == 1)
+        if ((SCdialogueNum == 1 || SCdialogueNum == 2 || SCdialogueNum == 4) && responseNum == 1)
         {
             DaphAffection = AffectionPointsMonitor(DaphAffection, 20);
         }
-        else if ((SCdialogueNum == 2 || SCdialogueNum == 3 || SCdialogueNum == 4) && responseNum == 1)
+        else if ((SCdialogueNum == 0 || SCdialogueNum == 3) && responseNum == 1)
         {
             DaphAffection = AffectionPointsMonitor(DaphAffection, -10);
         }
-        else if ((SCdialogueNum == 0 || SCdialogueNum == 1) && responseNum == 2)
+        else if ((SCdialogueNum == 1 || SCdialogueNum == 2 || SCdialogueNum == 4) && responseNum == 2)
         {
             DaphAffection = AffectionPointsMonitor(DaphAffection, -10);
         }
-        else if ((SCdialogueNum == 2 || SCdialogueNum == 3 || SCdialogueNum == 4) && responseNum == 2)
+        else if ((SCdialogueNum == 0 || SCdialogueNum == 3) && responseNum == 2)
         {
             DaphAffection = AffectionPointsMonitor(DaphAffection, 20);
         }

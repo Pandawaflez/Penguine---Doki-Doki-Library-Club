@@ -19,6 +19,7 @@ public class DaphneUI : MonoBehaviour
     {
         DaphScript = new DaphneScript();
         
+        
         ShowDaphDialogue();
         DaphR1.onClick.AddListener(() => HandleResponse(1));
         DaphR2.onClick.AddListener(() => HandleResponse(2));

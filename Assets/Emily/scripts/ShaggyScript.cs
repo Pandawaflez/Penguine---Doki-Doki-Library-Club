@@ -12,15 +12,15 @@ public class ShaggyScript : ShaggyDialogeData
     public List<string> GetPlayer_Response_1 => Player_Response_1;
     public List<string> GetPlayer_Response_2 => Player_Response_2;
     public TextMeshProUGUI ShagDialogueText, ShagResponse1Text, ShagResponse2Text;
-    
     public int responseNum = 0;
     public int ShagAffection = 0;
-    private string game = "Minesweeper";
+    private string game = "Pong";
     public bool over = false;
-    public bool like = false;
+    public bool inLove = false;
     void Start()
     {
         DisplayDialogue(GetShagPrompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, GetPlayer_Response_1, GetPlayer_Response_2, ShagAffection);
+        InteractionMonitor(ShagAffection);
     }
     //selection of dialogues
     public void hitShagResponse1()
@@ -54,8 +54,8 @@ public class ShaggyScript : ShaggyDialogeData
             ShagAffection = AffectionPointsMonitor(ShagAffection, 20);
         }
         if (SCdialogueNum == 5) {
-            like = PlayOrNot(ShagAffection, responseNum);
-            if (like) 
+            inLove = PlayOrNot(ShagAffection, responseNum);
+            if (inLove) 
             {
                 startMiniGameDate(game);
             }
