@@ -25,9 +25,9 @@ public class AffectionManager : MonoBehaviour
         //check BC mode
         if(MainPlayer.IsBCMode()){
             //cannot go negative
-            if(points <= 0) points = 20;
+            if(points <= 0) points = 0;
             //double affection
-            sonicAffectionPoints += 2 * points;
+            sonicAffectionPoints += (2 * points);
         } else {
             // regular
             sonicAffectionPoints += points;
@@ -44,7 +44,17 @@ public class AffectionManager : MonoBehaviour
     }
 
     public void ChangeShadowAffectionPoints(int points){
-        shadowAffectionPoints += points;
+        //check BC mode
+        if(MainPlayer.IsBCMode()){
+            //cannot be below 0. 
+            if(points <= 0) points = 20;
+            //double affection
+            shadowAffectionPoints += (2 * points);
+        } else {
+            //regular
+            shadowAffectionPoints += points;
+        }
+        
         //clamp affection points to the limits
         shadowAffectionPoints = Mathf.Clamp(shadowAffectionPoints, MIN_AFFECTION, MAX_AFFECTION);
         
