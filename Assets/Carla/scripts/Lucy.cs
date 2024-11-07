@@ -42,39 +42,8 @@ public class Lucy : Peanuts
         //Debug.Log(p_responseNum.ToString());
     }
 
-/*
-    public void hitResponse1()
-    {
-        p_responseNum = 1;
-        Debug.Log("they hit it boss");
-
-        // Run logic, then clear selection to avoid sticking
-        toNextDialogue();
-        StartCoroutine(DeselectButton());
-    }
-
-    // Button 2 OnClick
-    public void hitResponse2()
-    {
-        p_responseNum = 2;
-        Debug.Log("punch 2");
-        // Run logic, then clear selection
-        toNextDialogue();
-        StartCoroutine(DeselectButton());
-    }
-
-    // Coroutine to wait a frame and clear selection
-    private IEnumerator DeselectButton()
-    {
-        yield return null;  // Wait one frame to ensure UI updates
-
-        // Deselect the current selected UI element
-        EventSystem.current.SetSelectedGameObject(null);
-    }
-*/
-
     //a button being hit will trigger this. decides how to respond to response
-    protected override void toNextDialogue()
+    protected override void v_toNextDialogue()
     {
         int d = getDialogueNum();
         switch(d){
@@ -255,12 +224,14 @@ public class Lucy : Peanuts
         //if they just played a game
         if (p_dialogueNum == -1){
             //if they won
-            if (MainPlayer.GetMiniGameStatus()==1){
+            if (MainPlayer.GetMiniGameStatus()==1)
+            {
                 updateAffection(-10);
                 p_dialogueNum=16;
             }
             //or lost
-            else {
+            else if (MainPlayer.GetMiniGameStatus() == 0)
+            {
                 updateAffection(25);
                 p_dialogueNum=17;
             }

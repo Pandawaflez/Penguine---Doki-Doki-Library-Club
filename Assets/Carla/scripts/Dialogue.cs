@@ -14,17 +14,18 @@ public class Dialogue
     private string _genericResponse1 = "Bro";
     private string _genericResponse2 = "ruh roh";
 
+    //this function can be statically or dynamically bound
     //public void v_displayDialogue(int d)
     public virtual void v_displayDialogue(int d)
     {
-    //public virtual void displayDialogue(int d, GameObject cr1p, GameObject cr2p, TextMeshProUGUI cdt, TextMeshProUGUI cr1t, TextMeshProUGUI cr2t){
         dialogueText.SetText(_genericDialogue);
         response1Text.SetText(_genericResponse1);
         response2Text.SetText(_genericResponse2);
     }
 
+    //non-virtual fn. shows static binding
     //sets the text in dialogue and response panels
-    protected void displayRealDialogue(string dialogue, string r1, string r2)
+    public void displayRealDialogue(string dialogue, string r1, string r2)
     {
         dialogueText.SetText(dialogue);
         response1Text.SetText(r1);
@@ -38,19 +39,6 @@ public class Dialogue
         r2p.SetActive(false);
         r1p.SetActive(false);
     }
-
-/*
-    public Schroeder st;
-    public void reg(Schroeder s, int d) //ig ref is the same thing as pointer????
-    {
-        st = s;
-        Debug.Log(st.getDialogueNum().ToString());
-    }
-    public void up(){
-        Debug.Log("calling up");
-        Debug.Log(st.getDialogueNum().ToString());
-    }
-*/
 }
 
 public class CharlieDialogue : Dialogue
@@ -163,7 +151,7 @@ public class CharlieDialogue : Dialogue
                 displayJustText(dialogueG);
                 break;
             default:
-                Debug.Log("no dialogue in d class");
+                Debug.Log("no dialogue in dialogue class");
                 break;
         }
     }

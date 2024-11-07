@@ -63,7 +63,7 @@ public abstract class Peanuts : MonoBehaviour
         _affectionPoints = totalPoints;
     }
 
-    protected abstract void toNextDialogue();
+    protected abstract void v_toNextDialogue();
 
     public void hitResponse1()
     {
@@ -71,7 +71,7 @@ public abstract class Peanuts : MonoBehaviour
         Debug.Log("they hit it boss");
 
         // Run logic, then clear selection to avoid sticking
-        toNextDialogue();
+        v_toNextDialogue();
         StartCoroutine(DeselectButton());
     }
 
@@ -81,7 +81,7 @@ public abstract class Peanuts : MonoBehaviour
         p_responseNum = 2;
         Debug.Log("punch 2");
         // Run logic, then clear selection
-        toNextDialogue();
+        v_toNextDialogue();
         StartCoroutine(DeselectButton());
     }
 

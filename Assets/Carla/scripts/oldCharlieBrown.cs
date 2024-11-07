@@ -95,7 +95,7 @@ public class OLDCharlieBrown : Peanuts
         //StartCoroutine(holdUp(10));
         //unselect button for next screen
         r1.Select();
-        toNextDialogue();
+        v_toNextDialogue();
     }
 
     //button 2 calls onclick
@@ -103,7 +103,7 @@ public class OLDCharlieBrown : Peanuts
         p_responseNum = 2;
         //holdUp(1);
         r2.Select();
-        toNextDialogue();
+        v_toNextDialogue();
     }
 
 
@@ -119,7 +119,7 @@ public class OLDCharlieBrown : Peanuts
 
     //a button being hit will trigger this. decides how to respond to response
     //private void toNextDialogue(){
-    protected override void toNextDialogue(){  
+    protected override void v_toNextDialogue(){  
         int d = getDialogueNum();
         switch(d){
             case 0:
