@@ -77,12 +77,13 @@ public class UIElementHandler : MonoBehaviour
         _overlayUI.UpdateCharacterUI("Shadow", AffectionManager.GetShadowAffectionPoints());
 
 
-        //checking conditions for lose game:
-        if(SonicDialogue.CheckSonicLockout() && ShadowDialogue.CheckShadowLockout() && (PeanutsDB.CharlieLocked == 1) && 
-           (PeanutsDB.SchroederLocked == 1) && (PeanutsDB.SnoopyLocked == 1) && (PeanutsDB.LucyLocked == 1))
-        {
-            UIGod.LoseGame(true);
-        }
+        // //checking conditions for lose game:
+        // if(SonicDialogue.CheckSonicLockout() && ShadowDialogue.CheckShadowLockout() && (PeanutsDB.CharlieLocked == 1) && 
+        //    (PeanutsDB.SchroederLocked == 1) && (PeanutsDB.SnoopyLocked == 1) && (PeanutsDB.LucyLocked == 1) &&
+        //     ShaggyScript.over )
+        // {
+        //     UIGod.LoseGame(true);
+        // }
 
     }
 
@@ -159,7 +160,7 @@ public class UIElementHandler : MonoBehaviour
             }
         }
 
-        Debug.Log($"Game Over: You Win with {character}!");
+        // Debug.Log($"Game Over: You Win with {character}!");
     }
 
     //lose game condition
@@ -181,6 +182,6 @@ public class UIElementHandler : MonoBehaviour
             }
         }
 
-        Debug.Log($"Game Over: You Lose!");
+        // Debug.Log($"Game Over: You Lose!");
     }
 }
