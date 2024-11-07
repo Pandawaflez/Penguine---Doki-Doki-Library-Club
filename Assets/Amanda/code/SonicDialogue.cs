@@ -8,13 +8,13 @@ public class SonicDialogue : HedgehogDialogue
     public AffectionManager affectionManager;
     public static bool lockoutSonic = false;
     public string game = "Math";
-    private bool isFinished = false;
+    public bool isFinished = false;
 
     public string playerName = MainPlayer.GetPlayerName();
 
-    private List<string> sonicLines = new List<string>()
+    public List<string> sonicLines = new List<string>()
     {
-        "Hey I'm Sonic! Fastest hedgehog alive! Need anything?",
+        "Hey I'm Sanic! Fastest hedgehog alive! Need anything?",
         "What really? I am the best hedgehog around.",
         "Did you know speed is my middle name? Actually... it's Maurice, but don't tell anyone ok?",
         "There's still a long way to go if you wanna match my speed!",
@@ -22,27 +22,30 @@ public class SonicDialogue : HedgehogDialogue
         "Here we go! Let's keep the good times rollin'!",
     };
 
-    private List<string[]> playerResponses = new List<string[]>()
+    public List<string[]> playerResponses = new List<string[]>()
     {
-        new string[] {"I think Shadow is faster than you.", "Sonic! I'm your #1 fan!"},
+        new string[] {"I think Shadow is faster than you.", "Sanic! I'm your #1 fan!"},
         new string[] {"No, lol. Shadow is definitely cooler than you.", "You can say that again."},
-        new string[] {"Did you just try to lie to me? I do not like you.", "Maurice huh? Sonic Maurice Hedgehog? SMH lol. I like that."},
-        new string[] {"I think I could outrun you...", "You're the best, Sonic!"},
+        new string[] {"Did you just try to lie to me? I do not like you.", "Maurice huh? Sanic Maurice Hedgehog? SMH lol. I like that."},
+        new string[] {"I think I could outrun you...", "You're the best, Sanic!"},
         new string[] {"You're so cocky, I thought Shadow was the confident one", "Hit me with your best shot."},
-        new string[] {"...I don't really want to play with you." , "omg I'm really about to play against sonic right now"}
+        new string[] {"...I don't really want to play with you." , "omg I'm really about to play against Sanic right now"}
         
     };
 
-    private int sonicCurrentDialogueIndex = 0;
-    private int sonicResponseIndex = 0;
+    public int sonicCurrentDialogueIndex = 0;
+    public int sonicResponseIndex = 0;
 
     public SonicDialogue(AffectionManager affectionManager)
-        : base("Sonic the Hedgehog" , "Hey I'm Sonic. Did you need any help?")
+        : base("Sonic the Hedgehog" , "Hey I'm Sanic. Did you need any help?")
     {
         this.affectionManager = affectionManager;
+        
+        //start in normal state
+        TransistionToState(new SonicNormalState(this));
 
         DialogueLine = sonicLines[sonicCurrentDialogueIndex];
-    
+ 
         //check sonic's current affection points and lock out if needed
         if(AffectionManager.GetSonicAffectionPoints() <= -10)
         {
@@ -56,10 +59,19 @@ public class SonicDialogue : HedgehogDialogue
             DialogueLine = $"Oh nice, you're back. I'm glad to see you, {playerName}!";
             EndConversation();
             UpdateDialogueAfterMinigame();
-        }
+        } 
+        
     }
 
-    public override void ProcessChoice(int choice){
+    public override void ProcessChoice(int choice)
+    {
+        //delegate choice processing to current state
+        CurrentState.ProcessChoice(choice);
+        
+        
+        /* old code below: didn't want my previous work gone forever
+        State Pattern basically took all this in normal sonic state process choice. 
+        
         if(choice == 2)
         {
             //best choice +20
@@ -98,20 +110,20 @@ public class SonicDialogue : HedgehogDialogue
             DialogueLine = sonicLines[sonicCurrentDialogueIndex];
         } else {
             EndConversation();
-        }
+        } */
     }
 
     //endconversation will lock out the response buttons by sending bool to UImanager
-    private void EndConversation(){
+    public void EndConversation(){
         isFinished = true; 
     }
     
     public override string[] GetCurrentResponses(){
         //public string[] GetCurrentResponses(){
-        if(sonicCurrentDialogueIndex < playerResponses.Count){
-        return playerResponses[sonicResponseIndex];
-        }
-        return new string[0]; // return an empty array if out of bounds
+
+        return(sonicCurrentDialogueIndex < playerResponses.Count) ? playerResponses[sonicCurrentDialogueIndex] : new string[0];
+    
+        //return new string[0]; // return an empty array if out of bounds
     }
 
     public override bool IsConversationFinished(){
@@ -140,7 +152,7 @@ public class SonicDialogue : HedgehogDialogue
             lockoutSonic = true;
         }
 
-        EndConversation();
-    }
+        EndConversation(); 
+    } 
 
 }

@@ -10,8 +10,10 @@ public abstract class HedgehogDialogue
     public string DialogueLine{ get; set;}
 
     protected bool isFinished;
+    public IState CurrentState{ get; private set;}
 
-    protected HedgehogDialogue(string characterName, string initialDialogue){
+    protected HedgehogDialogue(string characterName, string initialDialogue)
+    {
         CharacterName = characterName;
         DialogueLine = initialDialogue;
     }
@@ -25,13 +27,22 @@ public abstract class HedgehogDialogue
     //method that will be overridden in derived classes. 
     public abstract void ProcessChoice(int choice);
 
-    protected void startMiniGameDate(string game){
+    public void startMiniGameDate(string game)
+    {
         SceneChanger.saveScene();
         SceneManager.LoadScene(game);
     }
 
-    public virtual bool IsConversationFinished(){
+    public virtual bool IsConversationFinished()
+    {
         return isFinished;
+    }
+
+    //add transistion method for state changes
+    public void TransistionToState(IState newState)
+    {
+        CurrentState = newState;
+        CurrentState.EnterState();
     }
     
     
