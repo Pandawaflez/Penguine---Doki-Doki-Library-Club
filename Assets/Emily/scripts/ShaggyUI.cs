@@ -12,12 +12,12 @@ public class ShaggyUI : MonoBehaviour
     public TextMeshProUGUI ShagDialogueText, ShagResponse1Text, ShagResponse2Text;
     
 
-    private ShaggyScript ShagScript;
+    private Scooby scoobyScript;
     
     // Start is called before the first frame update
     void Start()
     {
-        ShagScript = new ShaggyScript();
+        scoobyScript = new ShaggyScript(); 
         ShowShagDialogue();
         ShagR1.onClick.AddListener(() => HandleResponse(1));
         ShagR2.onClick.AddListener(() => HandleResponse(2));
@@ -25,18 +25,18 @@ public class ShaggyUI : MonoBehaviour
     }
     
     public void ShowShagDialogue(){
-        List<string> prompts = ShagScript.GetShagPrompts;
-        List<string> response_1 = ShagScript.GetPlayer_Response_1;
-        List<string> response_2 = ShagScript.GetPlayer_Response_2;
-        int ShaggyLove = ShagScript.ShagAffection;
-        ShagScript.DisplayDialogue(prompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, response_1, response_2, ShaggyLove);
-        ShagScript.InteractionMonitor(ShaggyLove);
+        List<string> prompts = ((ShaggyScript)scoobyScript).GetShagPrompts;
+        List<string> response_1 = ((ShaggyScript)scoobyScript).GetPlayer_Response_1;
+        List<string> response_2 = ((ShaggyScript)scoobyScript).GetPlayer_Response_2;
+        int ShaggyLove = ((ShaggyScript)scoobyScript).ShagAffection;
+        scoobyScript.DisplayDialogue(prompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, response_1, response_2, ShaggyLove);
+        scoobyScript.InteractionMonitor(ShaggyLove);
 
 
     }
     
     private void HandleResponse(int responseNum){
-        ShagScript.HandlePlayerResponse(responseNum);
+        scoobyScript.HandlePlayerResponse(responseNum);
         ShowShagDialogue();
     }
     // Update is called once per frame
