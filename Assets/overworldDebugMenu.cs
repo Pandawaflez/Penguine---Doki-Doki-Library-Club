@@ -36,7 +36,7 @@ public class overworldDebugMenu : MonoBehaviour
                 break;
             case "Fred":
                 Debug.Log("Talk to Frederick");
-                //SceneManager.LoadScene("Fred");
+                SceneManager.LoadScene("Fred");
                 break;
             case "Sonic":
                 Debug.Log("Talk to Sanic");

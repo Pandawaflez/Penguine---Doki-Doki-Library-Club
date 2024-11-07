@@ -5,19 +5,18 @@ using UnityEngine.UI;
 
 public class OverworldManagement : MonoBehaviour
 {
+    // Game Object References:
     [SerializeField]
     private overworldDebugMenu debugPanel;
     [SerializeField]
     private GameObject computer;
-    //sdggsdlkdjg
-    [SerializeField]
-    private string currentRoomName = "FrontDesk";
-    /*static overworldCharacter overworldCharacters;
-    static room rooms; */
     [SerializeField]
     private Image background;
     [SerializeField]
     private GameObject testPanel;
+    // 
+    [SerializeField]
+    private string currentRoomName = "FrontDesk";
     //Character buttons:
     [SerializeField]
     private Image characterLeft;
@@ -113,7 +112,7 @@ public class OverworldManagement : MonoBehaviour
         init = true; //make sure we know that everything is good to go
     }
 
-    //placeholder/test function:
+    //Load up the first room:
     public void loadRoom1 (){
         currentRoom = 0;
         background.sprite = rooms[0].roomImage;
@@ -215,6 +214,7 @@ public class OverworldManagement : MonoBehaviour
         }
     }
 
+    //sets the given ui image to the sprite corresponding with the given character name.
     private void setCharacterImage( string leftOrRight , Image characterImage ){
         string character;
         if (leftOrRight == "left"){

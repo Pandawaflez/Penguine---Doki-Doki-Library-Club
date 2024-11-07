@@ -290,6 +290,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1893980777757639379, guid: 8d3c0e6926ae8f74f9770bb686554fba, type: 3}
+      propertyPath: m_Name
+      value: RoomBackground
+      objectReference: {fileID: 0}
+    - target: {fileID: 3703053034367215125, guid: 8d3c0e6926ae8f74f9770bb686554fba, type: 3}
+      propertyPath: m_Name
+      value: GoLeftButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4200547462257860830, guid: 8d3c0e6926ae8f74f9770bb686554fba, type: 3}
+      propertyPath: m_Name
+      value: CharacterRight
+      objectReference: {fileID: 0}
     - target: {fileID: 5202812274979691591, guid: 8d3c0e6926ae8f74f9770bb686554fba, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1614.0769
@@ -332,7 +344,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6231429013845918482, guid: 8d3c0e6926ae8f74f9770bb686554fba, type: 3}
       propertyPath: m_Name
-      value: Room
+      value: Overworld
+      objectReference: {fileID: 0}
+    - target: {fileID: 6516046423675988946, guid: 8d3c0e6926ae8f74f9770bb686554fba, type: 3}
+      propertyPath: m_Name
+      value: GoRightButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8346977595533208297, guid: 8d3c0e6926ae8f74f9770bb686554fba, type: 3}
+      propertyPath: m_Name
+      value: CharacterLeft
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
