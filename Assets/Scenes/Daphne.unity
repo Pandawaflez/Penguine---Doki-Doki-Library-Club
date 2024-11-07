@@ -130,6 +130,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1187406062}
     m_Modifications:
+    - target: {fileID: 146699284033345532, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
+      propertyPath: m_Name
+      value: DaphneResponse1Text
+      objectReference: {fileID: 0}
     - target: {fileID: 1251297693214309249, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -178,6 +182,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1830928549933541356, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
+      propertyPath: m_Name
+      value: DaphDialogueDisplay
+      objectReference: {fileID: 0}
     - target: {fileID: 1833821437897506819, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -206,6 +214,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Daphne
       objectReference: {fileID: 0}
+    - target: {fileID: 3138494761287940485, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
+      propertyPath: m_Name
+      value: DaphneResponse2Text
+      objectReference: {fileID: 0}
     - target: {fileID: 4538834458776510358, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -230,13 +242,45 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5579230582946199481, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
+      propertyPath: m_Name
+      value: DaphResponse2
+      objectReference: {fileID: 0}
     - target: {fileID: 5603978690760238234, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6226566943550165575, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
+      propertyPath: m_Transition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226566943550165575, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
+      propertyPath: m_Colors.m_NormalColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226566943550165575, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
+      propertyPath: m_Colors.m_NormalColor.b
+      value: 0.9716981
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226566943550165575, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 0.44459772
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226566943550165575, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 0.93166524
+      objectReference: {fileID: 0}
     - target: {fileID: 7224431922053516003, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7271741939981064640, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
+      propertyPath: m_Name
+      value: DaphResponse1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7506582246876256858, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
+      propertyPath: m_Name
+      value: DaphneDialogueText
       objectReference: {fileID: 0}
     - target: {fileID: 8447937819729302071, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
       propertyPath: m_SizeDelta.y
@@ -282,16 +326,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4556660131521192111, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2227627445182335701, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 85376026}
   m_SourcePrefab: {fileID: 100100000, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
 --- !u!4 &85376024 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8626753297683991439, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
   m_PrefabInstance: {fileID: 85376023}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &85376025 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2227627445182335701, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
+  m_PrefabInstance: {fileID: 85376023}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &85376026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85376025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae895b4c547e84d4180099bc14d3367d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DaphR1: {fileID: 1748240303}
+  DaphR2: {fileID: 941644866}
+  DaphDialogueText: {fileID: 1346014583}
+  DaphResponse1Text: {fileID: 1913316564}
+  DaphResponse2Text: {fileID: 1022701554}
 --- !u!1001 &732550891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -394,6 +464,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2951765929673254042, guid: 0466561231504024286c33bf05141871, type: 3}
   m_PrefabInstance: {fileID: 732550891}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &941644866 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9218366814543559742, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
+  m_PrefabInstance: {fileID: 85376023}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1022701554 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5140334710794535404, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
+  m_PrefabInstance: {fileID: 85376023}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1187406058
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,6 +590,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1346014583 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8318432581543604563, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
+  m_PrefabInstance: {fileID: 85376023}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1748240303 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6226566943550165575, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
+  m_PrefabInstance: {fileID: 85376023}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1892368729
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -586,6 +700,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1458508224307592112, guid: cb129d89be94a4949ae95e08d0ded84a, type: 3}
+      propertyPath: m_Name
+      value: DaphneText
+      objectReference: {fileID: 0}
     - target: {fileID: 6425265958540982857, guid: cb129d89be94a4949ae95e08d0ded84a, type: 3}
       propertyPath: m_Name
       value: DaphDialoguePanel
@@ -660,7 +778,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.7882759, g: 0.70033824, b: 0.8113208, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -716,6 +834,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1913316564 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7985200227456233365, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
+  m_PrefabInstance: {fileID: 85376023}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

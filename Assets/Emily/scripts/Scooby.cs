@@ -12,7 +12,7 @@ public abstract class Scooby
     public int SCdialogueNum = 0;
     //tracking affection points
     public int SCAP;
-    protected void startMiniGameDate(string game){
+    public void startMiniGameDate(string game){
         SceneChanger.saveScene();
         SceneManager.LoadScene(game);
     }
