@@ -29,7 +29,8 @@ public class ShaggyUI : MonoBehaviour
         List<string> prompts = ShagScript.GetShagPrompts;
         List<string> response_1 = ShagScript.GetPlayer_Response_1;
         List<string> response_2 = ShagScript.GetPlayer_Response_2;
-        //ShagScript.DisplayDialogue(prompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, response_1, response_2);
+        int ShaggyLove = ShagScript.ShagAffection;
+        ShagScript.DisplayDialogue(prompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, response_1, response_2, ShaggyLove);
 
     }
     
