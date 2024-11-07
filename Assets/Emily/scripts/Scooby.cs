@@ -70,6 +70,8 @@ public abstract class Scooby
         AffectionPoints += factor;
         Debug.Log("Affection Points: " + AffectionPoints);
         interactionPoints = AffectionPoints;
+        SCAP = AffectionPoints;
+        AffectionUpdates();
         return AffectionPoints; 
     }
 
@@ -89,5 +91,10 @@ public abstract class Scooby
             return interactedWith;
         }
     }
+    public int AffectionUpdates(){
+        Debug.Log("SCAP = " + SCAP);
+        return SCAP;
+    }
+    
     
 }
