@@ -198,6 +198,7 @@ public class CharlieBrown : Peanuts
             d=8;
             MainPlayer.SetMiniGameStatus(-1);   //reset game status
         }
+        //if user has entered the end of dialogue
         else if (p_dialogueNum == 5)
         {
             PeanutsDB.CharlieLocked = 1;
