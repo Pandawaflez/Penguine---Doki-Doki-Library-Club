@@ -11,7 +11,7 @@ public abstract class Scooby
     //tracking what number dialogue response
     public int SCdialogueNum = 0;
     //tracking affection points
-    public int SCAP;
+    public static int SCAP;
     public static bool interactedWith = false;
     public static int interactionPoints = 0; 
     public void startMiniGameDate(string game){
@@ -91,7 +91,7 @@ public abstract class Scooby
             return interactedWith;
         }
     }
-    public int AffectionUpdates(){
+    public static int AffectionUpdates(){
         Debug.Log("SCAP = " + SCAP);
         return SCAP;
     }
