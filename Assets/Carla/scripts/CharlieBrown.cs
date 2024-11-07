@@ -18,37 +18,38 @@ public class CharlieBrown : Peanuts
     public Button r1;
     public Button r2;
 
-    public Dialogue myDialogue;
+    public Dialogue myDialogue; //static type myDialogue
     private CharlieDialogue omyDialogue;    //not used
     private string game = "Pong";
 
-    // AUDIO - ADDED BY OWEN 
     private DialogueSound dialogueSound;
 
     void Start()
     {
         //create new dialogue bubble & send it the game object to attach
-        myDialogue = new CharlieDialogue(Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
-        //theAudio = new AudioManager();
+        myDialogue = new CharlieDialogue(Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);    //dynamic type CharlieDialogue
+        //myDialogue.v_displayDialogue(0);    //subclass fn bound
 
-        // AUDIO - ADDED BY OWEN:
+
+        //myDialogue = new Dialogue();
+        //myDialogue.v_displayDialogue(0); //superclass fn bound
+
         // Load the audio clip from the Resources folder
         AudioClip peanutsTeacherClip = Resources.Load<AudioClip>("Owen/Peanuts/peanuts_teacher");
         if (peanutsTeacherClip != null)
-                {
-                    dialogueSound = new DialogueSound(
-                        "peanuts_teacher", 
-                        peanutsTeacherClip, 
-                        "CharlieBrown", 
-                        "Peanuts", 
-                        AudioManager.Instance.GetComponent<AudioSource>()
-                    );
-                }
-                else
-                {
+        {
+            dialogueSound = new DialogueSound(
+                "peanuts_teacher", 
+                peanutsTeacherClip, 
+                "CharlieBrown", 
+                "Peanuts", 
+                AudioManager.Instance.GetComponent<AudioSource>()
+            );
+        }
+        else
+        {
                     Debug.LogError("peanuts_teacher audio clip not found.");
-                }
-        // END OF OWEN'S AUDIO CODE
+        }
 
         p_dialogueNum = PeanutsDB.CharlieDialogueNum;
         loadAffection(PeanutsDB.CharlieAffectionPts);
@@ -71,7 +72,7 @@ public class CharlieBrown : Peanuts
             //StartCoroutine(holdUp(10));
             //unselect button for next screen
             r1.Select();
-            toNextDialogue();
+            v_toNextDialogue();
         }
 
         //button 2 calls onclick
@@ -79,7 +80,7 @@ public class CharlieBrown : Peanuts
         {
             p_responseNum = 2;
             r2.Select();
-            toNextDialogue();
+            v_toNextDialogue();
         }
         */
 
@@ -88,8 +89,8 @@ public class CharlieBrown : Peanuts
         decides what to do (update affection pts, next dialogue number and/or to initiate minigame) based off response
         calls onDialogue() at end
     */
-    //private void toNextDialogue()
-    protected override void toNextDialogue()
+    //private void v_toNextDialogue()
+    protected override void v_toNextDialogue()
     {
         int d = getDialogueNum();
         switch(d){

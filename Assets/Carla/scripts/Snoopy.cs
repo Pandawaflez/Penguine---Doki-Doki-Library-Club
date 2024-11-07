@@ -57,41 +57,10 @@ public class Snoopy : Peanuts
         }
     }
 
-/*
-    // Button 1 OnClick
-    public void hitResponse1()
-    {
-        p_responseNum = 1;
-        Debug.Log("they hit it boss");
-
-        // Run logic, then clear selection to avoid sticking
-        toNextDialogue();
-        StartCoroutine(DeselectButton());
-    }
-
-    // Button 2 OnClick
-    public void hitResponse2()
-    {
-        p_responseNum = 2;
-
-        // Run logic, then clear selection
-        toNextDialogue();
-        StartCoroutine(DeselectButton());
-    }
-
-    // Coroutine to wait a frame and clear selection
-    private IEnumerator DeselectButton()
-    {
-        yield return null;  // Wait one frame to ensure UI updates
-
-        // Deselect the current selected UI element
-        EventSystem.current.SetSelectedGameObject(null);
-    }
-*/
 
     //a button being hit will trigger this. decides how to respond to response
-    protected override void toNextDialogue()    //PATTERN this is like the setState()
-    //private void toNextDialogue()
+    protected override void v_toNextDialogue()    //PATTERN this is like the setState()
+    //private void v_toNextDialogue()
     {
         int d = getDialogueNum();
         switch(d){
@@ -144,6 +113,8 @@ public class Snoopy : Peanuts
                     updateAffection(-5);
                 } else if (p_responseNum == 2){
                     updateAffection(20);
+                    Debug.Log("current mini game");
+                    Debug.Log(MainPlayer.GetMiniGameStatus().ToString());
                     initiateMiniGame(game);
                     //should depend on win 13 or loss 14
                     p_dialogueNum = -1;
@@ -243,13 +214,19 @@ public class Snoopy : Peanuts
     public void onDialogue(int d){
         //if they just played a game
         if (p_dialogueNum == -1){
+            Debug.Log("dialogue is neg 1 and minigame stat is:");
+            Debug.Log(MainPlayer.GetMiniGameStatus().ToString());
             //if they won
-            if (MainPlayer.GetMiniGameStatus()==1){
+            if (MainPlayer.GetMiniGameStatus()==1)
+            {
+                Debug.Log("Won game");
                 updateAffection(15);
                 p_dialogueNum=13;
             }
             //or lost
-            else {
+            else if (MainPlayer.GetMiniGameStatus() == 0)
+            {
+                Debug.Log("Lost game");
                 updateAffection(30);
                 p_dialogueNum=14;
             }

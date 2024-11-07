@@ -25,14 +25,6 @@ public class WoodStock : MonoBehaviour
             Debug.Log("uh oh! Bird Manager not found");
         }        
     }
-    
-/*
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    */
 
     public void Begin(Snoopy aSnoop){
         theSnoop = aSnoop;
@@ -52,20 +44,4 @@ public class WoodStock : MonoBehaviour
     }
 }
 
-
-public class FlowerWoodStock : WoodStock
-{
-    void Start()
-    {
-        Debug.Log("flower");
-    }
-}
-
-public class WritingWoodStock : WoodStock
-{
-    void Start()
-    {
-        Debug.Log("write");
-    }
-}
 

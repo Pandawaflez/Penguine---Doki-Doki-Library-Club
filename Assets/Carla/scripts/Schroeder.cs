@@ -37,41 +37,9 @@ public class Schroeder : Peanuts
         PeanutsDB.SchroederDialogueNum = p_dialogueNum;
     }
 
-/*
-    // Button 1 OnClick
-    public void hitResponse1()
-    {
-        p_responseNum = 1;
-        Debug.Log("they hit it boss");
-
-        // Run logic, then clear selection to avoid sticking
-        toNextDialogue();
-        StartCoroutine(DeselectButton());
-    }
-
-    // Button 2 OnClick
-    public void hitResponse2()
-    {
-        p_responseNum = 2;
-
-        // Run logic, then clear selection
-        toNextDialogue();
-        StartCoroutine(DeselectButton());
-    }
-
-    // Coroutine to wait a frame and clear selection
-    private IEnumerator DeselectButton()
-    {
-        yield return null;  // Wait one frame to ensure UI updates
-
-        // Deselect the current selected UI element
-        EventSystem.current.SetSelectedGameObject(null);
-    }
-*/
-
     //a button being hit will trigger this. decides how to respond to response
-    //private void toNextDialogue()
-    protected override void toNextDialogue()
+    //private void v_toNextDialogue()
+    protected override void v_toNextDialogue()
     {
         int d = getDialogueNum();
         switch(d){
@@ -215,12 +183,14 @@ public class Schroeder : Peanuts
         //if they just played a game
         if (p_dialogueNum == -1){
             //if they won
-            if (MainPlayer.GetMiniGameStatus()==1){
+            if (MainPlayer.GetMiniGameStatus()==1)
+            {
                 updateAffection(25);
                 p_dialogueNum=13;
             }
             //or lost
-            else {
+            else if (MainPlayer.GetMiniGameStatus() == 0)
+            {
                 updateAffection(-5);
                 p_dialogueNum=14;
             }
