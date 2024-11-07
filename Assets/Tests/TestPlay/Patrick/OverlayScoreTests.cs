@@ -193,6 +193,17 @@ public class Patrick_OverlayScoringTests
         UIElementHandler.UIGod.ShowOverlay();
     }
 
+    //test loseGame panel works
+    [UnityTest]
+    public IEnumerator J_LoseGameScreen()
+    {
+        UIElementHandler.UIGod.LoseGame(true);
+
+        yield return new WaitForSeconds(2f);
+
+        UIElementHandler.UIGod.LoseGame(false);
+    }
+
 
 
 }

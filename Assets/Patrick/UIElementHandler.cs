@@ -74,9 +74,11 @@ public class UIElementHandler : MonoBehaviour
         _overlayUI.UpdateCharacterUI("Sonic", AffectionManager.GetSonicAffectionPoints());
         _overlayUI.UpdateCharacterUI("Shadow", AffectionManager.GetShadowAffectionPoints());
 
-        if(Input.GetKeyDown(KeyCode.DownArrow)){
-            UIGod.EndGame(true, "Charlie");
-        }
+        // //checking conditions for lose game:
+        // if(SonicDialogue.CheckSonicLockout())
+        // {
+        //     UIGod.LoseGame(true);
+        // }
 
     }
 
@@ -128,15 +130,15 @@ public class UIElementHandler : MonoBehaviour
     }
 
     //handle end of game scenario (global access point)
-    public void EndGame(bool isWin, string character)
+    public void EndGame(bool state, string character)
     {
         if(Application.isMobilePlatform){
             HapticFeedback.MediumFeedback();    //vibrate on end game
         }
         
-        endGamePanel.SetActive(isWin); // Show the end game panel
+        endGamePanel.SetActive(state); // Show the end game panel
 
-        if(isWin){
+        if(state){
             // Get the Text component from the end game panel
             TextMeshProUGUI panelText = endGamePanel.GetComponentInChildren<TextMeshProUGUI>();
             if (panelText != null)
@@ -145,6 +147,26 @@ public class UIElementHandler : MonoBehaviour
             }
         }
 
-        Debug.Log(isWin ? $"Game Over: You Win with {character}!" : "Game Over: You Lose!");
+        Debug.Log($"Game Over: You Win with {character}!");
+    }
+
+    //lose game condition
+    public void LoseGame(bool state)
+    {
+        if(Application.isMobilePlatform){
+            HapticFeedback.MediumFeedback();    //vibrate on end game
+        }
+        
+        endGamePanel.SetActive(state); // Show the end game panel
+
+        if(state){
+            TextMeshProUGUI panelText = endGamePanel.GetComponentInChildren<TextMeshProUGUI>();
+            if (panelText != null)
+            {
+               panelText.text = $"You've failed to romance every single person here! You will remain here for eternity...";
+            }
+        }
+
+        Debug.Log($"Game Over: You Lose!");
     }
 }
