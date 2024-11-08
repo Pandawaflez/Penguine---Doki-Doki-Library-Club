@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+/*
 public class DaphneScript : DahpneDialogueData
 {
     //buttons for dialogue
@@ -13,11 +13,14 @@ public class DaphneScript : DahpneDialogueData
     public List<string> GetPlayer_Response_2 => Player_Response_2;
     public TextMeshProUGUI DaphDialogueText, DaphResponse1Text, DaphResponse2Text;
     
+    public static int DaphSCAP;
+
     public int responseNum = 0;
     public int DaphAffection = 0;
     private string game = "Minesweeper";
     public bool over = false;
-    public bool like = false;
+    public bool inLove = false;
+    //public static int allAffection = 0;
     void Start()
     {
         DisplayDialogue(GetDaphPrompts, DaphDialogueText, DaphResponse1Text, DaphResponse2Text, GetPlayer_Response_1, GetPlayer_Response_2, DaphAffection);
@@ -39,23 +42,23 @@ public class DaphneScript : DahpneDialogueData
     {
         if ((SCdialogueNum == 1 || SCdialogueNum == 2 || SCdialogueNum == 4) && responseNum == 1)
         {
-            DaphAffection = AffectionPointsMonitor(DaphAffection, 20);
+            DaphAffection = DaphneAffectionPointsMonitor(DaphAffection, 20);
         }
         else if ((SCdialogueNum == 0 || SCdialogueNum == 3) && responseNum == 1)
         {
-            DaphAffection = AffectionPointsMonitor(DaphAffection, -10);
+            DaphAffection = DaphneAffectionPointsMonitor(DaphAffection, -10);
         }
         else if ((SCdialogueNum == 1 || SCdialogueNum == 2 || SCdialogueNum == 4) && responseNum == 2)
         {
-            DaphAffection = AffectionPointsMonitor(DaphAffection, -10);
+            DaphAffection = DaphneAffectionPointsMonitor(DaphAffection, -10);
         }
         else if ((SCdialogueNum == 0 || SCdialogueNum == 3) && responseNum == 2)
         {
-            DaphAffection = AffectionPointsMonitor(DaphAffection, 20);
+            DaphAffection = DaphneAffectionPointsMonitor(DaphAffection, 20);
         }
         if (SCdialogueNum == 5) {
-            like = PlayOrNot(DaphAffection, responseNum);
-            if (like) 
+            inLove = PlayOrNot(DaphAffection, responseNum);
+            if (inLove) 
             {
                 startMiniGameDate(game);
             }
@@ -69,7 +72,7 @@ public class DaphneScript : DahpneDialogueData
     }
     public bool PlayOrNot(int SCAP, int response)
     {
-       SCAP = AffectionPointsMonitor(DaphAffection,0);
+       SCAP = DaphneAffectionPointsMonitor(DaphAffection,0);
         if (SCAP >= 40)
         {
             Debug.Log("Testing if game start conditional works");
@@ -87,4 +90,17 @@ public class DaphneScript : DahpneDialogueData
             return false;
         }
     }
-}
+    public int DaphneAffectionPointsMonitor(int AffectionPoints, int factor)
+    {
+        AffectionPoints += factor;
+        Debug.Log("Affection Points: " + AffectionPoints);
+        interactionPoints = AffectionPoints;
+        DaphSCAP = AffectionPoints;
+        DaphneAffectionUpdates();
+        return AffectionPoints; 
+    }
+    public static int DaphneAffectionUpdates(){
+        Debug.Log("SCAP = " + DaphSCAP);
+        return DaphSCAP;
+    }
+}*/

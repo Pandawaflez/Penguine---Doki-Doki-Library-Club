@@ -28,11 +28,10 @@ public class ShaggyUI : MonoBehaviour
         List<string> prompts = ((ShaggyScript)scoobyScript).GetShagPrompts;
         List<string> response_1 = ((ShaggyScript)scoobyScript).GetPlayer_Response_1;
         List<string> response_2 = ((ShaggyScript)scoobyScript).GetPlayer_Response_2;
-        int ShaggyLove = ((ShaggyScript)scoobyScript).ShagAffection;
-        scoobyScript.DisplayDialogue(prompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, response_1, response_2, ShaggyLove);
-        scoobyScript.InteractionMonitor(ShaggyLove);
-
-
+        int ShaggyLove = ShaggyScript.ShagSCAP;
+        bool ShagInteraction = ShaggyScript.ShaginteractedWith;
+        scoobyScript.DisplayDialogue(prompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, response_1, response_2, ShaggyLove, ShagInteraction);
+        //scoobyScript.InteractionMonitor(ShaggyLove);
     }
     
     private void HandleResponse(int responseNum){

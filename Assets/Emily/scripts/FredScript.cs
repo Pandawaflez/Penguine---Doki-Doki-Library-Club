@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+/*
 public class FredScript : FredDialogueData
 {
     //buttons for dialogue
@@ -13,11 +13,12 @@ public class FredScript : FredDialogueData
     public List<string> GetPlayer_Response_2 => Player_Response_2;
     public TextMeshProUGUI FredDialogueText, FredResponse1Text, FredResponse2Text;
     
+    public static int FredSCAP;
     public int responseNum = 0;
     public int FredAffection = 0;
     private string game = "Math";
     public bool over = false;
-    public bool like = false;
+    public bool inLove = false;
     void Start()
     {
         DisplayDialogue(GetFredPrompts, FredDialogueText, FredResponse1Text, FredResponse2Text, GetPlayer_Response_1, GetPlayer_Response_2, FredAffection);
@@ -39,23 +40,23 @@ public class FredScript : FredDialogueData
     {
         if ((SCdialogueNum == 2 || SCdialogueNum == 3 || SCdialogueNum == 4) && responseNum == 1)
         {
-            FredAffection = AffectionPointsMonitor(FredAffection, 20);
+            FredAffection = FredAffectionPointsMonitor(FredAffection, 20);
         }
         else if ((SCdialogueNum == 0 || SCdialogueNum == 1) && responseNum == 1)
         {
-            FredAffection = AffectionPointsMonitor(FredAffection, -10);
+            FredAffection = FredAffectionPointsMonitor(FredAffection, -10);
         }
         else if ((SCdialogueNum == 2 || SCdialogueNum == 3 || SCdialogueNum == 4) && responseNum == 2)
         {
-            FredAffection = AffectionPointsMonitor(FredAffection, -10);
+            FredAffection = FredAffectionPointsMonitor(FredAffection, -10);
         }
         else if ((SCdialogueNum == 0 || SCdialogueNum == 1) && responseNum == 2)
         {
-            FredAffection = AffectionPointsMonitor(FredAffection, 20);
+            FredAffection = FredAffectionPointsMonitor(FredAffection, 20);
         }
         if (SCdialogueNum == 5) {
-            like = PlayOrNot(FredAffection, responseNum);
-            if (like) 
+            inLove = PlayOrNot(FredAffection, responseNum);
+            if (inLove) 
             {
                 startMiniGameDate(game);
             }
@@ -69,7 +70,7 @@ public class FredScript : FredDialogueData
     }
     public bool PlayOrNot(int SCAP, int response)
     {
-       SCAP = AffectionPointsMonitor(FredAffection,0);
+       SCAP = FredAffectionPointsMonitor(FredAffection,0);
         if (SCAP >= 40)
         {
             Debug.Log("Testing if game start conditional works");
@@ -87,4 +88,19 @@ public class FredScript : FredDialogueData
             return false;
         }
     }
+
+    public int FredAffectionPointsMonitor(int AffectionPoints, int factor)
+    {
+        AffectionPoints += factor;
+        Debug.Log("Affection Points: " + AffectionPoints);
+        interactionPoints = AffectionPoints;
+        FredSCAP = AffectionPoints;
+        FredAffectionUpdates();
+        return AffectionPoints; 
+    }
+    public static int FredAffectionUpdates(){
+        Debug.Log("SCAP = " + FredSCAP);
+        return FredSCAP;
+    }
 }
+*/

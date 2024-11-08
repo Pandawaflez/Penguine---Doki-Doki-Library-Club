@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
-
+/*
 public class DaphneUI : MonoBehaviour
 {
     public Button DaphR1;
@@ -43,3 +43,4 @@ public class DaphneUI : MonoBehaviour
 
 
 }
+*/
