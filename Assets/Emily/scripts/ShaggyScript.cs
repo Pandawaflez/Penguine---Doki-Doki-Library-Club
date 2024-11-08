@@ -22,7 +22,10 @@ public class ShaggyScript : ShaggyDialogeData
     public bool inLove = false;
     void Start()
     {
-        DisplayDialogue(GetShagPrompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, GetPlayer_Response_1, GetPlayer_Response_2, ShagSCAP, ShaginteractedWith);
+        if (!ShaginteractedWith){
+            DisplayDialogue(GetShagPrompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, GetPlayer_Response_1, GetPlayer_Response_2, ShagSCAP, ShaginteractedWith);
+            EndConversation();
+        }
     }
     //selection of dialogues
     public void hitShagResponse1()
@@ -109,6 +112,10 @@ public class ShaggyScript : ShaggyDialogeData
     public static int ShaggyAffectionUpdates(){
         Debug.Log("Shag SCAP = " + ShagSCAP);
         return ShagSCAP;
+    }
+    
+    public void EndConversation(){
+        //Shag
     }
     /*public static bool InteractionMonitor()
     {

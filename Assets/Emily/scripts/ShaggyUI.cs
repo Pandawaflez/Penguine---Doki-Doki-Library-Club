@@ -13,18 +13,30 @@ public class ShaggyUI : MonoBehaviour
     
 
     private Scooby scoobyScript;
-    
+
     // Start is called before the first frame update
     void Start()
     {
         scoobyScript = new ShaggyScript(); 
-        ShowShagDialogue();
-        ShagR1.onClick.AddListener(() => HandleResponse(1));
-        ShagR2.onClick.AddListener(() => HandleResponse(2));
 
+        if (!(ShaggyScript.ShaginteractedWith)){
+            ShowShagDialogue();
+            ShagR1.onClick.AddListener(() => HandleResponse(1));
+            ShagR2.onClick.AddListener(() => HandleResponse(2));
+        }
+        else{
+            Debug.Log("ShaginteractedWith is already true");
+            DisableButtons();
+        }
     }
     
     public void ShowShagDialogue(){
+        if (ShaggyScript.ShaginteractedWith){
+            Debug.Log("ShaggyinteractedWith is already true");
+            DisableButtons();
+            return;
+        }
+
         List<string> prompts = ((ShaggyScript)scoobyScript).GetShagPrompts;
         List<string> response_1 = ((ShaggyScript)scoobyScript).GetPlayer_Response_1;
         List<string> response_2 = ((ShaggyScript)scoobyScript).GetPlayer_Response_2;
@@ -32,15 +44,29 @@ public class ShaggyUI : MonoBehaviour
         bool ShagInteraction = ShaggyScript.ShaginteractedWith;
         scoobyScript.DisplayDialogue(prompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, response_1, response_2, ShaggyLove, ShagInteraction);
         //scoobyScript.InteractionMonitor(ShaggyLove);
+
+        if (ShaggyScript.ShaginteractedWith)
+        {
+            Debug.Log("interaction ended");
+            DisableButtons();
+        }
     }
     
     private void HandleResponse(int responseNum){
         scoobyScript.HandlePlayerResponse(responseNum);
         ShowShagDialogue();
     }
+
+    private void DisableButtons(){
+        ShagR1.interactable = false;
+        ShagR2.interactable = false;
+    }
     // Update is called once per frame
     void Update()
     {
-        
+        if (ShaggyScript.ShaginteractedWith){
+            Debug.Log("buttons are disabled");
+            DisableButtons();
+        }
     }
 }
