@@ -122,11 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &435172855 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 139981573917287176, guid: afe4f64f250191c4cab34befbc5708b7, type: 3}
-  m_PrefabInstance: {fileID: 7543873789854576646}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7543873789854576646
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -175,14 +170,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3955538677294192368, guid: afe4f64f250191c4cab34befbc5708b7, type: 3}
+      propertyPath: m_ClearFlags
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4528985145383394397, guid: afe4f64f250191c4cab34befbc5708b7, type: 3}
       propertyPath: m_Name
       value: PongGame
       objectReference: {fileID: 0}
+    - target: {fileID: 5481536498671241368, guid: afe4f64f250191c4cab34befbc5708b7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7516290482724557304, guid: afe4f64f250191c4cab34befbc5708b7, type: 3}
       propertyPath: mobileMovement
       value: 
-      objectReference: {fileID: 435172855}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
