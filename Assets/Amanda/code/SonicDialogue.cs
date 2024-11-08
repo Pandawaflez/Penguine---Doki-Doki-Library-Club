@@ -67,50 +67,6 @@ public class SonicDialogue : HedgehogDialogue
     {
         //delegate choice processing to current state
         CurrentState.ProcessChoice(choice);
-        
-        
-        /* old code below: didn't want my previous work gone forever
-        State Pattern basically took all this in normal sonic state process choice. 
-        
-        if(choice == 2)
-        {
-            //best choice +20
-            affectionManager.ChangeSonicAffectionPoints(20);
-        }
-        else if(choice == 1)
-        {
-            //bad choice
-            affectionManager.ChangeSonicAffectionPoints(-5);
-        }
-
-        //check for neg affection points then end convo 
-        if(AffectionManager.GetSonicAffectionPoints() <= -10)
-        {
-            DialogueLine = "You're not as cool as I thought... Leave me alone.";
-            EndConversation();
-            lockoutSonic = true;
-            return;
-        }
-
-        //check max affection points
-        if(AffectionManager.GetSonicAffectionPoints() == 100)
-        {
-            DialogueLine = "Let's really test your speed. Hope you can keep up!.";
-            startMiniGameDate(game);
-            return;
-            UpdateDialogueAfterMinigame();
-        }
-
-        sonicCurrentDialogueIndex++;
-
-        //check if there is a next dialogue before incrementing
-        if(sonicCurrentDialogueIndex < sonicLines.Count)
-        {
-            sonicResponseIndex++;
-            DialogueLine = sonicLines[sonicCurrentDialogueIndex];
-        } else {
-            EndConversation();
-        } */
     }
 
     //endconversation will lock out the response buttons by sending bool to UImanager

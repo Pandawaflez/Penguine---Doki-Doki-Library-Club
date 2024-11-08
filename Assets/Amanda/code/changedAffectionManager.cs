@@ -12,16 +12,6 @@ public class AffectionManager : MonoBehaviour
     private static int sonicAffectionPoints = 0;
     private static int shadowAffectionPoints = 0;
 
-    public static AffectionManager Instance;
-    private void Awake()
-    {
-        if(Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-    }
-
     
     private List<IAffectionObserver> observers = new List<IAffectionObserver>();
 
@@ -112,19 +102,14 @@ public class AffectionManager : MonoBehaviour
     //reset affection points
     public void ResetSonicAffectionPoints()
     {
-        // Reset values to 0 or any starting value you want
+        // Reset values to 0 
         sonicAffectionPoints = 0;
-
-        
     }
 
     public void ResetShadowAffectionPoints()
     {
-        // Reset values to 0 or any starting value you want
+        // Reset values to 0 
         shadowAffectionPoints = 0;
 
-        // Save the reset values to PlayerPrefs
-        //PlayerPrefs.SetInt("ShadowAffectionPoints", 0);
-        //PlayerPrefs.Save();
     }
 }
