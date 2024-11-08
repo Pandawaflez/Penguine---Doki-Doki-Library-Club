@@ -207,7 +207,7 @@ public class Minesweeper : MiniGameLevel {
             SetFlagOnAllMines();
         } else {
             winnerText.text = "You Lost!";
-            MainPlayer.SetMiniGameStatus(1);
+            MainPlayer.SetMiniGameStatus(0);
             Debug.Log("EndGame::Player Lost");
         }
 
