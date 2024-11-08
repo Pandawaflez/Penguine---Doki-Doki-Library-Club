@@ -8,10 +8,10 @@ public class ShadowDialogue : HedgehogDialogue
     public string playerName = MainPlayer.GetPlayerName();
     public static bool lockoutShadow = false;
     private bool isFinished = false;
-    private string game = "Minesweeper";
+    public string game = "Minesweeper";
 
 
-    private List<string> shadowLines = new List<string>()
+    public List<string> shadowLines = new List<string>()
     {
         "Wassup, I'm Shadow. Did you want something?",
         "You think you can keep up with me? I'd like to see you try.",
@@ -21,7 +21,7 @@ public class ShadowDialogue : HedgehogDialogue
 
     };
 
-    private List<string[]> playerResponses = new List<string[]>()
+    public List<string[]> playerResponses = new List<string[]>()
     {
         new string[] {$"I'm here to talk to you, you seem pretty cool.", "I was just curious how they allowed you in here."},
         new string[] {"Oh really? What makes you so special?", "Maybe I'm not cut out for this"},
@@ -30,13 +30,16 @@ public class ShadowDialogue : HedgehogDialogue
         new string[] {"I'll try my best." , "Why would I ever want to play a game against you?"}
     };
 
-    private int currentDialogueIndex = 0;
-    private int shdaowResponseIndex = 0;
+    public int currentDialogueIndex = 0;
+    public int shdaowResponseIndex = 0;
 
     public ShadowDialogue(AffectionManager affectionManager)
         : base("Shadow the Hedgehog" , "Wassup I'm Shadow. Did you want something?")
     {
         this.affectionManager = affectionManager;
+
+        //start in normal state
+        TransistionToState(new ShadowNormalState(this));
         DialogueLine = shadowLines[currentDialogueIndex];
 
         //check affection points upon entering - lockout / win cases
@@ -57,6 +60,11 @@ public class ShadowDialogue : HedgehogDialogue
 
     public override void ProcessChoice(int choice)
     {
+        //delegate choice processing to current state
+        CurrentState.ProcessChoice(choice);
+
+
+        /*
         if(choice == 1){
             //best choice +20
             affectionManager.ChangeShadowAffectionPoints(20);
@@ -94,10 +102,10 @@ public class ShadowDialogue : HedgehogDialogue
             DialogueLine = shadowLines[currentDialogueIndex];
         } else {
             EndConversation();
-        }
+        } */
     }
 
-    private void EndConversation()
+    public void EndConversation()
     {
         isFinished = true;
     }
@@ -106,14 +114,23 @@ public class ShadowDialogue : HedgehogDialogue
     public override string[] GetCurrentResponses()
     {
         //public string[] GetCurrentResponses(){
-        if(currentDialogueIndex < playerResponses.Count)
+
+        return(currentDialogueIndex < playerResponses.Count) ? playerResponses[currentDialogueIndex] : new string[0];
+       
+       /* if(currentDialogueIndex < playerResponses.Count)
         {
             return playerResponses[currentDialogueIndex];
         }
         return new string[0]; // return an empty array if out of bounds
+        */
     }
 
-    public bool IsConversationFinished()
+    public List<string> GetShadowLines()
+    {
+        return shadowLines;
+    }
+
+    public override bool IsConversationFinished()
     {
         return isFinished;
     }
@@ -147,5 +164,6 @@ public class ShadowDialogue : HedgehogDialogue
             DialogueLine = "I knew you wouldn't be able to win, but you looked cute while trying. *wink*";
             UIElementHandler.UIGod.EndGame(true, "Shadow");
         }
+        EndConversation();
     }
 }

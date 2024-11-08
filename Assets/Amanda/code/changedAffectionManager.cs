@@ -74,7 +74,7 @@ public class AffectionManager : MonoBehaviour
         return shadowAffectionPoints;
     }
 
-    // Setters for reloading affection points (useful when resetting)
+    // Setters for reloading affection points
     public void SetSonicAffectionPoints(int points)
     {
         sonicAffectionPoints = points;
@@ -89,10 +89,12 @@ public class AffectionManager : MonoBehaviour
         PlayerPrefs.Save();
     }
     
+    //affection observer 
     public void RegisterObserver(IAffectionObserver observer){
         observers.Add(observer);
     }
 
+    //tell observer of changes
     private void NotifyChangedAffection(string characterName, int affectionPoints){
         foreach (IAffectionObserver observer in observers){
             observer.OnAffectionChanged(characterName, affectionPoints);
