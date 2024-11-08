@@ -5,15 +5,16 @@ using UnityEngine.UI;
 
 public class OverworldManagement : MonoBehaviour
 {
+    private OverworldData overworldData;
     // Game Object References:
     [SerializeField]
-    private overworldDebugMenu debugPanel;
+    private overworldDebugMenu testPanel;
+    [SerializeField]
+    private GameObject testPanelObject;
     [SerializeField]
     private GameObject computer;
     [SerializeField]
     private Image background;
-    [SerializeField]
-    private GameObject testPanel;
     // 
     [SerializeField]
     private string currentRoomName = "FrontDesk";
@@ -108,7 +109,7 @@ public class OverworldManagement : MonoBehaviour
         rooms[6].roomImage = classImage; 
         rooms[4].setComputer(computer);
         computer.SetActive(false);
-        currentRoom = RoomsDB.currentRoom;
+        currentRoom = RoomsDB.getCurrentRoom();
         init = true; //make sure we know that everything is good to go
     }
 
@@ -117,66 +118,60 @@ public class OverworldManagement : MonoBehaviour
         currentRoom = 0;
         background.sprite = rooms[0].roomImage;
         rooms[0].loadRoom();
+        RoomsDB.setCurrentRoom(currentRoom);
     }
 
+    public void loadRoom(){
+        background.sprite = rooms[currentRoom].roomImage;
+        currentRoomName = rooms[currentRoom].name;
+        //disable characters:
+        characterLeftButton.SetActive(false);
+        characterRightButton.SetActive(false);
+        computer.SetActive(false);
+        //enable characters if needed:
+        if ( characterPlacement[currentRoom*2] != "Empty" ) {
+            characterLeftButton.SetActive(true);
+            setCharacterImage( "left" , characterLeft );
+        }
+        if ( characterPlacement[(currentRoom*2)+1] != "Empty" ) {
+            characterRightButton.SetActive(true);
+            setCharacterImage( "right" , characterRight );
+        }
+        rooms[currentRoom].loadRoom();
+        RoomsDB.setCurrentRoom(currentRoom); //set current room in database
+    }
+
+    // player navigation, called when the player moves to the room to the left
     public void goLeft (){
         if ( currentRoom == 0 ){
-            currentRoom = 6;
+            currentRoom = 6; //loop around
         } else {
             currentRoom--;
         }
-        background.sprite = rooms[currentRoom].roomImage;
-        currentRoomName = rooms[currentRoom].name;
-        //disable characters:
-        characterLeftButton.SetActive(false);
-        characterRightButton.SetActive(false);
-        computer.SetActive(false);
-        //enable characters if needed:
-        if ( characterPlacement[currentRoom*2] != "Empty" ) {
-            characterLeftButton.SetActive(true);
-            setCharacterImage( "left" , characterLeft );
-        }
-        if ( characterPlacement[(currentRoom*2)+1] != "Empty" ) {
-            characterRightButton.SetActive(true);
-            setCharacterImage( "right" , characterRight );
-        }
-        rooms[currentRoom].loadRoom();
+        loadRoom();
     }
 
+    // player navigation, called when the player moves to the room to the right
     public void goRight (){
         if ( currentRoom == 6 ){
-            currentRoom = 0;
+            currentRoom = 0; //loop around
         } else {
             currentRoom++;
         }
-        background.sprite = rooms[currentRoom].roomImage;
-        currentRoomName = rooms[currentRoom].name;
-        //disable characters:
-        characterLeftButton.SetActive(false);
-        characterRightButton.SetActive(false);
-        computer.SetActive(false);
-        //enable characters if needed:
-        if ( characterPlacement[currentRoom*2] != "Empty" ) {
-            characterLeftButton.SetActive(true);
-            setCharacterImage( "left" , characterLeft );
-        }
-        if ( characterPlacement[(currentRoom*2)+1] != "Empty" ) {
-            characterRightButton.SetActive(true);
-            setCharacterImage( "right" , characterRight );
-        }
-        rooms[currentRoom].loadRoom();
+        loadRoom();
     }
 
     //opens test panel: by setting it to active:
     public void openTestPanel(){
         Debug.Log("Opening Character Panel");
-        testPanel.SetActive(true);
+        testPanelObject.SetActive(true);
     }
 
     public void Awake(){
         initializeRooms();
         placeCharacters();
         readCharacterPlacement();
+        loadRoom();
     }
 
     private void placeCharacters(){
@@ -223,48 +218,17 @@ public class OverworldManagement : MonoBehaviour
             character = characterPlacement[(currentRoom*2)+1];
         }
         Debug.Log("Changing image to character:" + character);
-        switch ( character ){
-            case "Charlie":
-                characterImage.sprite = charlieImage;
-                break;
-            case "Lucy":
-                characterImage.sprite = lucyImage;
-                break;
-            case "Schroeder":
-                characterImage.sprite = schroederImage;
-                break;
-            case "Snoopy":
-                characterImage.sprite = snoopyImage;
-                break;
-            case "Shaggy":
-                characterImage.sprite = shaggyImage;
-                break;
-            case "Daphne":
-                characterImage.sprite = daphneImage;
-                break;
-            case "Fred":
-                characterImage.sprite = fredImage;
-                break;
-            case "Sonic":
-                characterImage.sprite = sonicImage;
-                break;
-            case "Shadow":
-                characterImage.sprite = shadowImage;
-                break;
-            default:
-                Debug.Log("Character " + character + " not found");
-                break;
-        }
+        characterImage.sprite = overworldData.getCharacterImage( character );
     }
 
     public void characterL () {
         Debug.Log("Talk to Character L");
-        debugPanel.talkTo(characterPlacement[(currentRoom*2)]);
+        testPanel.talkTo(characterPlacement[(currentRoom*2)]);
     }
 
     public void characterR () {
         Debug.Log("Talk to Character R");
-        debugPanel.talkTo(characterPlacement[(currentRoom*2)+1]);
+        testPanel.talkTo(characterPlacement[(currentRoom*2)+1]);
     }
 
 }

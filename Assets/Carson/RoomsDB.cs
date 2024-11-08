@@ -4,5 +4,14 @@ using UnityEngine;
 
 public static class RoomsDB
 {
-    public static int currentRoom{get; set;}
+    private static int currentRoom;
+
+    public static int getCurrentRoom(){
+        return currentRoom;
+    }
+
+    public static void setCurrentRoom( int x ){
+        currentRoom = x;
+    }
+
 }
