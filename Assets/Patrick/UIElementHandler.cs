@@ -77,9 +77,9 @@ public class UIElementHandler : MonoBehaviour
         _overlayUI.UpdateCharacterUI("Schroeder", PeanutsDB.SchroederAffectionPts);
         _overlayUI.UpdateCharacterUI("Sonic", AffectionManager.GetSonicAffectionPoints());
         _overlayUI.UpdateCharacterUI("Shadow", AffectionManager.GetShadowAffectionPoints());
-        _overlayUI.UpdateCharacterUI("Shaggy", 20);
-        _overlayUI.UpdateCharacterUI("Daphne", 20);
-        _overlayUI.UpdateCharacterUI("Fred", 20);
+        // _overlayUI.UpdateCharacterUI("Shaggy", Scooby.AffectionUpdates());
+        // _overlayUI.UpdateCharacterUI("Daphne", 20);
+        // _overlayUI.UpdateCharacterUI("Fred", 20);
 
 
 
