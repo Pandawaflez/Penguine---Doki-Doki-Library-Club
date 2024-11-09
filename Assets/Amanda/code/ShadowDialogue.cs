@@ -118,7 +118,7 @@ public class ShadowDialogue : HedgehogDialogue
         else if((miniGameStatus == 1))
         {
             affectionManager.ChangeShadowAffectionPoints(-1);
-            DialogueLine = $"Okay way to show off. I guess nice job {playerName}.";
+            DialogueLine = "Okay way to show off. I guess nice job.";
             lockoutShadow = true;
             //Debug.Log($"22222MiniGameStatus: {miniGameStatus}, Affection: {AffectionManager.GetShadowAffectionPoints()}");
 
