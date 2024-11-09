@@ -5059,7 +5059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testPanel: {fileID: 4633242827413485767}
-  testPanelObject: {fileID: 6231429013845918482}
+  testPanelObject: {fileID: 22698658642750679}
   computer: {fileID: 5524924311587611045}
   background: {fileID: 9105188885350685427}
   characterLeft: {fileID: 6803341975892635777}

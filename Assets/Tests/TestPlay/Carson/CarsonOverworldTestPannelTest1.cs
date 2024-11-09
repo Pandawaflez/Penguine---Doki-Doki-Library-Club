@@ -31,4 +31,36 @@ public class OverworldDebugMenuTests : MonoBehaviour
         Assert.AreEqual("Daphne", SceneManager.GetActiveScene().name); // Check that the scene has changed
     }
 
+    [UnityTest]
+    public IEnumerator TalkToFredTest()
+    {
+        // Arrange
+        string character = "Fred";
+
+        // Act
+        debugMenu.talkTo(character);
+
+        // Wait for the scene change to take effect
+        yield return null;
+
+        // Assert
+        Assert.AreEqual("Fred", SceneManager.GetActiveScene().name); // Check that the scene has changed
+    }
+
+    [UnityTest]
+    public IEnumerator TalkToCharlieTest()
+    {
+        // Arrange
+        string character = "Charlie";
+
+        // Act
+        debugMenu.talkTo(character);
+
+        // Wait for the scene change to take effect
+        yield return null;
+
+        // Assert
+        Assert.AreEqual("Level1", SceneManager.GetActiveScene().name); // Check that the scene has changed
+    }
+
 }
