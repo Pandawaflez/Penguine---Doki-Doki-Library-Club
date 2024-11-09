@@ -68,6 +68,7 @@ public class OverworldResources : MonoBehaviour
                 return computer;
                 break;
             case "testPanelObject":
+                Debug.Log("Test Panel Acessed from Rescources");
                 return testPanelObject;
                 break;
             case "characterLeftButton":
