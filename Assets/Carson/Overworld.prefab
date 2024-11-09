@@ -3932,31 +3932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 956db70841efed641bd46d6c2cfe107c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugPanel: {fileID: 4633242827413485767}
-  computer: {fileID: 5524924311587611045}
-  background: {fileID: 9105188885350685427}
-  testPanel: {fileID: 22698658642750679}
-  currentRoomName: FrontDesk
-  characterLeft: {fileID: 6803341975892635777}
-  characterRight: {fileID: 8398195731669322937}
-  characterLeftButton: {fileID: 8346977595533208297}
-  characterRightButton: {fileID: 4200547462257860830}
-  frontDeskImage: {fileID: 21300000, guid: 2483544aba73a3f4dab39d8b4ba2527c, type: 3}
-  bathroomImage: {fileID: 21300000, guid: 1e74ff3d16fe73e4181ea6041806a996, type: 3}
-  fictionImage: {fileID: 21300000, guid: eb11e1566c5063648aa82bba666bcbcb, type: 3}
-  nonfictionImage: {fileID: 21300000, guid: 9630200233468774fb6e53194b0785fa, type: 3}
-  computerImage: {fileID: 21300000, guid: 4ff75be67b58d80469d886f8d7dda11a, type: 3}
-  studyImage: {fileID: 21300000, guid: b0fecdf9458a8a34b9b93d5322397e5e, type: 3}
-  classImage: {fileID: 21300000, guid: 973da5735fc93fd4c89994b1d14ff5d3, type: 3}
-  charlieImage: {fileID: 21300000, guid: 89fbb45ee99e3764b9cbc9b688753c3c, type: 3}
-  lucyImage: {fileID: 21300000, guid: 3ebada33b51ef5244944543904dc31c0, type: 3}
-  schroederImage: {fileID: 21300000, guid: 9fa02056a4aee2840941279249a1dc6b, type: 3}
-  snoopyImage: {fileID: 21300000, guid: 2801dc1172fa2f54396f72edeca5e392, type: 3}
-  shaggyImage: {fileID: 21300000, guid: abf2385114d9bfd48aae05a073e61625, type: 3}
-  fredImage: {fileID: 21300000, guid: adbcb7d36aae16b4f8cd3c0cd8f5887a, type: 3}
-  daphneImage: {fileID: 21300000, guid: d5d72afaeb46f3d44966934cc3895725, type: 3}
-  sonicImage: {fileID: 21300000, guid: e1b8a19aad9324b46bd265fde5112326, type: 3}
-  shadowImage: {fileID: 21300000, guid: d84b53d57b61f72429fb78356257a187, type: 3}
+  overworldResources: {fileID: 8908117703146541803}
 --- !u!1 &6394717814607148521
 GameObject:
   m_ObjectHideFlags: 0
@@ -5050,7 +5026,7 @@ GameObject:
   - component: {fileID: 1396011974777104488}
   m_Layer: 0
   m_Name: OverworldResources
-  m_TagString: Untagged
+  m_TagString: OverworldResources
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5082,6 +5058,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17d8989dfc9603240aecbd48c63c217b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  testPanel: {fileID: 4633242827413485767}
+  testPanelObject: {fileID: 6231429013845918482}
+  computer: {fileID: 5524924311587611045}
+  background: {fileID: 9105188885350685427}
+  characterLeft: {fileID: 6803341975892635777}
+  characterRight: {fileID: 8398195731669322937}
+  characterLeftButton: {fileID: 8346977595533208297}
+  characterRightButton: {fileID: 4200547462257860830}
+  frontDeskImage: {fileID: 21300000, guid: 2483544aba73a3f4dab39d8b4ba2527c, type: 3}
+  bathroomImage: {fileID: 21300000, guid: 1e74ff3d16fe73e4181ea6041806a996, type: 3}
+  fictionImage: {fileID: 21300000, guid: eb11e1566c5063648aa82bba666bcbcb, type: 3}
+  nonfictionImage: {fileID: 21300000, guid: 9630200233468774fb6e53194b0785fa, type: 3}
+  computerImage: {fileID: 21300000, guid: 4ff75be67b58d80469d886f8d7dda11a, type: 3}
+  studyImage: {fileID: 21300000, guid: b0fecdf9458a8a34b9b93d5322397e5e, type: 3}
+  classImage: {fileID: 21300000, guid: 973da5735fc93fd4c89994b1d14ff5d3, type: 3}
+  charlieImage: {fileID: 21300000, guid: 89fbb45ee99e3764b9cbc9b688753c3c, type: 3}
+  lucyImage: {fileID: 21300000, guid: 3ebada33b51ef5244944543904dc31c0, type: 3}
+  schroederImage: {fileID: 21300000, guid: 9fa02056a4aee2840941279249a1dc6b, type: 3}
+  snoopyImage: {fileID: 21300000, guid: 2801dc1172fa2f54396f72edeca5e392, type: 3}
+  shaggyImage: {fileID: 21300000, guid: abf2385114d9bfd48aae05a073e61625, type: 3}
+  fredImage: {fileID: 21300000, guid: adbcb7d36aae16b4f8cd3c0cd8f5887a, type: 3}
+  daphneImage: {fileID: 21300000, guid: d5d72afaeb46f3d44966934cc3895725, type: 3}
+  sonicImage: {fileID: 21300000, guid: e1b8a19aad9324b46bd265fde5112326, type: 3}
+  shadowImage: {fileID: 21300000, guid: d84b53d57b61f72429fb78356257a187, type: 3}
 --- !u!1 &9016513598123376233
 GameObject:
   m_ObjectHideFlags: 0

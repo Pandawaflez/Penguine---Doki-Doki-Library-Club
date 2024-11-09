@@ -139,25 +139,25 @@ public class OverworldResources : MonoBehaviour
 
     public Sprite getRoomImage( string room ){
         switch ( room ){
-           case "FrontDesk":
+           case "frontDeskImage":
                 return frontDeskImage;
                 break;
-            case "Bathroom":
+            case "bathroomImage":
                 return bathroomImage;
                 break;
-            case "FictionSection":
+            case "fictionImage":
                 return fictionImage;
                 break;
-            case "NonfictionSection":
+            case "nonfictionImage":
                 return nonfictionImage;
                 break;
-            case "ComputerLab":
+            case "computerImage":
                 return computerImage;
                 break;
-            case "StudyRoom":
+            case "studyImage":
                 return studyImage;
                 break;
-            case "Classroom":
+            case "classImage":
                 return classImage;
                 break;
             default:
