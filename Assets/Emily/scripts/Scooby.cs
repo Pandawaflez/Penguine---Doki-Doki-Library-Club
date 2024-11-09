@@ -12,9 +12,10 @@ public abstract class Scooby
     public int SCdialogueNum = 0;
     //tracking affection points
     //public static bool interactedWith = false;
-    //public static bool ShaginteractedWith = false; 
+    public static bool ShaginteractedWith = false;
     public static int interactionPoints = 0; 
     public int SCAP;
+    protected bool lockout = false;
     public void startMiniGameDate(string game){
         SceneChanger.saveScene();
         SceneManager.LoadScene(game);
@@ -70,7 +71,14 @@ public abstract class Scooby
             }
        
     }
-
+    public virtual void EndConversation(bool characterValue)
+    {
+        if (characterValue) lockout = true; 
+        Debug.Log("Conversation lockout set to " + lockout);
+    }
+    public bool IsConversationLockedOut(){
+        return lockout;
+    }
     public virtual void HandlePlayerResponse(int responseNum)
     {
         if (responseNum == 1) SCAP += 10;

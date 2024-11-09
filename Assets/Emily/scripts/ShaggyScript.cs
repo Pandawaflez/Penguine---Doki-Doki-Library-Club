@@ -19,12 +19,13 @@ public class ShaggyScript : ShaggyDialogeData
     private string game = "Pong";
     //public bool over = false;
     public static bool ShaginteractedWith = false;
+    public static bool ShagLockout = false;
     public bool inLove = false;
     void Start()
     {
-        if (!ShaginteractedWith){
+        if (!ShagLockout){
             DisplayDialogue(GetShagPrompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, GetPlayer_Response_1, GetPlayer_Response_2, ShagSCAP, ShaginteractedWith);
-            EndConversation();
+            EndConversation(ShaginteractedWith);
         }
     }
     //selection of dialogues
@@ -114,12 +115,18 @@ public class ShaggyScript : ShaggyDialogeData
         return ShagSCAP;
     }
     
-    public void EndConversation(){
-        //Shag
-    }
-    /*public static bool InteractionMonitor()
+    public override void EndConversation(bool characterValue)
     {
-       return 
-    }*/
+        base.EndConversation(characterValue);
+        if (characterValue)
+        {
+            Debug.Log("Shaggy's interactions is now locked out");
+        }
+    }
+
+    public void CheckEndConversation()
+    {
+        EndConversation(ShaginteractedWith);
+    }
 }
  

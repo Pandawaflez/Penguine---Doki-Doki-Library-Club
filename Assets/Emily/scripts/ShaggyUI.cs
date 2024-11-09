@@ -48,12 +48,18 @@ public class ShaggyUI : MonoBehaviour
         if (ShaggyScript.ShaginteractedWith)
         {
             Debug.Log("interaction ended");
+            scoobyScript.EndConversation(ShaggyScript.ShaginteractedWith);
             DisableButtons();
         }
     }
     
     private void HandleResponse(int responseNum){
         scoobyScript.HandlePlayerResponse(responseNum);
+        if (((ShaggyScript)scoobyScript).SCdialogueNum >= ((ShaggyScript)scoobyScript).GetShagPrompts.Count)
+        {
+            ShaggyScript.ShaginteractedWith = true;
+            scoobyScript.EndConversation(ShaggyScript.ShaginteractedWith);
+        }
         ShowShagDialogue();
     }
 
