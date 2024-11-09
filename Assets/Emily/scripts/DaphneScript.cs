@@ -95,7 +95,12 @@ public class DaphneScript : DahpneDialogueData
                 CheckEndConversation();
             }
         }
+        
         base.HandlePlayerResponse(responseNum);
+        if (DaphneAffectionUpdates() >= 100)
+        {
+            UIElementHandler.UIGod.EndGame(true, "Daphne"); 
+        }
     }
 
     //seeing if player and character should begin their date

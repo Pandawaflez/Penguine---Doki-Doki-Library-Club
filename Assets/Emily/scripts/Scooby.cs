@@ -122,6 +122,10 @@ public abstract class Scooby //superclass
             Debug.Log("SCAP in UpdateAffectionAfterMinigame: " + SCAP);
             lockout = true;
         }
+        if (SCAP >= 100)
+        {
+            UIElementHandler.UIGod.EndGame(true, characterName);
+        }
         
 
     }

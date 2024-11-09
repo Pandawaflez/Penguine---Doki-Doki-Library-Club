@@ -92,8 +92,14 @@ public class FredScript : FredDialogueData
                 FredinteractedWith = true;
                 CheckEndConversation();
             }  
-        }        
+        }
+
+          
         base.HandlePlayerResponse(responseNum);
+         if (FredAffectionUpdates() >= 100)
+        {
+            UIElementHandler.UIGod.EndGame(true, "Fred");
+        }     
     }
 
     //seeing if the player and character should begin their date

@@ -87,7 +87,6 @@ public class ShaggyUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("ShaggySCAP = " + ShaggyScript.ShagSCAP);
         if (ShaggyScript.ShaginteractedWith || ButtonsDisabled){ 
             DisableButtons();
         }

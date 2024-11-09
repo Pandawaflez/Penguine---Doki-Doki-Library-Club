@@ -59,7 +59,7 @@ public class ShaggyScript : ShaggyDialogeData
 
     //decides what happens after the player picks a response
     public override void HandlePlayerResponse(int responseNum)
-    {
+    {   
         if (!ShaginteractedWith)
         {
             if ((SCdialogueNum == 0 || SCdialogueNum == 1) && responseNum == 1)
@@ -86,7 +86,7 @@ public class ShaggyScript : ShaggyDialogeData
             }
             else if (SCdialogueNum == 6 && responseNum == 1)
             {
-                UpdateAffectionAfterMinigame();
+                //UpdateAffectionAfterMinigame();
                 startMiniGameDate(game);
             }
         
@@ -94,61 +94,34 @@ public class ShaggyScript : ShaggyDialogeData
                 ShaginteractedWith = true;
                 CheckEndConversation();
             }
-            
-            
-        }
-        else 
-        {
-            UpdateAffectionAfterMinigame();
-        }
-        if (ShagLockout)
-        {
-            UpdateAffectionAfterMinigame();
-        }
+        }   
+        
+           
         base.HandlePlayerResponse(responseNum);
+        if (ShaggyAffectionUpdates() >= 100)
+        {
+            UIElementHandler.UIGod.EndGame(true, "Shaggy"); 
+        }
     }
 
-    //seeing if the player and character should begin their date
-    /*public bool PlayOrNot(int SCAP, int response)
-    {
-        SCAP = ShaggyAffectionPointsMonitor(ShagSCAP,0);
-
-        if (SCAP >= 40)
-        {
-            Debug.Log("Testing if game start conditional works");
-            if (response == 1)
-            {
-               return true;
-            }
-            else
-            {
-                SCdialogueNum += 1;
-                return false;
-            }
-        }
-        else 
-        {
-            ShaginteractedWith = true;
-            ShagLockout = true;
-            CheckEndConversation();
-            return false;
-        }
-    }*/
+    
 
     //controls the affection points and returns them
-    public int ShaggyAffectionPointsMonitor(int AffectionPoints, int factor)
+    public static int ShaggyAffectionPointsMonitor(int AffectionPoints, int factor)
     {
         AffectionPoints += factor;
         Debug.Log("Affection Points: " + AffectionPoints);
         interactionPoints = AffectionPoints;
         ShagSCAP = AffectionPoints;
         ShaggyAffectionUpdates();
-        return AffectionPoints; 
+        
+        return AffectionPoints;
     }
 
     //seeing what the affection points are
     public static int ShaggyAffectionUpdates()
     {
+        
         Debug.Log("Shag SCAP = " + ShagSCAP);
         return ShagSCAP;
     }
@@ -168,7 +141,6 @@ public class ShaggyScript : ShaggyDialogeData
     public void CheckEndConversation()
     {
         EndConversation(ShaginteractedWith, ShagSCAP);
-        UpdateAffectionAfterMinigame();
 
     }
 
@@ -178,26 +150,6 @@ public class ShaggyScript : ShaggyDialogeData
         return ShagLockout;
     }
 
-    public void UpdateAffectionAfterMinigame()
-    {
-        Debug.Log("UpdateAffectionAfterMinigame");
-        int miniGameStatus = MainPlayer.GetMiniGameStatus();
-        if (miniGameStatus == 1)
-        {
-            UIElementHandler.UIGod.EndGame(true, "Shaggy");
-            ShaggyAffectionPointsMonitor(ShagSCAP, 50);
-            Debug.Log("ShagSCAP in UpdateAffectionAfterMinigame: " + ShagSCAP);
-
-        }
-        else if (miniGameStatus == 0)
-        {
-            UIElementHandler.UIGod.EndGame(true, "Shaggy");
-            ShaggyAffectionPointsMonitor(ShagSCAP, -10);
-            Debug.Log("ShagSCAP in UpdateAffectionAfterMinigame: " + ShagSCAP);
-            ShagLockout = true;
-        }
-        EndConversation(ShaginteractedWith, ShagSCAP);
-
-    }
+    
 }
  
