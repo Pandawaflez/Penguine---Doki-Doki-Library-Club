@@ -5,32 +5,45 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public abstract class Scooby
+public abstract class Scooby //superclass
 {
    
     //tracking what number dialogue response
     public int SCdialogueNum = 0;
+
     //tracking affection points
-    //public static bool interactedWith = false;
-    public static bool ShaginteractedWith = false;
     public static int interactionPoints = 0; 
+
+    //tracking whether each character has been interacted with or not
+    public static bool ShaginteractedWith = false;
+    public static bool DaphinteractedWith = false;
+    public static bool FredinteractedWith = false;
+
+    //tracking affection points for characters
     public int SCAP;
-    protected bool lockout = false;
+
+    //boolean for if a character is locked out to be used in IsConversationLockedOut method
+    public bool lockout = false;
+
+    //method for starting the date (using Lance's code), using a game name that differs per character
     public void startMiniGameDate(string game){
         SceneChanger.saveScene();
         SceneManager.LoadScene(game);
     }
 
+    // DisplayDialogue method that displays dialogues for characters
     public virtual void DisplayDialogue(List<string> prompts,TextMeshProUGUI dialogueText, TextMeshProUGUI response1Text, TextMeshProUGUI response2Text, List<string> Player_Response_1, List<string> Player_Response_2, int SCAP, bool interactedWith) 
     {
-        //int totalPoints = SCAP;
+        //checking if the character has been interacted with based on boolean provided when the method is called
         if (interactedWith){
+            Debug.Log("THE CHARACTER HAS BEEN INTERACTED WITH");
             dialogueText.text = "It was nice getting to know you";
             response1Text.text = "";
             response2Text.text = "";
-            return;
+            return; //cuts off interaction
         }
-            if (SCdialogueNum < prompts.Count)
+        //continues the conversation while there are still prompts
+            else if (SCdialogueNum < prompts.Count)
             {
                 Debug.Log("Dialogue #: " + SCdialogueNum);
                 if (SCdialogueNum > 4){
@@ -71,10 +84,12 @@ public abstract class Scooby
             }
        
     }
-    public virtual void EndConversation(bool characterValue)
+    public virtual void EndConversation(bool characterValue, int affectionPts)
     {
-        if (characterValue) lockout = true; 
-        Debug.Log("Conversation lockout set to " + lockout);
+        if (affectionPts != 0){
+            if (characterValue) lockout = true; 
+            Debug.Log("Conversation lockout set to " + lockout);
+        }
     }
     public bool IsConversationLockedOut(){
         return lockout;

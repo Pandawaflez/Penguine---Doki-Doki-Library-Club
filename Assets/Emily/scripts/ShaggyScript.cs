@@ -12,6 +12,8 @@ public class ShaggyScript : ShaggyDialogeData
     public List<string> GetPlayer_Response_1 => Player_Response_1;
     public List<string> GetPlayer_Response_2 => Player_Response_2;
     public TextMeshProUGUI ShagDialogueText, ShagResponse1Text, ShagResponse2Text;
+
+    //tracking the affection points
     public static int ShagSCAP;
 
     public int responseNum = 0;
@@ -21,13 +23,18 @@ public class ShaggyScript : ShaggyDialogeData
     public static bool ShaginteractedWith = false;
     public static bool ShagLockout = false;
     public bool inLove = false;
+
     void Start()
     {
         if (!ShagLockout){
             DisplayDialogue(GetShagPrompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, GetPlayer_Response_1, GetPlayer_Response_2, ShagSCAP, ShaginteractedWith);
-            EndConversation(ShaginteractedWith);
+            //EndConversation(ShaginteractedWith, ShagSCAP);
+        }
+        else {
+            Debug.Log("Shaggy is locked out");
         }
     }
+
     //selection of dialogues
     public void hitShagResponse1()
     {
@@ -44,59 +51,67 @@ public class ShaggyScript : ShaggyDialogeData
     public override void HandlePlayerResponse(int responseNum)
     {
         Debug.Log("ShaginteractedWith = " + ShaginteractedWith);
+
         if (!ShaginteractedWith){
 
-        if ((SCdialogueNum == 0 || SCdialogueNum == 1) && responseNum == 1)
-        {
-            ShagSCAP = ShaggyAffectionPointsMonitor(ShagSCAP, 20);
-        }
-        else if ((SCdialogueNum == 2 || SCdialogueNum == 3 || SCdialogueNum == 4) && responseNum == 1)
-        {
-            ShagSCAP = ShaggyAffectionPointsMonitor(ShagSCAP, -10);
-        }
-        else if ((SCdialogueNum == 0 || SCdialogueNum == 1) && responseNum == 2)
-        {
-            ShagSCAP = ShaggyAffectionPointsMonitor(ShagSCAP, -10);
-        }
-        else if ((SCdialogueNum == 2 || SCdialogueNum == 3 || SCdialogueNum == 4) && responseNum == 2)
-        {
-            ShagSCAP = ShaggyAffectionPointsMonitor(ShagSCAP, 20);
-        }
-        if (SCdialogueNum == 5) {
-            inLove = PlayOrNot(ShagSCAP, responseNum);
-            if (inLove) 
+            if ((SCdialogueNum == 0 || SCdialogueNum == 1) && responseNum == 1)
             {
-                startMiniGameDate(game);
+                ShagSCAP = ShaggyAffectionPointsMonitor(ShagSCAP, 20);
             }
-            else 
+            else if ((SCdialogueNum == 2 || SCdialogueNum == 3 || SCdialogueNum == 4) && responseNum == 1)
             {
+                ShagSCAP = ShaggyAffectionPointsMonitor(ShagSCAP, -10);
+            }
+            else if ((SCdialogueNum == 0 || SCdialogueNum == 1) && responseNum == 2)
+            {
+                ShagSCAP = ShaggyAffectionPointsMonitor(ShagSCAP, -10);
+            }
+            else if ((SCdialogueNum == 2 || SCdialogueNum == 3 || SCdialogueNum == 4) && responseNum == 2)
+            {
+                ShagSCAP = ShaggyAffectionPointsMonitor(ShagSCAP, 20);
+            }
+            if (SCdialogueNum == 5) {
+                inLove = PlayOrNot(ShagSCAP, responseNum);
+                if (inLove) 
+                {
+                    startMiniGameDate(game);
+                }
+                else 
+                {
+                    ShaginteractedWith = true;
+                    CheckEndConversation();
+                } 
+            }
+            if (SCdialogueNum > 6){
                 ShaginteractedWith = true;
+                CheckEndConversation();
             }
-            
-        }
-        if (SCdialogueNum > 6){
-            ShaginteractedWith = true;
-        }
         }
         base.HandlePlayerResponse(responseNum);
     }
+
     public bool PlayOrNot(int SCAP, int response)
     {
-       SCAP = ShaggyAffectionPointsMonitor(ShagSCAP,0);
+        SCAP = ShaggyAffectionPointsMonitor(ShagSCAP,0);
+
         if (SCAP >= 40)
         {
             Debug.Log("Testing if game start conditional works");
-            if (response == 1){
+            if (response == 1)
+            {
                return true;
             }
-            else {
+            else
+            {
                 SCdialogueNum += 1;
                 return false;
             }
         }
-        else {
-            DisplayDialogue(GetShagPrompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, GetPlayer_Response_1, GetPlayer_Response_2, ShagSCAP, ShaginteractedWith);
+        else 
+        {
+            //DisplayDialogue(GetShagPrompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, GetPlayer_Response_1, GetPlayer_Response_2, ShagSCAP, ShaginteractedWith);
             ShaginteractedWith = true;
+            CheckEndConversation();
             return false;
         }
     }
@@ -110,23 +125,26 @@ public class ShaggyScript : ShaggyDialogeData
         ShaggyAffectionUpdates();
         return AffectionPoints; 
     }
-    public static int ShaggyAffectionUpdates(){
+
+    public static int ShaggyAffectionUpdates()
+    {
         Debug.Log("Shag SCAP = " + ShagSCAP);
         return ShagSCAP;
     }
     
-    public override void EndConversation(bool characterValue)
+    public override void EndConversation(bool characterValue, int affectionPts)
     {
-        base.EndConversation(characterValue);
+        base.EndConversation(characterValue, ShagSCAP);
         if (characterValue)
         {
+            ShagLockout = true;
             Debug.Log("Shaggy's interactions is now locked out");
         }
     }
 
     public void CheckEndConversation()
     {
-        EndConversation(ShaginteractedWith);
+        EndConversation(ShaginteractedWith, ShagSCAP);
     }
 }
  

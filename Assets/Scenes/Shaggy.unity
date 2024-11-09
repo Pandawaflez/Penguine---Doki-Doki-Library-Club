@@ -584,6 +584,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 640176341}
     m_Modifications:
+    - target: {fileID: 1107910885876682937, guid: cb129d89be94a4949ae95e08d0ded84a, type: 3}
+      propertyPath: m_text
+      value: "We didn't vibe. I'll catch you around. \n\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 1424994855263319560, guid: cb129d89be94a4949ae95e08d0ded84a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -810,6 +814,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5140334710794535404, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5603978690760238234, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -817,6 +825,14 @@ PrefabInstance:
     - target: {fileID: 7224431922053516003, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985200227456233365, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8318432581543604563, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
+      propertyPath: m_text
+      value: 'We didn''t really vibe. See you around. '
       objectReference: {fileID: 0}
     - target: {fileID: 8447937819729302071, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
       propertyPath: m_SizeDelta.y

@@ -48,7 +48,7 @@ public class ShaggyUI : MonoBehaviour
         if (ShaggyScript.ShaginteractedWith)
         {
             Debug.Log("interaction ended");
-            scoobyScript.EndConversation(ShaggyScript.ShaginteractedWith);
+            scoobyScript.EndConversation(ShaggyScript.ShaginteractedWith, ShaggyScript.ShagSCAP);
             DisableButtons();
         }
     }
@@ -58,7 +58,7 @@ public class ShaggyUI : MonoBehaviour
         if (((ShaggyScript)scoobyScript).SCdialogueNum >= ((ShaggyScript)scoobyScript).GetShagPrompts.Count)
         {
             ShaggyScript.ShaginteractedWith = true;
-            scoobyScript.EndConversation(ShaggyScript.ShaginteractedWith);
+            scoobyScript.EndConversation(ShaggyScript.ShaginteractedWith, ShaggyScript.ShagSCAP);
         }
         ShowShagDialogue();
     }
