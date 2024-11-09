@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     [SerializeField] float speed = 5f;
+    [SerializeField] float BALL_MAX_SPEED = 15f;
     float radius;
     Vector2 direction;
     private Vector2 startPos;
@@ -56,13 +57,13 @@ public class Ball : MonoBehaviour
 
             // flip direction when ball hits paddle
             if (isPlayerPaddle == true && direction.x < 0) {
-                if (speed < 15f) {
+                if (speed < BALL_MAX_SPEED) {
                     speed += 1f;
                 }
                 direction.x = -direction.x;
                 direction.y += Random.Range(-0.5f, 0.5f);
             } else if (isPlayerPaddle == false && direction.x > 0) {
-                if (speed < 15f) {
+                if (speed < BALL_MAX_SPEED) {
                     speed += 1f;
                 }
                 direction.x = -direction.x;

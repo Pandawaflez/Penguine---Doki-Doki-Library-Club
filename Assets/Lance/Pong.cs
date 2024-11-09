@@ -22,13 +22,14 @@ public class Pong : MiniGameLevel
     [SerializeField] GameObject mobileMovement;
 
     private bool _isMobile = false;
+    [SerializeField] byte PONG_SCORE_TO_WIN = 3;
 
     // Start is called before the first frame update
     void Start()
     {
         bottomLeft = Camera.main.ScreenToWorldPoint(new Vector2(0,0));
         topRight = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-        scoreManager = ScoreManagerFactory.CreateScoreManager("Pong", 3);
+        scoreManager = ScoreManagerFactory.CreateScoreManager("Pong", PONG_SCORE_TO_WIN);
 
         if (Application.platform == RuntimePlatform.Android && Application.platform == RuntimePlatform.IPhonePlayer) {
             _isMobile = true;
