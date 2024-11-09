@@ -77,19 +77,19 @@ public class UIElementHandler : MonoBehaviour
         _overlayUI.UpdateCharacterUI("Schroeder", PeanutsDB.SchroederAffectionPts);
         _overlayUI.UpdateCharacterUI("Sonic", AffectionManager.GetSonicAffectionPoints());
         _overlayUI.UpdateCharacterUI("Shadow", AffectionManager.GetShadowAffectionPoints());
-        // _overlayUI.UpdateCharacterUI("Shaggy", Scooby.AffectionUpdates());
-        // _overlayUI.UpdateCharacterUI("Daphne", 20);
-        // _overlayUI.UpdateCharacterUI("Fred", 20);
+        _overlayUI.UpdateCharacterUI("Shaggy", ShaggyScript.ShaggyAffectionUpdates());
+        _overlayUI.UpdateCharacterUI("Daphne", DaphneScript.DaphneAffectionUpdates());
+        _overlayUI.UpdateCharacterUI("Fred", FredScript.FredAffectionUpdates());
 
 
 
-        // //checking conditions for lose game:
-        // if(SonicDialogue.CheckSonicLockout() && ShadowDialogue.CheckShadowLockout() && (PeanutsDB.CharlieLocked == 1) && 
-        //    (PeanutsDB.SchroederLocked == 1) && (PeanutsDB.SnoopyLocked == 1) && (PeanutsDB.LucyLocked == 1) &&
-        //     ShaggyScript.over )
-        // {
-        //     UIGod.LoseGame(true);
-        // }
+        //checking conditions for lose game:
+        if(SonicDialogue.CheckSonicLockout() && ShadowDialogue.CheckShadowLockout() && (PeanutsDB.CharlieLocked == 1) && 
+           (PeanutsDB.SchroederLocked == 1) && (PeanutsDB.SnoopyLocked == 1) && (PeanutsDB.LucyLocked == 1) &&
+            ShaggyScript.isShaggyLockedOut() && DaphneScript.isDaphneLockedOut() && FredScript.isFredLockedOut() )
+        {
+            UIGod.LoseGame(true);
+        }
 
     }
 
