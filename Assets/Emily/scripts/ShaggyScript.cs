@@ -32,11 +32,14 @@ public class ShaggyScript : ShaggyDialogeData
 
     void Start()
     {
-        if (!ShagLockout){ //if player is not locked out, they can talk
+        //if player is not locked out, they can talk
+        if (!ShagLockout)
+        {
             DisplayDialogue(GetShagPrompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, GetPlayer_Response_1, GetPlayer_Response_2, ShagSCAP, ShaginteractedWith);
         }
 
-        else {
+        else
+        {
             Debug.Log("Shaggy is locked out"); //they're locked out
         }
     }
@@ -83,6 +86,7 @@ public class ShaggyScript : ShaggyDialogeData
             }
             else if (SCdialogueNum == 6 && responseNum == 1)
             {
+                UpdateAffectionAfterMinigame();
                 startMiniGameDate(game);
             }
         
@@ -90,12 +94,22 @@ public class ShaggyScript : ShaggyDialogeData
                 ShaginteractedWith = true;
                 CheckEndConversation();
             }
+            
+            
+        }
+        else 
+        {
+            UpdateAffectionAfterMinigame();
+        }
+        if (ShagLockout)
+        {
+            UpdateAffectionAfterMinigame();
         }
         base.HandlePlayerResponse(responseNum);
     }
 
     //seeing if the player and character should begin their date
-    public bool PlayOrNot(int SCAP, int response)
+    /*public bool PlayOrNot(int SCAP, int response)
     {
         SCAP = ShaggyAffectionPointsMonitor(ShagSCAP,0);
 
@@ -119,7 +133,7 @@ public class ShaggyScript : ShaggyDialogeData
             CheckEndConversation();
             return false;
         }
-    }
+    }*/
 
     //controls the affection points and returns them
     public int ShaggyAffectionPointsMonitor(int AffectionPoints, int factor)
@@ -154,12 +168,36 @@ public class ShaggyScript : ShaggyDialogeData
     public void CheckEndConversation()
     {
         EndConversation(ShaginteractedWith, ShagSCAP);
+        UpdateAffectionAfterMinigame();
+
     }
 
     //checking if shaggy is locked out
     public static bool isShaggyLockedOut()
     {
         return ShagLockout;
+    }
+
+    public void UpdateAffectionAfterMinigame()
+    {
+        Debug.Log("UpdateAffectionAfterMinigame");
+        int miniGameStatus = MainPlayer.GetMiniGameStatus();
+        if (miniGameStatus == 1)
+        {
+            UIElementHandler.UIGod.EndGame(true, "Shaggy");
+            ShaggyAffectionPointsMonitor(ShagSCAP, 50);
+            Debug.Log("ShagSCAP in UpdateAffectionAfterMinigame: " + ShagSCAP);
+
+        }
+        else if (miniGameStatus == 0)
+        {
+            UIElementHandler.UIGod.EndGame(true, "Shaggy");
+            ShaggyAffectionPointsMonitor(ShagSCAP, -10);
+            Debug.Log("ShagSCAP in UpdateAffectionAfterMinigame: " + ShagSCAP);
+            ShagLockout = true;
+        }
+        EndConversation(ShaginteractedWith, ShagSCAP);
+
     }
 }
  

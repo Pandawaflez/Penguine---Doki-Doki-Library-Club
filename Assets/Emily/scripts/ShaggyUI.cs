@@ -31,7 +31,10 @@ public class ShaggyUI : MonoBehaviour
             ShagR1.onClick.AddListener(() => HandleResponse(1));
             ShagR2.onClick.AddListener(() => HandleResponse(2));
         }
-        else{ //player is locked out
+
+        //player is locked out
+        else
+        { 
             Debug.Log("ShaginteractedWith is already true");
             DisableButtons();
         }
@@ -84,6 +87,7 @@ public class ShaggyUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("ShaggySCAP = " + ShaggyScript.ShagSCAP);
         if (ShaggyScript.ShaginteractedWith || ButtonsDisabled){ 
             DisableButtons();
         }

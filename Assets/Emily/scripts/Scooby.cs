@@ -104,7 +104,27 @@ public abstract class Scooby //superclass
         SCdialogueNum += 1;
     }
     
+    public void UpdateAffectionAfterMinigame(int SCAP, string characterName, bool lockout)
+    {
+        Debug.Log("UpdateAffectionAfterMinigame");
+        int miniGameStatus = MainPlayer.GetMiniGameStatus();
+        if (miniGameStatus == 1)
+        {
+            UIElementHandler.UIGod.EndGame(true, characterName);
+            SCAP += 50;
+            Debug.Log("SCAP in UpdateAffectionAfterMinigame: " + SCAP);
 
+        }
+        else if (miniGameStatus == 0)
+        {
+            UIElementHandler.UIGod.EndGame(true, characterName);
+            SCAP -= 10;
+            Debug.Log("SCAP in UpdateAffectionAfterMinigame: " + SCAP);
+            lockout = true;
+        }
+        
+
+    }
     
     
     
