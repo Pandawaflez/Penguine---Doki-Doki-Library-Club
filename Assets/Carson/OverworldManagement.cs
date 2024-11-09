@@ -56,13 +56,19 @@ public class OverworldManagement : MonoBehaviour
         RoomsDB.setCurrentRoom(currentRoom); //set current room in database
         loadRoom(currentRoom);
     }
-
+    
     //opens test panel: by setting it to active:
     public void openTestPanel(){
         Debug.Log("Opening Character Panel");
-        overworldData.getResource("testPanelObject").SetActive(true);
+        GameObject testPanelObject = overworldData.getResource("testPanelObject");
+        if(testPanelObject != null){
+            testPanelObject.SetActive(true);
+            Debug.Log("testPanelObject set to active.");
+        } else {
+            Debug.Log("testPanelObject is null.");
+        }
     }
-
+    
     public void Awake(){
         initializeOverworldData();
         loadRoom(RoomsDB.getCurrentRoom());

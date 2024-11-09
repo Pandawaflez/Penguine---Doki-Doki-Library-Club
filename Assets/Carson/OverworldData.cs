@@ -143,6 +143,7 @@ public class OverworldData
                 return computer;
                 break;
             case "testPanelObject":
+                Debug.Log("Test Panel Acessed");
                 return testPanelObject;
                 break;
             case "characterLeftButton":

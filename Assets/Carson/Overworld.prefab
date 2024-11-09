@@ -1276,7 +1276,7 @@ GameObject:
   - component: {fileID: 7957433809435153383}
   - component: {fileID: 9105188885350685427}
   m_Layer: 5
-  m_Name: Background
+  m_Name: RoomBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1638,7 +1638,7 @@ GameObject:
   - component: {fileID: 1909563472428460098}
   - component: {fileID: 976715655159796318}
   m_Layer: 5
-  m_Name: GoLeft
+  m_Name: GoLeftButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2425,7 +2425,7 @@ GameObject:
   - component: {fileID: 8398195731669322937}
   - component: {fileID: 2526325518103560869}
   m_Layer: 5
-  m_Name: CharacterR
+  m_Name: CharacterRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4019,7 +4019,7 @@ GameObject:
   - component: {fileID: 1888145500714610625}
   - component: {fileID: 1598696423575627844}
   m_Layer: 5
-  m_Name: GoRight
+  m_Name: GoRightButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4819,7 +4819,7 @@ GameObject:
   - component: {fileID: 6803341975892635777}
   - component: {fileID: 5824279917453233609}
   m_Layer: 5
-  m_Name: CharacterL
+  m_Name: CharacterLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
