@@ -9,6 +9,11 @@ public class OverworldManagement : MonoBehaviour
     private GameObject overworldResources;
     private OverworldData overworldData = new OverworldData();
 
+    public void Awake(){
+        initializeOverworldData();
+        loadRoom(RoomsDB.getCurrentRoom());
+    }
+    
     public void initializeOverworldData() {
         overworldData.initializeOverworldData( overworldResources );
     }
@@ -67,11 +72,6 @@ public class OverworldManagement : MonoBehaviour
         } else {
             Debug.Log("testPanelObject is null.");
         }
-    }
-    
-    public void Awake(){
-        initializeOverworldData();
-        loadRoom(RoomsDB.getCurrentRoom());
     }
 
     //sets the given ui image to the sprite corresponding with the given character name.

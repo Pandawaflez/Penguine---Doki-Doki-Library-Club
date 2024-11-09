@@ -159,6 +159,7 @@ public class CarsonOverworldDebugMenuSceneChangeTests
         Assert.AreEqual("Shadow", SceneManager.GetActiveScene().name); // Check that the scene has changed
     }
 
+    [UnityTest]
     public IEnumerator TalkToInvalidCharacter()
     {
         // Arrange
@@ -172,6 +173,22 @@ public class CarsonOverworldDebugMenuSceneChangeTests
 
         // Assert
         LogAssert.Expect(LogType.Log, "Character UnknownCharacter not found");
+    }
+
+    [UnityTest]
+    public IEnumerator TalkToInvalidCharacterSceneTest()
+    {
+        // Arrange
+        string character = "UnknownCharacter";
+
+        // Act
+        debugMenu.talkTo(character);
+
+        // Wait for the message to be logged
+        yield return null;
+
+        // Assert
+        Assert.AreEqual("Overworld", SceneManager.GetActiveScene().name); // Check that the scene has changed
     }
 
 }
