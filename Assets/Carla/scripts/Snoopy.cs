@@ -25,17 +25,24 @@ public class Snoopy : Peanuts
     private List<WoodStock> birds;  //PATTERN 3. coupled only to 'interface'
     void Start()
     {
-        birds = new List<WoodStock>();
+        birds = new List<WoodStock>();  //pattern - setting up list of 'views' (woodstocks)
+
+        //set dialogue display up
         myDialogue = new SnoopyDialogue(Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
         //theAudio = new AudioManager();
+
+        //reload state
         p_dialogueNum = PeanutsDB.SnoopyDialogueNum;
         loadAffection(PeanutsDB.SnoopyAffectionPts);
         Debug.Log(string.Format("starting with {0} affection points on dialoge {1}", getAffectionPoints(), p_dialogueNum));
+
+        //get to it
         onDialogue(p_dialogueNum);
     }
     
     void Update()
     {
+        //continuosly make sure database is up to date
         PeanutsDB.SnoopyAffectionPts = getAffectionPoints();
         PeanutsDB.SnoopyDialogueNum = p_dialogueNum;
     }
@@ -58,13 +65,17 @@ public class Snoopy : Peanuts
     }
 
 
-    //a button being hit will trigger this. decides how to respond to response
+    /*a response button being hit will trigger this. 
+    * decides how to respond to response through updating affection, setting next dialogue, and possibly starting a minigame
+    */
     protected override void v_toNextDialogue()    //PATTERN this is like the setState()
     //private void v_toNextDialogue()
     {
+        //see what dialouge we are currently on
         int d = getDialogueNum();
         switch(d){
             case 0:
+            //check response num and respond accordingly.
                 if (p_responseNum == 1){
                     p_dialogueNum = 1;
                     updateAffection(20);
@@ -211,6 +222,10 @@ public class Snoopy : Peanuts
         Debug.Log(string.Format("current affection points: {0}", getAffectionPoints()));
     }
 
+    /* this function is either called from start or onDialogue.
+    * It will tell the Dialogue class to display the dialogue
+    * and will also check for edge cases (win/lose a game, get locked out, or win character's love)
+    */
     public void onDialogue(int d){
         //if they just played a game
         if (p_dialogueNum == -1){
@@ -222,6 +237,7 @@ public class Snoopy : Peanuts
                 Debug.Log("Won game");
                 updateAffection(15);
                 p_dialogueNum=13;
+                d=13;
             }
             //or lost
             else if (MainPlayer.GetMiniGameStatus() == 0)
@@ -229,9 +245,13 @@ public class Snoopy : Peanuts
                 Debug.Log("Lost game");
                 updateAffection(30);
                 p_dialogueNum=14;
+                d=14;
             }
             MainPlayer.SetMiniGameStatus(-1);   //reset game status
+            Update();   //make sure DB gets updated
         }
+
+        //check if player is locked out (end of dialogue)
         else if (p_dialogueNum == 11){
             PeanutsDB.SnoopyLocked = 1;
             p_dialogueNum = 12;
@@ -242,7 +262,6 @@ public class Snoopy : Peanuts
         } 
 
         //theAudio.loadSounds();
-        //myDialogue.displayDialogue(d, Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
         myDialogue.v_displayDialogue(d);
     }
     

@@ -9,24 +9,20 @@ using UnityEngine.EventSystems;
 
 public abstract class Peanuts : MonoBehaviour
 {
-    //graphics
-    //sfx
-    //affection points
     private int _affectionPoints;
 
-    //dialoguetracker
+    //dialoguetrackers
     protected int p_dialogueNum = 0;
     protected int p_responseNum = 0;
 
+    //user chose to play a game with their character. saves current scene w/ character and goes to game
     protected void initiateMiniGame(string game)
     {
-        //SceneManager.LoadScene("Pong", LoadSceneMode.Additive);
         SceneChanger.saveScene();
         SceneManager.LoadScene(game);
-        //dialogueNum = 8;
-        
     }
 
+    //getters and setters
     public int getResponseNum()
     {
         return p_responseNum;
@@ -46,6 +42,7 @@ public abstract class Peanuts : MonoBehaviour
         return _affectionPoints;
     }
     
+    //update affection is essentally a setter. adds (or subtracts) additional affection points
     public void updateAffection(int newPoints)
     {
         //in BC mode, affection points cannot go down and go up at 2x the rate
@@ -58,13 +55,16 @@ public abstract class Peanuts : MonoBehaviour
         }
     }
 
+    //the actual setter for affection points. used when a character starts up
     protected void loadAffection(int totalPoints)
     {
         _affectionPoints = totalPoints;
     }
 
+    //the function that decides what to do when a response is hit. defined in each character class
     protected abstract void v_toNextDialogue();
 
+    //sets responseNum so and calls toNextDialogue to respond to user's response. also 'unselects' button
     public void hitResponse1()
     {
         p_responseNum = 1;
@@ -75,7 +75,7 @@ public abstract class Peanuts : MonoBehaviour
         StartCoroutine(DeselectButton());
     }
 
-    // Button 2 OnClick
+    // Button 2 OnClick. same functionality as hitResponse1
     public void hitResponse2()
     {
         p_responseNum = 2;
