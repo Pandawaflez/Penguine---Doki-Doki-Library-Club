@@ -46,7 +46,7 @@ public class UIOverlay : UIElement
         }
     }
 
-    // Helper: Create the profile image
+    //Create the profile image
     private Image CreateProfileImage(Sprite image, GameObject parent)
     {
         GameObject imageObject = new GameObject("ProfileImage", typeof(Image));

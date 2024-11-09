@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
-// using CandyCoded.HapticFeedback;
+// using CandyCoded.HapticFeedback;     //for mobile
 
 public class UIElementHandler : MonoBehaviour
 {
@@ -70,8 +70,6 @@ public class UIElementHandler : MonoBehaviour
 
         //Get points for characters in Overlay
         _overlayUI.UpdateCharacterUI("Charlie", PeanutsDB.CharlieAffectionPts);
-        // overlayUI.UpdateCharacterUI("Charlie", 100);
-
         _overlayUI.UpdateCharacterUI("Lucy", PeanutsDB.LucyAffectionPts);
         _overlayUI.UpdateCharacterUI("Snoopy", PeanutsDB.SnoopyAffectionPts);
         _overlayUI.UpdateCharacterUI("Schroeder", PeanutsDB.SchroederAffectionPts);
@@ -147,7 +145,7 @@ public class UIElementHandler : MonoBehaviour
         Application.Quit(); // Quit the application
     }
 
-    //handle end of game scenario (global access point)
+    //handle end of game win scenario (global access point)
     public void EndGame(bool state, string character)
     {
         // if(Application.isMobilePlatform)
@@ -156,6 +154,8 @@ public class UIElementHandler : MonoBehaviour
         // }
         
         endGamePanel.SetActive(state); // Show the end game panel
+        quitButton.gameObject.SetActive(true);
+
 
         if(state){
             // Get the Text component from the end game panel
@@ -178,6 +178,7 @@ public class UIElementHandler : MonoBehaviour
         // }
         
         endGamePanel.SetActive(state); // Show the end game panel
+        quitButton.gameObject.SetActive(true);
 
         if(state)
         {
