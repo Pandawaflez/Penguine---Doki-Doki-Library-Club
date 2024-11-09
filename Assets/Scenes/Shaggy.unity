@@ -832,7 +832,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8318432581543604563, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
       propertyPath: m_text
-      value: 'We didn''t really vibe. See you around. '
+      value: We've already chatted. See you around!
       objectReference: {fileID: 0}
     - target: {fileID: 8447937819729302071, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
       propertyPath: m_SizeDelta.y

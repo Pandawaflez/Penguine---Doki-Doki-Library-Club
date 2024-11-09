@@ -30,9 +30,6 @@ public class ShaggyScript : ShaggyDialogeData
     //boolean to see if the player has become locked out of interacting with shaggy
     public static bool ShagLockout = false;
 
-    //tracking if shaggy is in love with the player
-    public bool inLove = false;
-
     void Start()
     {
         if (!ShagLockout){ //if player is not locked out, they can talk
@@ -78,18 +75,17 @@ public class ShaggyScript : ShaggyDialogeData
             {
                 ShagSCAP = ShaggyAffectionPointsMonitor(ShagSCAP, 20);
             }
-            if (SCdialogueNum == 5) {
-                inLove = PlayOrNot(ShagSCAP, responseNum);
-                if (inLove) 
-                {
-                    startMiniGameDate(game);
-                }
-                else 
-                {
-                    ShaginteractedWith = true;
-                    CheckEndConversation();
-                } 
+            else if (SCdialogueNum == 5) {
+                
+                ShaginteractedWith = true;
+                ShagLockout = true;
+                CheckEndConversation();
             }
+            else if (SCdialogueNum == 6 && responseNum == 1)
+            {
+                startMiniGameDate(game);
+            }
+        
             if (SCdialogueNum > 6){
                 ShaginteractedWith = true;
                 CheckEndConversation();
@@ -98,6 +94,7 @@ public class ShaggyScript : ShaggyDialogeData
         base.HandlePlayerResponse(responseNum);
     }
 
+    //seeing if the player and character should begin their date
     public bool PlayOrNot(int SCAP, int response)
     {
         SCAP = ShaggyAffectionPointsMonitor(ShagSCAP,0);
@@ -117,13 +114,14 @@ public class ShaggyScript : ShaggyDialogeData
         }
         else 
         {
-            //DisplayDialogue(GetShagPrompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, GetPlayer_Response_1, GetPlayer_Response_2, ShagSCAP, ShaginteractedWith);
             ShaginteractedWith = true;
+            ShagLockout = true;
             CheckEndConversation();
             return false;
         }
     }
 
+    //controls the affection points and returns them
     public int ShaggyAffectionPointsMonitor(int AffectionPoints, int factor)
     {
         AffectionPoints += factor;
@@ -134,12 +132,14 @@ public class ShaggyScript : ShaggyDialogeData
         return AffectionPoints; 
     }
 
+    //seeing what the affection points are
     public static int ShaggyAffectionUpdates()
     {
         Debug.Log("Shag SCAP = " + ShagSCAP);
         return ShagSCAP;
     }
     
+    //ends the conversation + locks out the player
     public override void EndConversation(bool characterValue, int affectionPts)
     {
         base.EndConversation(characterValue, ShagSCAP);
@@ -150,11 +150,13 @@ public class ShaggyScript : ShaggyDialogeData
         }
     }
 
+    //checks if the conversation has ended
     public void CheckEndConversation()
     {
         EndConversation(ShaginteractedWith, ShagSCAP);
     }
 
+    //checking if shaggy is locked out
     public static bool isShaggyLockedOut()
     {
         return ShagLockout;

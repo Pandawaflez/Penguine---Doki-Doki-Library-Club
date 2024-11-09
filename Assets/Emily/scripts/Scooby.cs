@@ -19,6 +19,7 @@ public abstract class Scooby //superclass
     public static bool DaphinteractedWith = false;
     public static bool FredinteractedWith = false;
 
+
     //tracking affection points for characters
     public int SCAP;
 
@@ -50,22 +51,23 @@ public abstract class Scooby //superclass
                     //int TotalPoints = AffectionPointsMonitor(SCAP, 0);
                     if (SCdialogueNum == 5 && SCAP >= 50)
                     {
+                        SCdialogueNum = 6;
                         dialogueText.text = prompts[6];
                         response1Text.text = Player_Response_1[5];
                         response2Text.text = Player_Response_2[5];
                     }
                     else if (SCdialogueNum == 5 && SCAP < 50)
                     {
+                        interactedWith = true;
                         dialogueText.text = prompts[5];
                         response1Text.text = Player_Response_1[6];
                         response2Text.text = Player_Response_2[6];
-                        interactedWith = true;
                     }
                     else if (SCdialogueNum == 6){
                         dialogueText.text = prompts[SCdialogueNum];
                         response1Text.text = Player_Response_1[6];
                         response2Text.text = Player_Response_2[6];
-                        interactedWith = true;
+                        //interactedWith = true;
                     }
                 }
                 else {

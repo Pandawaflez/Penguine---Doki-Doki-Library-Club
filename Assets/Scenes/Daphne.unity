@@ -254,6 +254,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5140334710794535404, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5579230582946199481, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
       propertyPath: m_Name
       value: DaphResponse2
@@ -337,6 +341,14 @@ PrefabInstance:
     - target: {fileID: 7682867972412150234, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
       propertyPath: m_Color.g
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985200227456233365, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8318432581543604563, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
+      propertyPath: m_text
+      value: Hey! We've already met. Hope you're well!
       objectReference: {fileID: 0}
     - target: {fileID: 8447937819729302071, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
       propertyPath: m_SizeDelta.y
@@ -463,6 +475,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DaphR1: {fileID: 1748240303}
   DaphR2: {fileID: 941644866}
+  ButtonsDisabled: 0
   DaphDialogueText: {fileID: 1346014583}
   DaphResponse1Text: {fileID: 1913316564}
   DaphResponse2Text: {fileID: 1022701554}

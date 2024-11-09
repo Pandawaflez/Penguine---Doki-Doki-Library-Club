@@ -446,6 +446,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5140334710794535404, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5579230582946199481, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
       propertyPath: m_Name
       value: FredResponse2
@@ -541,6 +545,14 @@ PrefabInstance:
     - target: {fileID: 7682867972412150234, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
       propertyPath: m_Color.g
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985200227456233365, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8318432581543604563, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
+      propertyPath: m_text
+      value: We've already gotten to know each other!
       objectReference: {fileID: 0}
     - target: {fileID: 8447937819729302071, guid: e21a3a43ddf23654e87aad9462107a43, type: 3}
       propertyPath: m_SizeDelta.y
@@ -769,6 +781,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FredR1: {fileID: 1473460531}
   FredR2: {fileID: 144892646}
+  ButtonsDisabled: 0
   FredDialogueText: {fileID: 1603763308}
   FredResponse1Text: {fileID: 863094284}
   FredResponse2Text: {fileID: 1815263012}
