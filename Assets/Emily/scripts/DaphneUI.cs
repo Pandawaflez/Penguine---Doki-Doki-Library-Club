@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using ScoobyObserver;
 
-public class DaphneUI : MonoBehaviour
+public class DaphneUI : MonoBehaviour, IObserver
 {
     //buttons for responses
     public Button DaphR1;
@@ -25,6 +26,9 @@ public class DaphneUI : MonoBehaviour
     {
         //creates new instance of daphne script
         scoobyScript = new DaphneScript();
+
+        //register observer
+        scoobyScript.RegisterObserver(this);
         
         if (!(DaphneScript.DaphinteractedWith))
         {
@@ -37,6 +41,7 @@ public class DaphneUI : MonoBehaviour
         else
         {
             Debug.Log("DaphinteractedWith is already true");
+            DaphneScript.UpdateAffectionAfterMinigame();
             DisableButtons();
         }
     }
@@ -47,6 +52,7 @@ public class DaphneUI : MonoBehaviour
         if (DaphneScript.DaphinteractedWith || DaphneScript.DaphLockout)
         {
             Debug.Log("DaphneinteractedWith is already true");
+            DaphneScript.UpdateAffectionAfterMinigame();
             DisableButtons();
             return;
         }
@@ -77,6 +83,7 @@ public class DaphneUI : MonoBehaviour
         if (((DaphneScript)scoobyScript).SCdialogueNum >= ((DaphneScript)scoobyScript).GetDaphPrompts.Count)
         {
             DaphneScript.DaphinteractedWith = true;
+            DaphneScript.UpdateAffectionAfterMinigame();
             scoobyScript.EndConversation(DaphneScript.DaphinteractedWith, DaphneScript.DaphSCAP);
         }
         ShowDaphDialogue();
@@ -99,6 +106,16 @@ public class DaphneUI : MonoBehaviour
         }
     }
     
-
+    public void Update(int affectionPoints, bool lockout, bool shaggyInteractedWith, bool daphneInteractedWith, bool fredInteractedwWith)
+    {
+        if (daphneInteractedWith)
+        {
+            DisableButtons();
+        }
+        else
+        {
+            ShowDaphDialogue();
+        }
+    }
 
 }

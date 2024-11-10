@@ -4,8 +4,9 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using ScoobyObserver;
 
-public class FredScript : FredDialogueData
+public class FredScript : FredDialogueData, IObserver
 {
     //lists for dialogue prompts and responses
     public List<string> GetFredPrompts => FredPrompts;
@@ -32,15 +33,30 @@ public class FredScript : FredDialogueData
 
     void Start()
     {
-        if (!FredLockout) //if player isn't locked out, they can talk
+        //register script as observer
+        RegisterObserver(this);
+        //if player isn't locked out, they can talk
+        if (!FredLockout) 
         {
             DisplayDialogue(GetFredPrompts, FredDialogueText, FredResponse1Text, FredResponse2Text, GetPlayer_Response_1, GetPlayer_Response_2, FredSCAP, FredinteractedWith);
+            if (MainPlayer.GetMiniGameStatus() != -1)
+            {
+                UpdateAffectionAfterMinigame();
+            }
         }
 
         else 
         {
             Debug.Log("Fred is locked out"); //fred is locked out for player
         }
+    }
+
+    public void Update(int affectionPoints, bool lockoutStatus, bool Shaginteraction, bool Daphinteraction, bool Fredinteraction)
+    {
+        FredSCAP = affectionPoints;
+        FredLockout = lockoutStatus;
+        FredinteractedWith = Fredinteraction;
+        Debug.Log("Observer Update received in Fred script");
     }
 
     //selection of responses via buttons
@@ -85,11 +101,13 @@ public class FredScript : FredDialogueData
             else if (SCdialogueNum == 6 && responseNum == 1)
             {
                 startMiniGameDate(game);
+                UpdateAffectionAfterMinigame();
             }
 
             if (SCdialogueNum > 6)
             {
                 FredinteractedWith = true;
+                UpdateAffectionAfterMinigame();
                 CheckEndConversation();
             }  
         }
@@ -102,36 +120,12 @@ public class FredScript : FredDialogueData
         }     
     }
 
-    //seeing if the player and character should begin their date
-    public bool PlayOrNot(int SCAP, int response)
-    {
-       SCAP = FredAffectionPointsMonitor(FredSCAP,0);
-        if (SCAP >= 40)
-        {
-            Debug.Log("Testing if game start conditional works");
-            if (response == 1)
-            {
-               return true;
-            }
-            else 
-            {
-                SCdialogueNum += 1;
-                return false;
-            }
-        }
-        else {
-            FredinteractedWith = true;
-            FredLockout = true;
-            CheckEndConversation();
-            return false;
-        }
-    }
+    
 
     //controls the affection points and returns them
     public int FredAffectionPointsMonitor(int AffectionPoints, int factor)
     {
         AffectionPoints += factor;
-        Debug.Log("Affection Points: " + AffectionPoints);
         interactionPoints = AffectionPoints;
         FredSCAP = AffectionPoints;
         FredAffectionUpdates();
@@ -140,7 +134,6 @@ public class FredScript : FredDialogueData
 
     //seeing what the affection points are
     public static int FredAffectionUpdates(){
-        Debug.Log("SCAP = " + FredSCAP);
         return FredSCAP;
     }
 
@@ -151,6 +144,7 @@ public class FredScript : FredDialogueData
         if (characterValue)
         {
             FredLockout = true;
+            UpdateAffectionAfterMinigame();
             Debug.Log("Fred is locked out");
         }
     }
@@ -165,5 +159,29 @@ public class FredScript : FredDialogueData
     public static bool isFredLockedOut()
     {
         return FredLockout;
+    }
+
+    public static void UpdateAffectionAfterMinigame(){
+
+     int miniGameStatus = MainPlayer.GetMiniGameStatus();
+        if (miniGameStatus == 1)
+        {
+            FredSCAP += 50;
+
+        }
+        else if (miniGameStatus == 0)
+        {
+            FredSCAP -= 30;
+            FredLockout = true;
+        }
+        if (FredSCAP >= 100)
+        {
+            UIElementHandler.UIGod.EndGame(true, "Fred");
+        }
+    }
+
+    void OnDestroy()
+    {
+        UnregisteredObserver(this);
     }
 }

@@ -4,9 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using ScoobyObserver;
 
 
-public class FredUI : MonoBehaviour
+public class FredUI : MonoBehaviour, IObserver
 {
     //buttons for responses
     public Button FredR1;
@@ -26,6 +27,9 @@ public class FredUI : MonoBehaviour
     {
         //creates new instance of fredscript
         scoobyScript = new FredScript();
+
+        //register as observer
+        scoobyScript.RegisterObserver(this);
         
         // as long as fred hasn't been interacted with/locked out, the dialogue is shown
         if (!(FredScript.FredinteractedWith))
@@ -37,7 +41,7 @@ public class FredUI : MonoBehaviour
         //player is locked out
         else
         {
-            Debug.Log("FredinteractedWith is already true");
+            FredScript.UpdateAffectionAfterMinigame();
             DisableButtons();
         }
 
@@ -48,7 +52,7 @@ public class FredUI : MonoBehaviour
         //making sure player isn't locked out
         if (FredScript.FredinteractedWith || FredScript.FredLockout)
         {
-            Debug.Log("FredinteractedWith is already true");
+            FredScript.UpdateAffectionAfterMinigame();
             DisableButtons();
             return;
         }
@@ -78,6 +82,7 @@ public class FredUI : MonoBehaviour
         if (((FredScript)scoobyScript).SCdialogueNum >= ((FredScript)scoobyScript).GetFredPrompts.Count)
         {
             FredScript.FredinteractedWith = true;
+            FredScript.UpdateAffectionAfterMinigame();
             scoobyScript.EndConversation(FredScript.FredinteractedWith, FredScript.FredSCAP);
         }
         ShowFredDialogue();
@@ -96,6 +101,18 @@ public class FredUI : MonoBehaviour
         if (FredScript.FredinteractedWith || ButtonsDisabled)
         {
             DisableButtons();
+        }
+    }
+
+    public void Update(int affectionPoints, bool lockout, bool shaggyInteractedWith, bool daphneInteractedWith, bool fredInteractedwWith)
+    {
+        if (fredInteractedwWith)
+        {
+            DisableButtons();
+        }
+        else 
+        {
+            ShowFredDialogue();
         }
     }
 }

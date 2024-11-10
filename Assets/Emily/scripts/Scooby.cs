@@ -4,10 +4,13 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using ScoobyObserver;
 
-public abstract class Scooby //superclass
+public abstract class Scooby : ISubject //superclass
 {
-   
+   //list to hold observers
+   private List<IObserver> observers = new List<IObserver>();
+
     //tracking what number dialogue response
     public int SCdialogueNum = 0;
 
@@ -26,6 +29,26 @@ public abstract class Scooby //superclass
     //boolean for if a character is locked out to be used in IsConversationLockedOut method
     public bool lockout = false;
 
+    //register an observer
+    public void RegisterObserver(IObserver observer)
+    {
+        observers.Add(observer);
+    }
+
+    //unregister an observer
+    public void UnregisteredObserver(IObserver observer)
+    {
+        observers.Remove(observer);
+    }
+
+    public void NotifyObservers()
+    {
+        foreach (var observer in observers)
+        {
+            observer.Update(SCAP, lockout, ShaginteractedWith, DaphinteractedWith, FredinteractedWith);
+        }
+    }
+    
     //method for starting the date (using Lance's code), using a game name that differs per character
     public void startMiniGameDate(string game){
         SceneChanger.saveScene();
@@ -89,8 +112,12 @@ public abstract class Scooby //superclass
     public virtual void EndConversation(bool characterValue, int affectionPts)
     {
         if (affectionPts != 0){
-            if (characterValue) lockout = true; 
-            Debug.Log("Conversation lockout set to " + lockout);
+            if (characterValue)
+            {
+                lockout = true; 
+                NotifyObservers();
+                Debug.Log("Conversation lockout set to " + lockout);
+            }
         }
     }
     public bool IsConversationLockedOut(){
@@ -104,34 +131,20 @@ public abstract class Scooby //superclass
         SCdialogueNum += 1;
     }
     
-    public void UpdateAffectionAfterMinigame(int SCAP, string characterName, bool lockout)
+    public void SetCharacterInteraction(string character, bool hasInteracted)
     {
-        Debug.Log("UpdateAffectionAfterMinigame");
-        int miniGameStatus = MainPlayer.GetMiniGameStatus();
-        if (miniGameStatus == 1)
+        switch (character)
         {
-            UIElementHandler.UIGod.EndGame(true, characterName);
-            SCAP += 50;
-            Debug.Log("SCAP in UpdateAffectionAfterMinigame: " + SCAP);
-
+            case "Shaggy":
+                ShaginteractedWith = hasInteracted;
+                break;
+            case "Daphne":
+                DaphinteractedWith = hasInteracted;
+                break;
+            case "Fred":
+                FredinteractedWith = hasInteracted;
+                break;
         }
-        else if (miniGameStatus == 0)
-        {
-            UIElementHandler.UIGod.EndGame(true, characterName);
-            SCAP -= 10;
-            Debug.Log("SCAP in UpdateAffectionAfterMinigame: " + SCAP);
-            lockout = true;
-        }
-        if (SCAP >= 100)
-        {
-            UIElementHandler.UIGod.EndGame(true, characterName);
-        }
-        
-
+        NotifyObservers();
     }
-    
-    
-    
-    
-    
 }

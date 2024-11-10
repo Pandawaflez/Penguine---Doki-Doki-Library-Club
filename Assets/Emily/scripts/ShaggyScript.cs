@@ -4,8 +4,9 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using ScoobyObserver;
 
-public class ShaggyScript : ShaggyDialogeData
+public class ShaggyScript : ShaggyDialogeData, IObserver
 {
     //lists for dialogue prompts and responses
     public List<string> GetShagPrompts => ShagPrompts;
@@ -32,10 +33,16 @@ public class ShaggyScript : ShaggyDialogeData
 
     void Start()
     {
+        //register script as observer to scooby subject
+        RegisterObserver(this);
         //if player is not locked out, they can talk
         if (!ShagLockout)
         {
             DisplayDialogue(GetShagPrompts, ShagDialogueText, ShagResponse1Text, ShagResponse2Text, GetPlayer_Response_1, GetPlayer_Response_2, ShagSCAP, ShaginteractedWith);
+            if (MainPlayer.GetMiniGameStatus() != -1)
+            {
+                UpdateAffectionAfterMinigame();
+            }
         }
 
         else
@@ -43,6 +50,16 @@ public class ShaggyScript : ShaggyDialogeData
             Debug.Log("Shaggy is locked out"); //they're locked out
         }
     }
+
+    public void Update(int affectionPoints, bool lockoutStatus, bool Shaginteraction, bool Daphinteraction, bool Fredinteraction)
+    {
+        ShagSCAP = affectionPoints;
+        ShagLockout = lockoutStatus;
+        ShaginteractedWith = Shaginteraction;
+
+        Debug.Log("Observer Update received in SHaggyScript: SCAP = " + affectionPoints + ", lockout = " + lockoutStatus);
+    }
+
 
     //selection of responses via buttons
     public void hitShagResponse1()
@@ -60,6 +77,7 @@ public class ShaggyScript : ShaggyDialogeData
     //decides what happens after the player picks a response
     public override void HandlePlayerResponse(int responseNum)
     {   
+        
         if (!ShaginteractedWith)
         {
             if ((SCdialogueNum == 0 || SCdialogueNum == 1) && responseNum == 1)
@@ -81,6 +99,7 @@ public class ShaggyScript : ShaggyDialogeData
             else if (SCdialogueNum == 5) {
                 
                 ShaginteractedWith = true;
+                UpdateAffectionAfterMinigame();
                 ShagLockout = true;
                 CheckEndConversation();
             }
@@ -88,10 +107,12 @@ public class ShaggyScript : ShaggyDialogeData
             {
                 //UpdateAffectionAfterMinigame();
                 startMiniGameDate(game);
+                UpdateAffectionAfterMinigame();
             }
         
             if (SCdialogueNum > 6){
                 ShaginteractedWith = true;
+                UpdateAffectionAfterMinigame();
                 CheckEndConversation();
             }
         }   
@@ -110,7 +131,7 @@ public class ShaggyScript : ShaggyDialogeData
     public static int ShaggyAffectionPointsMonitor(int AffectionPoints, int factor)
     {
         AffectionPoints += factor;
-        Debug.Log("Affection Points: " + AffectionPoints);
+        //Debug.Log("Affection Points: " + AffectionPoints);
         interactionPoints = AffectionPoints;
         ShagSCAP = AffectionPoints;
         ShaggyAffectionUpdates();
@@ -122,7 +143,7 @@ public class ShaggyScript : ShaggyDialogeData
     public static int ShaggyAffectionUpdates()
     {
         
-        Debug.Log("Shag SCAP = " + ShagSCAP);
+        //Debug.Log("Shag SCAP = " + ShagSCAP);
         return ShagSCAP;
     }
     
@@ -133,6 +154,7 @@ public class ShaggyScript : ShaggyDialogeData
         if (characterValue)
         {
             ShagLockout = true;
+            UpdateAffectionAfterMinigame();
             Debug.Log("Shaggy's interactions is now locked out");
         }
     }
@@ -150,6 +172,28 @@ public class ShaggyScript : ShaggyDialogeData
         return ShagLockout;
     }
 
-    
+    public static void UpdateAffectionAfterMinigame()
+    {
+        int miniGameStatus = MainPlayer.GetMiniGameStatus();
+        if (miniGameStatus == 1)
+        {
+            ShagSCAP += 50;
+
+        }
+        else if (miniGameStatus == 0)
+        {
+            ShagSCAP -= 30;
+            ShagLockout = true;
+        }
+        if (ShagSCAP >= 100)
+        {
+            UIElementHandler.UIGod.EndGame(true, "Shaggy");
+        }
+    }
+
+    void OnDestroy()
+    {
+        UnregisteredObserver(this);
+    }
 }
  

@@ -4,8 +4,9 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using ScoobyObserver;
 
-public class DaphneScript : DahpneDialogueData
+public class DaphneScript : DahpneDialogueData, IObserver
 {
     //lists for dialogue prompts and responses
     public List<string> GetDaphPrompts => DaphPrompts;
@@ -32,10 +33,16 @@ public class DaphneScript : DahpneDialogueData
     
     void Start()
     {   
+        //register script as observer
+        RegisterObserver(this);
         //if player is not locked out, they can talk
         if (!DaphLockout)
         {
             DisplayDialogue(GetDaphPrompts, DaphDialogueText, DaphResponse1Text, DaphResponse2Text, GetPlayer_Response_1, GetPlayer_Response_2, DaphSCAP, DaphinteractedWith);
+            if (MainPlayer.GetMiniGameStatus() != -1)
+            {
+                UpdateAffectionAfterMinigame();
+            }
         }
 
         else 
@@ -44,6 +51,14 @@ public class DaphneScript : DahpneDialogueData
         }
     }
 
+    public void Update(int affectionPoints, bool lockoutStatus, bool Shaginteraction, bool Daphinteraction, bool Fredinteraction)
+    {
+        DaphSCAP = affectionPoints;
+        DaphLockout = lockoutStatus;
+        DaphinteractedWith = Daphinteraction;
+
+        Debug.Log("Observer received in DaphneScript");
+    }
 
     //selection of responses via buttons
     public void hitDaphResponse1()
@@ -81,17 +96,20 @@ public class DaphneScript : DahpneDialogueData
             }
             else if (SCdialogueNum == 5) {
                 DaphinteractedWith = true;
+                UpdateAffectionAfterMinigame();
                 DaphLockout = true;
                 CheckEndConversation();
             }
             else if (SCdialogueNum == 6 && responseNum == 1)
             {
                 startMiniGameDate(game);
+                UpdateAffectionAfterMinigame();
             }
 
             if (SCdialogueNum > 6)
             {
                 DaphinteractedWith = true;
+                UpdateAffectionAfterMinigame();
                 CheckEndConversation();
             }
         }
@@ -103,35 +121,13 @@ public class DaphneScript : DahpneDialogueData
         }
     }
 
-    //seeing if player and character should begin their date
-    public bool PlayOrNot(int SCAP, int response)
-    {
-       SCAP = DaphneAffectionPointsMonitor(DaphSCAP,0);
-        if (SCAP >= 40)
-        {
-            Debug.Log("Testing if game start conditional works");
-            if (response == 1){
-               return true;
-            }
-            else {
-                SCdialogueNum += 1;
-                return false;
-            }
-        }
-        else 
-        {
-            DaphinteractedWith = true;
-            DaphLockout = true;
-            CheckEndConversation();
-            return false;
-        }
-    }
+    
 
     //controls the affection points and returns them
     public int DaphneAffectionPointsMonitor(int AffectionPoints, int factor)
     {
         AffectionPoints += factor;
-        Debug.Log("Affection Points: " + AffectionPoints);
+        //Debug.Log("Affection Points: " + AffectionPoints);
         interactionPoints = AffectionPoints;
         DaphSCAP = AffectionPoints;
         DaphneAffectionUpdates();
@@ -140,7 +136,7 @@ public class DaphneScript : DahpneDialogueData
     
     //seeing what affection points are
     public static int DaphneAffectionUpdates(){
-        Debug.Log("SCAP = " + DaphSCAP);
+       // Debug.Log("SCAP = " + DaphSCAP);
         return DaphSCAP;
     }
 
@@ -165,5 +161,29 @@ public class DaphneScript : DahpneDialogueData
     public static bool isDaphneLockedOut()
     {
         return DaphLockout;
+    }
+
+    public static void UpdateAffectionAfterMinigame()
+    {
+        int miniGameStatus = MainPlayer.GetMiniGameStatus();
+        if (miniGameStatus == 1)
+        {
+            DaphSCAP += 50;
+
+        }
+        else if (miniGameStatus == 0)
+        {
+            DaphSCAP -= 30;
+            DaphLockout = true;
+        }
+        if (DaphSCAP >= 100)
+        {
+            UIElementHandler.UIGod.EndGame(true, "Daphne");
+        }
+    }
+
+    void OnDestroy()
+    {
+        UnregisteredObserver(this);
     }
 }
