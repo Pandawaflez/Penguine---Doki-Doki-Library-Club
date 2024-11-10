@@ -110,7 +110,6 @@ public class ShadowDialogue : HedgehogDialogue
         if((MainPlayer.IsBCMode()) && (miniGameStatus == 1)){
             DialogueLine = $"Alright you got me. I love to see you win BC. (get it because you're in BC mode)";
             UIElementHandler.UIGod.EndGame(true, "Shadow");
-            //Debug.Log($"MiniGameStatus: {miniGameStatus}, Affection: {AffectionManager.GetShadowAffectionPoints()}");
 
 
         }
@@ -120,8 +119,6 @@ public class ShadowDialogue : HedgehogDialogue
             affectionManager.ChangeShadowAffectionPoints(-1);
             DialogueLine = "Okay way to show off. I guess nice job.";
             lockoutShadow = true;
-            //Debug.Log($"22222MiniGameStatus: {miniGameStatus}, Affection: {AffectionManager.GetShadowAffectionPoints()}");
-
         
         //if player loses shadow thinks ur cute
         }
@@ -129,7 +126,6 @@ public class ShadowDialogue : HedgehogDialogue
         {
             DialogueLine = "I knew you wouldn't be able to win, but you looked cute while trying. *wink*";
             UIElementHandler.UIGod.EndGame(true, "Shadow");
-            //Debug.Log($"3333MiniGameStatus: {miniGameStatus}, Affection: {AffectionManager.GetShadowAffectionPoints()}");
 
         }
         EndConversation();
