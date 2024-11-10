@@ -143,9 +143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797da0a2fa5a1df4b8b6a6326d9b9891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unclickedTile: {fileID: 21300000, guid: 365d4c541c8baad4e83e28440be36765, type: 3}
-  flaggedTile: {fileID: 21300000, guid: 9f593c269afcb7040a8c7c4d3fb257f6, type: 3}
-  clickedTiles:
+  _unclickedTile: {fileID: 21300000, guid: 365d4c541c8baad4e83e28440be36765, type: 3}
+  _flaggedTile: {fileID: 21300000, guid: 9f593c269afcb7040a8c7c4d3fb257f6, type: 3}
+  _clickedTiles:
   - {fileID: 21300000, guid: 79afff3fc07cb4449a93ea3380fc6818, type: 3}
   - {fileID: 21300000, guid: dc37c0218af8aaf4bac48ad57cc412cb, type: 3}
   - {fileID: 21300000, guid: cd83d486eb9abf0409dea5443e59168d, type: 3}
@@ -155,10 +155,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: de08444f03aceb142a5eca8870d3d857, type: 3}
   - {fileID: 21300000, guid: 23181ad9c88b7e7469c11e3a4829e3f6, type: 3}
   - {fileID: 21300000, guid: d8d2b5ddd04e3ab4e9e29214cfa09265, type: 3}
-  mineTile: {fileID: 21300000, guid: 0b34fb3db93d66344b7a3b388e83d95f, type: 3}
-  mineWrongTile: {fileID: 21300000, guid: cadc2844aff149d4fa4b7a504a9ea9ba, type: 3}
-  mineHitTile: {fileID: 21300000, guid: a66883b3c437f6e4ba7a7b9c29478a4e, type: 3}
-  gameManager: {fileID: 0}
+  _mineTile: {fileID: 21300000, guid: 0b34fb3db93d66344b7a3b388e83d95f, type: 3}
+  _mineWrongTile: {fileID: 21300000, guid: cadc2844aff149d4fa4b7a504a9ea9ba, type: 3}
+  _mineHitTile: {fileID: 21300000, guid: a66883b3c437f6e4ba7a7b9c29478a4e, type: 3}
+  gameManager: {fileID: 5658144796098887703, guid: f159f8dfc67d18a40a8452e8d1f325dd, type: 3}
   flagged: 0
   active: 1
   isMine: 0

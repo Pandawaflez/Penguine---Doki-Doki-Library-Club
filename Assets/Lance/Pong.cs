@@ -28,13 +28,14 @@ public class Pong : MiniGameLevel
     {
         s_bottomLeft = Camera.main.ScreenToWorldPoint(new Vector2(0,0));
         s_topRight = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-        // _scoreManager = ScoreManagerFactory.CreateScoreManager("Pong", PONG_SCORE_TO_WIN);
+        _scoreManager = ScoreManagerFactory.CreateScoreManager("Pong", PONG_SCORE_TO_WIN);
         
-        // Static Type
-        _scoreManager = new ScoreManager(1);
+        /* This is only for the Screenshot for the prelab showing how I would get the static and dynamic type. I use a Factory pattern as above */
+        // // Static Type
+        // _scoreManager = new ScoreManager(1);
 
         // Dynamic Type
-        _scoreManager = new PongScoreManager(1);
+        // _scoreManager = new PongScoreManager(1);
 
         if (Application.platform == RuntimePlatform.Android && Application.platform == RuntimePlatform.IPhonePlayer) {
             _isMobile = true;

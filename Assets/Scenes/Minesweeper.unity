@@ -122,6 +122,43 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &424256218 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7097421802048328599, guid: 08ebb42e03b7d8548b853efe9a3ae656, type: 3}
+  m_PrefabInstance: {fileID: 1549226948137700035}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &468294362 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 678748592326369809, guid: 08ebb42e03b7d8548b853efe9a3ae656, type: 3}
+  m_PrefabInstance: {fileID: 1549226948137700035}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &672510238 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 192633697324317704, guid: 08ebb42e03b7d8548b853efe9a3ae656, type: 3}
+  m_PrefabInstance: {fileID: 1549226948137700035}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &693421902 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2825208940034036139, guid: 08ebb42e03b7d8548b853efe9a3ae656, type: 3}
+  m_PrefabInstance: {fileID: 1549226948137700035}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1319228516 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3293243650495895229, guid: 08ebb42e03b7d8548b853efe9a3ae656, type: 3}
+  m_PrefabInstance: {fileID: 1549226948137700035}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1549226948137700035
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -170,6 +207,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5804591002131447001, guid: 08ebb42e03b7d8548b853efe9a3ae656, type: 3}
+      propertyPath: _timerText
+      value: 
+      objectReference: {fileID: 672510238}
+    - target: {fileID: 5804591002131447001, guid: 08ebb42e03b7d8548b853efe9a3ae656, type: 3}
+      propertyPath: _gameHolder
+      value: 
+      objectReference: {fileID: 1319228516}
+    - target: {fileID: 5804591002131447001, guid: 08ebb42e03b7d8548b853efe9a3ae656, type: 3}
+      propertyPath: _tilePrefab
+      value: 
+      objectReference: {fileID: 7137205209757242903, guid: 20abbf0dc82af484e80b188db46f1b3c, type: 3}
+    - target: {fileID: 5804591002131447001, guid: 08ebb42e03b7d8548b853efe9a3ae656, type: 3}
+      propertyPath: _winnerText
+      value: 
+      objectReference: {fileID: 693421902}
+    - target: {fileID: 5804591002131447001, guid: 08ebb42e03b7d8548b853efe9a3ae656, type: 3}
+      propertyPath: _timerScreen
+      value: 
+      objectReference: {fileID: 424256218}
+    - target: {fileID: 5804591002131447001, guid: 08ebb42e03b7d8548b853efe9a3ae656, type: 3}
+      propertyPath: _gameOverScreen
+      value: 
+      objectReference: {fileID: 468294362}
     - target: {fileID: 7316012830813883439, guid: 08ebb42e03b7d8548b853efe9a3ae656, type: 3}
       propertyPath: m_Name
       value: MinesweeperGame
