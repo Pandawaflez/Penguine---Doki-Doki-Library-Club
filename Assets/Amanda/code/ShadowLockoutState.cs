@@ -14,7 +14,7 @@ public class ShadowLockoutState : IState
     }
     public void EnterState()
     {
-        dialogue.DialogueLine = $"I don't want to see you again{playerName}, get outta my face.";
+        dialogue.DialogueLine = $"I don't want to see you again, get outta my face.";
         ShadowDialogue.lockoutShadow = true;
         dialogue.EndConversation();
     }
