@@ -7,7 +7,7 @@ public class AIPaddle : Paddle
     public GameObject ball;
 
     void Start() {
-        height = transform.localScale.y;
+        p_height = transform.localScale.y;
         isPlayerPaddle = false;
     }
 
@@ -15,12 +15,13 @@ public class AIPaddle : Paddle
         if (MainPlayer.IsBCMode()) {
             // If in BC mode, make the AI paddle purposely lose
             LoseOnPurpose();
-            speed = 1;
+            p_speed = 1;
         } else {
             // Normal AI paddle behavior
             NormalAIMovement();
         }
-    }
+    } 
+    
 
     // Make the AI lose on purpose
     void LoseOnPurpose() {
@@ -31,12 +32,12 @@ public class AIPaddle : Paddle
         float moveDirection = paddleY > ballY ? 1 : -1;
 
         // move in the opposite direction of the ball
-        float move = moveDirection * speed * Time.deltaTime;
+        float move = moveDirection * p_speed * Time.deltaTime;
 
         // restrict paddle movement to keep it on screen
-        if (transform.position.y < Pong.bottomLeft.y + height / 2 && move < 0) {
+        if (transform.position.y < Pong.s_bottomLeft.y + p_height / 2 && move < 0) {
             move = 0;
-        } else if (transform.position.y > Pong.topRight.y - height / 2 && move > 0) {
+        } else if (transform.position.y > Pong.s_topRight.y - p_height / 2 && move > 0) {
             move = 0;
         }
 
@@ -50,12 +51,12 @@ public class AIPaddle : Paddle
         float moveDirection = ballY - paddleY;
 
         // clamp the move direction to the AI paddle speed
-        float move = Mathf.Clamp(moveDirection, -speed * Time.deltaTime, speed * Time.deltaTime);
+        float move = Mathf.Clamp(moveDirection, -p_speed * Time.deltaTime, p_speed * Time.deltaTime);
 
         // restrict paddle movement so it doesn't go offscreen
-        if (transform.position.y < Pong.bottomLeft.y + height / 2 && move < 0) {
+        if (transform.position.y < Pong.s_bottomLeft.y + p_height / 2 && move < 0) {
             move = 0;
-        } else if (transform.position.y > Pong.topRight.y - height / 2 && move > 0) {
+        } else if (transform.position.y > Pong.s_topRight.y - p_height / 2 && move > 0) {
             move = 0;
         }
 

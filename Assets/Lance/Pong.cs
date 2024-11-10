@@ -5,12 +5,12 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-// this should be the game manager for the pong level. lets hope
 public class Pong : MiniGameLevel
 {
-    private ScoreManager scoreManager;
-    public static Vector2 bottomLeft;
-    public static Vector2 topRight;
+    // Definition for the scoreManager
+    private ScoreManager _scoreManager;
+    public static Vector2 s_bottomLeft;
+    public static Vector2 s_topRight;
     [SerializeField] TextMeshProUGUI playerScoreText;
     [SerializeField] TextMeshProUGUI aiScoreText;
     [SerializeField] TextMeshProUGUI winnerText;
@@ -24,12 +24,17 @@ public class Pong : MiniGameLevel
     private bool _isMobile = false;
     [SerializeField] byte PONG_SCORE_TO_WIN = 3;
 
-    // Start is called before the first frame update
     void Start()
     {
-        bottomLeft = Camera.main.ScreenToWorldPoint(new Vector2(0,0));
-        topRight = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-        scoreManager = ScoreManagerFactory.CreateScoreManager("Pong", PONG_SCORE_TO_WIN);
+        s_bottomLeft = Camera.main.ScreenToWorldPoint(new Vector2(0,0));
+        s_topRight = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        // _scoreManager = ScoreManagerFactory.CreateScoreManager("Pong", PONG_SCORE_TO_WIN);
+        
+        // Static Type
+        _scoreManager = new ScoreManager(1);
+
+        // Dynamic Type
+        _scoreManager = new PongScoreManager(1);
 
         if (Application.platform == RuntimePlatform.Android && Application.platform == RuntimePlatform.IPhonePlayer) {
             _isMobile = true;
@@ -40,27 +45,27 @@ public class Pong : MiniGameLevel
 
     // update the score display in the pong game
     private void UpdateScore() {
-        playerScoreText.text = scoreManager.GetPlayerScore().ToString();
-        aiScoreText.text = (scoreManager as PongScoreManager)?.GetAIScore().ToString();
+        playerScoreText.text = _scoreManager.GetPlayerScore().ToString();
+        aiScoreText.text = (_scoreManager as PongScoreManager)?.GetAIScore().ToString();
     }
 
     // add one to the player score
     public void addPlayerScore() {
-        scoreManager.AddPlayerScore();
+        _scoreManager.VAddPlayerScore();
         UpdateScore();
         CheckGameOver();
     }
 
     // add one to the ai score
     public void addAIScore() {
-        (scoreManager as PongScoreManager)?.AddAIScore();
+        (_scoreManager as PongScoreManager)?.AddAIScore();
         UpdateScore();
         CheckGameOver();
     }
 
     // dynamic binding to check win condition for pong game
     public bool CheckGameOver() {
-        int checkWinner = scoreManager.CheckWinCondition();
+        int checkWinner = _scoreManager.VCheckWinCondition();
         
         // player wins no matter what in bc mode
         if (MainPlayer.IsBCMode()) {
@@ -71,18 +76,18 @@ public class Pong : MiniGameLevel
             Debug.Log("Player Won!");
             winnerText.text = "You Won!";
             MainPlayer.SetMiniGameStatus(1);
-            EndGame();
+            VEndGame();
         } else if (checkWinner == PongScoreManager.AI_WON) {
             Debug.Log("AI Won :(");
             winnerText.text = "You Lost!";
             MainPlayer.SetMiniGameStatus(0);
-            EndGame();
+            VEndGame();
         } else {
-            isGameOver = false;
+            p_isGameOver = false;
             ResetRound();
         }
 
-        return isGameOver;
+        return p_isGameOver;
     }
 
     public void ResetRound() {
@@ -99,10 +104,10 @@ public class Pong : MiniGameLevel
     }
 
     // dynamic binding to end the Pong game
-    public override void EndGame() {
+    public override void VEndGame() {
         Debug.Log("Ending the Game...");
         Time.timeScale = 0;
-        isGameOver = true;
+        p_isGameOver = true;
 
         ball.gameObject.SetActive(false);
         aiPaddle.gameObject.SetActive(false);

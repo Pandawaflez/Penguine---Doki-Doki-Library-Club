@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class PlayerPaddle : Paddle
 {
-    private string input = "PlayerPaddle";
-    private bool isMovingUp = false;
-    private bool isMovingDown = false;
+    private string _input = "PlayerPaddle";
+    private bool _isMovingUp = false;
+    private bool _isMovingDown = false;
 
     void Start() {
-        height = transform.localScale.y;
+        p_height = transform.localScale.y;
         isPlayerPaddle = true;
     }
 
@@ -17,18 +17,18 @@ public class PlayerPaddle : Paddle
 
         // Use keyboard input for PC
         if (Application.platform != RuntimePlatform.Android && Application.platform != RuntimePlatform.IPhonePlayer) {
-            move = Input.GetAxis(input) * Time.deltaTime * speed;
+            move = Input.GetAxis(_input) * Time.deltaTime * p_speed;
         }
         // Use button input for mobile
         else {
-            if (isMovingUp) move = 1 * Time.deltaTime * speed;
-            else if (isMovingDown) move = -1 * Time.deltaTime * speed;
+            if (_isMovingUp) move = 1 * Time.deltaTime * p_speed;
+            else if (_isMovingDown) move = -1 * Time.deltaTime * p_speed;
         }
 
         // Restrict paddle movement so it doesn't go offscreen
-        if (transform.position.y < Pong.bottomLeft.y + height / 2 && move < 0) {
+        if (transform.position.y < Pong.s_bottomLeft.y + p_height / 2 && move < 0) {
             move = 0;
-        } else if (transform.position.y > Pong.topRight.y - height / 2 && move > 0) {
+        } else if (transform.position.y > Pong.s_topRight.y - p_height / 2 && move > 0) {
             move = 0;
         }
 
@@ -37,20 +37,20 @@ public class PlayerPaddle : Paddle
 
     // Called by the UI button when pressed
     public void OnPressUp() {
-        isMovingUp = true;
+        _isMovingUp = true;
     }
 
     public void OnReleaseUp() {
-        isMovingUp = false;
+        _isMovingUp = false;
     }
 
     public void OnPressDown() {
         Debug.Log("on press down pressed");
-        isMovingDown = true;
+        _isMovingDown = true;
     }
 
     public void OnReleaseDown() {
         Debug.Log("on press down released");
-        isMovingDown = false;
+        _isMovingDown = false;
     }
 }

@@ -59,7 +59,7 @@ public class Lance_PongTests
         GameObject instance = GameObject.Instantiate(pongGame);
         Pong pongInstance = instance.GetComponentInChildren<Pong>();
 
-        pongInstance.EndGame();
+        pongInstance.VEndGame();
 
         Assert.AreEqual(pongInstance.GetIsGameOver(), true);
     }

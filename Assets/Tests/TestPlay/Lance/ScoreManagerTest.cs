@@ -29,31 +29,31 @@ public class Lance_ScoreManagerTests {
 
     [Test]
     public void PongScoreManager_AddScore_IncreasesScoreByOne() {
-        pongScoreManager.AddPlayerScore(1);
+        pongScoreManager.VAddPlayerScore(1);
         Assert.AreEqual(1, pongScoreManager.GetPlayerScore());
     }
 
     [Test]
     public void PongScoreManager_CheckPlayerWinCondition_ShouldWinWhenScoreIs10() {
-        for (int i = 0; i < 10; i++) pongScoreManager.AddPlayerScore(1);
-        Assert.AreEqual(ScoreManager.PLAYER_WON, pongScoreManager.CheckWinCondition());
+        for (int i = 0; i < 10; i++) pongScoreManager.VAddPlayerScore(1);
+        Assert.AreEqual(ScoreManager.PLAYER_WON, pongScoreManager.VCheckWinCondition());
     }
 
     [Test]
     public void PongScoreManager_CheckAIWinCondition_ShouldWinWhenScoreIs10() {
         for (int i = 0; i < 10; i++) (pongScoreManager as PongScoreManager)?.AddAIScore();
-        Assert.AreEqual(PongScoreManager.AI_WON, pongScoreManager.CheckWinCondition());
+        Assert.AreEqual(PongScoreManager.AI_WON, pongScoreManager.VCheckWinCondition());
     }
 
     [Test]
     public void PongScoreManager_CheckWinCondition_ShouldNotWinWhenScoreIsLessThan10() {
-        pongScoreManager.AddPlayerScore(PONG_WIN_SCORE - 1);
-        Assert.AreEqual(ScoreManager.WIN_CONDITION_NOT_MET, pongScoreManager.CheckWinCondition());
+        pongScoreManager.VAddPlayerScore(PONG_WIN_SCORE - 1);
+        Assert.AreEqual(ScoreManager.WIN_CONDITION_NOT_MET, pongScoreManager.VCheckWinCondition());
     }
 
     [Test]
     public void PongScoreManager_AddScore_ShouldNotExceedWinScore() {
-        for (int i = 0; i < 15; i++) pongScoreManager.AddPlayerScore(1);
+        for (int i = 0; i < 15; i++) pongScoreManager.VAddPlayerScore(1);
         Assert.AreEqual(10, pongScoreManager.GetPlayerScore()); 
     }
 
@@ -65,26 +65,26 @@ public class Lance_ScoreManagerTests {
 
     [Test]
     public void MinesweeperScoreManager_AddScore_IncreasesScoreByOne() {
-        minesweeperScoreManager.AddPlayerScore(1);
+        minesweeperScoreManager.VAddPlayerScore(1);
         Assert.AreEqual(1, minesweeperScoreManager.GetPlayerScore());
     }
 
     [Test]
     public void MinesweeperScoreManager_SetPlayerHitMine_ShouldSetGameOver() {
-        minesweeperScoreManager.SetPlayerHitMine();
-        Assert.AreEqual(MinesweeperScoreManager.PLAYER_HIT_MINE, minesweeperScoreManager.CheckWinCondition());
+        minesweeperScoreManager.VSetPlayerHitMine();
+        Assert.AreEqual(MinesweeperScoreManager.PLAYER_HIT_MINE, minesweeperScoreManager.VCheckWinCondition());
     }
 
     [Test]
     public void MinesweeperScoreManager_CheckWinCondition_ShouldWinWhenScoreReachesThreshold() {
-        minesweeperScoreManager.AddPlayerScore(MINESWEEPER_WIN_SCORE - MINESWEEPER_NUM_MINES);
-        Assert.AreEqual(ScoreManager.PLAYER_WON, minesweeperScoreManager.CheckWinCondition());
+        minesweeperScoreManager.VAddPlayerScore(MINESWEEPER_WIN_SCORE - MINESWEEPER_NUM_MINES);
+        Assert.AreEqual(ScoreManager.PLAYER_WON, minesweeperScoreManager.VCheckWinCondition());
     }
 
     [Test]
     public void MinesweeperScoreManager_CheckWinCondition_ShouldNotWinWhenBelowThreshold() {
-        minesweeperScoreManager.AddPlayerScore(MINESWEEPER_WIN_SCORE-1);
-        Assert.AreEqual(ScoreManager.WIN_CONDITION_NOT_MET, minesweeperScoreManager.CheckWinCondition());
+        minesweeperScoreManager.VAddPlayerScore(MINESWEEPER_WIN_SCORE-1);
+        Assert.AreEqual(ScoreManager.WIN_CONDITION_NOT_MET, minesweeperScoreManager.VCheckWinCondition());
     }
 
     // MathScoreManager Tests
@@ -95,19 +95,19 @@ public class Lance_ScoreManagerTests {
 
     [Test]
     public void MathScoreManager_AddScore_IncreasesScoreByFive() {
-        mathScoreManager.AddPlayerScore(5);
+        mathScoreManager.VAddPlayerScore(5);
         Assert.AreEqual(5, mathScoreManager.GetPlayerScore());
     }
 
     [Test]
     public void MathScoreManager_CheckWinCondition_ShouldWinWhenScoreReachesThreshold() {
-        mathScoreManager.AddPlayerScore(MATH_WIN_SCORE);
-        Assert.AreEqual(ScoreManager.PLAYER_WON, mathScoreManager.CheckWinCondition());
+        mathScoreManager.VAddPlayerScore(MATH_WIN_SCORE);
+        Assert.AreEqual(ScoreManager.PLAYER_WON, mathScoreManager.VCheckWinCondition());
     }
 
     [Test]
     public void MathScoreManager_CheckWinCondition_ShouldNotWinWhenBelowThreshold() {
-        mathScoreManager.AddPlayerScore(MATH_WIN_SCORE - 1);
-        Assert.AreEqual(ScoreManager.WIN_CONDITION_NOT_MET, mathScoreManager.CheckWinCondition());
+        mathScoreManager.VAddPlayerScore(MATH_WIN_SCORE - 1);
+        Assert.AreEqual(ScoreManager.WIN_CONDITION_NOT_MET, mathScoreManager.VCheckWinCondition());
     }
 }
