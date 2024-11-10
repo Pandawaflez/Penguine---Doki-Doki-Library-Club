@@ -82,13 +82,25 @@ public class DaphneScript : DahpneDialogueData, IObserver
             {
                 DaphSCAP = DaphneAffectionPointsMonitor(DaphSCAP, 20);
             }
-            else if ((SCdialogueNum == 0 || SCdialogueNum == 3) && responseNum == 1)
+            //no bc mode
+            else if (((SCdialogueNum == 0 || SCdialogueNum == 3) && responseNum == 1) && !BCModeOn)
             {
                 DaphSCAP = DaphneAffectionPointsMonitor(DaphSCAP, -10);
             }
-            else if ((SCdialogueNum == 1 || SCdialogueNum == 2 || SCdialogueNum == 4) && responseNum == 2)
+            //yes bc mode
+            else if (((SCdialogueNum == 0 || SCdialogueNum == 3) && responseNum == 1) && BCModeOn)
+            {
+                DaphSCAP = DaphneAffectionPointsMonitor(DaphSCAP, 5);
+            }
+            //no bc mode
+            else if (((SCdialogueNum == 1 || SCdialogueNum == 2 || SCdialogueNum == 4) && responseNum == 2) && !BCModeOn)
             {
                 DaphSCAP = DaphneAffectionPointsMonitor(DaphSCAP, -10);
+            }
+            //yes bc mode
+            else if (((SCdialogueNum == 1 || SCdialogueNum == 2 || SCdialogueNum == 4) && responseNum == 2) && BCModeOn)
+            {
+                DaphSCAP = DaphneAffectionPointsMonitor(DaphSCAP, 5);
             }
             else if ((SCdialogueNum == 0 || SCdialogueNum == 3) && responseNum == 2)
             {
@@ -144,10 +156,14 @@ public class DaphneScript : DahpneDialogueData, IObserver
     public override void EndConversation(bool characterValue, int affectionPts)
     {
         base.EndConversation(characterValue, DaphSCAP);
-        if (characterValue)
+        if (characterValue && !BCModeOn)
         {
             DaphLockout = true;
             Debug.Log("Daphne's interaction is now locked out");
+        }
+        else if (BCModeOn)
+        {
+            UIElementHandler.UIGod.EndGame(true, "Daphne");
         }
     }
 
@@ -171,10 +187,14 @@ public class DaphneScript : DahpneDialogueData, IObserver
             DaphSCAP += 50;
 
         }
-        else if (miniGameStatus == 0)
+        else if (miniGameStatus == 0 && !BCModeOn)
         {
             DaphSCAP -= 30;
             DaphLockout = true;
+        }
+        else if (miniGameStatus == 0 && BCModeOn)
+        {
+            DaphSCAP += 5;
         }
         if (DaphSCAP >= 100)
         {

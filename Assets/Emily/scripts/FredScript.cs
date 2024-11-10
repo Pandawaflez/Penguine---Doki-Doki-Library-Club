@@ -80,13 +80,25 @@ public class FredScript : FredDialogueData, IObserver
             {
                 FredSCAP = FredAffectionPointsMonitor(FredSCAP, 20);
             }
-            else if ((SCdialogueNum == 0 || SCdialogueNum == 1) && responseNum == 1)
+            //no bc mode
+            else if (((SCdialogueNum == 0 || SCdialogueNum == 1) && responseNum == 1) && !BCModeOn)
             {
                 FredSCAP = FredAffectionPointsMonitor(FredSCAP, -10);
             }
-            else if ((SCdialogueNum == 2 || SCdialogueNum == 3 || SCdialogueNum == 4) && responseNum == 2)
+            //yes bc mode
+            else if (((SCdialogueNum == 0 || SCdialogueNum == 1) && responseNum == 1) && BCModeOn)
+            {
+                FredSCAP = FredAffectionPointsMonitor(FredSCAP, 5);
+            }
+            //no bc mode
+            else if (((SCdialogueNum == 2 || SCdialogueNum == 3 || SCdialogueNum == 4) && responseNum == 2) && !BCModeOn)
             {
                 FredSCAP = FredAffectionPointsMonitor(FredSCAP, -10);
+            }
+            //yes bc mode
+            else if (((SCdialogueNum == 2 || SCdialogueNum == 3 || SCdialogueNum == 4) && responseNum == 2) && BCModeOn)
+            {
+                FredSCAP = FredAffectionPointsMonitor(FredSCAP, 5);
             }
             else if ((SCdialogueNum == 0 || SCdialogueNum == 1) && responseNum == 2)
             {
@@ -141,11 +153,15 @@ public class FredScript : FredDialogueData, IObserver
     public override void EndConversation(bool characterValue, int affectionPts)
     {
         base.EndConversation(characterValue, FredSCAP);
-        if (characterValue)
+        if (characterValue && !BCModeOn)
         {
             FredLockout = true;
             UpdateAffectionAfterMinigame();
             Debug.Log("Fred is locked out");
+        }
+        else if (BCModeOn)
+        {
+            UIElementHandler.UIGod.EndGame(true,"Fred");
         }
     }
 
@@ -169,10 +185,14 @@ public class FredScript : FredDialogueData, IObserver
             FredSCAP += 50;
 
         }
-        else if (miniGameStatus == 0)
+        else if (miniGameStatus == 0 && !BCModeOn)
         {
             FredSCAP -= 30;
             FredLockout = true;
+        }
+        else if (miniGameStatus == 0 && BCModeOn)
+        {
+            FredSCAP += 5;
         }
         if (FredSCAP >= 100)
         {

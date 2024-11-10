@@ -33,7 +33,7 @@ public class ShaggyScript : ShaggyDialogeData, IObserver
 
     void Start()
     {
-        //register script as observer to scooby subject
+        //register script as observer
         RegisterObserver(this);
         //if player is not locked out, they can talk
         if (!ShagLockout)
@@ -84,14 +84,27 @@ public class ShaggyScript : ShaggyDialogeData, IObserver
             {
                 ShagSCAP = ShaggyAffectionPointsMonitor(ShagSCAP, 20);
             }
-            else if ((SCdialogueNum == 2 || SCdialogueNum == 3 || SCdialogueNum == 4) && responseNum == 1)
+            //no bc mode
+            else if (((SCdialogueNum == 2 || SCdialogueNum == 3 || SCdialogueNum == 4) && responseNum == 1) && !BCModeOn)
             {
                 ShagSCAP = ShaggyAffectionPointsMonitor(ShagSCAP, -10);
             }
-            else if ((SCdialogueNum == 0 || SCdialogueNum == 1) && responseNum == 2)
+            //yes bc mode 
+            else if (((SCdialogueNum == 2 || SCdialogueNum == 3 || SCdialogueNum == 4) && responseNum == 1) && BCModeOn)
+            {
+                ShagSCAP = ShaggyAffectionPointsMonitor(ShagSCAP, 5);
+            }
+            //no bc mode
+            else if (((SCdialogueNum == 0 || SCdialogueNum == 1) && responseNum == 2) && !BCModeOn)
             {
                 ShagSCAP = ShaggyAffectionPointsMonitor(ShagSCAP, -10);
             }
+            //yes bc mode
+            else if (((SCdialogueNum == 0 || SCdialogueNum == 1) && responseNum == 2) && BCModeOn)
+            {
+                ShagSCAP = ShaggyAffectionPointsMonitor(ShagSCAP, 5);
+            }
+
             else if ((SCdialogueNum == 2 || SCdialogueNum == 3 || SCdialogueNum == 4) && responseNum == 2)
             {
                 ShagSCAP = ShaggyAffectionPointsMonitor(ShagSCAP, 20);
@@ -151,11 +164,15 @@ public class ShaggyScript : ShaggyDialogeData, IObserver
     public override void EndConversation(bool characterValue, int affectionPts)
     {
         base.EndConversation(characterValue, ShagSCAP);
-        if (characterValue)
+        if (characterValue && !BCModeOn)
         {
             ShagLockout = true;
             UpdateAffectionAfterMinigame();
             Debug.Log("Shaggy's interactions is now locked out");
+        }
+        else if (BCModeOn)
+        {
+            UIElementHandler.UIGod.EndGame(true, "Shaggy");
         }
     }
 
@@ -180,10 +197,14 @@ public class ShaggyScript : ShaggyDialogeData, IObserver
             ShagSCAP += 50;
 
         }
-        else if (miniGameStatus == 0)
+        else if (miniGameStatus == 0 && !BCModeOn)
         {
             ShagSCAP -= 30;
             ShagLockout = true;
+        }
+        else if (miniGameStatus == 0 && BCModeOn)
+        {
+            ShagSCAP += 5;
         }
         if (ShagSCAP >= 100)
         {

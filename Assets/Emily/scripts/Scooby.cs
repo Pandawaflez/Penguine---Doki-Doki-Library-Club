@@ -21,6 +21,7 @@ public abstract class Scooby : ISubject //superclass
     public static bool ShaginteractedWith = false;
     public static bool DaphinteractedWith = false;
     public static bool FredinteractedWith = false;
+    public static bool BCModeOn = MainPlayer.IsBCMode();
 
 
     //tracking affection points for characters
