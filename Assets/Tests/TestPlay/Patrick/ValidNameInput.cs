@@ -22,7 +22,7 @@ public class PatrickValidNameInputBoundary
         var inputName = new InputName(inputFieldObject);
         var submitButton = new UISubmitButton(new GameObject(), inputName);
 
-        // Set player name
+        //Set player name
         inputField.text = "Alice";
 
         //Act: ensure that valid names that are not empty and in range of input field are valid

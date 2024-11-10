@@ -191,4 +191,9 @@ public class UIElementHandler : MonoBehaviour
 
         // Debug.Log($"Game Over: You Lose!");
     }
+
+    //returns bool if overlay is open (this is mainly for testing)
+    public bool isOpen(){
+        return _overlayUI.Visible();
+    }
 }
