@@ -10,15 +10,7 @@ using UnityEngine.UI;
 public class ShaggyTests
 {
     private Scooby scoobyScript = new ShaggyScript();
-    /*[SetUp]
-    public void Setup()
-    {
-
-        SceneManager.LoadScene("Shaggy");
-        //GameObject shaggyObject = new GameObject("ShaggyObject");
-        scoobyScript = shaggyObject.AddComponent<ShaggyScript>();
-    }*/
-
+    
     //minimum shaggy affection points
     [UnityTest]
     public IEnumerator MinShaggyLove()
@@ -135,4 +127,46 @@ public class ShaggyTests
         yield return null;
         Assert.AreEqual(70, ShaggyScript.ShagSCAP, "repeated button presses should affect affection points only once per valid response");
     }
+
+   
+
+    //testing affection points after the minigame ends
+    [UnityTest]
+    public IEnumerator UpdateAffectionAfterMinigame_CorrectlyAdjustsAffectionPoints_Win()
+    {
+        ShaggyScript.ShagSCAP = 50;
+        ShaggyScript.ShagLockout = false;
+        
+        MainPlayer.SetMiniGameStatus(1);
+        ShaggyScript.UpdateAffectionAfterMinigame();
+        yield return null;
+        Assert.AreEqual(100, ShaggyScript.ShagSCAP, "Minigame win should increase affection points by 50");
+    }
+
+    //affection points after minigame ends and loses without BC mode deducts points
+    [UnityTest]
+    public IEnumerator UpdateAffectionAfterMinigame_CorrectlyAdjustsAffectionPoints_Lose()
+    {
+        ShaggyScript.ShagSCAP = 50;
+        MainPlayer.SetMiniGameStatus(0);
+        ShaggyScript.BCModeOn = false;
+        ShaggyScript.UpdateAffectionAfterMinigame();
+        yield return null;
+        Assert.AreEqual(20, ShaggyScript.ShagSCAP, "Minigame loss should decrease affection points");
+        Assert.IsTrue(ShaggyScript.ShagLockout, "Minigame loss without BC mode should lose points");
+    }
+
+    //affection points after minigame ends and loses with BC should gain points
+    [UnityTest]
+    public IEnumerator UpdateAffectionAfterMinigame_CorrectlyAdjustsAffectionPoints_Lose_BC()
+    {
+        ShaggyScript.ShagSCAP = 50;
+        MainPlayer.SetMiniGameStatus(0);
+        ShaggyScript.BCModeOn = true;
+        ShaggyScript.UpdateAffectionAfterMinigame();
+        yield return null;
+        Assert.AreEqual(55, ShaggyScript.ShagSCAP, "minigame loss in BC mode increases SCAP by 5");
+        Assert.IsFalse(ShaggyScript.ShagLockout, "minigame loss in BC mode should not lower SCAP");
+    }
+
 }

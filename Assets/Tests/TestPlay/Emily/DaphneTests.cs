@@ -127,5 +127,44 @@ public class DaphneTests
         yield return null;
         Assert.AreEqual(70, DaphneScript.DaphSCAP, "repeated button presses should affect affection points only once per valid response");
     }
+
+    //testing affection points after the minigame ends
+    [UnityTest]
+    public IEnumerator UpdateAffectionAfterMinigame_CorrectlyAdjustsAffectionPoints_Win()
+    {
+        DaphneScript.DaphSCAP = 50;
+        DaphneScript.DaphLockout = false;
+        
+        MainPlayer.SetMiniGameStatus(1);
+        DaphneScript.UpdateAffectionAfterMinigame();
+        yield return null;
+        Assert.AreEqual(100, DaphneScript.DaphSCAP, "Minigame win should increase affection points by 50");
+    }
+
+    //affection points after minigame ends and loses without BC mode deducts points
+    [UnityTest]
+    public IEnumerator UpdateAffectionAfterMinigame_CorrectlyAdjustsAffectionPoints_Lose()
+    {
+        DaphneScript.DaphSCAP = 50;
+        MainPlayer.SetMiniGameStatus(0);
+        DaphneScript.BCModeOn = false;
+        DaphneScript.UpdateAffectionAfterMinigame();
+        yield return null;
+        Assert.AreEqual(20, DaphneScript.DaphSCAP, "Minigame loss should decrease affection points");
+        Assert.IsTrue(DaphneScript.DaphLockout, "Minigame loss without BC mode should lose points");
+    }
+
+    //affection points after minigame ends and loses with BC should gain points
+    [UnityTest]
+    public IEnumerator UpdateAffectionAfterMinigame_CorrectlyAdjustsAffectionPoints_Lose_BC()
+    {
+        DaphneScript.DaphSCAP = 50;
+        MainPlayer.SetMiniGameStatus(0);
+        DaphneScript.BCModeOn = true;
+        DaphneScript.UpdateAffectionAfterMinigame();
+        yield return null;
+        Assert.AreEqual(55, DaphneScript.DaphSCAP, "minigame loss in BC mode increases SCAP by 5");
+        Assert.IsFalse(DaphneScript.DaphLockout, "minigame loss in BC mode should not lower SCAP");
+    }
 }
 

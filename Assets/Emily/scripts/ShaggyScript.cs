@@ -145,7 +145,7 @@ public class ShaggyScript : ShaggyDialogeData, IObserver
     {
         AffectionPoints += factor;
         //Debug.Log("Affection Points: " + AffectionPoints);
-        interactionPoints = AffectionPoints;
+        //interactionPoints = AffectionPoints;
         ShagSCAP = AffectionPoints;
         ShaggyAffectionUpdates();
         

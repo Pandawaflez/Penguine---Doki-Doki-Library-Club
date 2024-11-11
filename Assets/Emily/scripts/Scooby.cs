@@ -14,8 +14,7 @@ public abstract class Scooby : ISubject //superclass
     //tracking what number dialogue response
     public int SCdialogueNum = 0;
 
-    //tracking affection points
-    public static int interactionPoints = 0; 
+    
 
     //tracking whether each character has been interacted with or not
     public static bool ShaginteractedWith = false;
@@ -124,8 +123,10 @@ public abstract class Scooby : ISubject //superclass
     public bool IsConversationLockedOut(){
         return lockout;
     }
-    public virtual void HandlePlayerResponse(int responseNum)
-    {
+    
+    //public void HandlePlayerResonse(int ResponseNum){    
+    public virtual void HandlePlayerResponse(int responseNum){
+        Debug.Log("This is the static variant");
         if (responseNum == 1) SCAP += 10;
         else if (responseNum == 2) SCAP -= 10;
 

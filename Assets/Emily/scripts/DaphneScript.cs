@@ -140,7 +140,7 @@ public class DaphneScript : DahpneDialogueData, IObserver
     {
         AffectionPoints += factor;
         //Debug.Log("Affection Points: " + AffectionPoints);
-        interactionPoints = AffectionPoints;
+        //interactionPoints = AffectionPoints;
         DaphSCAP = AffectionPoints;
         DaphneAffectionUpdates();
         return AffectionPoints; 

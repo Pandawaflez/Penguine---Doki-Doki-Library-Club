@@ -138,7 +138,7 @@ public class FredScript : FredDialogueData, IObserver
     public int FredAffectionPointsMonitor(int AffectionPoints, int factor)
     {
         AffectionPoints += factor;
-        interactionPoints = AffectionPoints;
+        //interactionPoints = AffectionPoints;
         FredSCAP = AffectionPoints;
         FredAffectionUpdates();
         return AffectionPoints; 

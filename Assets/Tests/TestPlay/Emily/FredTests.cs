@@ -127,5 +127,44 @@ public class FredTests
         yield return null;
         Assert.AreEqual(70, FredScript.FredSCAP, "repeated button presses should affect affection points only once per valid response");
     }
+
+    //testing affection points after the minigame ends
+    [UnityTest]
+    public IEnumerator UpdateAffectionAfterMinigame_CorrectlyAdjustsAffectionPoints_Win()
+    {
+        FredScript.FredSCAP = 50;
+        FredScript.FredLockout = false;
+        
+        MainPlayer.SetMiniGameStatus(1);
+        FredScript.UpdateAffectionAfterMinigame();
+        yield return null;
+        Assert.AreEqual(100, FredScript.FredSCAP, "Minigame win should increase affection points by 50");
+    }
+
+    //affection points after minigame ends and loses without BC mode deducts points
+    [UnityTest]
+    public IEnumerator UpdateAffectionAfterMinigame_CorrectlyAdjustsAffectionPoints_Lose()
+    {
+        FredScript.FredSCAP = 50;
+        MainPlayer.SetMiniGameStatus(0);
+        FredScript.BCModeOn = false;
+        FredScript.UpdateAffectionAfterMinigame();
+        yield return null;
+        Assert.AreEqual(20, FredScript.FredSCAP, "Minigame loss should decrease affection points");
+        Assert.IsTrue(FredScript.FredLockout, "Minigame loss without BC mode should lose points");
+    }
+
+    //affection points after minigame ends and loses with BC should gain points
+    [UnityTest]
+    public IEnumerator UpdateAffectionAfterMinigame_CorrectlyAdjustsAffectionPoints_Lose_BC()
+    {
+        FredScript.FredSCAP = 50;
+        MainPlayer.SetMiniGameStatus(0);
+        FredScript.BCModeOn = true;
+        FredScript.UpdateAffectionAfterMinigame();
+        yield return null;
+        Assert.AreEqual(55, FredScript.FredSCAP, "minigame loss in BC mode increases SCAP by 5");
+        Assert.IsFalse(FredScript.FredLockout, "minigame loss in BC mode should not lower SCAP");
+    }
 }
 
