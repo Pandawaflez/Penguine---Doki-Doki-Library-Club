@@ -21,6 +21,8 @@ public class FredUI : MonoBehaviour, IObserver
     
     //utilizing the superclass
     private Scooby  scoobyScript;
+
+    private DialogueSound dialogueSound; // declared for audio
     
     // Start is called before the first frame update
     void Start()
@@ -44,6 +46,30 @@ public class FredUI : MonoBehaviour, IObserver
             FredScript.UpdateAffectionAfterMinigame();
             DisableButtons();
         }
+
+        // AUDIO SETUP
+        AudioClip fredVoice = Resources.Load<AudioClip>("Owen/voice");
+        if (fredVoice == null)
+        {
+            Debug.LogError("Audio clip not found!");
+            return;
+        }
+
+        // Create a new GameObject for the AudioSource
+        GameObject audioGameObject = new GameObject("DialogueSoundAudioSource");
+        AudioSource audioSource = audioGameObject.AddComponent<AudioSource>();
+
+        // Assign the instance to the class-level dialogueSound variable
+        dialogueSound = new DialogueSound(
+            id: "fredVoice",
+            clip: fredVoice,
+            characterID: "Fred",
+            backgroundID: "Scooby",
+            source: audioSource
+        );
+
+        // Adjust the pitch directly through Unity on the AudioSource
+        audioSource.pitch = 1f; 
 
     }
     
@@ -73,6 +99,8 @@ public class FredUI : MonoBehaviour, IObserver
             Debug.Log("interaction ended");
             scoobyScript.EndConversation(FredScript.FredinteractedWith, FredScript.FredSCAP);
         }
+
+
     }
 
     private void HandleResponse(int responseNum){

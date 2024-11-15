@@ -33,22 +33,29 @@ public class CharlieBrown : Peanuts
         //myDialogue = new Dialogue();
         //myDialogue.v_displayDialogue(0); //superclass fn bound
 
-        // Load the audio clip from the Resources folder
-        AudioClip peanutsTeacherClip = Resources.Load<AudioClip>("Owen/Peanuts/peanuts_teacher");
-        if (peanutsTeacherClip != null)
+    // AUDIO SETUP
+        AudioClip charlieVoice = Resources.Load<AudioClip>("Owen/voice");
+        if (charlieVoice == null)
         {
-            dialogueSound = new DialogueSound(
-                "peanuts_teacher", 
-                peanutsTeacherClip, 
-                "CharlieBrown", 
-                "Peanuts", 
-                AudioManager.Instance.GetComponent<AudioSource>()
-            );
+            Debug.LogError("Audio clip not found!");
+            return;
         }
-        else
-        {
-            Debug.LogError("peanuts_teacher audio clip not found.");
-        }
+
+        // Create a new GameObject for the AudioSource
+        GameObject audioGameObject = new GameObject("DialogueSoundAudioSource");
+        AudioSource audioSource = audioGameObject.AddComponent<AudioSource>();
+
+        // Assign the instance to the class-level dialogueSound variable
+        dialogueSound = new DialogueSound(
+            id: "charlieVoice",
+            clip: charlieVoice,
+            characterID: "CharlieBrown",
+            backgroundID: "Peanuts",
+            source: audioSource
+        );
+
+        // Adjust the pitch directly through Unity on the AudioSource
+        audioSource.pitch = .6f; 
 
         //reload state
         p_dialogueNum = PeanutsDB.CharlieDialogueNum;
@@ -202,13 +209,7 @@ public class CharlieBrown : Peanuts
         myDialogue.v_displayDialogue(d);
 
         // AUDIO 
-        if (dialogueSound != null)
-        {
-            // Play the sound for 3 seconds
-            AudioManager.Instance.PlayForDuration(dialogueSound, 2f);
-        } else {
-            Debug.Log(string.Format("No song found for funciton onDialogue"));
-        }
+        dialogueSound.PlayForDuration(3f);
     }
     
 }

@@ -19,7 +19,9 @@ public class Lucy : Peanuts
     //no buttons because i'm using weird techniques
     public Dialogue genDialogue;
     private LucyDialogue myDialogue;
-    private string game = "Math";
+    private string game = "Minesweeper";
+
+    private DialogueSound dialogueSound; // declared for audio
 
     void Start()
     {
@@ -28,6 +30,30 @@ public class Lucy : Peanuts
         Lr2p.SetActive(true);   //not necessary
         //set dialogue up
         myDialogue = new LucyDialogue(Lr1p, Lr2p, LdialogueText, Lresponse1Text, Lresponse2Text);
+
+        // AUDIO SETUP
+        AudioClip lucyVoice = Resources.Load<AudioClip>("Owen/voice");
+        if (lucyVoice == null)
+        {
+            Debug.LogError("Audio clip not found!");
+            return;
+        }
+
+        // Create a new GameObject for the AudioSource
+        GameObject audioGameObject = new GameObject("DialogueSoundAudioSource");
+        AudioSource audioSource = audioGameObject.AddComponent<AudioSource>();
+
+        // Assign the instance to the class-level dialogueSound variable
+        dialogueSound = new DialogueSound(
+            id: "lucyVoice",
+            clip: lucyVoice,
+            characterID: "Lucy",
+            backgroundID: "Peanuts",
+            source: audioSource
+        );
+
+        // Adjust the pitch directly through Unity on the AudioSource
+        audioSource.pitch = 1f; 
 
         //reload state    
         p_dialogueNum = PeanutsDB.LucyDialogueNum;
@@ -266,6 +292,9 @@ public class Lucy : Peanuts
         } 
         //theAudio.loadSounds();
         myDialogue.v_displayDialogue(d);
+
+        // AUDIO 
+        dialogueSound.PlayForDuration(3f);
     }
     
 }

@@ -21,6 +21,8 @@ public class Minesweeper : MiniGameLevel {
     private bool _playerWon = false;
     private const int _TIME_LIMIT = 120;
 
+    private BackgroundMusic backgroundMusic; //AUDIO
+    private AudioSource backgroundAudioSource;
     private readonly float r_tileSize = 0.5f;
 
     // Start is called before the first frame update
@@ -32,6 +34,37 @@ public class Minesweeper : MiniGameLevel {
         } else {
             CreateGameBoard(9, 9, 10);
         }
+
+        // AUDIO SETUP- Get the AudioSource for background music
+        // Step 1: Load the background music clip from Resources
+        AudioClip backgroundClip = Resources.Load<AudioClip>("Owen/Games/Polka");
+
+        if (backgroundClip == null)
+        {
+            Debug.LogError("Background music not found in Resources!");
+            return;
+        }
+
+        // Step 2: Get or add an AudioSource component
+        backgroundAudioSource = GetComponent<AudioSource>();
+        if (backgroundAudioSource == null)
+        {
+            backgroundAudioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        // Step 3: Create a new BackgroundMusic instance with the loaded AudioClip
+        backgroundMusic = new BackgroundMusic(
+            id: "BackgroundMusicID",
+            clip: backgroundClip,
+            characterID: "Background",
+            backgroundID: "Pong",
+            source: backgroundAudioSource
+        );
+
+        // Step 4: Loop the music 
+        backgroundMusic.Loop();
+
+
         // scoreManager = new MinesweeperScoreManager(width*height, numMines);
         _scoreManager = ScoreManagerFactory.CreateScoreManager("Minesweeper", _width*_height, _numMines);
         ResetGameState();
@@ -210,6 +243,9 @@ public class Minesweeper : MiniGameLevel {
             MainPlayer.SetMiniGameStatus(0);
             Debug.Log("EndGame::Player Lost");
         }
+
+        // AUDIO -Fade out the background music before ending the game
+        backgroundMusic.Stop();
 
         _timerScreen.SetActive(false);
         _gameOverScreen.SetActive(true);
