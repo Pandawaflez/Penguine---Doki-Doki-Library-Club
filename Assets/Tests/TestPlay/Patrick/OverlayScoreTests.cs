@@ -38,7 +38,7 @@ public class Patrick_OverlayScoringTests
             yield return new WaitForSeconds(1f);        
         }
 
-        Assert.AreEqual(5, i, "overlay would've tried to open 5 times");
+        Assert.IsFalse(UIElementHandler.UIGod.isOpen(), "overlay would've tried to open 5 times");
 
         // Use the Assert class to test conditions.
         // Use yield to skip a frame.
@@ -60,6 +60,7 @@ public class Patrick_OverlayScoringTests
             yield return new WaitForSeconds(1f);        
         }
 
+        Assert.IsTrue(UIElementHandler.UIGod.isOpen(), "overlay should be open");
 
         yield return null;
     }

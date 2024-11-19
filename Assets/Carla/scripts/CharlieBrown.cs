@@ -30,71 +30,60 @@ public class CharlieBrown : Peanuts
         myDialogue = new CharlieDialogue(Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);    //dynamic type CharlieDialogue
         //myDialogue.v_displayDialogue(0);    //subclass fn bound
 
-
         //myDialogue = new Dialogue();
         //myDialogue.v_displayDialogue(0); //superclass fn bound
 
-        // Load the audio clip from the Resources folder
-        AudioClip peanutsTeacherClip = Resources.Load<AudioClip>("Owen/Peanuts/peanuts_teacher");
-        if (peanutsTeacherClip != null)
+    // AUDIO SETUP
+        AudioClip charlieVoice = Resources.Load<AudioClip>("Owen/voice");
+        if (charlieVoice == null)
         {
-            dialogueSound = new DialogueSound(
-                "peanuts_teacher", 
-                peanutsTeacherClip, 
-                "CharlieBrown", 
-                "Peanuts", 
-                AudioManager.Instance.GetComponent<AudioSource>()
-            );
-        }
-        else
-        {
-                    Debug.LogError("peanuts_teacher audio clip not found.");
+            Debug.LogError("Audio clip not found!");
+            return;
         }
 
+        // Create a new GameObject for the AudioSource
+        GameObject audioGameObject = new GameObject("DialogueSoundAudioSource");
+        AudioSource audioSource = audioGameObject.AddComponent<AudioSource>();
+
+        // Assign the instance to the class-level dialogueSound variable
+        dialogueSound = new DialogueSound(
+            id: "charlieVoice",
+            clip: charlieVoice,
+            characterID: "CharlieBrown",
+            backgroundID: "Peanuts",
+            source: audioSource
+        );
+
+        // Adjust the pitch directly through Unity on the AudioSource
+        audioSource.pitch = .6f; 
+
+        //reload state
         p_dialogueNum = PeanutsDB.CharlieDialogueNum;
         loadAffection(PeanutsDB.CharlieAffectionPts);
         Debug.Log(string.Format("starting with {0} affection points on dialoge {1}", getAffectionPoints(), p_dialogueNum));
+
+        //get to it
         onDialogue(p_dialogueNum);
     }
     
     void Update()
     {
+        //continuosly make sure database is up to date
         PeanutsDB.CharlieAffectionPts = getAffectionPoints();
         PeanutsDB.CharlieDialogueNum = p_dialogueNum;
     }
 
-    /*
-        //button one calls onclick
-        public void hitResponse1()
-        {
-            p_responseNum = 1;
-            Debug.Log("they hit it boss");
-            //StartCoroutine(holdUp(10));
-            //unselect button for next screen
-            r1.Select();
-            v_toNextDialogue();
-        }
-
-        //button 2 calls onclick
-        public void hitResponse2()
-        {
-            p_responseNum = 2;
-            r2.Select();
-            v_toNextDialogue();
-        }
-        */
-
-    /*
-        this function is called when a button is hit
-        decides what to do (update affection pts, next dialogue number and/or to initiate minigame) based off response
-        calls onDialogue() at end
+    /*a response button being hit will trigger this. 
+    * decides how to respond to response through updating affection, setting next dialogue, and possibly starting a minigame
     */
     //private void v_toNextDialogue()
     protected override void v_toNextDialogue()
     {
+        //see what dialouge we are currently on
         int d = getDialogueNum();
         switch(d){
             case 0:
+            //check response num and respond accordingly.
                 if (p_responseNum == 1){
                     p_dialogueNum=1;
                     updateAffection(-5);
@@ -186,7 +175,11 @@ public class CharlieBrown : Peanuts
         Debug.Log(string.Format("current affection points: {0}", getAffectionPoints()));
     }
 
-    //calls myDialogue with the updated dialogue number, and triggers audio
+    /* this function is either called from start or onDialogue.
+    * It will tell the Dialogue class to display the dialogue
+    * and will also check for edge cases (win/lose a game, get locked out, or win character's love)
+    * Also calls audio
+    */
     public void onDialogue(int d)
     {
         //if user was just in a game, send them to post game convo
@@ -197,6 +190,7 @@ public class CharlieBrown : Peanuts
             p_dialogueNum=8;
             d=8;
             MainPlayer.SetMiniGameStatus(-1);   //reset game status
+            Update();   //make sure DB gets updated
         }
         //if user has entered the end of dialogue
         else if (p_dialogueNum == 5)
@@ -214,15 +208,8 @@ public class CharlieBrown : Peanuts
         //Actually display dialogue
         myDialogue.v_displayDialogue(d);
 
-        // AUDIO - ADDED BY OWEN
-        if (dialogueSound != null)
-        {
-            // Play the sound for 3 seconds
-            AudioManager.Instance.PlayForDuration(dialogueSound, 2f);
-        } else {
-            Debug.Log(string.Format("No song found for funciton onDialogue"));
-        }
-        // END OF OWEN CODE
+        // AUDIO 
+        dialogueSound.PlayForDuration(3f);
     }
     
 }

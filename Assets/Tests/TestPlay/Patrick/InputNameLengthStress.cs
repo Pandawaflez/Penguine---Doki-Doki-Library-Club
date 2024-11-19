@@ -60,7 +60,7 @@ public class PatrickSubmitNameButtonStress
                 string storedName = MainPlayer.GetPlayerName();
 
                 // Log the progress for tracking.
-                Debug.Log($"Iteration {iteration}: Stored name length = {storedName.Length}, {storedName}");
+                // Debug.Log($"Iteration {iteration}: Stored name length = {storedName.Length}, {storedName}");
 
                 // Ensure the stored name matches the input field text.
                 if (storedName.Length != inputField.text.Length)

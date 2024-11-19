@@ -4,22 +4,51 @@ using UnityEngine;
 
 public class Audio
 {
-    public string ID { get; private set; }
-    public AudioClip Clip { get; private set; }
-    public float Volume { get; set; }
-    public bool IsLooping { get; set; }
+    // Private nested AudioData class to hold audio data
+    private class AudioData
+    {
+        public AudioSource Source { get; private set; }
+        public AudioClip Clip { get; private set; }
+        public float Volume { get; set; }
+        public bool IsLooping { get; set; }
 
-    protected AudioSource Source { get; set; }
+        public AudioData(AudioSource source, AudioClip clip, float volume, bool isLooping)
+        {
+            Source = source;
+            Clip = clip;
+            Volume = volume;
+            IsLooping = isLooping;
+        }
+
+        public void Play()
+        {
+            Source.clip = Clip;
+            Source.volume = Volume;
+            Source.loop = IsLooping;
+            Source.Play();
+        }
+
+        public void Stop()
+        {
+            Source.Stop();
+        }
+
+        public bool IsPlaying()
+        {
+            return Source.isPlaying;
+        }
+    }
+
+    private AudioData audioData;
+
+    public string ID { get; private set; }
 
     public Audio(string id, AudioClip clip, float volume = 1f, bool isLooping = false, bool playOnAwake = false, AudioSource source = null)
     {
         ID = id;
-        Clip = clip;
-        Volume = volume;
-        IsLooping = isLooping;
-        Source = source;
+        audioData = new AudioData(source, clip, volume, isLooping);
 
-        if (playOnAwake && Source != null)
+        if (playOnAwake)
         {
             Play();
         }
@@ -27,25 +56,29 @@ public class Audio
 
     public virtual void Play()
     {
-        if (Source != null && Clip != null)
-        {
-            Source.clip = Clip;
-            Source.volume = Volume;
-            Source.loop = IsLooping;
-            Source.Play();
-        }
+        audioData.Play();
     }
 
     public virtual void Stop()
     {
-        if (Source != null)
-        {
-            Source.Stop();
-        }
+        audioData.Stop();
     }
 
     public bool IsPlaying()
     {
-        return Source != null && Source.isPlaying;
+        return audioData.IsPlaying();
+    }
+
+    // Expose volume and loop settings through public properties if needed
+    public float Volume
+    {
+        get => audioData.Volume;
+        set => audioData.Volume = value;
+    }
+
+    public bool IsLooping
+    {
+        get => audioData.IsLooping;
+        set => audioData.IsLooping = value;
     }
 }

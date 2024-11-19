@@ -10,6 +10,7 @@ public abstract class HedgehogDialogue
     public string DialogueLine{ get; set;}
     protected bool isFinished;
     public IState CurrentState{ get; private set;}
+    private string game = "Pong";
 
     protected HedgehogDialogue(string characterName, string initialDialogue)
     {

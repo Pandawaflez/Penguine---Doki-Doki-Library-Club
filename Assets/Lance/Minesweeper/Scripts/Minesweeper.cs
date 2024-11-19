@@ -4,63 +4,96 @@ using UnityEngine;
 using TMPro;
 
 public class Minesweeper : MiniGameLevel {
-    [SerializeField] private Transform tilePrefab;
-    [SerializeField] private Transform gameHolder;
-    [SerializeField] private TextMeshProUGUI timerText;
-    [SerializeField] private GameObject timerScreen;
-    [SerializeField] private GameObject gameOverScreen;
-    [SerializeField] private TextMeshProUGUI winnerText;
+    [SerializeField] private Transform _tilePrefab;
+    [SerializeField] private Transform _gameHolder;
+    [SerializeField] private TextMeshProUGUI _timerText;
+    [SerializeField] private GameObject _timerScreen;
+    [SerializeField] private GameObject _gameOverScreen;
+    [SerializeField] private TextMeshProUGUI _winnerText;
 
-    private List<Tile> tiles = new();
-    private ScoreManager scoreManager;
+    private List<Tile> _tiles = new();
+    private ScoreManager _scoreManager;
 
-    private float timeRemaining;
-    private int width;
-    private int height;
-    private int numMines;
-    private bool playerWon = false;
-    private int TIME_LIMIT = 120;
+    private float _timeRemaining;
+    private int _width;
+    private int _height;
+    private int _numMines;
+    private bool _playerWon = false;
+    private const int _TIME_LIMIT = 120;
 
-    private readonly float tileSize = 0.5f;
+    private BackgroundMusic backgroundMusic; //AUDIO
+    private AudioSource backgroundAudioSource;
+    private readonly float r_tileSize = 0.5f;
 
     // Start is called before the first frame update
     void Start() {
-        timeLimit = TIME_LIMIT;
-        timeRemaining = timeLimit;
+        p_timeLimit = _TIME_LIMIT;
+        _timeRemaining = p_timeLimit;
         if (MainPlayer.IsBCMode()) {
             CreateGameBoard(9,9,0); // no mines
         } else {
             CreateGameBoard(9, 9, 10);
         }
+
+        // AUDIO SETUP- Get the AudioSource for background music
+        // Step 1: Load the background music clip from Resources
+        AudioClip backgroundClip = Resources.Load<AudioClip>("Owen/Games/Polka");
+
+        if (backgroundClip == null)
+        {
+            Debug.LogError("Background music not found in Resources!");
+            return;
+        }
+
+        // Step 2: Get or add an AudioSource component
+        backgroundAudioSource = GetComponent<AudioSource>();
+        if (backgroundAudioSource == null)
+        {
+            backgroundAudioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        // Step 3: Create a new BackgroundMusic instance with the loaded AudioClip
+        backgroundMusic = new BackgroundMusic(
+            id: "BackgroundMusicID",
+            clip: backgroundClip,
+            characterID: "Background",
+            backgroundID: "Pong",
+            source: backgroundAudioSource
+        );
+
+        // Step 4: Loop the music 
+        backgroundMusic.Loop();
+
+
         // scoreManager = new MinesweeperScoreManager(width*height, numMines);
-        scoreManager = ScoreManagerFactory.CreateScoreManager("Minesweeper", width*height, numMines);
+        _scoreManager = ScoreManagerFactory.CreateScoreManager("Minesweeper", _width*_height, _numMines);
         ResetGameState();
     }
 
     void Update() {
-        if (!isGameOver) {
-            timeRemaining -= Time.deltaTime;
+        if (!p_isGameOver) {
+            _timeRemaining -= Time.deltaTime;
             UpdateTimer();
         }
     }
 
     // update time and check if time has run out for game
     public void UpdateTimer() {
-        timerText.text = Mathf.Ceil(timeRemaining).ToString();
+        _timerText.text = Mathf.Ceil(_timeRemaining).ToString();
 
-        if (timeRemaining <= 0f) {
+        if (_timeRemaining <= 0f) {
             Debug.Log("Player ran out of time");
-            playerWon = false;
-            EndGame();
+            _playerWon = false;
+            VEndGame();
         }
     }
 
     public void AddPlayerScore() {
-        scoreManager.AddPlayerScore();
+        _scoreManager.VAddPlayerScore();
     }
 
     public void CreateGameBoard(int width, int height, int numMines) {
-        if (tilePrefab == null || gameHolder == null)
+        if (_tilePrefab == null || _gameHolder == null)
         {
             Debug.LogError("Tile prefab or game holder is not set.");
             return;
@@ -75,22 +108,22 @@ public class Minesweeper : MiniGameLevel {
         ClearExistingBoard();
 
         // Save the game parameters we're using.
-        this.width = width;
-        this.height = height;
-        this.numMines = numMines;
+        this._width = width;
+        this._height = height;
+        this._numMines = numMines;
 
         // Create the array of tiles.
-        for (int row = 0; row < height; row++) {
-            for (int col = 0; col < width; col++) {
+        for (int row = 0; row < _height; row++) {
+            for (int col = 0; col < _width; col++) {
                 // Position the tile in the correct place (centered).
-                Transform tileTransform = Instantiate(tilePrefab);
-                tileTransform.parent = gameHolder;
-                float xIndex = col - ((width - 1) / 2.0f);
-                float yIndex = row - ((height - 1) / 2.0f);
-                tileTransform.localPosition = new Vector2(xIndex * tileSize, yIndex * tileSize);
+                Transform tileTransform = Instantiate(_tilePrefab);
+                tileTransform.parent = _gameHolder;
+                float xIndex = col - ((_width - 1) / 2.0f);
+                float yIndex = row - ((_height - 1) / 2.0f);
+                tileTransform.localPosition = new Vector2(xIndex * r_tileSize, yIndex * r_tileSize);
                 // Keep a reference to the tile for setting up the game.
                 Tile tile = tileTransform.GetComponent<Tile>();
-                tiles.Add(tile);
+                _tiles.Add(tile);
                 tile.gameManager = this;
             }
         }
@@ -100,7 +133,7 @@ public class Minesweeper : MiniGameLevel {
     private void ClearExistingBoard()
     {
         // Destroy all tile GameObjects in the list
-        foreach (Tile tile in tiles)
+        foreach (Tile tile in _tiles)
         {
             if (tile != null)
             {
@@ -109,22 +142,22 @@ public class Minesweeper : MiniGameLevel {
         }
 
         // Clear the tiles list
-        tiles.Clear();
+        _tiles.Clear();
     }
 
     public void ResetGameState() {
         // Randomly shuffle the tile positions to get indices for mine positions.
-        int[] minePositions = Enumerable.Range(0, tiles.Count).OrderBy(x => Random.Range(0.0f, 1.0f)).ToArray();
+        int[] minePositions = Enumerable.Range(0, _tiles.Count).OrderBy(x => Random.Range(0.0f, 1.0f)).ToArray();
 
         // Set mines at the first numMines positions.
-        for (int i = 0; i < numMines; i++) {
+        for (int i = 0; i < _numMines; i++) {
             int pos = minePositions[i];
-            tiles[pos].isMine = true;
+            _tiles[pos].isMine = true;
         }
 
         // Update all the tiles to hold the correct number of mines.
-        for (int i = 0; i < tiles.Count; i++) {
-            tiles[i].mineCount = HowManyMines(i);
+        for (int i = 0; i < _tiles.Count; i++) {
+            _tiles[i].mineCount = HowManyMines(i);
         }
     }
 
@@ -132,7 +165,7 @@ public class Minesweeper : MiniGameLevel {
     public int TotalMinesOnBoard() {
         int count = 0;
 
-        foreach (Tile tile in tiles) {
+        foreach (Tile tile in _tiles) {
             if (tile.isMine) {
                 count++;
             }
@@ -145,7 +178,7 @@ public class Minesweeper : MiniGameLevel {
     private int HowManyMines(int location) {
         int count = 0;
         foreach (int pos in GetNeighbors(location)) {
-            if (tiles[pos].isMine) {
+            if (_tiles[pos].isMine) {
                 count++;
             }
         }
@@ -155,69 +188,72 @@ public class Minesweeper : MiniGameLevel {
     // Given a position, return the positions of all neighbors.
     public List<int> GetNeighbors(int pos) {
         List<int> neighbors = new();
-        int row = pos / width;
-        int col = pos % width;
+        int row = pos / _width;
+        int col = pos % _width;
         // (0,0) is bottom left.
-        if (row < (height - 1)) {
-            neighbors.Add(pos + width); // North
+        if (row < (_height - 1)) {
+            neighbors.Add(pos + _width); // North
             if (col > 0) {
-                neighbors.Add(pos + width - 1); // North-West
+                neighbors.Add(pos + _width - 1); // North-West
             }
-            if (col < (width - 1)) {
-                neighbors.Add(pos + width + 1); // North-East
+            if (col < (_width - 1)) {
+                neighbors.Add(pos + _width + 1); // North-East
             }
         }
         if (col > 0) {
             neighbors.Add(pos - 1); // West
         }
-        if (col < (width - 1)) {
+        if (col < (_width - 1)) {
             neighbors.Add(pos + 1); // East
         }
         if (row > 0) {
-            neighbors.Add(pos - width); // South
+            neighbors.Add(pos - _width); // South
             if (col > 0) {
-                neighbors.Add(pos - width - 1); // South-West
+                neighbors.Add(pos - _width - 1); // South-West
             }
-            if (col < (width - 1)) {
-            neighbors.Add(pos - width + 1); // South-East
+            if (col < (_width - 1)) {
+            neighbors.Add(pos - _width + 1); // South-East
             }
         }
         return neighbors;
     }
 
     public void ClickNeighbors(Tile tile) {
-        int location = tiles.IndexOf(tile);
+        int location = _tiles.IndexOf(tile);
         foreach (int pos in GetNeighbors(location)) {
-            tiles[pos].ClickedTile();
+            _tiles[pos].ClickedTile();
         }
     }
 
-    public override void EndGame() {
+    public override void VEndGame() {
         // Disable clicks on all mines.
-        foreach (Tile tile in tiles) {
+        foreach (Tile tile in _tiles) {
             tile.ShowGameOverState();
         }
 
-        isGameOver = true;
+        p_isGameOver = true;
 
-        if (playerWon || MainPlayer.IsBCMode()) {
+        if (_playerWon || MainPlayer.IsBCMode()) {
             Debug.Log("EndGame::Player Won!");
-            winnerText.text = "You Won!";
+            _winnerText.text = "You Won!";
             MainPlayer.SetMiniGameStatus(1);
             SetFlagOnAllMines();
         } else {
-            winnerText.text = "You Lost!";
+            _winnerText.text = "You Lost!";
             MainPlayer.SetMiniGameStatus(0);
             Debug.Log("EndGame::Player Lost");
         }
 
-        timerScreen.SetActive(false);
-        gameOverScreen.SetActive(true);
+        // AUDIO -Fade out the background music before ending the game
+        backgroundMusic.Stop();
+
+        _timerScreen.SetActive(false);
+        _gameOverScreen.SetActive(true);
     }
 
     private int CountActiveTiles() {
         int count = 0;
-        foreach (Tile tile in tiles) {
+        foreach (Tile tile in _tiles) {
             if (tile.active) {
                 count++;
             }
@@ -227,7 +263,7 @@ public class Minesweeper : MiniGameLevel {
 
     // set a flag on every mine
     private void SetFlagOnAllMines() {
-        foreach (Tile tile in tiles) {
+        foreach (Tile tile in _tiles) {
             tile.active = false;
             tile.SetFlaggedIfMine();
         }
@@ -235,36 +271,36 @@ public class Minesweeper : MiniGameLevel {
     
     public void CheckGameOver() {
         // If there are numMines left active then we're done.
-        int count = scoreManager.CheckWinCondition();
+        int count = _scoreManager.VCheckWinCondition();
 
         if (count == ScoreManager.PLAYER_WON) {
             // Flag and disable everything, we're done.
-            isGameOver = true;
-            playerWon = true;
-            // winnerText.text = "You Won!";
+            p_isGameOver = true;
+            _playerWon = true;
+            // _winnerText.text = "You Won!";
             Debug.Log("Player Won Minesweeper!");
             SetFlagOnAllMines();
-            EndGame();
+            VEndGame();
         } else if (count == MinesweeperScoreManager.PLAYER_HIT_MINE) {
-            isGameOver = true;
-            playerWon = false;
-            // winnerText.text = "You Lost!";
+            p_isGameOver = true;
+            _playerWon = false;
+            // _winnerText.text = "You Lost!";
             Debug.Log("Player Lost Minesweeper!");
-            EndGame();
+            VEndGame();
         }
     }
 
     public void SetPlayerHitMine() {
-        scoreManager.SetPlayerHitMine();
+        _scoreManager.VSetPlayerHitMine();
     }
 
     // Click on all surrounding tiles if mines are all flagged.
     public void ExpandIfFlagged(Tile tile) {
-        int location = tiles.IndexOf(tile);
+        int location = _tiles.IndexOf(tile);
         // Get the number of flags.
         int flag_count = 0;
         foreach (int pos in GetNeighbors(location)) {
-            if (tiles[pos].flagged) {
+            if (_tiles[pos].flagged) {
                 flag_count++;
             }
         }
@@ -278,45 +314,45 @@ public class Minesweeper : MiniGameLevel {
 
     // setter methods for Minesweeper tests
     public void SetTilePrefab(Transform prefab) {
-        tilePrefab = prefab;
+        _tilePrefab = prefab;
     }
 
     public void SetGameHolder(Transform temp) {
-        gameHolder = temp;
+        _gameHolder = temp;
     }
 
     public int GetTileCount() {
-        return tiles.Count;
+        return _tiles.Count;
     }
 
     public bool IsGameOverShowing() {
-        return gameOverScreen.activeSelf;
+        return _gameOverScreen.activeSelf;
     }
 
     public void SetTimerText(TextMeshProUGUI text)
     {
-        timerText = text;
+        _timerText = text;
     }
 
     public void SetTimerScreen(GameObject screen)
     {
-        timerScreen = screen;
+        _timerScreen = screen;
     }
 
     public void SetGameOverScreen(GameObject screen)
     {
-        gameOverScreen = screen;
+        _gameOverScreen = screen;
     }
 
     public void SetWinnerText(TextMeshProUGUI text)
     {
-        winnerText = text;
+        _winnerText = text;
     }
 
     // For unit testing
-    public float GetTimeRemaining() => timeRemaining;
-    public void SetTimeRemaining(float time) => timeRemaining = time;
-    public int GetTilesCount() => tiles.Count;
-    public string GetTimeText() => timerText.text;
+    public float GetTimeRemaining() => _timeRemaining;
+    public void SetTimeRemaining(float time) => _timeRemaining = time;
+    public int GetTilesCount() => _tiles.Count;
+    public string GetTimeText() => _timerText.text;
 
 }

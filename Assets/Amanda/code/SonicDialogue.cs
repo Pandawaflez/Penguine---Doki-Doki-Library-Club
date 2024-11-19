@@ -57,9 +57,16 @@ public class SonicDialogue : HedgehogDialogue
         } else if(AffectionManager.GetSonicAffectionPoints() == 100 )
         {
             DialogueLine = $"Oh nice, you're back. I'm glad to see you, {playerName}!";
-            EndConversation();
             UpdateDialogueAfterMinigame();
+            EndConversation();
         } 
+        else if(AffectionManager.GetSonicAffectionPoints() == 99)
+        {
+            DialogueLine = "I only like to date winners... but we could be rad friends.";
+            EndConversation();
+            lockoutSonic = true;
+
+        }
         
     }
 
@@ -82,10 +89,11 @@ public class SonicDialogue : HedgehogDialogue
         //return new string[0]; // return an empty array if out of bounds
     }
 
-    public bool IsConversationFinished(){
+    public override bool IsConversationFinished(){
         return isFinished;
     }
 
+    //function for patrick
     public static bool CheckSonicLockout(){
         return lockoutSonic;
     }
@@ -104,8 +112,10 @@ public class SonicDialogue : HedgehogDialogue
         //if player loses
         else if (miniGameStatus == 0)
         {
+            affectionManager.ChangeSonicAffectionPoints(-1);
             DialogueLine = $"At least you tried, good job {playerName}.";
             lockoutSonic = true;
+
         }
 
         EndConversation(); 

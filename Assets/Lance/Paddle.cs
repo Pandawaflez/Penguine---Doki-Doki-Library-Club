@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Paddle : MonoBehaviour
 {
-    protected float speed = 10;
-    protected float height;
+    protected float p_speed = 10;
+    protected float p_height;
     public bool isPlayerPaddle = false; // boolean to tell if it is players paddle or AI paddle. Defaults to AI paddle
     // Start is called before the first frame update
     void Start()
     {
-        height = transform.localScale.y;
+        p_height = transform.localScale.y;
     }
 
     // Update is called once per frame
@@ -22,15 +22,15 @@ public class Paddle : MonoBehaviour
     public void ResetPaddle() {
         Vector2 pos = Vector2.zero;
         if (isPlayerPaddle == true) {
-            pos = new Vector2(-8, 0);            
+            pos = new Vector2(-7.5f, 0);            
         } else {
-            pos = new Vector2(8, 0);
+            pos = new Vector2(7.5f, 0);
         }
 
         transform.position = pos;
     }
 
     public float GetSpeed() {
-        return speed;
+        return p_speed;
     }
 }

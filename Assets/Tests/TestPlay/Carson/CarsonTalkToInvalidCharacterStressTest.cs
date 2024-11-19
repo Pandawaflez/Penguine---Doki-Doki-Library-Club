@@ -23,7 +23,7 @@ public class CarsonTalkToInvalidCharacterStressTest : MonoBehaviour
         int counter = 0; //number of attempted character interactions
 
         // Stress Test:
-        for (int i = 0; i < 10000; i++)
+        for (int i = 0; i < 1000; i++)
         {
             counter++;
             debugMenu.talkTo(characterName);

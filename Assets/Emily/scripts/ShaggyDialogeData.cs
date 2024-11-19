@@ -17,7 +17,10 @@ public abstract class ShaggyDialogeData : Scooby
         "Have you seen any ghosts around? Ghouls? Lizard men?", // 4
         "I don't think we have much in common. Sorry pal, I'll see you around", // 5
         "Would you wanna keep this good thing going?", // 6
-        "Ok, keep it groovy man" // 7
+        "Ok, keep it groovy man", // 7
+        "Man, you're really groovy", //8
+        "Zoinks! I guess I won." //9
+
     };
     public List<string> Player_Response_1 = new List<string>{
         "I sure do.", //0

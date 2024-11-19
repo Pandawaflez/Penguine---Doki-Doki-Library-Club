@@ -27,6 +27,8 @@ public class Dialogue
     //sets the text in dialogue and response panels
     public void displayRealDialogue(string dialogue, string r1, string r2)
     {
+        r2p.SetActive(true);
+        r1p.SetActive(true);
         dialogueText.SetText(dialogue);
         response1Text.SetText(r1);
         response2Text.SetText(r2);
@@ -36,6 +38,7 @@ public class Dialogue
     protected void displayJustText(string dialogue)
     {
         dialogueText.SetText(dialogue);
+        //Debug.Log("should set these to false");
         r2p.SetActive(false);
         r1p.SetActive(false);
     }
@@ -105,13 +108,11 @@ public class CharlieDialogue : Dialogue
     //public void v_displayDialogue(int d)
     public override void v_displayDialogue(int d)
     {
-        r2p.SetActive(true);
-        r1p.SetActive(true);
+        //r2p.SetActive(true);
+        //r1p.SetActive(true);
         switch(d)
         {
             case 0:
-            //r2p.SetActive(true);
-            //r1p.SetActive(true);
             Debug.Log("first time here huh");
                 displayRealDialogue(dialogue0, d0response1, d0response2);
                 break;
@@ -155,25 +156,6 @@ public class CharlieDialogue : Dialogue
                 break;
         }
     }
-
-/*
-    private void displayRealDialogue(string dialogue, string r1, string r2)
-    {
-        dialogueText.SetText(dialogue);
-        response1Text.SetText(r1);
-        response2Text.SetText(r2);
-    }
-
-    private void displayJustText(string dialogue)
-    {
-        dialogueText.SetText(dialogue);
-        //dt.SetText(dialogue);
-        r2p.SetActive(false);
-        r1p.SetActive(false);
-        //r1.gameObject.SetActive(false); //these didn't work for no reason smh
-        //r2.gameObject.SetActive(false);
-    }
-*/
 
 }
 
@@ -289,8 +271,9 @@ public class LucyDialogue : Dialogue
         switch(d)
         {
             case 0:
-            r2p.SetActive(true);
-            r1p.SetActive(true);
+            //do these in displayRealDialogue
+            //r2p.SetActive(true);
+            //r1p.SetActive(true);
             Debug.Log("first time here huh");
                 displayRealDialogue(dialogue0, d0response1, d0response2);
                 break;
@@ -349,26 +332,14 @@ public class LucyDialogue : Dialogue
             case 18:
                 displayJustText(dialogue18);
                 break;
+            case -1:
+                displayJustText(dialogueG);
+                break;
             default:
                 displayJustText("I'm at a small loss for conversation right now...");
                 break;
         }
     }
-/*
-    private void displayRealDialogue(string dialogue, string r1, string r2)
-    {
-        dialogueText.SetText(dialogue);
-        response1Text.SetText(r1);
-        response2Text.SetText(r2);
-    }
-
-    private void displayJustText(string dialogue)
-    {
-        dialogueText.SetText(dialogue);
-        r2p.SetActive(false);
-        r1p.SetActive(false);
-    }
-*/
 
 }
 
@@ -511,27 +482,16 @@ public class SnoopyDialogue : Dialogue
             case 14:
                 displayJustText(dialogue14);
                 break;
+            case -1:
+            Debug.Log("and -1 here");
+                displayJustText(dialogueG);
+                break;
             default:
                 //displayJustText(dialogue7);
                 Debug.Log("no dialogue in d class");
                 break;
         }
     }
-/*
-    private void displayRealDialogue(string dialogue, string r1, string r2)
-    {
-        dialogueText.SetText(dialogue);
-        response1Text.SetText(r1);
-        response2Text.SetText(r2);
-    }
-
-    private void displayJustText(string dialogue)
-    {
-        dialogueText.SetText(dialogue);
-        r2p.SetActive(false);
-        r1p.SetActive(false);
-    }
-*/
 }
 
 public class SchroederDialogue : Dialogue
@@ -672,27 +632,17 @@ public class SchroederDialogue : Dialogue
                 displayJustText(dialogue13);
                 break;
             case 14:
+                Debug.Log("this is 14");
                 displayJustText(dialogue14);
                 break;
+            case -1:
+                displayJustText(dialogueG);
+                break;
             default:
+            Debug.Log("and -1 here");
                 Debug.Log("no dialogue in d class");
                 break;
         }
     }
-/*
-    private void displayRealDialogue(string dialogue, string r1, string r2)
-    {
-        dialogueText.SetText(dialogue);
-        response1Text.SetText(r1);
-        response2Text.SetText(r2);
-    }
-
-    private void displayJustText(string dialogue)
-    {
-        dialogueText.SetText(dialogue);
-        r2p.SetActive(false);
-        r1p.SetActive(false);
-    }
-*/
 }
 

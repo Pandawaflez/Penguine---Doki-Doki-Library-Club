@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-
+//not used
 public class CharlieManager : MonoBehaviour
 {
     public CharlieBrown charlie;

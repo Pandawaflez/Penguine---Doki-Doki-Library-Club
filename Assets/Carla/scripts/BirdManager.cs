@@ -14,13 +14,8 @@ public class BirdManager : MonoBehaviour
 
     void Start()
     {
+        //PATTERN: birdmanager is the client
         flywood.Begin(snoopy);
         spinwood.Begin(snoopy);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

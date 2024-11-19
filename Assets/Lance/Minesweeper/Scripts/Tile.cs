@@ -2,16 +2,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Tile : MonoBehaviour {
-    [SerializeField] private Sprite unclickedTile;
-    [SerializeField] private Sprite flaggedTile;
-    [SerializeField] private List<Sprite> clickedTiles;
-    [SerializeField] private Sprite mineTile;
-    [SerializeField] private Sprite mineWrongTile;
-    [SerializeField] private Sprite mineHitTile;
+    [SerializeField] private Sprite _unclickedTile;
+    [SerializeField] private Sprite _flaggedTile;
+    [SerializeField] private List<Sprite> _clickedTiles;
+    [SerializeField] private Sprite _mineTile;
+    [SerializeField] private Sprite _mineWrongTile;
+    [SerializeField] private Sprite _mineHitTile;
 
     public Minesweeper gameManager;
 
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer _spriteRenderer;
     public bool flagged = false;
     public bool active = true;
     public bool isMine = false;
@@ -19,7 +19,7 @@ public class Tile : MonoBehaviour {
 
     void Awake() {
         // This should always exist due to the RequireComponent helper.
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnMouseOver() {
@@ -32,9 +32,9 @@ public class Tile : MonoBehaviour {
                 // If right click toggle flag on/off.
                 flagged = !flagged;
                 if (flagged) {
-                    spriteRenderer.sprite = flaggedTile;
+                    _spriteRenderer.sprite = _flaggedTile;
                 } else {
-                    spriteRenderer.sprite = unclickedTile;
+                    _spriteRenderer.sprite = _unclickedTile;
                 }
             }
         } else {
@@ -52,12 +52,12 @@ public class Tile : MonoBehaviour {
             // Ensure it can no longer be pressed again.
             active = false;
             if (isMine) {
-                spriteRenderer.sprite = mineHitTile;
+                _spriteRenderer.sprite = _mineHitTile;
                 gameManager.SetPlayerHitMine();
                 gameManager.CheckGameOver();
             } else {
                 // It was a safe click, set the correct sprite.
-                spriteRenderer.sprite = clickedTiles[mineCount];
+                _spriteRenderer.sprite = _clickedTiles[mineCount];
                 if (mineCount == 0) {
                     // Register that the click should expand out to the neighbours.
                     gameManager.ClickNeighbors(this);
@@ -75,10 +75,10 @@ public class Tile : MonoBehaviour {
             active = false;
             if (isMine & !flagged) {
                 // If mine and not flagged show mine.
-                spriteRenderer.sprite = mineTile;
+                _spriteRenderer.sprite = _mineTile;
             } else if (flagged & !isMine) {
                 // If flagged incorrectly show crossthrough mine
-                spriteRenderer.sprite = mineWrongTile;
+                _spriteRenderer.sprite = _mineWrongTile;
             }
         }
     }
@@ -87,7 +87,7 @@ public class Tile : MonoBehaviour {
     public void SetFlaggedIfMine() {
         if (isMine) {
             flagged = true;
-            spriteRenderer.sprite = flaggedTile;
+            _spriteRenderer.sprite = _flaggedTile;
         }
     }
 }

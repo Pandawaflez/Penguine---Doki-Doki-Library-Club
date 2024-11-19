@@ -6,7 +6,7 @@ using TMPro;
 
 public class Math : MiniGameLevel
 {
-    private ScoreManager scoreManager;
+    private ScoreManager _scoreManager;
     [SerializeField] TextMeshProUGUI leftNum;
     [SerializeField] TextMeshProUGUI rightNum;
     [SerializeField] TextMeshProUGUI op;
@@ -17,19 +17,19 @@ public class Math : MiniGameLevel
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] GameObject gameOverScreen;
     [SerializeField] GameObject mathGameScreen;
-    private float timeRemaining;
-    private int correctAnswer;
-    private const int SCORE_TO_WIN = 10;
-    private const int TIME_LIMIT = 25;
+    private float _timeRemaining;
+    private int _correctAnswer;
+    private const int _SCORE_TO_WIN = 10;
+    private const int _TIME_LIMIT = 25;
 
     // Start is called before the first frame update
     public void Start()
     {
         // BC Mode score to win is -1000
-        // scoreManager = new MathScoreManager((MainPlayer.IsBCMode()) ? -1000 : SCORE_TO_WIN);
-        scoreManager = ScoreManagerFactory.CreateScoreManager( "Math", (MainPlayer.IsBCMode()) ? -1000 : SCORE_TO_WIN);
-        timeLimit = TIME_LIMIT;
-        timeRemaining = timeLimit;
+        // _scoreManager = new MathScoreManager((MainPlayer.IsBCMode()) ? -1000 : _SCORE_TO_WIN);
+        _scoreManager = ScoreManagerFactory.CreateScoreManager( "Math", (MainPlayer.IsBCMode()) ? -1000 : _SCORE_TO_WIN);
+        p_timeLimit = _TIME_LIMIT;
+        _timeRemaining = p_timeLimit;
         leftAnswer.onClick.AddListener(() => CheckAnswer(leftAnswer));
         rightAnswer.onClick.AddListener(() => CheckAnswer(rightAnswer));
         gameOverScreen.SetActive(false);
@@ -39,31 +39,31 @@ public class Math : MiniGameLevel
     // Update is called once per frame
     void Update()
     {
-        if (!isGameOver) {
-            timeRemaining -= Time.deltaTime;
+        if (!p_isGameOver) {
+            _timeRemaining -= Time.deltaTime;
             UpdateTimerText();
             CheckGameOver();
         }
     }
 
     private void UpdateTimerText() {
-        timerText.text = Mathf.Ceil(timeRemaining).ToString();
+        timerText.text = Mathf.Ceil(_timeRemaining).ToString();
     }
 
     private void UpdateScoreText() {
-        scoreText.text = "Score: " + scoreManager.GetPlayerScore().ToString();
+        scoreText.text = "Score: " + _scoreManager.GetPlayerScore().ToString();
     }
 
     private void CheckGameOver() {
-        if (timeRemaining <= 0f) {
-            if ((scoreManager.CheckWinCondition() == ScoreManager.PLAYER_WON) || (MainPlayer.IsBCMode())) {
+        if (_timeRemaining <= 0f) {
+            if ((_scoreManager.VCheckWinCondition() == ScoreManager.PLAYER_WON) || (MainPlayer.IsBCMode())) {
                 winnerText.text = "You Won!";
                 MainPlayer.SetMiniGameStatus(1);
             } else {
                 winnerText.text = "You Lost";
                 MainPlayer.SetMiniGameStatus(0);
             }
-            EndGame();
+            VEndGame();
         }
     }
 
@@ -73,30 +73,30 @@ public class Math : MiniGameLevel
         int randOperator = Random.Range(1,4);
         int incorrectAnswer = Random.Range(1,10);
         if (randOperator == 1) {
-            correctAnswer = num1 + num2;
+            _correctAnswer = num1 + num2;
             op.text = "+";
         } else if (randOperator == 2) {
-            correctAnswer = num1 - num2;
+            _correctAnswer = num1 - num2;
             op.text = "-";
         } else {
-            correctAnswer = num1 * num2;
+            _correctAnswer = num1 * num2;
             op.text = "*";
         }
 
         leftNum.text = num1.ToString();
         rightNum.text = num2.ToString();
 
-        incorrectAnswer = correctAnswer + Random.Range(-5,6);
+        incorrectAnswer = _correctAnswer + Random.Range(-5,6);
 
-        while (incorrectAnswer == correctAnswer) {
-            incorrectAnswer = correctAnswer + Random.Range(-5,6);
+        while (incorrectAnswer == _correctAnswer) {
+            incorrectAnswer = _correctAnswer + Random.Range(-5,6);
         }
 
         if (Random.Range(0, 2) == 0) {
-            leftAnswer.GetComponentInChildren<TextMeshProUGUI>().text = correctAnswer.ToString();
+            leftAnswer.GetComponentInChildren<TextMeshProUGUI>().text = _correctAnswer.ToString();
             rightAnswer.GetComponentInChildren<TextMeshProUGUI>().text = incorrectAnswer.ToString();
         } else {
-            rightAnswer.GetComponentInChildren<TextMeshProUGUI>().text = correctAnswer.ToString();
+            rightAnswer.GetComponentInChildren<TextMeshProUGUI>().text = _correctAnswer.ToString();
             leftAnswer.GetComponentInChildren<TextMeshProUGUI>().text = incorrectAnswer.ToString();
         }
     }
@@ -106,33 +106,33 @@ public class Math : MiniGameLevel
         
         // BC Mode always gets correct answer
         if (MainPlayer.IsBCMode()) {
-            selectedAnswer = correctAnswer;
+            selectedAnswer = _correctAnswer;
         }
-        if (selectedAnswer == correctAnswer) {
-            scoreManager.AddPlayerScore(1);
+        if (selectedAnswer == _correctAnswer) {
+            _scoreManager.VAddPlayerScore(1);
         } else {
-            scoreManager.AddPlayerScore(-1);
+            _scoreManager.VAddPlayerScore(-1);
         }
         GenerateNewQuestion();
         UpdateScoreText();
     }
 
-    public override void EndGame() {
+    public override void VEndGame() {
         Debug.Log("Ending the game...");
         // Time.timeScale = 0;
-        isGameOver = true;
+        p_isGameOver = true;
         mathGameScreen.SetActive(false);
         gameOverScreen.SetActive(true);
     }
 
     // getter function for testing
     public float GetTimeRemaining() {
-        return timeRemaining;
+        return _timeRemaining;
     }
 
     // setter function for testing
     public void SetTimeRemaining(float time) {
-        timeRemaining = time;
+        _timeRemaining = time;
     }
 
     public bool GetGameOverScreenShowing() {

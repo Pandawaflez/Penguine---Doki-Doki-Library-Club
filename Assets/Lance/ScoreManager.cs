@@ -4,25 +4,26 @@ using UnityEngine;
 
 public class ScoreManager 
 {
-    protected int playerScore = 0;
-    protected int scoreToWin;
-    protected bool isGameOver = false;
+    protected int p_playerScore = 0;
+    protected int p_scoreToWin;
+    protected bool p_isGameOver = false;
     public const int PLAYER_WON = 1;
     public const int WIN_CONDITION_NOT_MET = 0;
 
     public ScoreManager(int winScore) {
-        scoreToWin = winScore;
-        Debug.Log("ScoreManager::scoreToWin = " + scoreToWin);
+        p_scoreToWin = winScore;
+        Debug.Log("ScoreManager::scoreToWin = " + p_scoreToWin);
     }
 
-    public virtual void AddPlayerScore(int val = 1) {
-        playerScore += val;
+    public virtual void VAddPlayerScore(int val = 1) {
+        p_playerScore += val;
     }
 
-    public virtual int CheckWinCondition() {
+    public virtual int VCheckWinCondition() {
+        Debug.Log("ScoreManager::CheckWinCondition");
     // public int CheckWinCondition() {
-        if (playerScore >= scoreToWin) {
-            isGameOver = true;
+        if (p_playerScore >= p_scoreToWin) {
+            p_isGameOver = true;
             return PLAYER_WON;
         } else {
             return WIN_CONDITION_NOT_MET;
@@ -30,11 +31,11 @@ public class ScoreManager
     }
 
     public int GetPlayerScore() {
-        return playerScore;
+        return p_playerScore;
     }
 
     // static
-    public virtual void SetPlayerHitMine(bool hitMine = true) {
+    public virtual void VSetPlayerHitMine(bool hitMine = true) {
         // empty function for Minesweeper
     }
 }

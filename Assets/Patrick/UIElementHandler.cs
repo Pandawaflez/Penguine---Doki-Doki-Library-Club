@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
-using CandyCoded.HapticFeedback;
+// using CandyCoded.HapticFeedback;     //for mobile
 
 public class UIElementHandler : MonoBehaviour
 {
@@ -70,26 +70,24 @@ public class UIElementHandler : MonoBehaviour
 
         //Get points for characters in Overlay
         _overlayUI.UpdateCharacterUI("Charlie", PeanutsDB.CharlieAffectionPts);
-        // overlayUI.UpdateCharacterUI("Charlie", 100);
-
         _overlayUI.UpdateCharacterUI("Lucy", PeanutsDB.LucyAffectionPts);
         _overlayUI.UpdateCharacterUI("Snoopy", PeanutsDB.SnoopyAffectionPts);
         _overlayUI.UpdateCharacterUI("Schroeder", PeanutsDB.SchroederAffectionPts);
         _overlayUI.UpdateCharacterUI("Sonic", AffectionManager.GetSonicAffectionPoints());
         _overlayUI.UpdateCharacterUI("Shadow", AffectionManager.GetShadowAffectionPoints());
-        _overlayUI.UpdateCharacterUI("Shaggy", 20);
-        _overlayUI.UpdateCharacterUI("Daphne", 20);
-        _overlayUI.UpdateCharacterUI("Fred", 20);
+        _overlayUI.UpdateCharacterUI("Shaggy", ShaggyScript.ShaggyAffectionUpdates());
+        _overlayUI.UpdateCharacterUI("Daphne", DaphneScript.DaphneAffectionUpdates());
+        _overlayUI.UpdateCharacterUI("Fred", FredScript.FredAffectionUpdates());
 
 
 
-        // //checking conditions for lose game:
-        // if(SonicDialogue.CheckSonicLockout() && ShadowDialogue.CheckShadowLockout() && (PeanutsDB.CharlieLocked == 1) && 
-        //    (PeanutsDB.SchroederLocked == 1) && (PeanutsDB.SnoopyLocked == 1) && (PeanutsDB.LucyLocked == 1) &&
-        //     ShaggyScript.over )
-        // {
-        //     UIGod.LoseGame(true);
-        // }
+        //checking conditions for lose game:
+        if(SonicDialogue.CheckSonicLockout() && ShadowDialogue.CheckShadowLockout() && (PeanutsDB.CharlieLocked == 1) && 
+           (PeanutsDB.SchroederLocked == 1) && (PeanutsDB.SnoopyLocked == 1) && (PeanutsDB.LucyLocked == 1) &&
+            ShaggyScript.isShaggyLockedOut() && DaphneScript.isDaphneLockedOut() && FredScript.isFredLockedOut() )
+        {
+            UIGod.LoseGame(true);
+        }
 
     }
 
@@ -99,7 +97,7 @@ public class UIElementHandler : MonoBehaviour
         if(!_overlayUI.Visible())
         {
             _overlayUI.Show();
-            HapticFeedback.LightFeedback();         //some haptic feedback
+            // HapticFeedback.LightFeedback();         //some haptic feedback
             quitButton.gameObject.SetActive(true);
         }
         else
@@ -147,15 +145,17 @@ public class UIElementHandler : MonoBehaviour
         Application.Quit(); // Quit the application
     }
 
-    //handle end of game scenario (global access point)
+    //handle end of game win scenario (global access point)
     public void EndGame(bool state, string character)
     {
-        if(Application.isMobilePlatform)
-        {
-            HapticFeedback.MediumFeedback();    //vibrate on end game
-        }
+        // if(Application.isMobilePlatform)
+        // {
+        //     HapticFeedback.MediumFeedback();    //vibrate on end game
+        // }
         
         endGamePanel.SetActive(state); // Show the end game panel
+        quitButton.gameObject.SetActive(true);
+
 
         if(state){
             // Get the Text component from the end game panel
@@ -172,12 +172,13 @@ public class UIElementHandler : MonoBehaviour
     //lose game condition
     public void LoseGame(bool state)
     {
-        if(Application.isMobilePlatform)
-        {
-            HapticFeedback.MediumFeedback();    //vibrate on end game
-        }
+        // if(Application.isMobilePlatform)
+        // {
+        //     HapticFeedback.MediumFeedback();    //vibrate on end game
+        // }
         
         endGamePanel.SetActive(state); // Show the end game panel
+        quitButton.gameObject.SetActive(true);
 
         if(state)
         {
@@ -189,5 +190,10 @@ public class UIElementHandler : MonoBehaviour
         }
 
         // Debug.Log($"Game Over: You Lose!");
+    }
+
+    //returns bool if overlay is open (this is mainly for testing)
+    public bool isOpen(){
+        return _overlayUI.Visible();
     }
 }

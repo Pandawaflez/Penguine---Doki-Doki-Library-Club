@@ -19,35 +19,69 @@ public class Lucy : Peanuts
     //no buttons because i'm using weird techniques
     public Dialogue genDialogue;
     private LucyDialogue myDialogue;
-    private string game = "Math";
+    private string game = "Minesweeper";
+
+    private DialogueSound dialogueSound; // declared for audio
 
     void Start()
     {
         //genDialogue = new Dialogue();
-        Lr1p.SetActive(true);
-        Lr2p.SetActive(true);
+        Lr1p.SetActive(true);   //not necessary
+        Lr2p.SetActive(true);   //not necessary
+        //set dialogue up
         myDialogue = new LucyDialogue(Lr1p, Lr2p, LdialogueText, Lresponse1Text, Lresponse2Text);
-    
+
+        // AUDIO SETUP
+        AudioClip lucyVoice = Resources.Load<AudioClip>("Owen/voice");
+        if (lucyVoice == null)
+        {
+            Debug.LogError("Audio clip not found!");
+            return;
+        }
+
+        // Create a new GameObject for the AudioSource
+        GameObject audioGameObject = new GameObject("DialogueSoundAudioSource");
+        AudioSource audioSource = audioGameObject.AddComponent<AudioSource>();
+
+        // Assign the instance to the class-level dialogueSound variable
+        dialogueSound = new DialogueSound(
+            id: "lucyVoice",
+            clip: lucyVoice,
+            characterID: "Lucy",
+            backgroundID: "Peanuts",
+            source: audioSource
+        );
+
+        // Adjust the pitch directly through Unity on the AudioSource
+        audioSource.pitch = 1f; 
+
+        //reload state    
         p_dialogueNum = PeanutsDB.LucyDialogueNum;
         loadAffection(PeanutsDB.LucyAffectionPts);
         Debug.Log(string.Format("starting with {0} affection points on dialoge {1}", getAffectionPoints(), p_dialogueNum));
-        onDialogue(p_dialogueNum);
 
+        //get to it
+        onDialogue(p_dialogueNum);
     }
     
     void Update()
     {
+        //continuosly make sure database is up to date
         PeanutsDB.LucyAffectionPts = getAffectionPoints();
         PeanutsDB.LucyDialogueNum = p_dialogueNum;
         //Debug.Log(p_responseNum.ToString());
     }
 
-    //a button being hit will trigger this. decides how to respond to response
+    /*a response button being hit will trigger this. 
+    * decides how to respond to response through updating affection, setting next dialogue, and possibly starting a minigame
+    */
     protected override void v_toNextDialogue()
     {
+        //see what dialouge we are currently on
         int d = getDialogueNum();
         switch(d){
             case 0:
+            //check response num and respond accordingly.
                 if (p_responseNum == 1){
                     p_dialogueNum=1;
                     updateAffection(-5);
@@ -219,6 +253,10 @@ public class Lucy : Peanuts
         Debug.Log(string.Format("current affection points: {0}", getAffectionPoints()));
     }
 
+    /* this function is either called from start or onDialogue.
+    * It will tell the Dialogue class to display the dialogue
+    * and will also check for edge cases (win/lose a game, get locked out, or win character's love)
+    */
     public void onDialogue(int d)
     {
         //if they just played a game
@@ -228,26 +266,35 @@ public class Lucy : Peanuts
             {
                 updateAffection(-10);
                 p_dialogueNum=16;
+                d=16;
             }
             //or lost
             else if (MainPlayer.GetMiniGameStatus() == 0)
             {
                 updateAffection(25);
                 p_dialogueNum=17;
+                d=17;
             }
             MainPlayer.SetMiniGameStatus(-1);   //reset game status
+            Update();   //make sure DB gets updated
         }
+
+        //check if user just got locked out
         else if (p_dialogueNum == 7 || p_dialogueNum ==  14 ){
             PeanutsDB.LucyLocked = 1;
             p_dialogueNum=15;
         }
+
+        //check if user won
         if (getAffectionPoints() >= 100) //check if they won yet
         {
             UIElementHandler.UIGod.EndGame(true, "Lucy");
         } 
         //theAudio.loadSounds();
-        //myDialogue.displayDialogue(d, Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
         myDialogue.v_displayDialogue(d);
+
+        // AUDIO 
+        dialogueSound.PlayForDuration(3f);
     }
     
 }

@@ -15,35 +15,44 @@ public class Schroeder : Peanuts
     public GameObject Sr1p;
     public GameObject Sr2p;
     
-    //no buttons because i'm using weird techniques
     public Dialogue myDialogue;
     //private LucyDialogue myDialogue;
     private string game = "Math";
-    // Start is called before the first frame update
+
+    //Start is called beofre the first frame update
     void Start()
     {
+        //set dialogue up
         myDialogue = new SchroederDialogue(Sr1p, Sr2p, SdialogueText, Sresponse1Text, Sresponse2Text);
         //theAudio = new AudioManager();
+
+        //reload state
         p_dialogueNum = PeanutsDB.SchroederDialogueNum;
         loadAffection(PeanutsDB.SchroederAffectionPts);
         Debug.Log(string.Format("starting with {0} affection points on dialogue {1}", getAffectionPoints(), p_dialogueNum));
+
+        //get to it
         onDialogue(p_dialogueNum);
     }
 
     // Update is called once per frame
     void Update()
     {
+        //continuosly make sure database is up to date
         PeanutsDB.SchroederAffectionPts = getAffectionPoints();
         PeanutsDB.SchroederDialogueNum = p_dialogueNum;
     }
 
-    //a button being hit will trigger this. decides how to respond to response
-    //private void v_toNextDialogue()
+    /*a response button being hit will trigger this. 
+    * decides how to respond to response through updating affection, setting next dialogue, and possibly starting a minigame
+    */
     protected override void v_toNextDialogue()
     {
+        //see what dialouge we are currently on
         int d = getDialogueNum();
         switch(d){
             case 0:
+            //check response num and respond accordingly.
                 if (p_responseNum == 1){
                     p_dialogueNum = 1;
                     updateAffection(20);
@@ -145,7 +154,7 @@ public class Schroeder : Peanuts
                 } else if (p_responseNum == 2){
                     updateAffection(20);
                     initiateMiniGame(game);
-                    //dialogue depends... 13 won or 14 lost
+                    //dialogue depends... 13 won or 14 lost. set to -1 for now
                     p_dialogueNum = -1;
                 }
                 p_responseNum = 0;
@@ -175,11 +184,17 @@ public class Schroeder : Peanuts
                 Debug.Log("uh oh - no dialogue match");
                 break;
         }
+        Debug.Log(string.Format("toNext just called onDia {0}", p_dialogueNum));
         onDialogue(p_dialogueNum);
         Debug.Log(string.Format("current affection points: {0}", getAffectionPoints()));
     }
 
+    /* this function is either called from start or onDialogue.
+    * It will tell the Dialogue class to display the dialogue
+    * and will also check for edge cases (win/lose a game, get locked out, or win character's love)
+    */
     public void onDialogue(int d){
+        Debug.Log("someone called onDialogue");
         //if they just played a game
         if (p_dialogueNum == -1){
             //if they won
@@ -187,15 +202,21 @@ public class Schroeder : Peanuts
             {
                 updateAffection(25);
                 p_dialogueNum=13;
+                d=13;
             }
             //or lost
             else if (MainPlayer.GetMiniGameStatus() == 0)
             {
+                Debug.Log("they lost");
                 updateAffection(-5);
                 p_dialogueNum=14;
+                d=14;
             }
             MainPlayer.SetMiniGameStatus(-1);   //reset game status
+            Update();   //make sure DB gets updated
         }
+
+        //check if user is locked out
         else if (p_dialogueNum == 9){
             PeanutsDB.SchroederLocked = 1;
             p_dialogueNum = 12;
@@ -207,8 +228,10 @@ public class Schroeder : Peanuts
             UIElementHandler.UIGod.EndGame(true, "Schroeder");
         } 
 
+        Debug.Log(string.Format("current dialoge: {0} and d: {1}", p_dialogueNum, d));
+        Debug.Log(string.Format("DB dialogue: {0} and d {1}", PeanutsDB.SchroederDialogueNum, d));
+
         //theAudio.loadSounds();
-        //myDialogue.displayDialogue(d, Cr1p, Cr2p, CdialogueText, Cresponse1Text, Cresponse2Text);
         myDialogue.v_displayDialogue(d);
     }
 

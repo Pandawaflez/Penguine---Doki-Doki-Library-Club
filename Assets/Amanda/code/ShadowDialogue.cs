@@ -50,11 +50,18 @@ public class ShadowDialogue : HedgehogDialogue
             lockoutShadow = true;
 
         //win case    
-        } else if (AffectionManager.GetShadowAffectionPoints() == 100)
+        } 
+        else if (AffectionManager.GetShadowAffectionPoints() == 100)
         {
             DialogueLine = $"You're back, huh? Looks like you can keep up {playerName}.";
             EndConversation();
             UpdateDialogueAfterMinigame();
+        }
+        else if(AffectionManager.GetShadowAffectionPoints() == 99)
+        {
+            DialogueLine = $"Yeah yeah {playerName} you won fair and square, yet you didn't win all my love.";
+            EndConversation();
+            lockoutShadow = true;
         }
     }
 
@@ -63,46 +70,6 @@ public class ShadowDialogue : HedgehogDialogue
         //delegate choice processing to current state
         CurrentState.ProcessChoice(choice);
 
-
-        /*
-        if(choice == 1){
-            //best choice +20
-            affectionManager.ChangeShadowAffectionPoints(20);
-        }
-        else if(choice == 2)
-        {
-            //bad choice
-            affectionManager.ChangeShadowAffectionPoints(-5);
-        }
-
-        //check affection points / date
-        // If affection points are -10 or lower, lockout
-        if (AffectionManager.GetShadowAffectionPoints() <= -10)
-        {
-            DialogueLine = "Wow. You are a real piece of work.";
-            EndConversation();
-            lockoutShadow = true;
-            return;   
-        } 
-        
-        if(AffectionManager.GetShadowAffectionPoints() == 100)
-        {
-            DialogueLine = "Let's play. You're about to get cooked.";
-            startMiniGameDate(game);
-            return;
-            UpdateDialogueAfterMinigame();
-        }
-
-        currentDialogueIndex++;
-        
-        //check if there is a next dialogue before incrementing
-        if(currentDialogueIndex < shadowLines.Count)
-        {
-            shdaowResponseIndex++;
-            DialogueLine = shadowLines[currentDialogueIndex];
-        } else {
-            EndConversation();
-        } */
     }
 
     public void EndConversation()
@@ -117,12 +84,6 @@ public class ShadowDialogue : HedgehogDialogue
 
         return(currentDialogueIndex < playerResponses.Count) ? playerResponses[currentDialogueIndex] : new string[0];
        
-       /* if(currentDialogueIndex < playerResponses.Count)
-        {
-            return playerResponses[currentDialogueIndex];
-        }
-        return new string[0]; // return an empty array if out of bounds
-        */
     }
 
     public List<string> GetShadowLines()
@@ -150,19 +111,22 @@ public class ShadowDialogue : HedgehogDialogue
             DialogueLine = $"Alright you got me. I love to see you win BC. (get it because you're in BC mode)";
             UIElementHandler.UIGod.EndGame(true, "Shadow");
 
-        } 
 
-        //if player wins minigame shadow doesn't like it UNLESS BC MODE
-        if((miniGameStatus == 1) && !(MainPlayer.IsBCMode()))
+        }
+        //if player wins mini game shadow doesn't like it.  
+        else if((miniGameStatus == 1))
         {
-            DialogueLine = $"Okay way to show off. I guess nice job {playerName}.";
+            affectionManager.ChangeShadowAffectionPoints(-1);
+            DialogueLine = "Okay way to show off. I guess nice job.";
             lockoutShadow = true;
         
         //if player loses shadow thinks ur cute
-        } else if(miniGameStatus == 0)
+        }
+        else if(miniGameStatus == 0)
         {
             DialogueLine = "I knew you wouldn't be able to win, but you looked cute while trying. *wink*";
             UIElementHandler.UIGod.EndGame(true, "Shadow");
+
         }
         EndConversation();
     }
