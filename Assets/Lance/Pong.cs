@@ -40,7 +40,7 @@ public class Pong : MiniGameLevel
         // Dynamic Type
         // _scoreManager = new PongScoreManager(1);
 
-        if (Application.platform == RuntimePlatform.Android && Application.platform == RuntimePlatform.IPhonePlayer) {
+        if (Application.isMobilePlatform || UnityEngine.Device.Application.isMobilePlatform) {
             _isMobile = true;
 
             mobileMovement.SetActive(true);

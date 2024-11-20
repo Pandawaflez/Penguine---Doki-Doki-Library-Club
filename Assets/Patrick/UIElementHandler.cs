@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
-// using CandyCoded.HapticFeedback;     //for mobile
+using CandyCoded.HapticFeedback;     //for mobile
 
 public class UIElementHandler : MonoBehaviour
 {
@@ -97,7 +97,7 @@ public class UIElementHandler : MonoBehaviour
         if(!_overlayUI.Visible())
         {
             _overlayUI.Show();
-            // HapticFeedback.LightFeedback();         //some haptic feedback
+            HapticFeedback.LightFeedback();         //some haptic feedback
             quitButton.gameObject.SetActive(true);
         }
         else
@@ -148,10 +148,10 @@ public class UIElementHandler : MonoBehaviour
     //handle end of game win scenario (global access point)
     public void EndGame(bool state, string character)
     {
-        // if(Application.isMobilePlatform)
-        // {
-        //     HapticFeedback.MediumFeedback();    //vibrate on end game
-        // }
+        if(Application.isMobilePlatform)
+        {
+            HapticFeedback.MediumFeedback();    //vibrate on end game
+        }
         
         endGamePanel.SetActive(state); // Show the end game panel
         quitButton.gameObject.SetActive(true);
@@ -172,10 +172,10 @@ public class UIElementHandler : MonoBehaviour
     //lose game condition
     public void LoseGame(bool state)
     {
-        // if(Application.isMobilePlatform)
-        // {
-        //     HapticFeedback.MediumFeedback();    //vibrate on end game
-        // }
+        if(Application.isMobilePlatform)
+        {
+            HapticFeedback.MediumFeedback();    //vibrate on end game
+        }
         
         endGamePanel.SetActive(state); // Show the end game panel
         quitButton.gameObject.SetActive(true);

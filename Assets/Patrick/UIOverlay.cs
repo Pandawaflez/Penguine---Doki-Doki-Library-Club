@@ -28,8 +28,8 @@ public class UIOverlay : UIElement
             container.transform.SetParent(GetComponent<RectTransform>());
 
             RectTransform rect = container.GetComponent<RectTransform>();
-            rect.sizeDelta = new Vector2(500, 60); // Adjust size of each character row
-            rect.anchoredPosition = new Vector2(0, 150 - (i * 40)); // Space out the rows
+            rect.sizeDelta = new Vector2(500, 120); // Adjust size of each character row
+            rect.anchoredPosition = new Vector2(0, 150 - (i * 30)); // Space out the rows
 
             // Create the profile image
             Image profileImage = CreateProfileImage(images[i], container);
@@ -56,7 +56,7 @@ public class UIOverlay : UIElement
         img.sprite = image;
 
         RectTransform rect = imageObject.GetComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(35, 35);
+        rect.sizeDelta = new Vector2(70, 70);
         rect.anchoredPosition = new Vector2(-200, 0); // Align on the left
 
         return img;
@@ -81,7 +81,7 @@ public class UIOverlay : UIElement
 
         // Set up the RectTransform for proper alignment
         RectTransform rect = slider.GetComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(250, 18);  // Set the desired size
+        rect.sizeDelta = new Vector2(250, 50);  // Set the desired size
         rect.anchorMin = new Vector2(0, 0.5f);  // Anchor to the middle-left
         rect.anchorMax = new Vector2(0, 0.5f);  // Same for both min and max for left alignment
         rect.pivot = new Vector2(0, 0.5f);      // Set pivot to the left-center
@@ -143,7 +143,7 @@ public class UIOverlay : UIElement
         pointsText.text = "0 points"; // Initial value
 
         RectTransform rect = pointsText.GetComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(100, 20);
+        rect.sizeDelta = new Vector2(100, 50);
         rect.anchoredPosition = new Vector2(180, 0); // Align to the right
 
         return pointsText;
