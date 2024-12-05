@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+/*using System.Collections.Generic;
 using UnityEngine;
 
 public class RedHeart : MonoBehaviour
@@ -29,4 +29,4 @@ public class RedHeart : MonoBehaviour
         // Setting the Z-position higher (e.g., 1) will make it appear in front
         transform.position = new Vector3(transform.position.x, transform.position.y, 1f);
     }
-}
+}*/
